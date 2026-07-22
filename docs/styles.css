@@ -1,0 +1,197 @@
+@font-face {
+  font-family: "TimH Title";
+  src: url("fonts/timh-title.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TimH Text";
+  src: url("fonts/timh-text.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  --bg: #0a0d12;
+  --bg-soft: #11161d;
+  --panel: #141a22;
+  --text: #eef2f7;
+  --muted: #93a1b3;
+  --accent: #35d0ba;
+  --accent-2: #4a8cff;
+  --border: rgba(255, 255, 255, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "TimH Text", system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Ambient glowing grid backdrop */
+.grid-glow {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(900px circle at 50% -10%, rgba(53, 208, 186, 0.14), transparent 60%),
+    radial-gradient(700px circle at 85% 20%, rgba(74, 140, 255, 0.10), transparent 55%),
+    linear-gradient(to bottom, transparent, var(--bg) 80%),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 48px),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 48px);
+}
+
+header,
+main,
+footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* Hero */
+.hero {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 60px 24px 40px;
+  display: flex;
+  align-items: center;
+  gap: 34px;
+  text-align: left;
+}
+
+.hero .logo {
+  height: 96px;
+  width: auto;
+  flex-shrink: 0;
+  /* the source SVG is black; invert to render crisp white on the dark theme */
+  filter: invert(1) drop-shadow(0 0 18px rgba(53, 208, 186, 0.25));
+}
+
+.hero h1 {
+  font-family: "TimH Title", sans-serif;
+  font-size: clamp(2.1rem, 5.5vw, 3.5rem);
+  line-height: 1.05;
+  margin: 0;
+  color: #ffffff;
+}
+
+/* Chapters */
+.chapters {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 20px 24px 30px;
+}
+
+.chapter-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.chapter-card {
+  position: relative;
+  display: block;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  text-decoration: none;
+  aspect-ratio: 16 / 9;
+  transition: transform 0.28s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.28s ease, border-color 0.28s ease;
+}
+
+.chapter-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+    filter 0.28s ease;
+  filter: brightness(0.82) saturate(0.95);
+}
+
+.chapter-num {
+  position: absolute;
+  left: 14px;
+  bottom: 12px;
+  font-family: "TimH Title", sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(10, 13, 18, 0.6);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--border);
+  color: var(--text);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+
+/* Float out + illuminate on hover */
+.chapter-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  border-color: rgba(53, 208, 186, 0.55);
+  box-shadow:
+    0 22px 50px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(53, 208, 186, 0.25),
+    0 0 42px rgba(53, 208, 186, 0.35);
+}
+
+.chapter-card:hover img {
+  transform: scale(1.08);
+  filter: brightness(1.06) saturate(1.1);
+}
+
+.chapter-card:hover .chapter-num {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Footer */
+.site-footer {
+  text-align: center;
+  padding: 46px 24px 40px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.site-footer a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 760px) {
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+  }
+  .chapter-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 460px) {
+  .chapter-grid {
+    grid-template-columns: 1fr;
+  }
+}
