@@ -235,6 +235,16 @@ footer {
   transform: translateY(0);
 }
 
+/* Full-width intro card spanning all columns */
+.chapter-card--wide {
+  grid-column: 1 / -1;
+  aspect-ratio: auto;
+}
+
+.chapter-card--wide img {
+  height: auto;
+}
+
 /* Footer */
 .site-footer {
   text-align: center;
