@@ -85,6 +85,19 @@ footer {
   color: #ffffff;
 }
 
+/* Intro */
+.intro {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px 10px;
+}
+
+.intro p {
+  color: var(--text);
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  line-height: 1.7;
+}
+
 /* Chapters */
 .chapters {
   max-width: 1080px;
