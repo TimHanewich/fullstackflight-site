@@ -79,7 +79,7 @@ footer {
   width: auto;
   flex-shrink: 0;
   /* the source SVG is black; invert to render crisp white on the dark theme */
-  filter: invert(1) drop-shadow(0 0 18px rgba(53, 208, 186, 0.25));
+  filter: invert(1);
 }
 
 .hero h1 {
