@@ -124,6 +124,19 @@ footer {
   background: var(--panel);
 }
 
+.build-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 28px;
+  align-items: center;
+}
+
+.build-desc {
+  color: var(--text);
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  line-height: 1.7;
+}
+
 .video-wrap iframe {
   position: absolute;
   inset: 0;
@@ -229,6 +242,10 @@ footer {
   .chapter-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
+  }
+  .build-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 }
 
