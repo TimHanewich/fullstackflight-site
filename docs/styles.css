@@ -111,7 +111,8 @@ footer {
   color: #ffffff;
   margin-bottom: 16px;
   padding-bottom: 12px;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid transparent;
+  border-image: linear-gradient(to right, #ffffff, rgba(53, 208, 186, 0)) 1;
 }
 
 .video-wrap {
