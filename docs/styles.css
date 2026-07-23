@@ -105,7 +105,8 @@ footer {
   padding: 30px 24px 10px;
 }
 
-.build h2 {
+.build h2,
+.chapters h2 {
   font-family: "TimH Title", sans-serif;
   font-size: clamp(1.2rem, 2.6vw, 1.6rem);
   color: #ffffff;
