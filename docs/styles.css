@@ -137,6 +137,20 @@ footer {
   line-height: 1.4;
 }
 
+.build-desc p + ul,
+.build-desc ul + p {
+  margin-top: 12px;
+}
+
+.build-desc ul {
+  padding-left: 1.25em;
+}
+
+.build-desc li {
+  margin: 4px 0;
+  line-height: 1.1;
+}
+
 .video-wrap iframe {
   position: absolute;
   inset: 0;
