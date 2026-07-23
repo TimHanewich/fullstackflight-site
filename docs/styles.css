@@ -42,18 +42,13 @@ body {
   position: relative;
 }
 
-/* Ambient glowing grid backdrop */
+/* Plain dark backdrop */
 .grid-glow {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background:
-    radial-gradient(900px circle at 50% -10%, rgba(53, 208, 186, 0.14), transparent 60%),
-    radial-gradient(700px circle at 85% 20%, rgba(74, 140, 255, 0.10), transparent 55%),
-    linear-gradient(to bottom, transparent, var(--bg) 80%),
-    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 48px),
-    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 48px);
+  background: var(--bg);
 }
 
 header,
