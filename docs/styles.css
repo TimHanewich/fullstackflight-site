@@ -168,6 +168,14 @@ footer {
   padding: 20px 24px 30px;
 }
 
+.section-blurb {
+  max-width: 760px;
+  color: var(--text);
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  line-height: 1.4;
+  margin-bottom: 22px;
+}
+
 .chapter-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
