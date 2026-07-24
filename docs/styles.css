@@ -408,7 +408,9 @@ footer {
 }
 
 .discord-cta {
-  display: inline-flex;
+  display: flex;
+  width: fit-content;
+  margin: 0 auto;
   align-items: center;
   gap: 12px;
   padding: 14px 26px;
@@ -419,12 +421,11 @@ footer {
   font-weight: 600;
   font-size: 1.05rem;
   text-decoration: none;
-  transition: background 0.28s ease, box-shadow 0.28s ease;
+  transition: background 0.28s ease;
 }
 
 .discord-cta:hover {
   background: #4752c4;
-  box-shadow: 0 0 34px rgba(88, 101, 242, 0.45);
 }
 
 .discord-cta__icon {
