@@ -81,6 +81,9 @@ footer {
   object-fit: cover;
   z-index: 0;
   pointer-events: none;
+  filter: blur(5px);
+  /* scale up slightly so the blur doesn't reveal soft transparent edges */
+  transform: scale(1.06);
 }
 
 /* Darkening layer so the text stays legible over the footage */
