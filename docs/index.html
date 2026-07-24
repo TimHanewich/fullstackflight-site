@@ -12,16 +12,23 @@
 <body>
   <div class="grid-glow"></div>
 
-  <main>
-    <section class="hero">
+  <section class="landing">
+    <video class="landing-video" autoplay muted loop playsinline poster="">
+      <source src="https://i.imgur.com/PYauhM3.mp4" type="video/mp4" />
+    </video>
+    <div class="landing-overlay"></div>
+    <div class="landing-content">
       <img src="full-stack-flight.svg" alt="Full Stack Flight" class="logo" />
       <h1>Build your own quadcopter ecosystem from scratch.</h1>
-    </section>
-
-    <section class="intro">
       <p>Full Stack Flight is an educational series on building a complete quadcopter ecosystem from scratch. It covers the full system, including the flight controller, airframe, transmitter, communication protocol, and telemetry analysis tooling, all built to be understandable, practical, and accessible to makers who want to learn how quadcopters actually work.</p>
-    </section>
+    </div>
+    <div class="scroll-cue" aria-hidden="true">
+      <span>Scroll</span>
+      <span class="scroll-arrow"></span>
+    </div>
+  </section>
 
+  <main>
     <section class="build" id="centauri">
       <h2>Meet Centauri</h2>
       <div class="build-grid">
