@@ -237,6 +237,72 @@ footer {
   border: 0;
 }
 
+/* Open-source promo */
+.oss-promo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 26px;
+  padding: 20px 24px;
+  border-radius: 16px;
+  border: 1px solid rgba(53, 208, 186, 0.3);
+  background:
+    linear-gradient(90deg, rgba(53, 208, 186, 0.1), rgba(74, 140, 255, 0.08));
+  color: var(--text);
+  text-decoration: none;
+  transition: transform 0.28s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.28s ease, border-color 0.28s ease;
+}
+
+.oss-promo:hover {
+  border-color: rgba(53, 208, 186, 0.6);
+  transform: translateY(-2px);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.4),
+    0 0 34px rgba(53, 208, 186, 0.28);
+}
+
+.oss-promo__icon {
+  flex-shrink: 0;
+  color: #ffffff;
+}
+
+.oss-promo__text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  line-height: 1.35;
+}
+
+.oss-promo__text strong {
+  font-family: "TimH Title", sans-serif;
+  color: #ffffff;
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+}
+
+.oss-promo__text span {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.oss-promo__cta {
+  flex-shrink: 0;
+  margin-left: auto;
+  font-family: "TimH Title", sans-serif;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(53, 208, 186, 0.5);
+  color: var(--accent);
+  transition: background 0.28s ease, color 0.28s ease;
+}
+
+.oss-promo:hover .oss-promo__cta {
+  background: var(--accent);
+  color: #08110f;
+}
+
 /* Chapters */
 .chapters {
   max-width: 1080px;
@@ -353,6 +419,14 @@ footer {
   .build-grid {
     grid-template-columns: 1fr;
     gap: 20px;
+  }
+  .oss-promo {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .oss-promo__cta {
+    margin-left: 0;
   }
 }
 
