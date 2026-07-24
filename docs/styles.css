@@ -398,6 +398,15 @@ footer {
   padding: 20px 24px 40px;
 }
 
+.community-promo {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  margin: 4px 0 22px;
+}
+
 .discord-cta {
   display: inline-flex;
   align-items: center;
