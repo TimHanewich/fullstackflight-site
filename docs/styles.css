@@ -128,6 +128,7 @@ footer {
 
 .landing-content p {
   margin-top: 26px;
+  text-align: left;
   color: var(--text);
   font-size: clamp(1rem, 2.2vw, 1.2rem);
   line-height: 1.5;
