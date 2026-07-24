@@ -13,7 +13,10 @@
   <div class="grid-glow"></div>
 
   <section class="landing">
-    <video class="landing-video" autoplay muted loop playsinline poster="">
+    <video class="landing-video" autoplay muted playsinline>
+      <source src="https://i.imgur.com/PYauhM3.mp4" type="video/mp4" />
+    </video>
+    <video class="landing-video landing-video--b" muted playsinline style="opacity:0">
       <source src="https://i.imgur.com/PYauhM3.mp4" type="video/mp4" />
     </video>
     <div class="landing-overlay"></div>
@@ -108,5 +111,39 @@
   <footer class="site-footer">
     <p>Built by <a href="https://timhanewich.github.io" target="_blank" rel="noopener">Tim Hanewich</a></p>
   </footer>
+
+  <script>
+    (function () {
+      var vids = Array.prototype.slice.call(document.querySelectorAll(".landing-video"));
+      if (vids.length < 2) return;
+      var FADE = 0.9; // seconds of crossfade at the loop point
+      var active = 0;
+      var busy = false;
+
+      vids[0].play().catch(function () {});
+
+      function onTick(e) {
+        var v = e.target;
+        if (v !== vids[active] || busy) return;
+        var d = v.duration;
+        if (!d || isNaN(d)) return;
+        if (d - v.currentTime <= FADE) {
+          busy = true;
+          var other = vids[active ^ 1];
+          other.currentTime = 0;
+          other.play().catch(function () {});
+          // crossfade: current out, incoming in (starts from frame 0)
+          v.style.opacity = "0";
+          other.style.opacity = "1";
+          active ^= 1;
+          setTimeout(function () { busy = false; }, FADE * 1000);
+        }
+      }
+
+      vids.forEach(function (v) {
+        v.addEventListener("timeupdate", onTick);
+      });
+    })();
+  </script>
 </body>
 </html>

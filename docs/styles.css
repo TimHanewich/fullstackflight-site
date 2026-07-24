@@ -84,6 +84,7 @@ footer {
   filter: blur(5px);
   /* scale up slightly so the blur doesn't reveal soft transparent edges */
   transform: scale(1.06);
+  transition: opacity 0.9s ease;
 }
 
 /* Darkening layer so the text stays legible over the footage */
