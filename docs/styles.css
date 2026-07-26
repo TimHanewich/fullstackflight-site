@@ -20,6 +20,7 @@
   --muted: #93a1b3;
   --accent: #35d0ba;
   --accent-2: #4a8cff;
+  --sky: #5ec8f2;
   --border: rgba(255, 255, 255, 0.08);
 }
 
@@ -185,12 +186,12 @@ footer {
 .chapters h2,
 .community h2 {
   font-family: "TimH Title", sans-serif;
-  font-size: clamp(1.2rem, 2.6vw, 1.6rem);
+  font-size: clamp(1.7rem, 3.6vw, 2.5rem);
   color: #ffffff;
   margin-bottom: 16px;
   padding-bottom: 12px;
   border-bottom: 1px solid transparent;
-  border-image: linear-gradient(to right, #ffffff, rgba(255, 255, 255, 0.1)) 1;
+  border-image: linear-gradient(to right, var(--sky), rgba(255, 255, 255, 0.1)) 1;
 }
 
 .video-wrap {
