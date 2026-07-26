@@ -185,6 +185,7 @@ footer {
 .build h2,
 .chapters h2,
 .community h2 {
+  position: relative;
   font-family: "TimH Title", sans-serif;
   font-size: clamp(1.7rem, 3.6vw, 2.5rem);
   color: #ffffff;
@@ -192,6 +193,21 @@ footer {
   padding-bottom: 12px;
   border-bottom: 1px solid transparent;
   border-image: linear-gradient(to right, var(--sky), rgba(255, 255, 255, 0.1)) 1;
+}
+
+.build h2::after,
+.chapters h2::after,
+.community h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3.5px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--sky);
+  box-shadow: 0 0 6px 2px var(--sky), 0 0 18px 6px rgba(94, 200, 242, 0.6),
+    0 0 34px 10px rgba(94, 200, 242, 0.3);
 }
 
 .video-wrap {
