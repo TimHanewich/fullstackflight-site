@@ -565,29 +565,6 @@ footer {
   line-height: 1.3;
 }
 
-.parts-totals {
-  margin-top: 6px;
-  padding: 16px 18px;
-  border-radius: 14px;
-  border: 1px solid var(--border);
-  background: var(--bg-soft);
-}
-
-.parts-totals strong {
-  display: block;
-  font-family: "TimH Title", sans-serif;
-  color: #ffffff;
-  font-size: 0.95rem;
-  margin-bottom: 8px;
-}
-
-.parts-totals ul {
-  list-style: none;
-  color: var(--muted);
-  font-size: 0.88rem;
-  line-height: 1.5;
-}
-
 .parts-panels {
   min-width: 0;
 }
@@ -750,10 +727,6 @@ footer {
   }
   .parts-nav__item {
     flex: 1 1 160px;
-  }
-  .parts-totals {
-    flex: 1 1 100%;
-    margin-top: 0;
   }
   .parts-panel {
     padding: 20px 18px;
