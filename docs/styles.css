@@ -185,6 +185,7 @@ footer {
 .build h2,
 .chapters h2,
 .community h2,
+.getstarted h2,
 .parts h2 {
   position: relative;
   font-family: "TimH Title", sans-serif;
@@ -199,6 +200,7 @@ footer {
 .build h2::after,
 .chapters h2::after,
 .community h2::after,
+.getstarted h2::after,
 .parts h2::after {
   content: "";
   position: absolute;
@@ -255,6 +257,104 @@ footer {
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+/* Get Started steps */
+.getstarted {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 30px 24px 10px;
+}
+
+.step-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  counter-reset: none;
+}
+
+.step-card {
+  display: flex;
+}
+
+.step-card a {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  padding: 22px 20px 20px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  text-decoration: none;
+  transition: transform 0.28s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.28s ease, border-color 0.28s ease;
+}
+
+.step-card a:hover {
+  transform: translateY(-4px);
+  border-color: rgba(94, 200, 242, 0.55);
+  box-shadow:
+    0 22px 45px rgba(0, 0, 0, 0.45),
+    0 0 34px rgba(94, 200, 242, 0.25);
+}
+
+.step-card__num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(94, 200, 242, 0.5);
+  background: rgba(94, 200, 242, 0.1);
+  color: var(--sky);
+  font-family: "TimH Title", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1;
+  transition: background 0.28s ease, color 0.28s ease, box-shadow 0.28s ease;
+}
+
+.step-card a:hover .step-card__num {
+  background: var(--sky);
+  color: #08110f;
+  box-shadow: 0 0 18px rgba(94, 200, 242, 0.5);
+}
+
+.step-card__title {
+  font-family: "TimH Title", sans-serif;
+  font-size: 1.15rem;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.step-card__desc {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.step-card__cta {
+  margin-top: auto;
+  padding-top: 12px;
+  color: var(--sky);
+  font-size: 0.88rem;
+  font-family: "TimH Title", sans-serif;
+  font-weight: 600;
+}
+
+.step-card__cta::after {
+  content: " \2192";
+  display: inline-block;
+  transition: transform 0.28s ease;
+}
+
+.step-card a:hover .step-card__cta::after {
+  transform: translateX(4px);
 }
 
 /* Open-source promo */
@@ -716,6 +816,10 @@ footer {
   .oss-promo__cta {
     margin-left: 0;
   }
+  .step-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
   .parts-layout {
     grid-template-columns: 1fr;
     gap: 18px;
@@ -735,6 +839,9 @@ footer {
 
 @media (max-width: 460px) {
   .chapter-grid {
+    grid-template-columns: 1fr;
+  }
+  .step-grid {
     grid-template-columns: 1fr;
   }
 }
