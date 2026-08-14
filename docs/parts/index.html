@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parts List | Full Stack Flight</title>
+  <meta name="description" content="The complete hardware and parts list for the Centauri quadcopter and transmitter." />
+  <link rel="preload" href="../fonts/timh-title.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../fonts/timh-text.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="icon" type="image/svg+xml" href="../full-stack-flight.svg">
+
+  <!--Microsoft Clarity-->
+  <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "xu4obhn3yg");
+  </script>
+</head>
+<body>
+  <div class="grid-glow"></div>
+
+  <header class="page-header">
+    <a class="page-header__brand" href="../">
+      <img src="../full-stack-flight.svg" alt="Full Stack Flight" class="page-header__logo" />
+      <span>Full Stack Flight</span>
+    </a>
+    <a class="page-header__back" href="../">&larr; Back to home</a>
+  </header>
+
+  <main>
+    <section class="parts" id="parts">
+      <h2>Parts List</h2>
+      <p class="section-blurb">Everything needed to build the Centauri ecosystem, broken out by the two systems that make it up: the quadcopter itself and the pilot's transmitter.</p>
+
+      <div class="parts-layout">
+        <nav class="parts-nav" aria-label="Select a system">
+          <button class="parts-nav__item is-active" type="button" data-target="quadcopter" aria-pressed="true">
+            <span class="parts-nav__label">Quadcopter</span>
+            <span class="parts-nav__sub">The aircraft itself</span>
+          </button>
+          <button class="parts-nav__item" type="button" data-target="transmitter" aria-pressed="false">
+            <span class="parts-nav__label">Transmitter</span>
+            <span class="parts-nav__sub">The pilot's control link</span>
+          </button>
+
+          <div class="parts-totals">
+            <strong>Complete-System Totals</strong>
+            <ul>
+              <li>2&times; <a href="https://amzn.to/4vZ5DkH" target="_blank" rel="noopener">Raspberry Pi Picos</a></li>
+              <li>2&times; <a href="https://amzn.to/4eWx48V" target="_blank" rel="noopener">HC-12 wireless transceivers</a></li>
+            </ul>
+          </div>
+        </nav>
+
+        <div class="parts-panels">
+
+          <article class="parts-panel is-active" id="quadcopter">
+            <h3 class="parts-panel__title">Quadcopter</h3>
+
+            <div class="parts-group">
+              <h4>Core Electronics and Propulsion</h4>
+              <ul>
+                <li>1&times; <a href="https://amzn.to/4vZ5DkH" target="_blank" rel="noopener">Raspberry Pi Pico</a></li>
+                <li>1&times; <a href="https://amzn.to/4yh76Ev" target="_blank" rel="noopener">MPU-6050 IMU</a></li>
+                <li>1&times; <a href="https://amzn.to/4eWx48V" target="_blank" rel="noopener">HC-12 wireless transceiver</a></li>
+                <li>1&times; <a href="https://amzn.to/4vp6zh8" target="_blank" rel="noopener">LM2596 buck converter</a></li>
+                <li>4&times; <a href="https://amzn.to/44lyILf" target="_blank" rel="noopener">Readytosky 2300 KV brushless motors</a></li>
+                <li>4&times; <a href="https://amzn.to/3SMnnBr" target="_blank" rel="noopener">electronic speed controllers (ESCs)</a></li>
+                <li>4&times; <a href="https://amzn.to/3QQwuAt" target="_blank" rel="noopener">5-inch tri-blade propellers</a>, plus spares
+                  <ul>
+                    <li>2&times; clockwise</li>
+                    <li>2&times; counterclockwise</li>
+                  </ul>
+                </li>
+                <li>1&times; <a href="https://amzn.to/3RwAqq7" target="_blank" rel="noopener">4S 3300 mAh LiPo battery</a></li>
+                <li>1&times; female <a href="https://amzn.to/4vwD25n" target="_blank" rel="noopener">XT60 connector</a></li>
+                <li>1&times; 100 k&#8486; resistor from the <a href="https://amzn.to/4aNJ0Yb" target="_blank" rel="noopener">resistor pack</a></li>
+                <li>1&times; 22 k&#8486; resistor from the <a href="https://amzn.to/4aNJ0Yb" target="_blank" rel="noopener">resistor pack</a></li>
+                <li>1&times; <a href="https://amzn.to/4bFcebU" target="_blank" rel="noopener">10 &micro;F capacitor</a></li>
+                <li>1&times; <a href="https://amzn.to/44lKKUT" target="_blank" rel="noopener">0.1 &micro;F capacitor</a></li>
+                <li>2&times; ferrite beads from the <a href="https://amzn.to/3SVQRNa" target="_blank" rel="noopener">ferrite bead pack</a></li>
+                <li>Electrical wire</li>
+                <li>Solder</li>
+              </ul>
+            </div>
+
+            <div class="parts-group">
+              <h4>3D-Printed Airframe</h4>
+              <p class="parts-note">The <a href="https://www.thingiverse.com/thing:7194383" target="_blank" rel="noopener">complete airframe design files are available on Thingiverse</a>.</p>
+              <ul>
+                <li>1&times; <a href="https://www.thingiverse.com/thing:7194383" target="_blank" rel="noopener">lower plate</a></li>
+                <li>1&times; <a href="https://www.thingiverse.com/thing:7194383" target="_blank" rel="noopener">upper plate</a></li>
+                <li>4&times; <a href="https://www.thingiverse.com/thing:7194383" target="_blank" rel="noopener">arms</a></li>
+                <li>1&times; <a href="https://www.thingiverse.com/thing:7194383" target="_blank" rel="noopener">MPU-6050 frame</a></li>
+                <li>1&times; <a href="https://www.thingiverse.com/thing:7194383" target="_blank" rel="noopener">LM2596 frame</a></li>
+                <li>1&times; <a href="https://www.thingiverse.com/thing:7194383" target="_blank" rel="noopener">GoPro mount</a></li>
+                <li>3&times; <a href="https://www.thingiverse.com/thing:7194383" target="_blank" rel="noopener">antenna-mast components</a></li>
+                <li>Approximately 164 g of PLA at 30% infill</li>
+              </ul>
+            </div>
+
+            <div class="parts-group">
+              <h4>Mounting Hardware</h4>
+              <ul>
+                <li>8&times; M3&times;30 mm screws</li>
+                <li>M2 screws for the Raspberry Pi Pico</li>
+                <li>Motor-mounting screws compatible with the motors</li>
+                <li>Small/thin zip ties</li>
+                <li>Double-sided foam tape for vibration-isolating the IMU</li>
+                <li>Additional zip ties for wiring and connector retention</li>
+              </ul>
+            </div>
+
+            <div class="parts-group">
+              <h4>Antenna</h4>
+              <p class="parts-note">Choose one configuration:</p>
+              <h5>Basic/Short-Range Configuration</h5>
+              <ul>
+                <li>1&times; spring antenna supplied with the <a href="https://amzn.to/4eWx48V" target="_blank" rel="noopener">HC-12</a></li>
+              </ul>
+              <h5>Extended-Range Configuration</h5>
+              <ul>
+                <li>1&times; <a href="https://www.digikey.com/en/products/detail/taoglas-limited/TI-10-0111/3131969" target="_blank" rel="noopener">Taoglas TI.10.0111 433 MHz antenna</a></li>
+                <li>1&times; <a href="https://amzn.to/4f92Hee" target="_blank" rel="noopener">U.FL-to-SMA coaxial cable</a>
+                  <ul>
+                    <li>6-inch cable for configurations B/C</li>
+                    <li>12-inch cable for configuration D</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+
+            <div class="parts-group">
+              <h4>Optional FPV Equipment</h4>
+              <ul>
+                <li>1&times; <a href="https://amzn.to/4yjdSJW" target="_blank" rel="noopener">AKK BA3 all-in-one FPV camera/transmitter</a></li>
+                <li>1&times; <a href="https://amzn.to/4guRMOn" target="_blank" rel="noopener">JST-PH 2.0 connector</a></li>
+                <li>1&times; <a href="https://amzn.to/4fwKjxb" target="_blank" rel="noopener">SoloGood FPV monitor</a> or compatible analog FPV goggles</li>
+                <li>1&times; 3D-printed two-piece FPV protective frame from the <a href="https://github.com/TimHanewich/centauri" target="_blank" rel="noopener">Centauri repository</a></li>
+              </ul>
+            </div>
+
+            <div class="parts-group">
+              <h4>Other Optional Equipment</h4>
+              <ul>
+                <li>GoPro or another camera with a compatible two-prong mount</li>
+                <li>GoPro mounting screw</li>
+                <li>1&times; <a href="https://amzn.to/4fk1hxM" target="_blank" rel="noopener">Benewake TF-Luna LiDAR module</a></li>
+                <li>M2 LiDAR mounting screws</li>
+                <li>4&times; M4&times;30 mm screws for optional landing legs</li>
+                <li>1&times; <a href="https://amzn.to/44UV46q" target="_blank" rel="noopener">RTL-SDR receiver</a></li>
+                <li>1&times; <a href="https://amzn.to/4pmRmw0" target="_blank" rel="noopener">NanoVNA antenna analyzer</a></li>
+              </ul>
+            </div>
+
+            <div class="parts-group">
+              <h4>Supporting Equipment</h4>
+              <ul>
+                <li>LiPo-compatible balance charger</li>
+                <li>LiPo charging/storage safety bag</li>
+                <li>USB cable</li>
+                <li>Multimeter</li>
+                <li>Soldering iron and supplies</li>
+                <li>Wire cutters and strippers</li>
+                <li>Screwdrivers/hex drivers</li>
+                <li>3D printer or printing service</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="parts-panel" id="transmitter" hidden>
+            <h3 class="parts-panel__title">Transmitter</h3>
+
+            <div class="parts-group">
+              <h4>Electronics and Controls</h4>
+              <ul>
+                <li>1&times; <a href="https://amzn.to/4vZ5DkH" target="_blank" rel="noopener">Raspberry Pi Pico</a></li>
+                <li>1&times; <a href="https://amzn.to/4eWx48V" target="_blank" rel="noopener">HC-12 wireless transceiver</a></li>
+                <li>1&times; <a href="https://amzn.to/4wDVgTh" target="_blank" rel="noopener">CP2102 USB-to-UART adapter</a></li>
+                <li>1&times; <a href="https://amzn.to/4wUxGlE" target="_blank" rel="noopener">USB-compatible Xbox controller</a></li>
+                <li>1&times; Windows or Linux laptop/PC</li>
+                <li>1&times; spring antenna supplied with the <a href="https://amzn.to/4eWx48V" target="_blank" rel="noopener">HC-12</a>, or 1&times; <a href="https://www.digikey.com/short/qjz8575r" target="_blank" rel="noopener">FLEXI-SMA-433 antenna</a></li>
+                <li>Electrical wire</li>
+                <li>Solder</li>
+                <li>USB cables</li>
+              </ul>
+            </div>
+
+            <div class="parts-group">
+              <h4>3D-Printed Platform</h4>
+              <ul>
+                <li>1&times; <a href="https://www.thingiverse.com/thing:7376838" target="_blank" rel="noopener">two-piece transceiver platform</a></li>
+                <li>PLA filament</li>
+                <li>Appropriate mounting hardware or adhesive</li>
+              </ul>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built by <a href="https://timhanewich.github.io" target="_blank" rel="noopener">Tim Hanewich</a></p>
+  </footer>
+
+  <script>
+    (function () {
+      var buttons = Array.prototype.slice.call(document.querySelectorAll(".parts-nav__item"));
+      var panels = Array.prototype.slice.call(document.querySelectorAll(".parts-panel"));
+
+      function select(target) {
+        buttons.forEach(function (b) {
+          var on = b.getAttribute("data-target") === target;
+          b.classList.toggle("is-active", on);
+          b.setAttribute("aria-pressed", on ? "true" : "false");
+        });
+        panels.forEach(function (p) {
+          var on = p.id === target;
+          p.classList.toggle("is-active", on);
+          p.hidden = !on;
+        });
+        if (history.replaceState) {
+          history.replaceState(null, "", "#" + target);
+        }
+      }
+
+      buttons.forEach(function (b) {
+        b.addEventListener("click", function () {
+          select(b.getAttribute("data-target"));
+        });
+      });
+
+      var initial = (location.hash || "").replace("#", "");
+      if (initial === "transmitter" || initial === "quadcopter") {
+        select(initial);
+      }
+    })();
+  </script>
+</body>
+</html>
