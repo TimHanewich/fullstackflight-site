@@ -378,16 +378,6 @@ footer {
   color: #08110f;
 }
 
-.step-card__cta::after {
-  content: " \2192";
-  display: inline-block;
-  transition: transform 0.28s ease;
-}
-
-.step-card a:hover .step-card__cta::after {
-  transform: translateX(4px);
-}
-
 /* Open-source promo */
 .oss-promo {
   display: flex;
