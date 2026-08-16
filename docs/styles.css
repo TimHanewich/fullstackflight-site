@@ -625,6 +625,18 @@ footer {
   margin-top: 16px;
 }
 
+.maker-body p a {
+  color: var(--sky);
+  text-decoration: underline;
+  text-decoration-color: rgba(94, 200, 242, 0.4);
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.maker-body p a:hover {
+  color: #ffffff;
+  text-decoration-color: #ffffff;
+}
+
 .maker-hi {
   font-family: "TimH Title", sans-serif;
   font-size: clamp(1.8rem, 3.4vw, 2.8rem);
