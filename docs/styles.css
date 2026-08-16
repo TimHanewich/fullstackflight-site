@@ -579,68 +579,75 @@ footer {
 
 /* Meet the Maker */
 .maker {
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 20px 24px 40px;
+  width: 100%;
+  margin: 30px 0 0;
+  padding: 0;
 }
 
 .maker-grid {
   display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
-  gap: 30px;
-  align-items: start;
-  margin-top: 6px;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: stretch;
+  margin: 0;
 }
 
 .maker-photo {
+  position: relative;
   margin: 0;
+  min-height: 100%;
 }
 
 .maker-photo img {
   display: block;
   width: 100%;
-  height: auto;
-  border-radius: 16px;
-  border: 1px solid var(--border);
-}
-
-.maker-photo figcaption {
-  margin-top: 10px;
-  color: var(--muted);
-  font-size: 0.86rem;
-  text-align: center;
+  height: 100%;
+  min-height: 480px;
+  object-fit: cover;
+  object-position: center;
+  border: 0;
+  border-radius: 0;
 }
 
 .maker-body {
   color: var(--text);
-  font-size: clamp(1rem, 2.2vw, 1.1rem);
-  line-height: 1.5;
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  font-weight: 600;
+  line-height: 1.45;
+  padding: clamp(36px, 5vw, 72px) clamp(24px, 5vw, 72px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--bg-soft);
 }
 
 .maker-body p + p {
-  margin-top: 12px;
+  margin-top: 16px;
 }
 
 .maker-hi {
   font-family: "TimH Title", sans-serif;
-  font-size: clamp(1.2rem, 2.6vw, 1.5rem);
+  font-size: clamp(1.8rem, 3.4vw, 2.8rem);
+  line-height: 1.1;
   color: #ffffff;
+  margin-bottom: 4px;
 }
 
 .maker-links {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 18px;
+  margin-top: 24px;
 }
 
 .maker-links a {
-  padding: 8px 18px;
+  padding: 9px 20px;
   border-radius: 999px;
   border: 1px solid var(--border);
   color: var(--muted);
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
+  font-weight: 600;
   transition: color 0.28s ease, border-color 0.28s ease, background 0.28s ease;
 }
 
@@ -1040,11 +1047,13 @@ footer {
   }
   .maker-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 0;
   }
   .maker-photo img {
-    max-width: 420px;
-    margin: 0 auto;
+    min-height: 0;
+    aspect-ratio: 4 / 3;
+    max-width: none;
+    margin: 0;
   }
   .oss-promo {
     flex-direction: column;
