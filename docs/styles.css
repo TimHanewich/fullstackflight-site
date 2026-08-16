@@ -577,6 +577,79 @@ footer {
   flex-shrink: 0;
 }
 
+/* Meet the Maker */
+.maker {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 20px 24px 40px;
+}
+
+.maker-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 30px;
+  align-items: start;
+  margin-top: 6px;
+}
+
+.maker-photo {
+  margin: 0;
+}
+
+.maker-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+}
+
+.maker-photo figcaption {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.86rem;
+  text-align: center;
+}
+
+.maker-body {
+  color: var(--text);
+  font-size: clamp(1rem, 2.2vw, 1.1rem);
+  line-height: 1.5;
+}
+
+.maker-body p + p {
+  margin-top: 12px;
+}
+
+.maker-hi {
+  font-family: "TimH Title", sans-serif;
+  font-size: clamp(1.2rem, 2.6vw, 1.5rem);
+  color: #ffffff;
+}
+
+.maker-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.maker-links a {
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.28s ease, border-color 0.28s ease, background 0.28s ease;
+}
+
+.maker-links a:hover {
+  color: #ffffff;
+  border-color: var(--sky);
+  background: rgba(94, 200, 242, 0.1);
+}
+
 /* Interior page header */
 .page-header {
   position: relative;
@@ -964,6 +1037,14 @@ footer {
   .build-grid {
     grid-template-columns: 1fr;
     gap: 20px;
+  }
+  .maker-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .maker-photo img {
+    max-width: 420px;
+    margin: 0 auto;
   }
   .oss-promo {
     flex-direction: column;
