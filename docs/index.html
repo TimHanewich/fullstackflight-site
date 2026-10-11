@@ -289,8 +289,9 @@
         const dist = radius / Math.sin((camera.fov * Math.PI) / 360);
         const tilt = (30 * Math.PI) / 180;
         const d = dist * 1.4;
-        camera.position.set(0, d * Math.sin(tilt), d * Math.cos(tilt));
-        camera.lookAt(0, 0, 0);
+        const lift = radius * 0.25; // look below the model so it renders higher in the pane
+        camera.position.set(0, d * Math.sin(tilt) - lift, d * Math.cos(tilt));
+        camera.lookAt(0, -lift, 0);
         camera.near = dist / 100;
         camera.far = dist * 40;
         scene.fog = new THREE.Fog(0x2b2b2b, d * 1.2, d * 4);
