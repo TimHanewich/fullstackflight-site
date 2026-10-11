@@ -93,6 +93,40 @@
       <p class="cohort-line">Want to build Centauri together? I'm putting together a small, fully virtual cohort to build Centauri together, start to finish. It isn't open yet, but you can <a href="cohort/">share your interest</a> and help shape it.</p>
     </section>
 
+    <section class="build ecosystem" id="ecosystem">
+      <h2>The Centauri Ecosystem</h2>
+      <div class="eco-grid">
+        <div class="eco-pane" data-model="models/quadcopter.glb">
+          <canvas class="eco-canvas"></canvas>
+          <div class="eco-info">
+            <h3>QUADCOPTER</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          </div>
+        </div>
+        <div class="eco-pane" data-model="models/transmitter.glb">
+          <canvas class="eco-canvas"></canvas>
+          <div class="eco-info">
+            <h3>TRANSMITTER</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          </div>
+        </div>
+        <div class="eco-pane">
+          <canvas class="eco-canvas"></canvas>
+          <div class="eco-info">
+            <h3>LINK</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          </div>
+        </div>
+        <div class="eco-pane">
+          <canvas class="eco-canvas"></canvas>
+          <div class="eco-info">
+            <h3>ANALYSIS</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="build" id="centauri">
       <h2>Meet Centauri</h2>
       <div class="build-grid">
@@ -211,6 +245,82 @@
   <footer class="site-footer">
     <p>Built by <a href="https://timhanewich.github.io" target="_blank" rel="noopener">Tim Hanewich</a></p>
   </footer>
+
+  <script type="importmap">
+    { "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    } }
+  </script>
+  <script type="module">
+    import * as THREE from "three";
+    import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+
+    const loader = new GLTFLoader();
+    const panes = [];
+
+    document.querySelectorAll(".eco-pane").forEach((pane) => {
+      const canvas = pane.querySelector(".eco-canvas");
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setClearColor(0x2b2b2b, 1);
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(35, 1, 0.01, 1000);
+      scene.add(new THREE.AmbientLight(0xffffff, 0.9));
+      const key = new THREE.DirectionalLight(0xffffff, 2.2);
+      key.position.set(3, 4, 5);
+      scene.add(key);
+      const fill = new THREE.DirectionalLight(0xffffff, 0.8);
+      fill.position.set(-4, -2, -3);
+      scene.add(fill);
+
+      const pivot = new THREE.Group();
+      scene.add(pivot);
+      const entry = { pane, canvas, renderer, scene, camera, pivot, visible: false };
+      panes.push(entry);
+
+      const url = pane.dataset.model;
+      if (url) {
+        loader.load(url, (gltf) => {
+          const model = gltf.scene;
+          const box = new THREE.Box3().setFromObject(model);
+          const center = box.getCenter(new THREE.Vector3());
+          model.position.sub(center);
+          pivot.add(model);
+          const radius = box.getSize(new THREE.Vector3()).length() / 2;
+          const dist = radius / Math.sin((camera.fov * Math.PI) / 360);
+          camera.position.set(0, 0, dist * 0.9);
+          camera.near = dist / 100;
+          camera.far = dist * 10;
+          camera.updateProjectionMatrix();
+        }, undefined, (e) => console.error("Failed to load " + url, e));
+      }
+
+      new IntersectionObserver((es) => { entry.visible = es[0].isIntersecting; }).observe(pane);
+    });
+
+    function resize(p) {
+      const w = p.canvas.clientWidth, h = p.canvas.clientHeight;
+      if (p.canvas.width !== Math.floor(w * p.renderer.getPixelRatio()) || p.canvas.height !== Math.floor(h * p.renderer.getPixelRatio())) {
+        p.renderer.setSize(w, h, false);
+        p.camera.aspect = w / h;
+        p.camera.updateProjectionMatrix();
+      }
+    }
+
+    const clock = new THREE.Clock();
+    (function animate() {
+      requestAnimationFrame(animate);
+      const dt = clock.getDelta();
+      panes.forEach((p) => {
+        if (!p.visible) return;
+        resize(p);
+        p.pivot.rotation.x += dt * 0.35;
+        p.renderer.render(p.scene, p.camera);
+      });
+    })();
+  </script>
 
   <script>
     (function () {

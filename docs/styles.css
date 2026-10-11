@@ -233,6 +233,82 @@ footer {
   align-items: center;
 }
 
+.eco-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.eco-pane {
+  position: relative;
+  height: 420px;
+  overflow: hidden;
+  background: #2b2b2b;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.eco-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.eco-info {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 18px;
+  transform: translateY(var(--desc-h, 0));
+  transition: transform 0.35s ease;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.55), transparent);
+}
+
+.eco-info h3 {
+  font-family: "TimH Title", sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  margin: 0;
+}
+
+.eco-info p {
+  color: #ffffff;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin: 0;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, opacity 0.35s ease, margin 0.35s ease;
+}
+
+.eco-pane:hover .eco-info p {
+  max-height: 160px;
+  opacity: 0.9;
+  margin-top: 10px;
+}
+
+@media (max-width: 900px) {
+  .eco-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .eco-grid {
+    grid-template-columns: 1fr;
+  }
+  .eco-info p {
+    max-height: 160px;
+    opacity: 0.9;
+    margin-top: 10px;
+  }
+}
+
 .build-desc {
   color: var(--text);
   font-size: clamp(1rem, 2.2vw, 1.15rem);
