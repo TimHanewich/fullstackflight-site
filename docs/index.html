@@ -280,6 +280,23 @@
       const entry = { pane, canvas, renderer, scene, camera, pivot, visible: false };
       panes.push(entry);
 
+      let grid = null;
+      function frame(radius, floorY) {
+        if (grid) { scene.remove(grid); grid.geometry.dispose(); }
+        grid = new THREE.GridHelper(radius * 8, 32, 0x6a6a6a, 0x444444);
+        grid.position.y = floorY;
+        scene.add(grid);
+        const dist = radius / Math.sin((camera.fov * Math.PI) / 360);
+        const tilt = (30 * Math.PI) / 180;
+        const d = dist * 1.4;
+        camera.position.set(0, d * Math.sin(tilt), d * Math.cos(tilt));
+        camera.lookAt(0, 0, 0);
+        camera.near = dist / 100;
+        camera.far = dist * 10;
+        camera.updateProjectionMatrix();
+      }
+      frame(1, -0.4);
+
       const url = pane.dataset.model;
       if (url) {
         loader.load(url, (gltf) => {
@@ -288,15 +305,8 @@
           const center = box.getCenter(new THREE.Vector3());
           model.position.sub(center);
           pivot.add(model);
-          const radius = box.getSize(new THREE.Vector3()).length() / 2;
-          const dist = radius / Math.sin((camera.fov * Math.PI) / 360);
-          const tilt = (30 * Math.PI) / 180;
-          const d = dist * 1.4;
-          camera.position.set(0, d * Math.sin(tilt), d * Math.cos(tilt));
-          camera.lookAt(0, 0, 0);
-          camera.near = dist / 100;
-          camera.far = dist * 10;
-          camera.updateProjectionMatrix();
+          const size = box.getSize(new THREE.Vector3());
+          frame(size.length() / 2, -size.y / 2 - size.length() * 0.03);
         }, undefined, (e) => console.error("Failed to load " + url, e));
       }
 
