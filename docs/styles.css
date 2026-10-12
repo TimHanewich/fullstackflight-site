@@ -228,7 +228,7 @@ footer {
 
 .build-grid {
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
+  grid-template-columns: 1fr 1.3fr;
   gap: 28px;
   align-items: center;
 }
