@@ -110,7 +110,7 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
           </div>
         </div>
-        <div class="eco-pane" data-model="models/link.glb">
+        <div class="eco-pane" data-model="models/link.glb" data-center="OLED_screen">
           <canvas class="eco-canvas"></canvas>
           <div class="eco-info">
             <h3>LINK</h3>
@@ -290,8 +290,14 @@
         const tilt = (30 * Math.PI) / 180;
         const d = dist * 1.4;
         const lift = radius * 0.25; // look below the model so it renders higher in the pane
-        camera.position.set(0, d * Math.sin(tilt) - lift, d * Math.cos(tilt));
-        camera.lookAt(0, -lift, 0);
+        if (pane.dataset.view === "top") {
+          camera.up.set(0, 0, -1);
+          camera.position.set(0, d, 0);
+          camera.lookAt(0, 0, 0);
+        } else {
+          camera.position.set(0, d * Math.sin(tilt) - lift, d * Math.cos(tilt));
+          camera.lookAt(0, -lift, 0);
+        }
         camera.near = dist / 100;
         camera.far = dist * 40;
         scene.fog = new THREE.Fog(0x2b2b2b, d * 1.2, d * 4);
@@ -304,11 +310,20 @@
         loader.load(url, (gltf) => {
           const model = gltf.scene;
           const box = new THREE.Box3().setFromObject(model);
-          const center = box.getCenter(new THREE.Vector3());
+          let center = box.getCenter(new THREE.Vector3());
+          const focus = pane.dataset.center && model.getObjectByName(pane.dataset.center);
+          if (focus) center = new THREE.Box3().setFromObject(focus).getCenter(new THREE.Vector3());
           model.position.sub(center);
           pivot.add(model);
           const size = box.getSize(new THREE.Vector3());
-          frame(size.length() / 2, -size.y / 2 - size.length() * 0.03);
+          if (focus) {
+            // rotating about an off-center point: frame the farthest extent from it
+            const c = box.clone().translate(center.clone().negate());
+            const r = Math.max(Math.hypot(c.min.x, c.min.z), Math.hypot(c.max.x, c.max.z), Math.hypot(c.min.x, c.max.z), Math.hypot(c.max.x, c.min.z));
+            frame(Math.max(r, 0.01) * 1.05, c.min.y - size.length() * 0.03);
+          } else {
+            frame(size.length() / 2, -size.y / 2 - size.length() * 0.03);
+          }
         }, undefined, (e) => console.error("Failed to load " + url, e));
       }
 
