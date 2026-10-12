@@ -453,16 +453,8 @@ footer {
   line-height: 1.2;
 }
 
-.step-card__desc {
-  margin-top: 10px;
-  margin-bottom: 22px;
-  color: var(--muted);
-  font-size: 0.95rem;
-  line-height: 1.5;
-}
-
 .step-card__cta {
-  margin-top: auto;
+  margin-top: 22px;
   white-space: nowrap;
   padding: 11px 24px;
   border-radius: 999px;
