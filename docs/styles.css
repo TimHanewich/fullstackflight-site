@@ -274,7 +274,23 @@ footer {
   padding: 18px;
   transform: translateY(var(--desc-h, 0));
   transition: transform 0.35s ease;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.55), transparent);
+  z-index: 2;
+}
+
+.eco-pane::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.7) 28%, transparent 60%),
+    rgba(0, 0, 0, 0);
+  transition: background-color 0.35s ease;
+}
+
+.eco-pane:hover::after {
+  background-color: rgba(0, 0, 0, 0.72);
 }
 
 .eco-info h3 {
