@@ -256,6 +256,16 @@ footer {
   display: block;
 }
 
+.eco-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: auto;
+  max-width: none;
+  display: block;
+}
+
 .eco-info {
   position: absolute;
   left: 0;

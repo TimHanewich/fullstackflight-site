@@ -117,8 +117,8 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
           </div>
         </div>
-        <div class="eco-pane">
-          <canvas class="eco-canvas"></canvas>
+        <div class="eco-pane eco-shot">
+          <img class="eco-img" src="https://i.imgur.com/6fHE1bn.png" alt="Flight data analysis screenshot">
           <div class="eco-info">
             <h3>ANALYSIS</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
@@ -259,7 +259,7 @@
     const loader = new GLTFLoader();
     const panes = [];
 
-    document.querySelectorAll(".eco-pane").forEach((pane) => {
+    document.querySelectorAll(".eco-pane:not(.eco-shot)").forEach((pane) => {
       const canvas = pane.querySelector(".eco-canvas");
       const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
