@@ -345,6 +345,7 @@ footer {
   line-height: 1.4;
 }
 
+.build-desc p + p,
 .build-desc p + ul,
 .build-desc ul + p {
   margin-top: 12px;
