@@ -1095,11 +1095,6 @@ footer {
 .shop-product__checkout {
   margin-top: 28px;
   padding-top: 24px;
-  border-top: 1px solid var(--border);
-}
-
-.shop-product__checkout stripe-buy-button {
-  display: block;
 }
 
 .shop-product__checkout p {
@@ -1108,13 +1103,27 @@ footer {
   font-size: 0.85rem;
 }
 
-.shop-product__checkout a {
-  color: var(--sky);
-  text-underline-offset: 3px;
+.shop-product__purchase {
+  display: inline-block;
+  padding: 12px 28px;
+  border: 1px solid var(--sky);
+  border-radius: 6px;
+  background: var(--sky);
+  color: var(--bg);
+  font-family: "TimH Title", sans-serif;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
-.shop-product__checkout a:hover {
-  color: var(--text);
+.shop-product__purchase:hover {
+  background: var(--bg);
+  color: var(--sky);
+}
+
+.shop-product__purchase:focus-visible {
+  outline: 2px solid var(--sky);
+  outline-offset: 3px;
 }
 
 @media (max-width: 760px) {

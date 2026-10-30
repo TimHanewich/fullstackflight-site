@@ -69,12 +69,8 @@
             <p>Donec euismod, nisl eget tincidunt consequat, lorem sapien volutpat neque, vitae posuere erat justo a lorem. Curabitur sit amet felis vel sapien commodo dignissim.</p>
           </div>
           <div class="shop-product__checkout">
-            <stripe-buy-button
-              buy-button-id="buy_btn_1UUavoEATypG625jq5Qp3gur"
-              publishable-key="pk_live_51UUY2WEATypG625jUGLybSgpREMRgUXgLf9BR3Mpb4a17MaKc07L6MHWuoCIspmieZ7HK01xFfGtAQwbsVEjRFj500u18x7kbb"
-            >
-            </stripe-buy-button>
-            <p>Checkout powered by Stripe. <a href="https://buy.stripe.com/28EfZh8OCglt9xO2kFaIM00" target="_blank" rel="noopener">Buy directly on Stripe &rarr;</a></p>
+            <a class="shop-product__purchase" href="https://buy.stripe.com/28EfZh8OCglt9xO2kFaIM00" target="_blank" rel="noopener">Purchase Now</a>
+            <p>Checkout powered by Stripe.</p>
           </div>
         </div>
       </article>
@@ -85,7 +81,6 @@
     <p>Built by <a href="https://timhanewich.github.io" target="_blank" rel="noopener">Tim Hanewich</a></p>
   </footer>
 
-  <script async src="https://js.stripe.com/v3/buy-button.js"></script>
   <script>
     (function () {
       var photo = document.getElementById("product-photo");
