@@ -1092,6 +1092,12 @@ footer {
   margin-top: 14px;
 }
 
+.shop-product__note {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--muted);
+}
+
 .shop-product__checkout {
   margin-top: 24px;
 }
