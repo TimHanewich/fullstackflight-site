@@ -7,7 +7,7 @@
   <meta name="description" content="Shop Full Stack Flight hardware. The Centauri Flight Controller Carrier Board is $29.99 and the Centauri Link Carrier Board is $19.99, excluding shipping." />
   <link rel="preload" href="../fonts/timh-title.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="../fonts/timh-text.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../styles.css?v=shop-catalog-1" />
   <link rel="icon" type="image/svg+xml" href="../full-stack-flight.svg" />
 
   <!--Microsoft Clarity-->
@@ -33,7 +33,25 @@
   <main>
     <section class="shop" id="shop">
       <h2>Shop</h2>
-      <article class="shop-product" aria-labelledby="carrier-board-title">
+      <div class="shop-catalog" aria-label="Products available for sale">
+        <a class="shop-tile" href="#flight-controller-carrier-board">
+          <img src="https://i.imgur.com/LnfPno0.jpeg" alt="Centauri Flight Controller Carrier Board" />
+          <h3>Centauri Flight Controller Carrier Board</h3>
+          <p class="shop-product__price">$29.99</p>
+          <p class="shop-product__shipping">+ shipping</p>
+          <span class="shop-tile__action">View product &rarr;</span>
+        </a>
+        <a class="shop-tile" href="#link-carrier-board">
+          <img src="https://i.imgur.com/j1sMzZq.jpeg" alt="Centauri Link Carrier Board" />
+          <h3>Centauri Link Carrier Board</h3>
+          <p class="shop-product__price">$19.99</p>
+          <p class="shop-product__shipping">+ shipping</p>
+          <span class="shop-tile__action">View product &rarr;</span>
+        </a>
+      </div>
+      <p class="shop-back" hidden><a href="#shop">&larr; Back to products</a></p>
+
+      <article class="shop-product" id="flight-controller-carrier-board" aria-labelledby="carrier-board-title" hidden>
         <div class="shop-gallery" aria-label="Centauri Flight Controller Carrier Board photos">
           <div class="shop-gallery__stage">
             <img id="product-photo" src="https://i.imgur.com/LnfPno0.jpeg" alt="Centauri Flight Controller Carrier Board, photo 1 of 6" />
@@ -61,7 +79,7 @@
         </div>
 
         <div class="shop-product__details">
-          <h1 id="carrier-board-title">Centauri Flight Controller Carrier Board</h1>
+          <h1 id="carrier-board-title" tabindex="-1">Centauri Flight Controller Carrier Board</h1>
           <p class="shop-product__price">$29.99</p>
           <p class="shop-product__shipping">+ shipping</p>
           <div class="shop-product__description">
@@ -75,7 +93,7 @@
           </div>
         </div>
       </article>
-      <article class="shop-product" aria-labelledby="link-carrier-board-title">
+      <article class="shop-product" id="link-carrier-board" aria-labelledby="link-carrier-board-title" hidden>
         <div class="shop-gallery" aria-label="Centauri Link Carrier Board photos">
           <div class="shop-gallery__stage">
             <img id="link-product-photo" src="https://i.imgur.com/j1sMzZq.jpeg" alt="Centauri Link Carrier Board, photo 1 of 4" loading="lazy" />
@@ -97,7 +115,7 @@
         </div>
 
         <div class="shop-product__details">
-          <h1 id="link-carrier-board-title">Centauri Link Carrier Board</h1>
+          <h1 id="link-carrier-board-title" tabindex="-1">Centauri Link Carrier Board</h1>
           <p class="shop-product__price">$19.99</p>
           <p class="shop-product__shipping">+ shipping</p>
           <div class="shop-product__description">
@@ -115,6 +133,38 @@
 
   <script>
     (function () {
+      var catalog = document.querySelector(".shop-catalog");
+      var back = document.querySelector(".shop-back");
+      var products = Array.prototype.slice.call(document.querySelectorAll(".shop-product"));
+      var lastProduct = null;
+
+      function showView(moveFocus) {
+        var target = location.hash.slice(1);
+        var selected = null;
+        products.forEach(function (product) {
+          product.hidden = product.id !== target;
+          if (!product.hidden) {
+            selected = product;
+          }
+        });
+        catalog.hidden = !!selected;
+        back.hidden = !selected;
+
+        if (selected) {
+          lastProduct = selected.id;
+          if (moveFocus) {
+            selected.querySelector("h1").focus();
+          }
+        } else if (moveFocus && lastProduct) {
+          catalog.querySelector('a[href="#' + lastProduct + '"]').focus();
+        }
+      }
+
+      window.addEventListener("hashchange", function () {
+        showView(true);
+      });
+      showView(false);
+
       var galleries = Array.prototype.slice.call(document.querySelectorAll(".shop-gallery"));
 
       galleries.forEach(function (gallery) {
