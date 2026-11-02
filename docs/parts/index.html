@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Parts List | Full Stack Flight</title>
-  <meta name="description" content="The complete hardware and parts list for the Centauri quadcopter and transmitter." />
+  <meta name="description" content="The complete hardware and parts list for the Centauri quadcopter, transmitter, and Link radio communication diagnostic tool." />
   <link rel="preload" href="../fonts/timh-title.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="../fonts/timh-text.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../styles.css" />
@@ -33,7 +33,7 @@
   <main>
     <section class="parts" id="parts">
       <h2>Parts List</h2>
-      <p class="section-blurb">Everything needed to build the Centauri ecosystem, broken out by the two systems that make it up: the quadcopter itself and the pilot's transmitter.</p>
+      <p class="section-blurb">Everything needed to build the Centauri ecosystem, broken out by system: the quadcopter itself, the pilot's transmitter, and Link, a diagnostic tool for radio communication observability.</p>
 
       <div class="parts-layout">
         <nav class="parts-nav" aria-label="Select a system">
@@ -44,6 +44,10 @@
           <button class="parts-nav__item" type="button" data-target="transmitter" aria-pressed="false">
             <span class="parts-nav__label">Transmitter</span>
             <span class="parts-nav__sub">The pilot's control link</span>
+          </button>
+          <button class="parts-nav__item" type="button" data-target="link" aria-pressed="false">
+            <span class="parts-nav__label">Link</span>
+            <span class="parts-nav__sub">Radio communication diagnostics</span>
           </button>
         </nav>
 
@@ -196,6 +200,54 @@
             </div>
           </article>
 
+          <article class="parts-panel" id="link" hidden>
+            <h3 class="parts-panel__title">Link</h3>
+
+            <div class="parts-group">
+              <h4>Electronic Components</h4>
+              <p class="parts-note">All of the components required to build Link, a diagnostic tool for radio communication observability.</p>
+              <ul>
+                <li>1x <a href="https://amzn.to/4vZ5DkH" target="_blank" rel="noopener">Raspberry Pi Pico</a></li>
+                <li>1x Link PCB</li>
+                <li><a href="https://link.amazon/B09admQw7" target="_blank" rel="noopener">Header pin strips</a> - for soldering the Raspberry Pi Pico directly to the PCB</li>
+                <li>1x <a href="https://amzn.to/4eWx48V" target="_blank" rel="noopener">HC-12 wireless transceiver</a></li>
+                <li>1x 6-inch <a href="https://link.amazon/B06qBxrV7" target="_blank" rel="noopener">U.FL-to-SMA coaxial cable</a></li>
+                <li>1x <a href="https://www.digikey.com/en/products/detail/taoglas-limited/TI-10-0111/3131969" target="_blank" rel="noopener">Taoglas TI.10.0111 433 MHz antenna</a></li>
+                <li>1x <a href="https://link.amazon/B06ykR4YL" target="_blank" rel="noopener">5V boost regulator module</a></li>
+                <li>1x <a href="https://link.amazon/B04ChsEMY" target="_blank" rel="noopener">18650 battery</a></li>
+                <li>1x <a href="https://link.amazon/B0j2jhdZr" target="_blank" rel="noopener">TP4056 charge controller</a></li>
+                <li>1x <a href="https://link.amazon/B05yWWu72" target="_blank" rel="noopener">SSD-1306 OLED display</a></li>
+                <li>1x <a href="https://link.amazon/B02H8YQP0" target="_blank" rel="noopener">Power button switch</a></li>
+                <li>1x <a href="https://link.amazon/B0e06MZtz" target="_blank" rel="noopener">Push button</a></li>
+                <li>1x 47 k&#8486; resistor from the <a href="https://amzn.to/4aNJ0Yb" target="_blank" rel="noopener">resistor pack</a></li>
+                <li>1x 100 k&#8486; resistor from the <a href="https://amzn.to/4aNJ0Yb" target="_blank" rel="noopener">resistor pack</a></li>
+                <li><a href="https://amzn.to/4qRO7wZ" target="_blank" rel="noopener">22-Gauge Electrical wire</a> - for low-current and logic connections</li>
+              </ul>
+            </div>
+
+            <div class="parts-group">
+              <h4>Mounting Hardware</h4>
+              <ul>
+                <li>Screws
+                  <ul>
+                    <li><a href="https://amzn.to/4hMVHXr" target="_blank" rel="noopener">M3 Screw Assortment Kit</a>
+                      <ul>
+                        <li>2x M3&times;12mm - securing 18650 battery frame</li>
+                      </ul>
+                    </li>
+                    <li><a href="https://link.amazon/B03hhJMnQ" target="_blank" rel="noopener">M2 Screw Assortment Kit</a>
+                      <ul>
+                        <li>4x M2&times;12mm - securing top plate</li>
+                        <li>4x M2&times;8mm - securing OLED display</li>
+                        <li>4x M2&times;12mm - securing Link PCB to enclosure</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </article>
+
         </div>
       </div>
     </section>
@@ -233,7 +285,7 @@
       });
 
       var initial = (location.hash || "").replace("#", "");
-      if (initial === "transmitter" || initial === "quadcopter") {
+      if (initial === "transmitter" || initial === "quadcopter" || initial === "link") {
         select(initial);
       }
     })();
