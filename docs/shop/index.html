@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shop | Full Stack Flight</title>
-  <meta name="description" content="Shop Full Stack Flight hardware. The Centauri Flight Controller Carrier Board is $29.99, excluding shipping." />
+  <meta name="description" content="Shop Full Stack Flight hardware. The Centauri Flight Controller Carrier Board is $29.99 and the Centauri Link Carrier Board is $19.99, excluding shipping." />
   <link rel="preload" href="../fonts/timh-title.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="../fonts/timh-text.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../styles.css" />
@@ -75,6 +75,37 @@
           </div>
         </div>
       </article>
+      <article class="shop-product" aria-labelledby="link-carrier-board-title">
+        <div class="shop-gallery" aria-label="Centauri Link Carrier Board photos">
+          <div class="shop-gallery__stage">
+            <img id="link-product-photo" src="https://i.imgur.com/j1sMzZq.jpeg" alt="Centauri Link Carrier Board, photo 1 of 4" loading="lazy" />
+          </div>
+          <div class="shop-gallery__thumbnails" role="group" aria-label="Choose a product photo">
+            <button class="shop-gallery__thumbnail" type="button" aria-label="Show product photo 1" aria-pressed="true" aria-controls="link-product-photo">
+              <img src="https://i.imgur.com/j1sMzZq.jpeg" alt="Centauri Link Carrier Board, photo 1 of 4" loading="lazy" />
+            </button>
+            <button class="shop-gallery__thumbnail" type="button" aria-label="Show product photo 2" aria-pressed="false" aria-controls="link-product-photo">
+              <img src="https://i.imgur.com/XDGdQg0.jpeg" alt="Centauri Link Carrier Board, photo 2 of 4" loading="lazy" />
+            </button>
+            <button class="shop-gallery__thumbnail" type="button" aria-label="Show product photo 3" aria-pressed="false" aria-controls="link-product-photo">
+              <img src="https://i.imgur.com/2Gzy9g1.png" alt="Centauri Link Carrier Board, photo 3 of 4" loading="lazy" />
+            </button>
+            <button class="shop-gallery__thumbnail" type="button" aria-label="Show product photo 4" aria-pressed="false" aria-controls="link-product-photo">
+              <img src="https://i.imgur.com/ZTX2RaV.jpeg" alt="Centauri Link Carrier Board, photo 4 of 4" loading="lazy" />
+            </button>
+          </div>
+        </div>
+
+        <div class="shop-product__details">
+          <h1 id="link-carrier-board-title">Centauri Link Carrier Board</h1>
+          <p class="shop-product__price">$19.99</p>
+          <p class="shop-product__shipping">+ shipping</p>
+          <div class="shop-product__description">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+          </div>
+        </div>
+      </article>
     </section>
   </main>
 
@@ -84,16 +115,20 @@
 
   <script>
     (function () {
-      var photo = document.getElementById("product-photo");
-      var thumbnails = Array.prototype.slice.call(document.querySelectorAll(".shop-gallery__thumbnail"));
+      var galleries = Array.prototype.slice.call(document.querySelectorAll(".shop-gallery"));
 
-      thumbnails.forEach(function (button) {
-        button.addEventListener("click", function () {
-          var image = button.querySelector("img");
-          photo.src = image.src;
-          photo.alt = image.alt;
-          thumbnails.forEach(function (thumbnail) {
-            thumbnail.setAttribute("aria-pressed", thumbnail === button ? "true" : "false");
+      galleries.forEach(function (gallery) {
+        var photo = gallery.querySelector(".shop-gallery__stage img");
+        var thumbnails = Array.prototype.slice.call(gallery.querySelectorAll(".shop-gallery__thumbnail"));
+
+        thumbnails.forEach(function (button) {
+          button.addEventListener("click", function () {
+            var image = button.querySelector("img");
+            photo.src = image.src;
+            photo.alt = image.alt;
+            thumbnails.forEach(function (thumbnail) {
+              thumbnail.setAttribute("aria-pressed", thumbnail === button ? "true" : "false");
+            });
           });
         });
       });
