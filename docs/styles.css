@@ -1052,6 +1052,10 @@ footer {
   margin-top: 26px;
 }
 
+.shop-back a {
+  color: #ffffff;
+}
+
 .shop-product {
   display: grid;
   grid-template-columns: 1.15fr 1fr;
