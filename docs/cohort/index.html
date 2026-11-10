@@ -5,9 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Build Cohorts | Full Stack Flight</title>
   <meta name="description" content="The Founding Centauri Build Cohort: build and fly your own Python-powered quadcopter with direct guidance from its creator. Share your interest." />
-  <link rel="preload" href="../fonts/timh-title.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="../fonts/timh-text.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../styles.css?v=dji-20261104" />
+  <script src="../site.js" defer></script>
   <link rel="icon" type="image/svg+xml" href="../full-stack-flight.svg">
 
   <!--Microsoft Clarity-->
@@ -20,19 +19,36 @@
   </script>
 </head>
 <body>
-  <div class="grid-glow"></div>
-
-  <header class="page-header">
-    <a class="page-header__brand" href="../">
-      <img src="../full-stack-flight.svg" alt="Full Stack Flight" class="page-header__logo" />
-      <span>Full Stack Flight</span>
-    </a>
-    <a class="page-header__back" href="../">&larr; Back to home</a>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="site-brand" href="../" aria-label="Full Stack Flight home">
+        <img src="../full-stack-flight.svg" alt="" width="43" height="43" />
+        <span>Full Stack Flight</span>
+      </a>
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <a href="../#ecosystem">Ecosystem</a>
+        <a href="../#chapters">Learn</a>
+        <a href="../parts/">Parts</a>
+        <a href="../#community">Community</a>
+        <a href="./" aria-current="page">Build Cohorts</a>
+      </nav>
+      <div class="header-actions">
+        <a class="store-link" href="../shop/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 7h14l1 14H4L5 7Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg>
+          Store
+        </a>
+        <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="site-nav">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
   </header>
 
-  <main>
+  <main id="main">
     <section class="cohort" id="cohort">
-      <h2>Full Stack Flight Build Cohorts</h2>
+      <p class="eyebrow">FROM BARE PARTS TO FIRST FLIGHT. TOGETHER.</p>
+      <h2>Your build. A shared journey.</h2>
       <p class="section-blurb">Building a quadcopter from scratch is very doable, but it goes faster with someone in your corner. The FSF Build Cohort is a small, fully virtual program where you build and validate your own Centauri quadcopter, from bare parts to first flight, with direct guidance from the person who designed it.</p>
 
       <ul class="cohort-facts">
@@ -92,6 +108,18 @@
       </div>
     </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p><strong>Full Stack Flight</strong><br />Build it. Understand it. Fly it.</p>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="../">Home</a>
+        <a href="../shop/">Store</a>
+        <a href="../parts/">Parts list</a>
+        <a href="https://github.com/TimHanewich/centauri" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </footer>
 
 </body>
 </html>
