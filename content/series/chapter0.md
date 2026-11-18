@@ -1,3 +1,8 @@
+---
+title: Full-Stack Flight: Building a Quadcopter Ecosystem from Scratch
+id: chapter0
+---
+
 # Full-Stack Flight: Building a Quadcopter Ecosystem from Scratch
 ![banner](https://i.imgur.com/3kLfGs5.jpeg)
 
