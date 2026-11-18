@@ -23,9 +23,20 @@
         const heading = target.querySelector("[tabindex]") || selected.querySelector(".parts-panel__title");
         heading.focus({ preventScroll: true });
       }
-      target.scrollIntoView({ block: "start" });
+      if (target !== selected) target.scrollIntoView({ block: "start" });
     }
   };
+
+  links.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      if (window.location.hash !== link.hash) {
+        window.history.pushState(null, "", link.hash);
+      }
+      showSystem(false);
+    });
+  });
 
   window.addEventListener("hashchange", () => showSystem(true));
   showSystem(false);
