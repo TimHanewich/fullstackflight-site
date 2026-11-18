@@ -1,6 +1,7 @@
 ---
 id: chapter2
 title: 'Full-Stack Flight, Chapter 2: Defining a Communication Protocol'
+description: 'Learn how a drone and its transmitter exchange control commands, settings, and telemetry over radio. Explore the compact binary packets behind the Centauri communication protocol.'
 ---
 
 # Full-Stack Flight, Chapter 2: Defining a Communication Protocol

@@ -1,6 +1,7 @@
 ---
 id: chapter5
 title: 'Full-Stack Flight, Chapter 5: Quadcopter, Part 3: The Flight Controller'
+description: 'Step inside a MicroPython flight controller running on a Raspberry Pi Pico. Learn how sensor readings, pilot commands, and PID calculations become motor adjustments that keep a quadcopter flying.'
 ---
 
 # Full-Stack Flight, Chapter 5: Quadcopter, Part 3: The Flight Controller

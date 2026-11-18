@@ -1,6 +1,7 @@
 ---
 id: chapter8
 title: 'Full-Stack Flight, Chapter 8: Unpacking Flight Telemetry for Analysis'
+description: 'Turn raw flight logs into readable data you can graph, analyze, and overlay on video. Learn how to retrieve telemetry from your Pico and use it to understand flights and troubleshoot problems.'
 ---
 
 # Full-Stack Flight, Chapter 8: Unpacking Flight Telemetry for Analysis

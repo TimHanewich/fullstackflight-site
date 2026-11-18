@@ -1,6 +1,7 @@
 ---
 id: chapter9
 title: 'Full-Stack Flight, Chapter 9: Closing Thoughts'
+description: 'Reflect on the challenges and rewards of building a quadcopter from scratch. Find practical advice for your own build, explore ideas for future improvements, and connect with fellow makers.'
 ---
 
 # Full-Stack Flight, Chapter 9: Closing Thoughts

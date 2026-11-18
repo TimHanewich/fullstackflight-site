@@ -1,6 +1,7 @@
 ---
 id: chapter3
 title: 'Full-Stack Flight, Chapter 3: Quadcopter, Part 1: Designing a 3D-Printed Airframe'
+description: 'Walk through the design of a 3D-printed quadcopter airframe, from fitting electronics to positioning the battery and antenna. Explore four frame configurations and the trade-offs behind each.'
 ---
 
 # Full-Stack Flight, Chapter 3: Quadcopter, Part 1: Designing a 3D-Printed Airframe

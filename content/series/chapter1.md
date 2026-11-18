@@ -1,6 +1,7 @@
 ---
 id: chapter1
 title: 'Full-Stack Flight, Chapter 1: The Centauri Ecosystem'
+description: 'Explore the three parts of the Centauri ecosystem: the quadcopter, the pilot transmitter, and the telemetry analysis tools. See how they work together to turn pilot input into flight and flight data into insight.'
 ---
 
 # Full-Stack Flight, Chapter 1: The Centauri Ecosystem

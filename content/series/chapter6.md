@@ -1,6 +1,7 @@
 ---
 id: chapter6
 title: 'Full-Stack Flight, Chapter 6: Transmitter, Part 1: Transceiver Platform'
+description: 'Discover how a Raspberry Pi Pico and HC-12 radio module give your laptop a wireless link to the quadcopter. Explore the hardware and MicroPython code that relay messages between pilot and drone.'
 ---
 
 # Full-Stack Flight, Chapter 6: Transmitter, Part 1: Transceiver Platform

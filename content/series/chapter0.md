@@ -1,6 +1,7 @@
 ---
 id: chapter0
 title: 'Full-Stack Flight: Building a Quadcopter Ecosystem from Scratch'
+description: 'Discover the story behind Centauri, an open-source quadcopter ecosystem, and explore a series that teaches you to build and understand your own drone from scratch.'
 ---
 
 # Full-Stack Flight: Building a Quadcopter Ecosystem from Scratch

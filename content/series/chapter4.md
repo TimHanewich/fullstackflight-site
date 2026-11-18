@@ -1,6 +1,7 @@
 ---
 id: chapter4
 title: 'Full-Stack Flight, Chapter 4: Quadcopter, Part 2: Hardware and Electronics Package'
+description: 'Get to know every component onboard Centauri, from sensors and motors to power regulation and radio hardware. Follow the wiring diagram to understand how the electronics come together.'
 ---
 
 # Full-Stack Flight, Chapter 4: Quadcopter, Part 2: Hardware and Electronics Package

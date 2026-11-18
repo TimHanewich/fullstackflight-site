@@ -1,6 +1,7 @@
 ---
 id: chapter7
 title: 'Full-Stack Flight, Chapter 7: Transmitter, Part 2: The Pilot''s Control Interface'
+description: 'See how Python turns a laptop and Xbox controller into a drone transmitter. Explore controller input, radio communication, live telemetry displays, and wireless PID settings updates.'
 ---
 
 # Full-Stack Flight, Chapter 7: Transmitter, Part 2: The Pilot's Control Interface
