@@ -14,7 +14,6 @@
   --header-height: 81px;
   --white: #ffffff;
   --hero-bg: #102033;
-  --hero-muted: #e0e5eb;
   --hero-top: rgba(8, 18, 30, 0.72);
   --hero-center: rgba(8, 18, 30, 0.32);
   --hero-bottom: rgba(8, 18, 30, 0.7);
@@ -110,8 +109,6 @@ img { max-width: 100%; }
   background: linear-gradient(180deg, var(--hero-top), var(--hero-center) 42%, transparent 65%, var(--hero-bottom));
 }
 .landing-content { width: 100%; max-width: 1080px; padding: 24px; text-align: center; }
-.eyebrow { font-size: 14px; font-weight: 500; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 12px; }
-.landing .eyebrow { color: var(--hero-muted); font-size: 16px; letter-spacing: 0; margin-bottom: 8px; }
 .landing h1 { font-size: clamp(36px, 4.2vw, 60px); line-height: 1.12; font-weight: 500; letter-spacing: -1.6px; }
 .landing-tagline { margin-top: 12px; font-size: clamp(18px, 2vw, 22px); font-weight: 500; line-height: 1.4; }
 
@@ -124,7 +121,6 @@ img { max-width: 100%; }
   padding: 80px 0;
 }
 main section > h2 { text-align: center; margin-bottom: 20px; }
-main section > .eyebrow { text-align: center; }
 .section-blurb { max-width: 800px; margin: 0 auto 44px; color: var(--muted); text-align: center; font-size: 17px; }
 .build { padding-top: 24px; }
 .build > .section-blurb { max-width: 660px; }
@@ -209,7 +205,6 @@ main section > .eyebrow { text-align: center; }
   background: var(--bg);
 }
 .home-section:nth-child(even) { background: var(--bg-soft); }
-.home-section > .eyebrow { color: var(--accent); font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }
 .discord-cta, .shop-product__purchase {
   display: inline-flex;
   align-items: center;
@@ -332,7 +327,6 @@ main section > .eyebrow { text-align: center; }
   .landing { min-height: 660px; max-height: 960px; background-position: center; }
   .landing-video { object-position: center; }
   .landing h1 { letter-spacing: -1px; }
-  .landing .eyebrow { font-size: 14px; }
   .landing-tagline { max-width: 290px; margin: 16px auto 0; }
   .intro { padding: 64px 24px 44px; }
   .intro > p:last-child { font-size: 16px; }
