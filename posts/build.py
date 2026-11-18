@@ -6,6 +6,7 @@ from html import escape
 from pathlib import Path
 import re
 import sys
+from urllib.parse import parse_qs, urlsplit
 
 from markdown_it import MarkdownIt
 import yaml
@@ -61,8 +62,8 @@ def read_post(path):
         except ValueError as error:
             raise ValueError(f"{path.name}: date must use YYYY-MM-DD.") from error
 
-    body = text[front_matter.end():].strip()
-    if not body:
+    body = text[front_matter.end():].strip("\r\n")
+    if not body.strip():
         raise ValueError(f"{path.name}: article body is empty.")
     return Post(post_id, metadata["title"].strip(), metadata["description"].strip(), body, published)
 
@@ -83,6 +84,43 @@ def render_page(template, title, description, content, root, published=date.min)
         "date": f'<p class="post-date">{time_html(published)}</p>' if published != date.min else "",
     }
     return PLACEHOLDER.sub(lambda match: values[match[1]], template)
+
+
+def youtube_embed(state, start_line, end_line, silent):
+    if state.sCount[start_line] - state.blkIndent >= 4:
+        return False
+    start = state.bMarks[start_line] + state.tShift[start_line]
+    line = state.src[start:state.eMarks[start_line]].strip()
+    if not re.fullmatch(
+        r"https?://(?:www\.|m\.)?youtube\.com/watch\?[^\s<>]+"
+        r"|https?://(?:www\.)?youtu\.be/[^\s<>]+",
+        line,
+    ):
+        return False
+
+    url = urlsplit(line)
+    if url.hostname in ("youtu.be", "www.youtu.be"):
+        video_id = url.path[1:]
+    else:
+        video_id = parse_qs(url.query).get("v", [""])[0]
+    if not re.fullmatch(r"[A-Za-z0-9_-]{11}", video_id):
+        return False
+    if silent:
+        return True
+
+    token = state.push("html_block", "", 0)
+    token.content = (
+        '<div class="video-wrap">\n'
+        f'  <iframe src="https://www.youtube.com/embed/{video_id}" '
+        'title="YouTube video player" loading="lazy" '
+        'allow="accelerometer; autoplay; clipboard-write; encrypted-media; '
+        'gyroscope; picture-in-picture; web-share" '
+        'referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>\n'
+        '</div>\n'
+    )
+    token.map = [start_line, start_line + 1]
+    state.line = start_line + 1
+    return True
 
 
 def build(content_dir=POSTS_DIR / "content", template_path=POSTS_DIR / "template.html",
@@ -113,6 +151,7 @@ def build(content_dir=POSTS_DIR / "content", template_path=POSTS_DIR / "template
     posts.sort(key=lambda post: post.published, reverse=True)
 
     markdown = MarkdownIt("commonmark").enable(["table", "strikethrough"])
+    markdown.block.ruler.before("paragraph", "youtube_embed", youtube_embed, {"alt": ["paragraph"]})
     pages = {}
     items = []
     for post in posts:
