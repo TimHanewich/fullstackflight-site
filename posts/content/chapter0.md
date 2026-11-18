@@ -52,7 +52,7 @@ Being a fan of astronomy, I named this system *Centauri* after [Alpha Centauri](
 ## Full Stack Flight: 9-Part Educational Series
 Rather than just handing you working quadcopter specs, I'm walking through every design decision and every line of code behind Centauri so you can understand exactly how it works and build your own version of it. Like I did [with Scout](https://timhanewich.medium.com/taking-flight-with-the-raspberry-pi-pico-micropython-diy-quadcopter-drone-61ed4f7ee746), I've published a multi-article series on how I built Centauri from the ground up, covering both the overall architecture and the technical details. Those chapters are listed below:
 
-- [Full-Stack Flight, Chapter 1: The Centauri Ecosystem](https://medium.com/@timhanewich/full-stack-flight-chapter-1-the-centauri-ecosystem-eacfcecc90f5)
+- [Full-Stack Flight, Chapter 1: The Centauri Ecosystem](../chapter1)
 - [Full-Stack Flight, Chapter 2: Defining a Communication Protocol](https://medium.com/@timhanewich/full-stack-flight-chapter-2-defining-a-communication-protocol-41bfc589a319)
 - [Full-Stack Flight, Chapter 3: Quadcopter, Part 1: Designing a 3D-Printed Airframe](https://medium.com/@timhanewich/full-stack-flight-chapter-3-quadcopter-part-1-designing-a-3d-printed-airframe-9d4f9021a68c)
 - [Full-Stack Flight, Chapter 4: Quadcopter, Part 2: Hardware and Electronics Package](https://medium.com/@timhanewich/full-stack-flight-chapter-4-quadcopter-part-2-hardware-and-electronics-package-69a5c26bc30b)
