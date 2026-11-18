@@ -83,7 +83,7 @@ The first use of the telemetry I want to highlight (and probably the flashiest ð
 
 The above is just a short clip from a much longer flight with *Centauri*. You can watch the full recording of that flight [here on YouTube](https://www.youtube.com/watch?v=evh0FCPapC8), embedded below:
 
-**[EMBED YOUTUBE VIDEO ON MEDIUM ARTICLE: https://www.youtube.com/watch?v=evh0FCPapC8]**
+https://www.youtube.com/watch?v=evh0FCPapC8
 
 *While I do mention the step-by-step process for overlaying telemetry data onto a video [in this section on GitHub](https://github.com/TimHanewich/centauri/tree/880aef867fc2f1b2ec5d29fdde0b9acc81f665ad/dashware#steps-to-overlaying-telemetry-on-onboard-footage), I don't go into great detail. If it would be helpful for me to write a dedicated article on that, let me know! Comment below or reach out to me.*
 

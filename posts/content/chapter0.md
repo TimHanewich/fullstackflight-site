@@ -25,7 +25,7 @@ In addition to those lacking capabilities, it was also terribly computationally 
 ## Introducing Centauri
 Two years after creating Scout in 2023, in 2025, I set out to build the second iteration of a custom flight controller. This time, I would own a much larger degree of the end-to-end system design, including the components I previously outsourced, and fix many of the small problems that made Scout *viable* but not *reliable*. That second iteration is *Centauri*: my second attempt at a custom quadcopter flight system, complete with a custom flight controller, quadcopter body, transmitter, and analysis software.
 
-[**EMBED THIS VIDOE ON MEDIUM: https://www.youtube.com/watch?v=4ocy2szvcbM**]
+https://www.youtube.com/watch?v=4ocy2szvcbM
 
 Compared to Scout, Centauri would have:
 - Vastly more efficient flight controller code, allowing for more stable PID rates and greater stability.
