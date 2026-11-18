@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shop | Full Stack Flight</title>
-  <meta name="description" content="Shop Full Stack Flight hardware. The Centauri Flight Controller Carrier Board is $29.99 and the Centauri Link Carrier Board is $19.99, excluding shipping." />
-  <link rel="preload" href="../fonts/timh-title.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="../fonts/timh-text.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="../styles.css?v=shop-catalog-2" />
-  <link rel="icon" type="image/svg+xml" href="../full-stack-flight.svg" />
+  <title>Shop &amp; Parts | Full Stack Flight</title>
+  <meta name="description" content="Build the Centauri ecosystem. Shop carrier boards and find complete parts lists for the quadcopter, transmitter, and Link radio monitor, all in one place." />
+  <link rel="stylesheet" href="../styles.css?v=no-footer-20261117" />
+  <script src="../site.js" defer></script>
+  <script src="shop.js?v=no-scroll-20261117" defer></script>
+  <link rel="icon" type="image/svg+xml" href="../full-stack-flight.svg">
 
   <!--Microsoft Clarity-->
   <script type="text/javascript">
@@ -20,170 +20,365 @@
   </script>
 </head>
 <body>
-  <div class="grid-glow"></div>
-
-  <header class="page-header">
-    <a class="page-header__brand" href="../">
-      <img src="../full-stack-flight.svg" alt="Full Stack Flight" class="page-header__logo" />
-      <span>Full Stack Flight</span>
-    </a>
-    <a class="page-header__back" href="../">&larr; Back to home</a>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="site-brand" href="../" aria-label="Full Stack Flight home">
+        <img src="../full-stack-flight.svg" alt="" width="43" height="43" />
+        <span>Full Stack Flight</span>
+      </a>
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <a href="../#ecosystem">Discover</a>
+        <a href="../#chapters">Learn</a>
+        <a href="../#community">Join</a>
+        <a href="../#get-started">Build</a>
+      </nav>
+      <div class="header-actions">
+        <a class="store-link" href="./" aria-current="page">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 7h14l1 14H4L5 7Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg>
+          Shop
+        </a>
+        <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="site-nav">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
   </header>
 
-  <main>
+  <main id="main">
     <section class="shop" id="shop">
-      <h2>Shop</h2>
-      <div class="shop-catalog" aria-label="Products available for sale">
-        <a class="shop-tile" href="#flight-controller-carrier-board">
-          <img src="https://i.imgur.com/LnfPno0.jpeg" alt="Centauri Flight Controller Carrier Board" />
-          <h3>Centauri Flight Controller Carrier Board</h3>
-          <p class="shop-product__price">$29.99</p>
-          <p class="shop-product__shipping">+ shipping</p>
-          <span class="shop-tile__action">View product &rarr;</span>
-        </a>
-        <a class="shop-tile" href="#link-carrier-board">
-          <img src="https://i.imgur.com/YearF9W.jpeg" alt="Centauri Link Carrier Board" />
-          <h3>Centauri Link Carrier Board</h3>
-          <p class="shop-product__price">$19.99</p>
-          <p class="shop-product__shipping">+ shipping</p>
-          <span class="shop-tile__action">View product &rarr;</span>
-        </a>
+      <h2>Everything for your next build</h2>
+      <p class="section-blurb">Choose what you want to build. Each guide separates the carrier PCB you buy here from the other components you gather separately, so you know exactly what you are buying and what you still need.</p>
+
+      <div class="parts-layout">
+        <nav class="parts-nav" aria-label="Select a system">
+          <a class="parts-nav__item is-active" href="#quadcopter" aria-current="true">
+            <span class="parts-nav__label">Quadcopter</span>
+            <span class="parts-nav__sub">The drone aircraft</span>
+          </a>
+          <a class="parts-nav__item" href="#transmitter">
+            <span class="parts-nav__label">Transmitter</span>
+            <span class="parts-nav__sub">The pilot's controller</span>
+          </a>
+          <a class="parts-nav__item" href="#link">
+            <span class="parts-nav__label">Link</span>
+            <span class="parts-nav__sub">Radio communication observation</span>
+          </a>
+        </nav>
+
+        <div class="parts-panels">
+
+          <article class="parts-panel is-active" id="quadcopter">
+            <h3 class="parts-panel__title" tabindex="-1">Build the Centauri Quadcopter</h3>
+            <p class="parts-panel__intro">Build Centauri's airframe, flight controller, and propulsion system. There are two parts to gathering your supplies:</p>
+
+            <section class="shop-product" id="flight-controller-carrier-board" aria-labelledby="carrier-board-title">
+              <header class="shop-product__intro">
+                <h4>1. Get the Flight Controller Carrier Board</h4>
+              </header>
+              <div class="shop-gallery" aria-label="Centauri Flight Controller Carrier Board photos">
+                <div class="shop-gallery__stage">
+                  <img id="product-photo" src="https://i.imgur.com/LnfPno0.jpeg" alt="Centauri Flight Controller Carrier Board, photo 1 of 6" />
+                </div>
+                <div class="shop-gallery__thumbnails" role="group" aria-label="Choose a product photo">
+                  <button class="shop-gallery__thumbnail" type="button" aria-label="Show product photo 1" aria-pressed="true" aria-controls="product-photo">
+                    <img src="https://i.imgur.com/LnfPno0.jpeg" alt="Centauri Flight Controller Carrier Board, photo 1 of 6" />
+                  </button>
+                  <button class="shop-gallery__thumbnail" type="button" aria-label="Show product photo 2" aria-pressed="false" aria-controls="product-photo">
+                    <img src="https://i.imgur.com/u0wpeyB.jpeg" alt="Centauri Flight Controller Carrier Board, photo 2 of 6" loading="lazy" />
+                  </button>
+                  <button class="shop-gallery__thumbnail" type="button" aria-label="Show product photo 3" aria-pressed="false" aria-controls="product-photo">
+                    <img src="https://i.imgur.com/8SqN388.png" alt="Centauri Flight Controller Carrier Board, photo 3 of 6" loading="lazy" />
+                  </button>
+                  <button class="shop-gallery__thumbnail" type="button" aria-label="Show product photo 4" aria-pressed="false" aria-controls="product-photo">
+                    <img src="https://i.imgur.com/tVbYp3s.png" alt="Centauri Flight Controller Carrier Board, photo 4 of 6" loading="lazy" />
+                  </button>
+                  <button class="shop-gallery__thumbnail" type="button" aria-label="Show product photo 5" aria-pressed="false" aria-controls="product-photo">
+                    <img src="https://i.imgur.com/H1rJmzQ.png" alt="Centauri Flight Controller Carrier Board, photo 5 of 6" loading="lazy" />
+                  </button>
+                  <button class="shop-gallery__thumbnail" type="button" aria-label="Show product photo 6" aria-pressed="false" aria-controls="product-photo">
+                    <img src="https://i.imgur.com/WRgJT6P.png" alt="Centauri Flight Controller Carrier Board, photo 6 of 6" loading="lazy" />
+                  </button>
+                </div>
+              </div>
+
+              <div class="shop-product__details">
+                <h5 id="carrier-board-title" tabindex="-1">Centauri Flight Controller Carrier Board</h5>
+                <p class="shop-product__price">$29.99</p>
+                <p class="shop-product__shipping">+ shipping</p>
+                <div class="shop-product__description">
+                  <p>The Centauri Flight Controller Carrier Board brings your Raspberry Pi Pico, IMU, radio receiver, and ESC control connections together in a clean, organized layout. It replaces messy point-to-point wiring while keeping the individual components accessible for learning and experimentation.</p>
+                  <p>Your Pico still runs the MicroPython code that reads the sensors, interprets pilot commands, and tells the motors how to respond. The board connects the pieces without hiding what they do, so you can explore the code, tune the control loop, and understand what makes your quadcopter fly.</p>
+                  <p class="shop-product__note">Includes one bare, unpopulated carrier PCB. Raspberry Pi Pico, sensors, radio, and other components sold separately. Assembly and soldering required.</p>
+                </div>
+                <div class="shop-product__checkout">
+                  <a class="shop-product__purchase" href="https://buy.stripe.com/28EfZh8OCglt9xO2kFaIM00" target="_blank" rel="noopener">Purchase Now</a>
+                  <p>Checkout powered by Stripe.</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="build-checklist" id="quadcopter-parts" aria-labelledby="quadcopter-parts-title">
+              <header class="build-checklist__header">
+                <h4 id="quadcopter-parts-title" tabindex="-1">2. Gather the other build components</h4>
+                <p><strong>These are not included with the PCB.</strong> Use the supplier and design-file links below to gather the electronics, printed parts, hardware, and tools. Add these to the board from step 1 to complete your build.</p>
+              </header>
+
+              <div class="parts-group">
+                <h5>Core Electronics and Propulsion</h5>
+                <p class="parts-note">Electronics, motors, and power components required to control and fly the quadcopter.</p>
+                <ul>
+                  <li>1x <a href="https://amzn.to/4vZ5DkH" target="_blank" rel="noopener">Raspberry Pi Pico</a></li>
+                  <li><a href="https://link.amazon/B09admQw7" target="_blank" rel="noopener">Header pin strips</a> - for soldering the Raspberry Pi Pico directly to the Carrier Board</li>
+                  <li>1x <a href="https://amzn.to/4yh76Ev" target="_blank" rel="noopener">MPU-6050 IMU</a></li>
+                  <li>1x <a href="https://amzn.to/4eWx48V" target="_blank" rel="noopener">HC-12 wireless transceiver</a></li>
+                  <li>1x 6-inch <a href="https://link.amazon/B06qBxrV7" target="_blank" rel="noopener">U.FL-to-SMA coaxial cable</a></li>
+                  <li>1x <a href="https://www.digikey.com/en/products/detail/taoglas-limited/TI-10-0111/3131969" target="_blank" rel="noopener">Taoglas TI.10.0111 433 MHz antenna</a></li>
+                  <li>1x <a href="https://link.amazon/B0g34yNj3" target="_blank" rel="noopener">MP1584EN 5V buck converter</a></li>
+                  <li>4x <a href="https://amzn.to/44lyILf" target="_blank" rel="noopener">Readytosky 2300 KV brushless motors</a></li>
+                  <li>4x <a href="https://amzn.to/3SMnnBr" target="_blank" rel="noopener">electronic speed controllers (ESCs)</a></li>
+                  <li>4x <a href="https://amzn.to/3QQwuAt" target="_blank" rel="noopener">5-inch tri-blade propellers</a>, plus spares</li>
+                  <li>1x <a href="https://link.amazon/B0bp7GHqw" target="_blank" rel="noopener">4S LiPo battery</a></li>
+                  <li>1x female XT60 connector from <a href="https://amzn.to/4vwD25n" target="_blank" rel="noopener">this pack</a></li>
+                  <li>1x 100 k&#8486; resistor from the <a href="https://amzn.to/4aNJ0Yb" target="_blank" rel="noopener">resistor pack</a></li>
+                  <li>1x 22 k&#8486; resistor from the <a href="https://amzn.to/4aNJ0Yb" target="_blank" rel="noopener">resistor pack</a></li>
+                  <li>1x <a href="https://amzn.to/4bFcebU" target="_blank" rel="noopener">10 &micro;F capacitor</a></li>
+                  <li>1x <a href="https://amzn.to/44lKKUT" target="_blank" rel="noopener">0.1 &micro;F capacitor</a></li>
+                  <li>1x ferrite beads from the <a href="https://amzn.to/3SVQRNa" target="_blank" rel="noopener">ferrite bead pack</a></li>
+                  <li><a href="https://amzn.to/4qRO7wZ" target="_blank" rel="noopener">22-Gauge Electrical wire</a> - for low-current and logic connections</li>
+                  <li><a href="https://link.amazon/B0fHsOq1X" target="_blank" rel="noopener">16-gauge electrical wire</a> - for the main battery power leads, connecting the XT60 to the Carrier Board</li>
+                </ul>
+              </div>
+
+              <div class="parts-group">
+                <h5>3D-Printed Airframe</h5>
+                <p class="parts-note">This uses approximately 155 grams of PLA at 30% infill.</p>
+                <ul>
+                  <li><a href="https://link.amazon/B00uXqULl" target="_blank" rel="noopener">PLA filament</a> - for 3D printing the airframe</li>
+                  <li><a href="https://www.thingiverse.com/thing:7429193" target="_blank" rel="noopener">Complete airframe design files on Thingiverse</a>
+                    <ul>
+                      <li>1x lower plate</li>
+                      <li>1x upper plate</li>
+                      <li>4x arms</li>
+                      <li>1x MPU-6050 frame</li>
+                      <li>1x GoPro mount (if mounting camera)</li>
+                      <li>Antenna-mast components (3 pieces)</li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="parts-group">
+                <h5>Mounting Hardware</h5>
+                <p class="parts-note">Misc. hardware for assembling the quadcopter that you may already have lying around, and if not, can purchase at any local store.</p>
+                <ul>
+                  <li>Screws
+                    <ul>
+                      <li><a href="https://amzn.to/4hMVHXr" target="_blank" rel="noopener">M3 Screw Assortment Kit</a>
+                        <ul>
+                          <li>4x M3&times;30mm - securing the 4 arms to the main body</li>
+                          <li>4x M3&times;8mm - securing motors (only if not included with motors)</li>
+                          <li>4x M3&times;8mm - securing GoPro mount to upper plate</li>
+                          <li>4x M3&times;12mm - securing MPU-6050 frame</li>
+                          <li>2x M3&times;16mm - antenna mast (bottom-to-arm and coupler-to-mast-top)</li>
+                          <li>3x M3&times;12mm - securing antenna base into mast coupler</li>
+                        </ul>
+                      </li>
+                      <li><a href="https://link.amazon/B03hhJMnQ" target="_blank" rel="noopener">M2 Screw Assortment Kit</a>
+                        <ul>
+                          <li>3x M2&times;8mm - securing Centauri Carrier Board to level 1</li>
+                          <li>1x M2&times;12mm - securing Centauri Carrier Board to level 1</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><a href="https://amzn.to/3UxO6SU">4-inch zip tie pack</a> (for strapping down components/wires)</li>
+                  <li><a href="https://amzn.to/4cc35Im" target="_blank" rel="noopener">Double-sided foam tape</a> for vibration-isolating the IMU</li>
+                  <li><a href="https://link.amazon/B00IMytDL" target="_blank" rel="noopener">1/2-inch Velcro strip</a> (about 2 feet needed)</li>
+                </ul>
+              </div>
+
+              <div class="parts-group">
+                <h5>Optional FPV Equipment</h5>
+                 <p class="parts-note">You can fly Centauri by eye (without any onboard cameras) if you want, and I did for a while! But if you want a "first person" perspective through an FPV monitor or goggles, you'll need these.</p>
+                <ul>
+                  <li>1x <a href="https://amzn.to/4yjdSJW" target="_blank" rel="noopener">AKK BA3 all-in-one FPV camera/transmitter</a></li>
+                  <li>1x <a href="https://amzn.to/4guRMOn" target="_blank" rel="noopener">JST-PH 2.0 connector</a></li>
+                  <li>1x <a href="https://amzn.to/4fwKjxb" target="_blank" rel="noopener">SoloGood FPV monitor</a> or compatible analog FPV goggles</li>
+                  <li>1x 3D-printed <a href="https://www.thingiverse.com/thing:7229291" target="_blank" rel="noopener">two-piece FPV protective frame</a></li>
+                </ul>
+              </div>
+
+              <div class="parts-group">
+                <h5>Miscellaneous Tools</h5>
+                <p class="parts-note">There is a good chance you have these on hand. But if not, here's what you'll need to get the work done and what I recommend.</p>
+                <ul>
+                  <li><a href="https://amzn.to/4zRGbjF" target="_blank" rel="noopener">Solder</a></li>
+                  <li><a href="https://amzn.to/4xVs6Qh" target="_blank" rel="noopener">Soldering iron</a> - for soldering all of the electrical connections throughout the build</li>
+                  <li><a href="https://amzn.to/45FPF3F" target="_blank" rel="noopener">Balance charger</a> - safely charges the LiPo battery, balancing voltage across its individual cells</li>
+                </ul>
+              </div>
+            </section>
+
+          </article>
+
+          <article class="parts-panel" id="transmitter" hidden>
+            <h3 class="parts-panel__title" tabindex="-1">Build the Centauri Transmitter</h3>
+            <p class="parts-panel__intro">Your connection from the pilot to the quadcopter, built from off-the-shelf electronics and a 3D-printed platform.</p>
+
+            <section class="build-checklist" id="transmitter-parts" aria-labelledby="transmitter-parts-title">
+              <header class="build-checklist__header">
+                <h4 id="transmitter-parts-title" tabindex="-1">Gather the transmitter components</h4>
+                <p><strong>No custom carrier PCB is needed for this build.</strong> Gather the parts below from the linked suppliers or your own workspace.</p>
+              </header>
+
+              <div class="parts-group">
+                <h5>Electronic Components</h5>
+                <p class="parts-note">Components required to send the pilot's control inputs to the quadcopter.</p>
+                <ul>
+                  <li>1x <a href="https://amzn.to/4vZ5DkH" target="_blank" rel="noopener">Raspberry Pi Pico</a></li>
+                  <li>1x <a href="https://amzn.to/4eWx48V" target="_blank" rel="noopener">HC-12 wireless transceiver</a></li>
+                  <li>1x <a href="https://amzn.to/4wDVgTh" target="_blank" rel="noopener">CP2102 USB-to-UART adapter</a></li>
+                  <li>1x <a href="https://amzn.to/4wUxGlE" target="_blank" rel="noopener">USB-compatible Xbox controller</a></li>
+                  <li>1x <a href="https://www.digikey.com/short/qjz8575r" target="_blank" rel="noopener">FLEXI-SMA-433 antenna</a></li>
+                  <li>Any Windows or Linux laptop</li>
+                  <li>Electrical wire</li>
+                  <li>Solder</li>
+                </ul>
+              </div>
+
+              <div class="parts-group">
+                <h5>3D-Printed Platform</h5>
+                <p class="parts-note">Small 3D-printed platform to mount the components to.</p>
+                <ul>
+                  <li><a href="https://www.thingiverse.com/thing:7376838" target="_blank" rel="noopener">Transceiver platform (two-pieces)</a></li>
+                  <li>PLA filament</li>
+                </ul>
+              </div>
+
+              <div class="parts-group">
+                <h5>Mounting Hardware</h5>
+                <p class="parts-note">Screws for securing the transmitter's components and antenna to the 3D-printed platform.</p>
+                <ul>
+                  <li>Screws
+                    <ul>
+                      <li><a href="https://link.amazon/B03hhJMnQ" target="_blank" rel="noopener">M2 Screw Assortment Kit</a>
+                        <ul>
+                          <li>4x M2&times;8mm - securing RPi Pico to 3D-printed platform</li>
+                        </ul>
+                      </li>
+                      <li><a href="https://amzn.to/4hMVHXr" target="_blank" rel="noopener">M3 Screw Assortment Kit</a>
+                        <ul>
+                          <li>3x M3&times;12mm - securing antenna base into 3D-printed platform</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </section>
+          </article>
+
+          <article class="parts-panel" id="link" hidden>
+            <h3 class="parts-panel__title" tabindex="-1">Build Centauri Link</h3>
+            <p class="parts-panel__intro">Build a handheld window into your radio traffic. There are two parts to gathering your supplies:</p>
+
+            <section class="shop-product" id="link-carrier-board" aria-labelledby="link-carrier-board-title">
+              <header class="shop-product__intro">
+                <h4>1. Get the Link Carrier Board</h4>
+              </header>
+              <div class="shop-gallery" aria-label="Centauri Link Carrier Board photos">
+                <div class="shop-gallery__stage">
+                  <img id="link-product-photo" src="https://i.imgur.com/YearF9W.jpeg" alt="Centauri Link Carrier Board, photo 1 of 4" loading="lazy" />
+                </div>
+                <div class="shop-gallery__thumbnails" role="group" aria-label="Choose a product photo">
+                  <button class="shop-gallery__thumbnail" type="button" aria-label="Show product photo 1" aria-pressed="true" aria-controls="link-product-photo">
+                    <img src="https://i.imgur.com/YearF9W.jpeg" alt="Centauri Link Carrier Board, photo 1 of 4" loading="lazy" />
+                  </button>
+                  <button class="shop-gallery__thumbnail" type="button" aria-label="Show product photo 2" aria-pressed="false" aria-controls="link-product-photo">
+                    <img src="https://i.imgur.com/XDGdQg0.jpeg" alt="Centauri Link Carrier Board, photo 2 of 4" loading="lazy" />
+                  </button>
+                  <button class="shop-gallery__thumbnail" type="button" aria-label="Show product photo 3" aria-pressed="false" aria-controls="link-product-photo">
+                    <img src="https://i.imgur.com/2Gzy9g1.png" alt="Centauri Link Carrier Board, photo 3 of 4" loading="lazy" />
+                  </button>
+                  <button class="shop-gallery__thumbnail" type="button" aria-label="Show product photo 4" aria-pressed="false" aria-controls="link-product-photo">
+                    <img src="https://i.imgur.com/ZTX2RaV.jpeg" alt="Centauri Link Carrier Board, photo 4 of 4" loading="lazy" />
+                  </button>
+                </div>
+              </div>
+
+              <div class="shop-product__details">
+                <h5 id="link-carrier-board-title" tabindex="-1">Centauri Link Carrier Board</h5>
+                <p class="shop-product__price">$19.99</p>
+                <p class="shop-product__shipping">+ shipping</p>
+                <div class="shop-product__description">
+                  <p>Build your own window into Centauri&rsquo;s radio communications. The Centauri Link Carrier Board brings the handheld Link monitor&rsquo;s electronics together in an organized layout, simplifying assembly and reducing point-to-point wiring.</p>
+                  <p>Once assembled, Link listens for Centauri radio traffic, helping you troubleshoot reception and check approximate range on foot before putting your drone in the air.</p>
+                  <p class="shop-product__note">Includes one bare, unpopulated carrier board. Raspberry Pi Pico, radio module, display, battery, and other components are sold separately. Soldering, assembly, and a 3D-printed enclosure are required.</p>
+                </div>
+                <div class="shop-product__checkout">
+                  <a class="shop-product__purchase" href="https://buy.stripe.com/dRmaEX1ma2uD5hy8J3aIM02" target="_blank" rel="noopener">Purchase Now</a>
+                  <p>Checkout powered by Stripe.</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="build-checklist" id="link-parts" aria-labelledby="link-parts-title">
+              <header class="build-checklist__header">
+                <h4 id="link-parts-title" tabindex="-1">2. Gather the other build components</h4>
+                <p><strong>These are not included with the PCB.</strong> Gather the electronics and mounting hardware below separately, along with a 3D-printed enclosure, and assemble them with the board from step 1.</p>
+              </header>
+
+              <div class="parts-group">
+                <h5>Electronic Components</h5>
+                <p class="parts-note">Electronics and wiring to add to your Link carrier PCB.</p>
+                <ul>
+                  <li>1x <a href="https://amzn.to/4vZ5DkH" target="_blank" rel="noopener">Raspberry Pi Pico</a></li>
+                  <li><a href="https://link.amazon/B09admQw7" target="_blank" rel="noopener">Header pin strips</a> - for soldering the Raspberry Pi Pico directly to the Carrier Board</li>
+                  <li>1x <a href="https://amzn.to/4eWx48V" target="_blank" rel="noopener">HC-12 wireless transceiver</a></li>
+                  <li>1x 6-inch <a href="https://link.amazon/B06qBxrV7" target="_blank" rel="noopener">U.FL-to-SMA coaxial cable</a></li>
+                  <li>1x <a href="https://www.digikey.com/en/products/detail/taoglas-limited/TI-10-0111/3131969" target="_blank" rel="noopener">Taoglas TI.10.0111 433 MHz antenna</a></li>
+                  <li>1x <a href="https://link.amazon/B06ykR4YL" target="_blank" rel="noopener">5V boost regulator module</a></li>
+                  <li>1x <a href="https://link.amazon/B04ChsEMY" target="_blank" rel="noopener">18650 battery</a></li>
+                  <li>1x <a href="https://link.amazon/B0j2jhdZr" target="_blank" rel="noopener">TP4056 charge controller</a></li>
+                  <li>1x <a href="https://link.amazon/B05yWWu72" target="_blank" rel="noopener">SSD-1306 OLED display</a></li>
+                  <li>1x <a href="https://link.amazon/B02H8YQP0" target="_blank" rel="noopener">Power button switch</a></li>
+                  <li>1x <a href="https://link.amazon/B0e06MZtz" target="_blank" rel="noopener">Push button</a></li>
+                  <li>1x 47 k&#8486; resistor from the <a href="https://amzn.to/4aNJ0Yb" target="_blank" rel="noopener">resistor pack</a></li>
+                  <li>1x 100 k&#8486; resistor from the <a href="https://amzn.to/4aNJ0Yb" target="_blank" rel="noopener">resistor pack</a></li>
+                  <li><a href="https://amzn.to/4qRO7wZ" target="_blank" rel="noopener">22-Gauge Electrical wire</a> - for low-current and logic connections</li>
+                </ul>
+              </div>
+
+              <div class="parts-group">
+                <h5>Mounting Hardware</h5>
+                <p class="parts-note">Screws for securing Link's battery frame, OLED display, Carrier Board, and enclosure top plate.</p>
+                <ul>
+                  <li>Screws
+                    <ul>
+                      <li><a href="https://amzn.to/4hMVHXr" target="_blank" rel="noopener">M3 Screw Assortment Kit</a>
+                        <ul>
+                          <li>2x M3&times;12mm - securing 18650 battery frame</li>
+                        </ul>
+                      </li>
+                      <li><a href="https://link.amazon/B03hhJMnQ" target="_blank" rel="noopener">M2 Screw Assortment Kit</a>
+                        <ul>
+                          <li>4x M2&times;12mm - securing top plate</li>
+                          <li>4x M2&times;8mm - securing OLED display</li>
+                          <li>4x M2&times;12mm - securing Link Carrier Board to enclosure</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </section>
+          </article>
+
+        </div>
       </div>
-      <p class="shop-back" hidden><a href="#shop">&larr; Back to products</a></p>
-
-      <article class="shop-product" id="flight-controller-carrier-board" aria-labelledby="carrier-board-title" hidden>
-        <div class="shop-gallery" aria-label="Centauri Flight Controller Carrier Board photos">
-          <div class="shop-gallery__stage">
-            <img id="product-photo" src="https://i.imgur.com/LnfPno0.jpeg" alt="Centauri Flight Controller Carrier Board, photo 1 of 6" />
-          </div>
-          <div class="shop-gallery__thumbnails" role="group" aria-label="Choose a product photo">
-            <button class="shop-gallery__thumbnail" type="button" aria-label="Show product photo 1" aria-pressed="true" aria-controls="product-photo">
-              <img src="https://i.imgur.com/LnfPno0.jpeg" alt="Centauri Flight Controller Carrier Board, photo 1 of 6" />
-            </button>
-            <button class="shop-gallery__thumbnail" type="button" aria-label="Show product photo 2" aria-pressed="false" aria-controls="product-photo">
-              <img src="https://i.imgur.com/u0wpeyB.jpeg" alt="Centauri Flight Controller Carrier Board, photo 2 of 6" loading="lazy" />
-            </button>
-            <button class="shop-gallery__thumbnail" type="button" aria-label="Show product photo 3" aria-pressed="false" aria-controls="product-photo">
-              <img src="https://i.imgur.com/8SqN388.png" alt="Centauri Flight Controller Carrier Board, photo 3 of 6" loading="lazy" />
-            </button>
-            <button class="shop-gallery__thumbnail" type="button" aria-label="Show product photo 4" aria-pressed="false" aria-controls="product-photo">
-              <img src="https://i.imgur.com/tVbYp3s.png" alt="Centauri Flight Controller Carrier Board, photo 4 of 6" loading="lazy" />
-            </button>
-            <button class="shop-gallery__thumbnail" type="button" aria-label="Show product photo 5" aria-pressed="false" aria-controls="product-photo">
-              <img src="https://i.imgur.com/H1rJmzQ.png" alt="Centauri Flight Controller Carrier Board, photo 5 of 6" loading="lazy" />
-            </button>
-            <button class="shop-gallery__thumbnail" type="button" aria-label="Show product photo 6" aria-pressed="false" aria-controls="product-photo">
-              <img src="https://i.imgur.com/WRgJT6P.png" alt="Centauri Flight Controller Carrier Board, photo 6 of 6" loading="lazy" />
-            </button>
-          </div>
-        </div>
-
-        <div class="shop-product__details">
-          <h1 id="carrier-board-title" tabindex="-1">Centauri Flight Controller Carrier Board</h1>
-          <p class="shop-product__price">$29.99</p>
-          <p class="shop-product__shipping">+ shipping</p>
-          <div class="shop-product__description">
-            <p>The Centauri Flight Controller Carrier Board brings your Raspberry Pi Pico, IMU, radio receiver, and ESC control connections together in a clean, organized layout. It replaces messy point-to-point wiring while keeping the individual components accessible for learning and experimentation.</p>
-            <p>Your Pico still runs the MicroPython code that reads the sensors, interprets pilot commands, and tells the motors how to respond. The board connects the pieces without hiding what they do, so you can explore the code, tune the control loop, and understand what makes your quadcopter fly.</p>
-            <p class="shop-product__note">Includes one bare, unpopulated carrier PCB. Raspberry Pi Pico, sensors, radio, and other components sold separately. Assembly and soldering required.</p>
-          </div>
-          <div class="shop-product__checkout">
-            <a class="shop-product__purchase" href="https://buy.stripe.com/28EfZh8OCglt9xO2kFaIM00" target="_blank" rel="noopener">Purchase Now</a>
-            <p>Checkout powered by Stripe.</p>
-          </div>
-        </div>
-      </article>
-      <article class="shop-product" id="link-carrier-board" aria-labelledby="link-carrier-board-title" hidden>
-        <div class="shop-gallery" aria-label="Centauri Link Carrier Board photos">
-          <div class="shop-gallery__stage">
-            <img id="link-product-photo" src="https://i.imgur.com/YearF9W.jpeg" alt="Centauri Link Carrier Board, photo 1 of 4" loading="lazy" />
-          </div>
-          <div class="shop-gallery__thumbnails" role="group" aria-label="Choose a product photo">
-            <button class="shop-gallery__thumbnail" type="button" aria-label="Show product photo 1" aria-pressed="true" aria-controls="link-product-photo">
-              <img src="https://i.imgur.com/YearF9W.jpeg" alt="Centauri Link Carrier Board, photo 1 of 4" loading="lazy" />
-            </button>
-            <button class="shop-gallery__thumbnail" type="button" aria-label="Show product photo 2" aria-pressed="false" aria-controls="link-product-photo">
-              <img src="https://i.imgur.com/XDGdQg0.jpeg" alt="Centauri Link Carrier Board, photo 2 of 4" loading="lazy" />
-            </button>
-            <button class="shop-gallery__thumbnail" type="button" aria-label="Show product photo 3" aria-pressed="false" aria-controls="link-product-photo">
-              <img src="https://i.imgur.com/2Gzy9g1.png" alt="Centauri Link Carrier Board, photo 3 of 4" loading="lazy" />
-            </button>
-            <button class="shop-gallery__thumbnail" type="button" aria-label="Show product photo 4" aria-pressed="false" aria-controls="link-product-photo">
-              <img src="https://i.imgur.com/ZTX2RaV.jpeg" alt="Centauri Link Carrier Board, photo 4 of 4" loading="lazy" />
-            </button>
-          </div>
-        </div>
-
-        <div class="shop-product__details">
-          <h1 id="link-carrier-board-title" tabindex="-1">Centauri Link Carrier Board</h1>
-          <p class="shop-product__price">$19.99</p>
-          <p class="shop-product__shipping">+ shipping</p>
-          <div class="shop-product__description">
-            <p>Build your own window into Centauri&rsquo;s radio communications. The Centauri Link Carrier Board brings the handheld Link monitor&rsquo;s electronics together in an organized layout, simplifying assembly and reducing point-to-point wiring.</p>
-            <p>Once assembled, Link listens for Centauri radio traffic, helping you troubleshoot reception and check approximate range on foot before putting your drone in the air.</p>
-            <p class="shop-product__note">Includes one bare, unpopulated carrier board. Raspberry Pi Pico, radio module, display, battery, and other components are sold separately. Soldering, assembly, and a 3D-printed enclosure are required.</p>
-          </div>
-          <div class="shop-product__checkout">
-            <a class="shop-product__purchase" href="https://buy.stripe.com/dRmaEX1ma2uD5hy8J3aIM02" target="_blank" rel="noopener">Purchase Now</a>
-            <p>Checkout powered by Stripe.</p>
-          </div>
-        </div>
-      </article>
     </section>
   </main>
 
-  <script>
-    (function () {
-      var catalog = document.querySelector(".shop-catalog");
-      var back = document.querySelector(".shop-back");
-      var products = Array.prototype.slice.call(document.querySelectorAll(".shop-product"));
-      var lastProduct = null;
-
-      function showView(moveFocus) {
-        var target = location.hash.slice(1);
-        var selected = null;
-        products.forEach(function (product) {
-          product.hidden = product.id !== target;
-          if (!product.hidden) {
-            selected = product;
-          }
-        });
-        catalog.hidden = !!selected;
-        back.hidden = !selected;
-
-        if (selected) {
-          lastProduct = selected.id;
-          if (moveFocus) {
-            selected.querySelector("h1").focus();
-          }
-        } else if (moveFocus && lastProduct) {
-          catalog.querySelector('a[href="#' + lastProduct + '"]').focus();
-        }
-      }
-
-      window.addEventListener("hashchange", function () {
-        showView(true);
-      });
-      showView(false);
-
-      var galleries = Array.prototype.slice.call(document.querySelectorAll(".shop-gallery"));
-
-      galleries.forEach(function (gallery) {
-        var photo = gallery.querySelector(".shop-gallery__stage img");
-        var thumbnails = Array.prototype.slice.call(gallery.querySelectorAll(".shop-gallery__thumbnail"));
-
-        thumbnails.forEach(function (button) {
-          button.addEventListener("click", function () {
-            var image = button.querySelector("img");
-            photo.src = image.src;
-            photo.alt = image.alt;
-            thumbnails.forEach(function (thumbnail) {
-              thumbnail.setAttribute("aria-pressed", thumbnail === button ? "true" : "false");
-            });
-          });
-        });
-      });
-    })();
-  </script>
 </body>
 </html>

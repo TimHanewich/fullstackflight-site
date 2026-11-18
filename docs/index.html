@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Full Stack Flight</title>
   <meta name="description" content="Build a quadcopter from scratch and understand every part." />
-  <link rel="preload" href="fonts/timh-title.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="fonts/timh-text.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="preload" href="media/centauri-flight.webp" as="image" />
+  <link rel="stylesheet" href="styles.css?v=no-footer-20261117" />
+  <script src="site.js" defer></script>
   <link rel="icon" type="image/svg+xml" href="full-stack-flight.svg">
 
   <!--Microsoft Clarity-->
@@ -20,49 +20,62 @@
   </script>
 </head>
 <body>
-  <div class="grid-glow"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="site-brand" href="./" aria-label="Full Stack Flight home">
+        <img src="full-stack-flight.svg" alt="" width="43" height="43" />
+        <span>Full Stack Flight</span>
+      </a>
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <a href="#ecosystem">Discover</a>
+        <a href="#chapters">Learn</a>
+        <a href="#community">Join</a>
+        <a href="#get-started">Build</a>
+      </nav>
+      <div class="header-actions">
+        <a class="store-link" href="shop/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 7h14l1 14H4L5 7Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg>
+          Shop
+        </a>
+        <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="site-nav">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
 
-  <section class="landing">
-    <video class="landing-video" autoplay muted playsinline>
-      <source src="https://i.imgur.com/PYauhM3.mp4" type="video/mp4" />
-    </video>
-    <video class="landing-video landing-video--b" muted playsinline style="opacity:0">
-      <source src="https://i.imgur.com/PYauhM3.mp4" type="video/mp4" />
+  <section class="landing" aria-labelledby="hero-title">
+    <video class="landing-video" loop muted playsinline preload="none" poster="media/centauri-flight.webp" aria-hidden="true">
+      <source src="media/centauri-flight.mp4" type="video/mp4" />
     </video>
     <div class="landing-overlay"></div>
     <div class="landing-content">
-      <div class="landing-head">
-        <img src="full-stack-flight.svg" alt="Full Stack Flight" class="logo" />
-        <h1>Learn how quadcopters actually work by building one from scratch.</h1>
-      </div>
-      <p>Full Stack Flight is an educational series on building a quadcopter ecosystem from scratch: flight controller, airframe, transmitter, communication protocol, and telemetry tools, all custom and built entirely in Python! Made for aspiring engineers and curious makers who want more than a black box. Code, hardware, and explanations you can actually understand!</p>
-    </div>
-    <div class="scroll-cue" aria-hidden="true">
-      <span>Scroll</span>
-      <span class="scroll-arrow"></span>
+      <h1 id="hero-title">Learn how quadcopters actually work by building one from scratch.</h1>
     </div>
   </section>
 
-  <main>
-    <section class="build ecosystem" id="ecosystem">
+  <main id="main">
+    <section class="build ecosystem home-section" id="ecosystem">
       <h2>The Centauri Ecosystem</h2>
+      <p class="section-blurb">Four connected systems, built from scratch from the ground up.<br />Explore the hardware, the code, and everything in between.</p>
       <div class="eco-grid">
         <div class="eco-pane" data-model="models/quadcopter.glb">
-          <canvas class="eco-canvas"></canvas>
+          <canvas class="eco-canvas" role="img" aria-label="3D view of the Centauri quadcopter"></canvas>
           <div class="eco-info">
             <h3>QUADCOPTER</h3>
             <p>The star of the show! A custom 3D-printed airframe with a Raspberry Pi Pico running a MicroPython flight controller. It reads pilot commands, senses motion, and adjusts all four motors through a 250 Hz PID loop to keep you flying.</p>
           </div>
         </div>
         <div class="eco-pane" data-model="models/transmitter.glb">
-          <canvas class="eco-canvas"></canvas>
+          <canvas class="eco-canvas" role="img" aria-label="3D view of the Centauri transmitter"></canvas>
           <div class="eco-info">
             <h3>TRANSMITTER</h3>
             <p>The pilot's control interface. A Python program reads an Xbox controller and sends commands through a Pico-powered HC-12 radio. A terminal dashboard shows inputs and pre-flight telemetry, with wireless PID updates for easier tuning.</p>
           </div>
         </div>
         <div class="eco-pane" data-model="models/link.glb" data-center="OLED_screen">
-          <canvas class="eco-canvas"></canvas>
+          <canvas class="eco-canvas" role="img" aria-label="3D view of the Centauri Link radio monitor"></canvas>
           <div class="eco-info">
             <h3>LINK</h3>
             <p>Validate radio communication before taking flight. A small handheld device passively listens for Centauri radio communications. Check reception over distance, without risking your quadcopter on a long-range flight.</p>
@@ -87,6 +100,7 @@
           <iframe
             src="https://www.youtube.com/embed/4ocy2szvcbM"
             title="Centauri"
+            loading="lazy"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerpolicy="strict-origin-when-cross-origin"
@@ -100,15 +114,71 @@
           <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
         </svg>
         <div class="oss-promo__text">
-          <strong>Fully Open Source!</strong>
+          <strong>Open source. Open possibilities.</strong>
           <span>Every part of Centauri is available for free on GitHub! Anyone is welcome to explore, learn, build, and collaborate.</span>
         </div>
         <span class="oss-promo__cta">View on GitHub</span>
       </a>
     </section>
 
-    <section class="getstarted" id="get-started">
-      <h2>Build it yourself!</h2>
+    <section class="chapters home-section" id="chapters">
+      <h2>Learn the engineering</h2>
+      <p class="section-blurb">A comprehensive breakdown of how Centauri was designed, built, and tested from the ground up. It walks through the full system in a practical way, covering the architecture, hardware, software, transmitter, communication protocol, and telemetry analysis, with the goal of making the engineering behind it understandable enough for anyone to learn from and build on.</p>
+      <div class="chapter-grid">
+        <a class="chapter-card chapter-card--wide" href="/posts/chapter0/" aria-label="Building a Quadcopter Ecosystem from Scratch">
+          <img src="https://i.imgur.com/dYHRjzk.png" alt="Building a Quadcopter Ecosystem from Scratch" loading="lazy" />
+          <span class="chapter-num">Building a Quadcopter Ecosystem from Scratch</span>
+        </a>
+        <a class="chapter-card" href="/posts/chapter1/" aria-label="Chapter 1: The Centauri Ecosystem">
+          <img src="https://i.imgur.com/JLIMLAe.jpeg" alt="Chapter 1: The Centauri Ecosystem" loading="lazy" />
+          <span class="chapter-num">Chapter 1: The Centauri Ecosystem</span>
+        </a>
+        <a class="chapter-card" href="/posts/chapter2/" aria-label="Chapter 2: Defining a Communication Protocol">
+          <img src="https://i.imgur.com/DE0pEtw.jpeg" alt="Chapter 2: Defining a Communication Protocol" loading="lazy" />
+          <span class="chapter-num">Chapter 2: Defining a Communication Protocol</span>
+        </a>
+        <a class="chapter-card" href="/posts/chapter3/" aria-label="Chapter 3: Designing a 3D-Printed Airframe">
+          <img src="https://i.imgur.com/VRfvxHI.jpeg" alt="Chapter 3: Designing a 3D-Printed Airframe" loading="lazy" />
+          <span class="chapter-num">Chapter 3: Designing a 3D-Printed Airframe</span>
+        </a>
+        <a class="chapter-card" href="/posts/chapter4/" aria-label="Chapter 4: Hardware and Electronics Package">
+          <img src="https://i.imgur.com/dKRuwCe.jpeg" alt="Chapter 4: Hardware and Electronics Package" loading="lazy" />
+          <span class="chapter-num">Chapter 4: Hardware and Electronics Package</span>
+        </a>
+        <a class="chapter-card" href="/posts/chapter5/" aria-label="Chapter 5: The Flight Controller">
+          <img src="https://i.imgur.com/aA4AtE7.jpeg" alt="Chapter 5: The Flight Controller" loading="lazy" />
+          <span class="chapter-num">Chapter 5: The Flight Controller</span>
+        </a>
+        <a class="chapter-card" href="/posts/chapter6/" aria-label="Chapter 6: Transceiver Platform">
+          <img src="https://i.imgur.com/1vB7TGB.jpeg" alt="Chapter 6: Transceiver Platform" loading="lazy" />
+          <span class="chapter-num">Chapter 6: Transceiver Platform</span>
+        </a>
+        <a class="chapter-card" href="/posts/chapter7/" aria-label="Chapter 7: The Pilot's Control Interface">
+          <img src="https://i.imgur.com/AAwQJPK.jpeg" alt="Chapter 7: The Pilot's Control Interface" loading="lazy" />
+          <span class="chapter-num">Chapter 7: The Pilot's Control Interface</span>
+        </a>
+        <a class="chapter-card" href="/posts/chapter8/" aria-label="Chapter 8: Unpacking Flight Telemetry for Analysis">
+          <img src="https://i.imgur.com/63Vq8ue.jpeg" alt="Chapter 8: Unpacking Flight Telemetry for Analysis" loading="lazy" />
+          <span class="chapter-num">Chapter 8: Unpacking Flight Telemetry for Analysis</span>
+        </a>
+        <a class="chapter-card" href="/posts/chapter9/" aria-label="Chapter 9: Closing Thoughts">
+          <img src="https://i.imgur.com/mJ1f6Ak.jpeg" alt="Chapter 9: Closing Thoughts" loading="lazy" />
+          <span class="chapter-num">Chapter 9: Closing Thoughts</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="community home-section" id="community">
+      <h2>Join the Community!</h2>
+      <img class="community-promo" src="https://i.imgur.com/e5zezO2.png" alt="The Full Stack Flight Discord community" loading="lazy" />
+      <p class="section-blurb">Join our community of makers learning from and building Centauri, sharing their progress, swapping ideas, and helping each other out along the way. Whether you're deep into your own build or just getting started, you'll find people happy to help!</p>
+      <a class="discord-cta" href="https://discord.gg/wwqfmCUzGg" target="_blank" rel="noopener">
+        <img class="discord-cta__icon" src="discord-logo.svg" alt="" width="26" height="26" />
+        <span>Join us on Discord</span>
+      </a>
+    </section>
+    <section class="getstarted home-section" id="get-started">
+      <h2>Get Started</h2>
       <p class="section-blurb">Building my own quadcopter from scratch was a steep climb for me. <i>Full Stack Flight</i> is what I wish I had on along the way: every layer of the system opened up and explained so anyone curious enough can learn and understand how a quadcopter really works by building one!</p>
       <ol class="step-grid">
         <li class="step-card">
@@ -128,7 +198,7 @@
             <path d="M24 18v-8M32 18v-8M40 18v-8M24 54v-8M32 54v-8M40 54v-8M18 24h-8M18 32h-8M18 40h-8M54 24h-8M54 32h-8M54 40h-8"/>
           </svg>
           <h3 class="step-card__title">Gather the parts</h3>
-          <a class="step-card__cta" href="parts/">View the parts list</a>
+          <a class="step-card__cta" href="shop/">Shop boards &amp; parts</a>
         </li>
         <li class="step-card">
           <span class="step-card__num">03</span>
@@ -159,62 +229,6 @@
       <p class="cohort-line">Want to build Centauri together? I'm putting together a small, fully virtual cohort to build Centauri together, start to finish. It isn't open yet, but you can <a href="cohort/">share your interest</a> and help shape it.</p>
     </section>
 
-    <section class="chapters" id="chapters">
-      <h2>Educational Series</h2>
-      <p class="section-blurb">A comprehensive breakdown of how Centauri was designed, built, and tested from the ground up. It walks through the full system in a practical way, covering the architecture, hardware, software, transmitter, communication protocol, and telemetry analysis, with the goal of making the engineering behind it understandable enough for anyone to learn from and build on.</p>
-      <div class="chapter-grid">
-        <a class="chapter-card chapter-card--wide" href="https://medium.com/@timhanewich/full-stack-flight-building-a-quadcopter-ecosystem-from-scratch-18d43386bb6d" target="_blank" rel="noopener" aria-label="Building a Quadcopter Ecosystem from Scratch">
-          <img src="https://i.imgur.com/dYHRjzk.png" alt="Building a Quadcopter Ecosystem from Scratch" loading="lazy" />
-          <span class="chapter-num">Building a Quadcopter Ecosystem from Scratch</span>
-        </a>
-        <a class="chapter-card" href="https://medium.com/@timhanewich/full-stack-flight-chapter-1-the-centauri-ecosystem-eacfcecc90f5" target="_blank" rel="noopener" aria-label="Chapter 1: The Centauri Ecosystem">
-          <img src="https://i.imgur.com/JLIMLAe.jpeg" alt="Chapter 1: The Centauri Ecosystem" loading="lazy" />
-          <span class="chapter-num">Chapter 1: The Centauri Ecosystem</span>
-        </a>
-        <a class="chapter-card" href="https://medium.com/@timhanewich/full-stack-flight-chapter-2-defining-a-communication-protocol-41bfc589a319" target="_blank" rel="noopener" aria-label="Chapter 2: Defining a Communication Protocol">
-          <img src="https://i.imgur.com/DE0pEtw.jpeg" alt="Chapter 2: Defining a Communication Protocol" loading="lazy" />
-          <span class="chapter-num">Chapter 2: Defining a Communication Protocol</span>
-        </a>
-        <a class="chapter-card" href="https://medium.com/@timhanewich/full-stack-flight-chapter-3-quadcopter-part-1-designing-a-3d-printed-airframe-9d4f9021a68c" target="_blank" rel="noopener" aria-label="Chapter 3: Designing a 3D-Printed Airframe">
-          <img src="https://i.imgur.com/VRfvxHI.jpeg" alt="Chapter 3: Designing a 3D-Printed Airframe" loading="lazy" />
-          <span class="chapter-num">Chapter 3: Designing a 3D-Printed Airframe</span>
-        </a>
-        <a class="chapter-card" href="https://medium.com/@timhanewich/full-stack-flight-chapter-4-quadcopter-part-2-hardware-and-electronics-package-69a5c26bc30b" target="_blank" rel="noopener" aria-label="Chapter 4: Hardware and Electronics Package">
-          <img src="https://i.imgur.com/dKRuwCe.jpeg" alt="Chapter 4: Hardware and Electronics Package" loading="lazy" />
-          <span class="chapter-num">Chapter 4: Hardware and Electronics Package</span>
-        </a>
-        <a class="chapter-card" href="https://medium.com/@timhanewich/full-stack-flight-chapter-5-quadcopter-part-3-the-flight-controller-310b3f288975" target="_blank" rel="noopener" aria-label="Chapter 5: The Flight Controller">
-          <img src="https://i.imgur.com/aA4AtE7.jpeg" alt="Chapter 5: The Flight Controller" loading="lazy" />
-          <span class="chapter-num">Chapter 5: The Flight Controller</span>
-        </a>
-        <a class="chapter-card" href="https://medium.com/@timhanewich/full-stack-flight-chapter-6-transmitter-part-1-transceiver-platform-7aee3793da9a" target="_blank" rel="noopener" aria-label="Chapter 6: Transceiver Platform">
-          <img src="https://i.imgur.com/1vB7TGB.jpeg" alt="Chapter 6: Transceiver Platform" loading="lazy" />
-          <span class="chapter-num">Chapter 6: Transceiver Platform</span>
-        </a>
-        <a class="chapter-card" href="https://medium.com/@timhanewich/full-stack-flight-chapter-7-transmitter-part-2-the-pilots-control-interface-dd14b90d5169" target="_blank" rel="noopener" aria-label="Chapter 7: The Pilot's Control Interface">
-          <img src="https://i.imgur.com/AAwQJPK.jpeg" alt="Chapter 7: The Pilot's Control Interface" loading="lazy" />
-          <span class="chapter-num">Chapter 7: The Pilot's Control Interface</span>
-        </a>
-        <a class="chapter-card" href="https://medium.com/@timhanewich/full-stack-flight-chapter-8-unpacking-flight-telemetry-for-analysis-73d251a4a449" target="_blank" rel="noopener" aria-label="Chapter 8: Unpacking Flight Telemetry for Analysis">
-          <img src="https://i.imgur.com/63Vq8ue.jpeg" alt="Chapter 8: Unpacking Flight Telemetry for Analysis" loading="lazy" />
-          <span class="chapter-num">Chapter 8: Unpacking Flight Telemetry for Analysis</span>
-        </a>
-        <a class="chapter-card" href="https://medium.com/@timhanewich/full-stack-flight-chapter-9-closing-thoughts-1f6855269e5f" target="_blank" rel="noopener" aria-label="Chapter 9: Closing Thoughts">
-          <img src="https://i.imgur.com/mJ1f6Ak.jpeg" alt="Chapter 9: Closing Thoughts" loading="lazy" />
-          <span class="chapter-num">Chapter 9: Closing Thoughts</span>
-        </a>
-      </div>
-    </section>
-
-    <section class="community" id="community">
-      <h2>Join the Community</h2>
-      <img class="community-promo" src="https://i.imgur.com/e5zezO2.png" alt="The Full Stack Flight Discord community" loading="lazy" />
-      <p class="section-blurb">Join our community of makers learning from and building Centauri, sharing their progress, swapping ideas, and helping each other out along the way. Whether you're deep into your own build or just getting started, you'll find people happy to help!</p>
-      <a class="discord-cta" href="https://discord.gg/wwqfmCUzGg" target="_blank" rel="noopener">
-        <img class="discord-cta__icon" src="discord-logo.svg" alt="" width="26" height="26" />
-        <span>Join us on Discord</span>
-      </a>
-    </section>
     <section class="maker" id="meet-tim">
       <div class="maker-grid">
         <div class="maker-photo">
@@ -251,9 +265,19 @@
 
     document.querySelectorAll(".eco-pane:not(.eco-shot)").forEach((pane) => {
       const canvas = pane.querySelector(".eco-canvas");
-      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+      let renderer;
+      try {
+        renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+      } catch (error) {
+        console.error("Unable to display the 3D model.", error);
+        const status = document.createElement("p");
+        status.className = "model-status";
+        status.textContent = "3D preview unavailable. Explore this system in the series below.";
+        canvas.replaceWith(status);
+        return;
+      }
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-      renderer.setClearColor(0x2b2b2b, 1);
+      renderer.setClearColor(0x000000, 0);
 
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(35, 1, 0.01, 1000);
@@ -270,30 +294,23 @@
       const entry = { pane, canvas, renderer, scene, camera, pivot, visible: false };
       panes.push(entry);
 
-      let grid = null;
-      function frame(radius, floorY) {
-        if (grid) { scene.remove(grid); grid.geometry.dispose(); }
-        grid = new THREE.GridHelper(radius * 40, 160, 0x6a6a6a, 0x444444);
-        grid.position.y = floorY;
-        scene.add(grid);
+      function frame(radius) {
         const dist = radius / Math.sin((camera.fov * Math.PI) / 360);
         const tilt = (30 * Math.PI) / 180;
         const d = dist * 1.4;
-        const lift = radius * 0.25; // look below the model so it renders higher in the pane
         if (pane.dataset.view === "top") {
           camera.up.set(0, 0, -1);
           camera.position.set(0, d, 0);
           camera.lookAt(0, 0, 0);
         } else {
-          camera.position.set(0, d * Math.sin(tilt) - lift, d * Math.cos(tilt));
-          camera.lookAt(0, -lift, 0);
+          camera.position.set(0, d * Math.sin(tilt), d * Math.cos(tilt));
+          camera.lookAt(0, 0, 0);
         }
         camera.near = dist / 100;
         camera.far = dist * 40;
-        scene.fog = new THREE.Fog(0x2b2b2b, d * 1.2, d * 4);
         camera.updateProjectionMatrix();
       }
-      frame(1, -0.4);
+      frame(1);
 
       const url = pane.dataset.model;
       if (url) {
@@ -310,11 +327,20 @@
             // rotating about an off-center point: frame the farthest extent from it
             const c = box.clone().translate(center.clone().negate());
             const r = Math.max(Math.hypot(c.min.x, c.min.z), Math.hypot(c.max.x, c.max.z), Math.hypot(c.min.x, c.max.z), Math.hypot(c.max.x, c.min.z));
-            frame(Math.max(r, 0.01) * 1.05, c.min.y - size.length() * 0.03);
+            frame(Math.max(r, 0.01) * 1.05);
           } else {
-            frame(size.length() / 2, -size.y / 2 - size.length() * 0.03);
+            frame(size.length() / 2);
           }
-        }, undefined, (e) => console.error("Failed to load " + url, e));
+        }, undefined, (error) => {
+          console.error("Failed to load " + url, error);
+          const status = document.createElement("p");
+          status.className = "model-status";
+          status.textContent = "3D preview unavailable. Explore this system in the series below.";
+          canvas.replaceWith(status);
+          entry.visible = false;
+          entry.failed = true;
+          renderer.dispose();
+        });
       }
 
       new IntersectionObserver((es) => { entry.visible = es[0].isIntersecting; }).observe(pane);
@@ -330,50 +356,18 @@
     }
 
     const clock = new THREE.Clock();
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     (function animate() {
       requestAnimationFrame(animate);
       const dt = clock.getDelta();
       panes.forEach((p) => {
-        if (!p.visible) return;
+        if (!p.visible || p.failed || document.hidden) return;
         resize(p);
-        p.pivot.rotation.y += dt * 0.35;
+        if (!reducedMotion.matches) p.pivot.rotation.y += dt * 0.2;
         p.renderer.render(p.scene, p.camera);
       });
     })();
   </script>
 
-  <script>
-    (function () {
-      var vids = Array.prototype.slice.call(document.querySelectorAll(".landing-video"));
-      if (vids.length < 2) return;
-      var FADE = 0.9; // seconds of crossfade at the loop point
-      var active = 0;
-      var busy = false;
-
-      vids[0].play().catch(function () {});
-
-      function onTick(e) {
-        var v = e.target;
-        if (v !== vids[active] || busy) return;
-        var d = v.duration;
-        if (!d || isNaN(d)) return;
-        if (d - v.currentTime <= FADE) {
-          busy = true;
-          var other = vids[active ^ 1];
-          other.currentTime = 0;
-          other.play().catch(function () {});
-          // crossfade: current out, incoming in (starts from frame 0)
-          v.style.opacity = "0";
-          other.style.opacity = "1";
-          active ^= 1;
-          setTimeout(function () { busy = false; }, FADE * 1000);
-        }
-      }
-
-      vids.forEach(function (v) {
-        v.addEventListener("timeupdate", onTick);
-      });
-    })();
-  </script>
 </body>
 </html>
