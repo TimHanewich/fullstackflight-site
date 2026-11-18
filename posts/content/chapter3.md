@@ -179,4 +179,4 @@ With the body designed and printed, the next chapter details the hardware packag
 
 Click here to continue reading in this series: [Full-Stack Flight, Chapter 4: Quadcopter, Part 2: Hardware and Electronics Package](../chapter4).
 
-*Read to start building? [Join the Full Stack Flight Discord](https://discord.gg/wwqfmCUzGg) to ask questions, share progress, and connect with other makers building their own version of Centauri!*
+*Ready to start building? [Join the Full Stack Flight Discord](https://discord.gg/wwqfmCUzGg) to ask questions, share progress, and connect with other makers building their own version of Centauri!*

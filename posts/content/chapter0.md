@@ -36,7 +36,7 @@ Compared to Scout, Centauri would have:
 
 With Scout, I used an "off the shelf" quadcopter transmitter/receiver pair, the [FlySky FS-i6](https://amzn.to/4fa6Yy9). This allowed me to outsource control communications to off-the-shelf hardware. Because with Centauri I'd be abandoning that approach and designing my own communication protocol from the ground up, I'd *also* be building the pilot's transmitter: a device on the pilot's end that allows the pilot to take control of the quadcopter, rapidly sending control updates.
 
-Like Scout, my goal with Centauri was to keep the entire system accessible and understandable, not a black box like off-the-shelf flight controllers (think Betaflight), but something any aspiring developer or engineer could open up, read, and actually understand line by line. As a result, I made key design decisions: using a $4 Raspberry Pi Pico microcontroller as the "computer" onboard the quadcopter, writing the entire flight controller code in Python (MicroPython to be exact), and purchasing all components from Amazon, with the total investment being approximately $132. More on that later in this series!
+Like Scout, my goal with Centauri was to keep the entire system accessible and understandable, not a black box like off-the-shelf flight controllers (think Betaflight), but something any aspiring developer or engineer could open up, read, and actually understand line by line. As a result, I made key design decisions: using a Raspberry Pi Pico microcontroller as the "computer" onboard the quadcopter and writing the entire flight controller code in Python (MicroPython to be exact). More on that later in this series!
 
 Altogether, Centauri is a complete quadcopter ecosystem developed from the ground up:
 - **The Centauri Quadcopter**: I designed the complete quadcopter package from scratch, including the onboard flight controller ("brain"), the 3D-printed airframe, wiring schematics, and more.
@@ -64,4 +64,4 @@ Rather than just handing you working quadcopter specs, I'm walking through every
 
 *Note: This series assumes you have a general understanding of quadcopter flight dynamics. If you do not, please review [part 1 of my series on Scout](https://timhanewich.medium.com/how-i-developed-the-scout-flight-controller-part-1-quadcopter-flight-dynamics-400af73d21db) which covers flight fundamentals.*
 
-*Read to start building? [Join the Full Stack Flight Discord](https://discord.gg/wwqfmCUzGg) to ask questions, share progress, and connect with other makers building their own version of Centauri!*
+*Ready to start building? [Join the Full Stack Flight Discord](https://discord.gg/wwqfmCUzGg) to ask questions, share progress, and connect with other makers building their own version of Centauri!*

@@ -53,9 +53,14 @@ I do plan to make further improvements to *Centauri*, building on this fantastic
 - **Tweak Angle Estimates**: The *Centauri Flight Controller* uses a complementary filter to estimate the pitch and roll angles during flight. While the angles are mostly correct, there are certainly discrepancies. I'll need to take a closer look, identify any potential errors, and then work on improving their accuracy.
 - **Advanced Flight Controller Modes**: as I discussed in [chapter 5](../chapter5), the *Centauri Flight Controller*, while impressive, is actually quite primitive in its capabilities. At some point I'd like to equip *Centauri* with additional hardware (sensors) and software to let it hold attitude, hold position, or even fly to various waypoints. This will be quite the undertaking!
 - **Handheld Transmitter**: in [chapter 6](../chapter6) I described the decision to use an "augmented" PC (laptop) as the transmitter instead of building a custom transmitter. That decision worked very well! But at some point I'd like to fly *Centauri* without packing up a full laptop and transceiver platform. For that, I'll need to design, build, and implement a handheld transceiver.
-- **Custom PCB**: as I showed in [chapter 4](../chapter4), my first iteration of the *Centauri quadcopter* is rather messy. I assembled all the hardware onto the 3D-prints and then wired everything together myself. Not the best formula if you're after a clean, sleek-looking quadcopter. At some point I'll develop a custom PCB (printed circuit board) for *Centauri* that will make the final result much sleeker while saving weight (more performance and range).
+
 
 Those are just the immediate big ideas that come to mind, but I'm sure many more will follow! If you have any ideas or suggestions, I'm all ears.
+
+## The Centauri Carrier PCB Is Now Available
+Since building the original version shown in [chapter 4](../chapter4), I've developed a custom carrier PCB for Centauri, and it is now available for sale through Full Stack Flight! It offers a cleaner foundation for assembling your own electronics while keeping the project open and understandable.
+
+This is a **bare carrier PCB**, not a complete flight controller or drone kit. You'll still need to source and assemble the components for your build.
 
 ## Join The Community!
 In the three years since I released [my write-up series on *Scout*](https://timhanewich.medium.com/taking-flight-with-the-raspberry-pi-pico-micropython-diy-quadcopter-drone-61ed4f7ee746), I've had so many positive interactions with members of the maker community; people that were just like me when I first sat down to build my own custom quadcopter flight controller. Messages, YouTube comments, tweets, and more.

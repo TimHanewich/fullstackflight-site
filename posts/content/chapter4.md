@@ -227,4 +227,4 @@ And now, with our body printed, the hardware assembled onto it, and everything w
 
 Click here to continue reading in this series: [Full-Stack Flight, Chapter 5: Quadcopter, Part 3: The Flight Controller](../chapter5).
 
-*Read to start building? [Join the Full Stack Flight Discord](https://discord.gg/wwqfmCUzGg) to ask questions, share progress, and connect with other makers building their own version of Centauri!*
+*Ready to start building? [Join the Full Stack Flight Discord](https://discord.gg/wwqfmCUzGg) to ask questions, share progress, and connect with other makers building their own version of Centauri!*

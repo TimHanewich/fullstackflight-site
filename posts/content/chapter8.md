@@ -85,7 +85,7 @@ The above is just a short clip from a much longer flight with *Centauri*. You ca
 
 https://www.youtube.com/watch?v=evh0FCPapC8
 
-*While I do mention the step-by-step process for overlaying telemetry data onto a video [in this section on GitHub](https://github.com/TimHanewich/centauri/tree/880aef867fc2f1b2ec5d29fdde0b9acc81f665ad/dashware#steps-to-overlaying-telemetry-on-onboard-footage), I don't go into great detail. If it would be helpful for me to write a dedicated article on that, let me know! Comment below or reach out to me.*
+*While I do mention the step-by-step process for overlaying telemetry data onto a video [in this section on GitHub](https://github.com/TimHanewich/centauri/tree/880aef867fc2f1b2ec5d29fdde0b9acc81f665ad/dashware#steps-to-overlaying-telemetry-on-onboard-footage), I don't go into great detail. If it would be helpful for me to write a dedicated article on that, let me know! Reach out to me on the [Full Stack Flight Discord](https://discord.gg/wwqfmCUzGg).*
 
 Besides overlaying telemetry on top of a video, we can also plot this data in any dashboarding or reporting software like Power BI or Tableau. Or, in the modern era, you can prompt any AI coding agent to create a bespoke dashboard for you, like the one I made below in 5 minutes.
 
@@ -131,4 +131,4 @@ In the next chapter, the final chapter of this series (at least for now), I'll s
 
 Click here to continue reading in this series: [Full-Stack Flight, Chapter 9: Closing Thoughts](../chapter9).
 
-*Read to start building? [Join the Full Stack Flight Discord](https://discord.gg/wwqfmCUzGg) to ask questions, share progress, and connect with other makers building their own version of Centauri!*
+*Ready to start building? [Join the Full Stack Flight Discord](https://discord.gg/wwqfmCUzGg) to ask questions, share progress, and connect with other makers building their own version of Centauri!*

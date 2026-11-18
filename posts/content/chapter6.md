@@ -104,4 +104,4 @@ In the next chapter, we'll take a closer look at exactly how the PC transmitter 
 
 Click here to continue reading in this series: [Full-Stack Flight, Chapter 7: Transmitter, Part 2: The Pilot's Control Interface](../chapter7).
 
-*Read to start building? [Join the Full Stack Flight Discord](https://discord.gg/wwqfmCUzGg) to ask questions, share progress, and connect with other makers building their own version of Centauri!*
+*Ready to start building? [Join the Full Stack Flight Discord](https://discord.gg/wwqfmCUzGg) to ask questions, share progress, and connect with other makers building their own version of Centauri!*

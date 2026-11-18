@@ -91,4 +91,4 @@ These three components, the Transmitter, the Quadcopter, and the Analysis Softwa
 
 In the chapters ahead, we'll take an in depth look at all three components of the *Cetnauri* ecosystem, starting first with the quadcopter! Click here to continue reading in this series: [Full-Stack Flight, Chapter 2: Defining a Communication Protocol](../chapter2).
 
-*Read to start building? [Join the Full Stack Flight Discord](https://discord.gg/wwqfmCUzGg) to ask questions, share progress, and connect with other makers building their own version of Centauri!*
+*Ready to start building? [Join the Full Stack Flight Discord](https://discord.gg/wwqfmCUzGg) to ask questions, share progress, and connect with other makers building their own version of Centauri!*

@@ -755,4 +755,4 @@ The *Centauri* quadcopter is now complete! Next, we'll move on to the other half
 
 Click here to continue reading in this series: [Full-Stack Flight, Chapter 6: Transmitter, Part 1: Transceiver Platform](../chapter6).
 
-*Read to start building? [Join the Full Stack Flight Discord](https://discord.gg/wwqfmCUzGg) to ask questions, share progress, and connect with other makers building their own version of Centauri!*
+*Ready to start building? [Join the Full Stack Flight Discord](https://discord.gg/wwqfmCUzGg) to ask questions, share progress, and connect with other makers building their own version of Centauri!*

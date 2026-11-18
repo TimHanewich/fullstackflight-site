@@ -382,4 +382,4 @@ In the next chapter, we'll look at the *analysis* phase: extracting, unpacking, 
 
 Click here to continue reading in this series: [Full-Stack Flight, Chapter 8: Unpacking Flight Telemetry for Analysis](../chapter8).
 
-*Read to start building? [Join the Full Stack Flight Discord](https://discord.gg/wwqfmCUzGg) to ask questions, share progress, and connect with other makers building their own version of Centauri!*
+*Ready to start building? [Join the Full Stack Flight Discord](https://discord.gg/wwqfmCUzGg) to ask questions, share progress, and connect with other makers building their own version of Centauri!*
