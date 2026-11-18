@@ -138,36 +138,31 @@ def build(content_dir=POSTS_DIR / "content", template_path=POSTS_DIR / "template
         folder = output_dir / post_id
         if folder.is_symlink() or folder.resolve().parent != output_dir.resolve():
             raise ValueError(f"Refusing to write outside the posts folder: {folder}")
-        for name in ("index.htm", "index.html"):
-            target = folder / name
-            if target.is_symlink():
-                raise ValueError(f"Refusing to overwrite a symbolic link: {target}")
-            if target.exists() and GENERATED_MARKER.encode() not in target.read_bytes():
-                raise ValueError(f"Refusing to overwrite a non-generated article: {target}")
+        target = folder / "index.html"
+        if target.is_symlink():
+            raise ValueError(f"Refusing to overwrite a symbolic link: {target}")
+        if target.exists() and GENERATED_MARKER.encode() not in target.read_bytes():
+            raise ValueError(f"Refusing to overwrite a non-generated article: {target}")
 
     output_dir.mkdir(parents=True, exist_ok=True)
     for post_id, page in pages.items():
         folder = output_dir / post_id
         folder.mkdir(exist_ok=True)
-        for name in ("index.htm", "index.html"):
-            (folder / name).write_text(page, encoding="utf-8")
-        print(f"Built {post_id}/index.htm (and index.html for directory URLs)")
+        (folder / "index.html").write_text(page, encoding="utf-8")
+        print(f"Built {post_id}/index.html")
     (output_dir / "index.html").write_text(index, encoding="utf-8")
 
     # Remove only our generated pages for deleted, renamed, or newly drafted posts.
     for folder in output_dir.iterdir():
         if not folder.is_dir() or folder.is_symlink() or folder.name in pages:
             continue
-        removed = False
-        for name in ("index.htm", "index.html"):
-            target = folder / name
-            if target.is_file() and not target.is_symlink():
-                if GENERATED_MARKER.encode() in target.read_bytes():
-                    target.unlink()
-                    removed = True
-                    print(f"Removed stale generated page: {folder.name}/{name}")
-        if removed and not any(folder.iterdir()):
-            folder.rmdir()
+        target = folder / "index.html"
+        if target.is_file() and not target.is_symlink():
+            if GENERATED_MARKER.encode() in target.read_bytes():
+                target.unlink()
+                print(f"Removed stale generated page: {folder.name}/index.html")
+                if not any(folder.iterdir()):
+                    folder.rmdir()
     print(f"Built {len(posts)} articles and posts/index.html.")
 
 
