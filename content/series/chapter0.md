@@ -1,6 +1,6 @@
 ---
 id: chapter0
-title: Full-Stack Flight: Building a Quadcopter Ecosystem from Scratch
+title: 'Full-Stack Flight: Building a Quadcopter Ecosystem from Scratch'
 ---
 
 # Full-Stack Flight: Building a Quadcopter Ecosystem from Scratch
