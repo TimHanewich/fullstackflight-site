@@ -127,15 +127,15 @@ main section > .eyebrow { text-align: center; }
 .section-blurb { max-width: 800px; margin: 0 auto 44px; color: var(--muted); text-align: center; font-size: 17px; }
 .build { padding-top: 24px; }
 .build > .section-blurb { max-width: 660px; }
-.eco-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.eco-grid { display: grid; grid-template-columns: repeat(4, minmax(220px, 1fr)); gap: 16px; overflow-x: auto; }
 .eco-pane { position: relative; background: var(--bg-soft); overflow: hidden; min-width: 0; }
-.eco-canvas { display: block; width: 100%; height: 300px; }
-.eco-img { display: block; width: 100%; height: 300px; object-fit: cover; object-position: left top; }
-.eco-info { padding: 8px 36px 36px; text-align: center; }
+.eco-canvas { display: block; width: 100%; height: 230px; }
+.eco-img { display: block; width: 100%; height: 230px; object-fit: cover; object-position: left top; }
+.eco-info { padding: 8px 20px 24px; text-align: center; }
 .eco-shot .eco-info { padding-top: 24px; }
 .eco-info h3 { font-weight: 500; font-size: 24px; letter-spacing: -0.4px; text-transform: none; margin-bottom: 10px; }
 .eco-info p { color: var(--muted); font-size: 15px; line-height: 1.65; max-width: 450px; margin: auto; }
-.model-status { display: grid; place-items: center; height: 300px; padding: 24px; text-align: center; color: var(--muted); }
+.model-status { display: grid; place-items: center; height: 230px; padding: 24px; text-align: center; color: var(--muted); }
 .build-grid { display: grid; grid-template-columns: 1fr 1.3fr; align-items: center; gap: 64px; margin-top: 80px; }
 .build-desc { font-size: 16px; color: var(--muted); }
 .build-desc h3 { color: var(--text); font-size: 30px; font-weight: 500; letter-spacing: -0.8px; line-height: 1.2; margin-bottom: 24px; }
@@ -314,9 +314,7 @@ main section > .eyebrow { text-align: center; }
   .build { padding-top: 16px; }
   .section-blurb { font-size: 16px; margin-bottom: 32px; }
   .eco-grid { gap: 12px; }
-  .eco-info { padding: 8px 20px 24px; }
   .eco-info h3 { font-size: 22px; }
-  .eco-canvas, .eco-img, .model-status { height: 230px; }
   .build-grid { grid-template-columns: 1fr; margin-top: 48px; gap: 28px; }
   .oss-promo { flex-wrap: wrap; gap: 16px; margin-top: 40px; }
   .oss-promo__text { flex: 1; }
@@ -352,8 +350,7 @@ main section > .eyebrow { text-align: center; }
   .header-inner { gap: 12px; }
   .site-brand span { display: none; }
   .landing h1 { font-size: 36px; }
-  .eco-grid, .chapter-grid, .shop-catalog { grid-template-columns: 1fr; }
-  .eco-canvas, .eco-img, .model-status { height: 280px; }
+  .chapter-grid, .shop-catalog { grid-template-columns: 1fr; }
   .chapter-card--wide .chapter-num { font-size: 17px; }
   .cohort-facts strong { font-size: 32px; }
   .form-embed iframe { height: 1000px; }
