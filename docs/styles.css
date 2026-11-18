@@ -93,6 +93,8 @@ img { max-width: 100%; }
 .landing {
   position: relative;
   isolation: isolate;
+  display: grid;
+  place-items: center;
   min-height: 720px;
   height: 100svh;
   max-height: 1080px;
@@ -106,9 +108,7 @@ img { max-width: 100%; }
   z-index: -1;
   background: linear-gradient(180deg, var(--hero-top), var(--hero-center) 42%, transparent 65%, var(--hero-bottom));
 }
-.landing-content { max-width: 1080px; margin: auto; padding: clamp(138px, 17vh, 190px) 24px 0; text-align: center; }
-.landing-head { display: flex; align-items: center; gap: 34px; text-align: left; }
-.landing-head .logo { height: 104px; width: auto; flex-shrink: 0; filter: invert(1) drop-shadow(0 6px 24px rgba(0, 0, 0, 0.55)); }
+.landing-content { width: 100%; max-width: 1080px; padding: 24px; text-align: center; }
 .eyebrow { font-size: 14px; font-weight: 500; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 12px; }
 .landing .eyebrow { color: var(--hero-muted); font-size: 16px; letter-spacing: 0; margin-bottom: 8px; }
 .landing h1 { font-size: clamp(36px, 4.2vw, 60px); line-height: 1.12; font-weight: 500; letter-spacing: -1.6px; }
@@ -271,10 +271,6 @@ main section > .eyebrow { text-align: center; }
 .footer-links a { display: inline-flex; align-items: center; min-height: 44px; color: var(--muted); text-decoration: none; }
 .footer-links a:hover { color: var(--text); }
 
-@media (min-width: 1800px) {
-  .landing-content { padding-top: 170px; }
-}
-
 @media (max-width: 1050px) {
   .header-inner { gap: 24px; }
   .site-brand span { display: none; }
@@ -309,8 +305,6 @@ main section > .eyebrow { text-align: center; }
   .site-header--hero .site-nav :focus-visible { outline-color: var(--accent); }
   .landing { min-height: 660px; max-height: 960px; background-position: center; }
   .landing-video { object-position: center; }
-  .landing-content { padding-top: 140px; }
-  .landing-head { flex-direction: column; gap: 22px; text-align: center; }
   .landing h1 { letter-spacing: -1px; }
   .landing .eyebrow { font-size: 14px; }
   .landing-tagline { max-width: 290px; margin: 16px auto 0; }
