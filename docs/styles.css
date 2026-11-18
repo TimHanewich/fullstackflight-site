@@ -260,7 +260,7 @@ main section > h2 { text-align: center; margin-bottom: 20px; }
 .shop-product__price { margin-top: 18px; font-size: 25px; font-weight: 500; }
 .shop-product__shipping { color: var(--muted); font-size: 13px; }
 .shop-product { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; padding: 24px; border: 1px solid var(--border); border-top: 3px solid var(--accent); background: var(--bg-soft); }
-.shop-product__intro { grid-column: 1 / -1; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+.shop-product__intro { grid-column: 1 / -1; padding-bottom: 24px; }
 .shop-gallery, .shop-product__details { min-width: 0; }
 .shop-gallery { width: 100%; max-width: 440px; margin-inline: auto; }
 .shop-gallery__stage { aspect-ratio: 1; overflow: hidden; background: var(--panel); }
@@ -270,14 +270,6 @@ main section > h2 { text-align: center; margin-bottom: 20px; }
 .shop-gallery__thumbnail:hover, .shop-gallery__thumbnail[aria-pressed="true"] { border-color: var(--accent); }
 .shop-product__details h5 { font-size: clamp(22px, 2vw, 26px); font-weight: 500; letter-spacing: -0.5px; line-height: 1.25; }
 .shop-product__role { margin-top: 12px; font-size: 15px; color: var(--muted); }
-.shop-product__contents { display: grid; gap: 16px; margin: 24px 0; font-size: 14px; }
-.shop-product__contents > div { padding-left: 12px; border-left: 2px solid var(--border); }
-.shop-product__contents dt { font-weight: 600; margin-bottom: 4px; }
-.shop-product__contents dd { color: var(--muted); }
-.shop-product__description { margin-top: 24px; font-size: 15px; color: var(--muted); }
-.shop-product__description summary { margin-bottom: 12px; color: var(--accent); font-weight: 500; cursor: pointer; }
-.shop-product__description p + p { margin-top: 18px; }
-.shop-product__note { font-size: 13px; border-top: 1px solid var(--border); padding-top: 20px; }
 .shop-product__checkout { margin-top: 28px; }
 .shop-product__checkout p { margin-top: 12px; color: var(--muted); font-size: 12px; }
 .cohort-facts { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; padding: 36px 0; margin: 48px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); text-align: center; }
