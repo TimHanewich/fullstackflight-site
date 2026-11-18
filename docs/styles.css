@@ -252,8 +252,8 @@ main section > h2 { text-align: center; margin-bottom: 20px; }
 .parts-group { padding: 24px; margin-top: 20px; border: 1px solid var(--border); background: var(--bg-soft); }
 .parts-group h5 { font-size: 19px; font-weight: 500; margin-bottom: 12px; }
 .parts-group ul { padding-left: 20px; }
-.parts-group li { margin: 9px 0; font-size: 15px; }
-.parts-group ul ul { color: var(--muted); margin-top: 8px; }
+.parts-group li { margin: 4px 0; font-size: 15px; line-height: 1.5; }
+.parts-group ul ul { color: var(--muted); margin-top: 4px; }
 .parts-note { color: var(--muted); font-size: 14px; margin-bottom: 16px; }
 .parts-group a { text-decoration: none; }
 .parts-group a:hover { text-decoration: underline; }
