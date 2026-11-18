@@ -1,14 +1,16 @@
 :root {
-  color-scheme: light;
-  --bg: #ffffff;
-  --bg-soft: #f5f6f7;
-  --panel: #eef0f2;
-  --text: #202124;
-  --muted: #646970;
-  --accent: #0075d9;
-  --accent-hover: #005eaf;
-  --accent-soft: #edf5fd;
-  --border: #dfe2e5;
+  color-scheme: dark;
+  --bg: #0b1018;
+  --bg-soft: #141c28;
+  --panel: #1c2736;
+  --text: #edf2f7;
+  --muted: #a5b2c2;
+  --accent: #66b3ff;
+  --accent-hover: #94caff;
+  --accent-soft: #142e49;
+  --button-bg: #0071ce;
+  --button-hover: #005fae;
+  --border: #2d3b4e;
   --white: #ffffff;
   --hero-bg: #102033;
   --hero-muted: #e0e5eb;
@@ -54,9 +56,8 @@ img { max-width: 100%; }
 }
 .site-brand { display: flex; flex-shrink: 0; align-items: center; gap: 12px; color: inherit; text-decoration: none; }
 .site-brand:hover { color: inherit; }
-.site-brand img { width: 43px; height: 43px; object-fit: contain; }
+.site-brand img { width: 43px; height: 43px; object-fit: contain; filter: invert(1); }
 .site-brand span { font-size: 15px; font-weight: 600; letter-spacing: -0.3px; }
-.site-header--hero .site-brand img { filter: invert(1); }
 .site-nav { display: flex; align-items: center; gap: 28px; }
 .site-nav a {
   display: flex;
@@ -78,13 +79,13 @@ img { max-width: 100%; }
   min-height: 36px;
   padding: 5px 19px;
   border-radius: 999px;
-  background: var(--accent);
+  background: var(--button-bg);
   color: var(--white);
   text-decoration: none;
   font-size: 14px;
   font-weight: 600;
 }
-.store-link:hover { color: var(--white); background: var(--accent-hover); }
+.store-link:hover { color: var(--white); background: var(--button-hover); }
 .store-link svg { width: 16px; height: 16px; }
 .menu-toggle { display: none; min-width: 44px; min-height: 44px; border: 0; background: none; color: inherit; }
 .menu-toggle svg { width: 24px; height: 24px; vertical-align: middle; }
@@ -190,15 +191,15 @@ main section > .eyebrow { text-align: center; }
   gap: 10px;
   min-height: 44px;
   padding: 9px 24px;
-  border: 1px solid var(--accent);
+  border: 1px solid var(--button-bg);
   border-radius: 999px;
-  background: var(--accent);
+  background: var(--button-bg);
   color: var(--white);
   font-size: 14px;
   font-weight: 500;
   text-decoration: none;
 }
-.discord-cta:hover, .shop-product__purchase:hover { background: var(--accent-hover); border-color: var(--accent-hover); color: var(--white); }
+.discord-cta:hover, .shop-product__purchase:hover { background: var(--button-hover); border-color: var(--button-hover); color: var(--white); }
 .discord-cta__icon { width: 21px; height: 21px; }
 .maker { margin-top: 32px; }
 .maker-grid { display: grid; grid-template-columns: 1fr 1fr; }
@@ -210,7 +211,7 @@ main section > .eyebrow { text-align: center; }
 .maker-links a { display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; text-decoration: none; }
 .maker-links a:hover { text-decoration: underline; }
 
-/* Interior pages share the same quiet, light product language. */
+/* Interior pages share the same dark product language. */
 .parts-layout { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 48px; margin-top: 56px; align-items: start; }
 .parts-nav { position: sticky; top: 24px; display: flex; flex-direction: column; gap: 8px; }
 .parts-nav__item { text-align: left; padding: 18px 20px; border: 1px solid transparent; border-radius: 0; background: var(--bg); color: var(--text); }
@@ -262,7 +263,7 @@ main section > .eyebrow { text-align: center; }
 .cohort-block li { margin: 12px 0; }
 .cohort-form { margin-top: 64px; padding: 40px; background: var(--bg-soft); }
 .cohort-form > p { max-width: 780px; color: var(--muted); margin-bottom: 28px; font-size: 15px; }
-.form-embed { background: var(--white); }
+.form-embed { background: var(--panel); }
 .form-embed iframe { display: block; width: 100%; height: 820px; border: 0; }
 .site-footer { background: var(--bg-soft); border-top: 1px solid var(--border); padding: 40px 32px; }
 .footer-inner { max-width: 1200px; margin: auto; display: flex; justify-content: space-between; align-items: center; gap: 24px; font-size: 13px; color: var(--muted); }
