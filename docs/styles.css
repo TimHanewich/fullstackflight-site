@@ -174,10 +174,28 @@ main section > .eyebrow { text-align: center; }
 .step-card__cta:hover { text-decoration: underline; }
 .cohort-line { max-width: 750px; margin: 48px auto 0; text-align: center; color: var(--muted); font-size: 15px; }
 .chapter-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 20px; }
-.chapter-card { display: block; text-decoration: none; color: var(--text); min-width: 0; }
+.chapter-card { position: relative; display: block; overflow: hidden; background: var(--panel); text-decoration: none; color: var(--text); min-width: 0; }
 .chapter-card img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; transition: opacity 0.2s ease; }
 .chapter-card:hover img { opacity: 0.85; }
-.chapter-num { display: block; padding: 16px 0 0; font-size: 15px; font-weight: 500; line-height: 1.5; }
+.chapter-num {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 12px;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: rgba(10, 13, 18, 0.85);
+  backdrop-filter: blur(6px);
+  color: var(--white);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+.chapter-card:hover .chapter-num, .chapter-card:focus-visible .chapter-num { opacity: 1; transform: translateY(0); }
 .chapter-card--wide { grid-column: 1 / -1; margin-bottom: 12px; }
 .chapter-card--wide img { aspect-ratio: auto; height: auto; }
 .chapter-card--wide .chapter-num { font-size: 20px; }
@@ -357,6 +375,10 @@ main section > .eyebrow { text-align: center; }
   .chapter-card--wide .chapter-num { font-size: 17px; }
   .cohort-facts strong { font-size: 32px; }
   .form-embed iframe { height: 1000px; }
+}
+
+@media (hover: none) {
+  .chapter-num { opacity: 1; transform: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
