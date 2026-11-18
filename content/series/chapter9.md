@@ -1,3 +1,8 @@
+---
+id: chapter9
+title: 'Full-Stack Flight, Chapter 9: Closing Thoughts'
+---
+
 # Full-Stack Flight, Chapter 9: Closing Thoughts
 ![banner](https://i.imgur.com/mJ1f6Ak.jpeg)
 

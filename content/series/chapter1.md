@@ -1,3 +1,8 @@
+---
+id: chapter1
+title: 'Full-Stack Flight, Chapter 1: The Centauri Ecosystem'
+---
+
 # Full-Stack Flight, Chapter 1: The Centauri Ecosystem
 ![banner](https://i.imgur.com/JLIMLAe.jpeg)
 

@@ -1,3 +1,8 @@
+---
+id: chapter6
+title: 'Full-Stack Flight, Chapter 6: Transmitter, Part 1: Transceiver Platform'
+---
+
 # Full-Stack Flight, Chapter 6: Transmitter, Part 1: Transceiver Platform
 ![banner](https://i.imgur.com/1vB7TGB.jpeg)
 

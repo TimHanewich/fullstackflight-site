@@ -1,3 +1,8 @@
+---
+id: chapter5
+title: 'Full-Stack Flight, Chapter 5: Quadcopter, Part 3: The Flight Controller'
+---
+
 # Full-Stack Flight, Chapter 5: Quadcopter, Part 3: The Flight Controller
 ![banner](https://i.imgur.com/aA4AtE7.jpeg)
 

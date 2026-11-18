@@ -1,3 +1,8 @@
+---
+id: chapter2
+title: 'Full-Stack Flight, Chapter 2: Defining a Communication Protocol'
+---
+
 # Full-Stack Flight, Chapter 2: Defining a Communication Protocol
 ![banner](https://i.imgur.com/DE0pEtw.jpeg)
 

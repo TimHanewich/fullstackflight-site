@@ -1,3 +1,8 @@
+---
+id: chapter3
+title: 'Full-Stack Flight, Chapter 3: Quadcopter, Part 1: Designing a 3D-Printed Airframe'
+---
+
 # Full-Stack Flight, Chapter 3: Quadcopter, Part 1: Designing a 3D-Printed Airframe
 ![banner](https://i.imgur.com/VRfvxHI.jpeg)
 

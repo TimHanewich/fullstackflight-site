@@ -1,3 +1,8 @@
+---
+id: chapter7
+title: 'Full-Stack Flight, Chapter 7: Transmitter, Part 2: The Pilot''s Control Interface'
+---
+
 # Full-Stack Flight, Chapter 7: Transmitter, Part 2: The Pilot's Control Interface
 ![banner](https://i.imgur.com/AAwQJPK.jpeg)
 

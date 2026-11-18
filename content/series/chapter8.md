@@ -1,3 +1,8 @@
+---
+id: chapter8
+title: 'Full-Stack Flight, Chapter 8: Unpacking Flight Telemetry for Analysis'
+---
+
 # Full-Stack Flight, Chapter 8: Unpacking Flight Telemetry for Analysis
 ![banner](https://i.imgur.com/63Vq8ue.jpeg)
 
