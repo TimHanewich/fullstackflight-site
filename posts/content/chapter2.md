@@ -7,9 +7,9 @@ description: 'Learn how a drone and its transmitter exchange control commands, s
 # Full-Stack Flight, Chapter 2: Defining a Communication Protocol
 ![banner](https://i.imgur.com/DE0pEtw.jpeg)
 
-*This article is part of a 10-part series on how the [Centauri Quadcopter](https://github.com/TimHanewich/centauri) was created. For a list of all other articles, please visit the introductory article found [here](https://medium.com/@timhanewich/full-stack-flight-building-a-quadcopter-ecosystem-from-scratch-18d43386bb6d). This article contains Amazon affiliate links. If you make a purchase through them, I may earn a small commission at no extra cost to you.*
+*This article is part of a 10-part series on how the [Centauri Quadcopter](https://github.com/TimHanewich/centauri) was created. For a list of all other articles, please visit the introductory article found [here](../chapter0). This article contains Amazon affiliate links. If you make a purchase through them, I may earn a small commission at no extra cost to you.*
 
-As mentioned in [the previous article](https://medium.com/@timhanewich/full-stack-flight-chapter-1-the-centauri-ecosystem-eacfcecc90f5), *Centauri* is an entire quadcopter ecosystem. Since in this project I take on designing and building both the drone and the pilot's transmitter from the ground up, I am also responsible for designing how the two communicate with each other over radio. The communication protocol is an *extremely* important part of the Centauri ecosystem. 
+As mentioned in [the previous article](../chapter1), *Centauri* is an entire quadcopter ecosystem. Since in this project I take on designing and building both the drone and the pilot's transmitter from the ground up, I am also responsible for designing how the two communicate with each other over radio. The communication protocol is an *extremely* important part of the Centauri ecosystem. 
 
 ![protocol](https://i.imgur.com/1L4IfVg.png)
 
@@ -206,6 +206,6 @@ And with that, we've covered all four packet types that make up the *Centauri* c
 
 With the protocol now defined, we can move on to actually building the physical hardware that will use it! In the next chapter, we'll dive into the design of the *Centauri* quadcopter itself, starting with its 3D-printed airframe.
 
-Click here to continue reading in this series: [Full-Stack Flight, Chapter 3: Quadcopter, Part 1: Designing a 3D-Printed Airframe](https://medium.com/@timhanewich/full-stack-flight-chapter-3-quadcopter-part-1-designing-a-3d-printed-airframe-9d4f9021a68c).
+Click here to continue reading in this series: [Full-Stack Flight, Chapter 3: Quadcopter, Part 1: Designing a 3D-Printed Airframe](../chapter3).
 
 *Ready to start building? [Join the Full Stack Flight Discord](https://discord.gg/wwqfmCUzGg) to ask questions, share progress, and connect with other makers building their own version of Centauri!*

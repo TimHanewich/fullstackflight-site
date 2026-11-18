@@ -7,7 +7,7 @@ description: 'Walk through the design of a 3D-printed quadcopter airframe, from 
 # Full-Stack Flight, Chapter 3: Quadcopter, Part 1: Designing a 3D-Printed Airframe
 ![banner](https://i.imgur.com/VRfvxHI.jpeg)
 
-*This article is part of a 10-part series on how the [Centauri Quadcopter](https://github.com/TimHanewich/centauri) was created. For a list of all other articles, please visit the introductory article found [here](https://medium.com/@timhanewich/full-stack-flight-building-a-quadcopter-ecosystem-from-scratch-18d43386bb6d). This article contains Amazon affiliate links. If you make a purchase through them, I may earn a small commission at no extra cost to you.*
+*This article is part of a 10-part series on how the [Centauri Quadcopter](https://github.com/TimHanewich/centauri) was created. For a list of all other articles, please visit the introductory article found [here](../chapter0). This article contains Amazon affiliate links. If you make a purchase through them, I may earn a small commission at no extra cost to you.*
 
 As mentioned in a previous chapter, one of my goals with the new *Centauri* quadcopter was to design my own custom airframe that I could 3D-print. My previous flight controller, [Scout](https://timhanewich.medium.com/taking-flight-with-the-raspberry-pi-pico-micropython-diy-quadcopter-drone-61ed4f7ee746), relied on a Flamewheel F450 body I purchased off the shelf.
 
@@ -177,6 +177,6 @@ Below are some photos I got while printing a few of the parts!
 ## Close
 With the body designed and printed, the next chapter details the hardware package and electronics wiring mounted onboard: the sensors and components that make flight possible in the first place!
 
-Click here to continue reading in this series: [Full-Stack Flight, Chapter 4: Quadcopter, Part 2: Hardware and Electronics Package](https://medium.com/@timhanewich/full-stack-flight-chapter-4-quadcopter-part-2-hardware-and-electronics-package-69a5c26bc30b).
+Click here to continue reading in this series: [Full-Stack Flight, Chapter 4: Quadcopter, Part 2: Hardware and Electronics Package](../chapter4).
 
 *Read to start building? [Join the Full Stack Flight Discord](https://discord.gg/wwqfmCUzGg) to ask questions, share progress, and connect with other makers building their own version of Centauri!*

@@ -7,13 +7,13 @@ description: 'Turn raw flight logs into readable data you can graph, analyze, an
 # Full-Stack Flight, Chapter 8: Unpacking Flight Telemetry for Analysis
 ![banner](https://i.imgur.com/63Vq8ue.jpeg)
 
-*This article is part of a 10-part series on how the [Centauri Quadcopter](https://github.com/TimHanewich/centauri) was created. For a list of all other articles, please visit the introductory article found [here](https://medium.com/@timhanewich/full-stack-flight-building-a-quadcopter-ecosystem-from-scratch-18d43386bb6d).*
+*This article is part of a 10-part series on how the [Centauri Quadcopter](https://github.com/TimHanewich/centauri) was created. For a list of all other articles, please visit the introductory article found [here](../chapter0).*
 
 Over the previous chapters in this series about the *Centauri* quadcopter ecosystem, we learned how Centauri's quadcopter was designed, built, and programmed, and how the pilot's transmitter was built for bidirectional communication with the quadcopter. In this chapter, we'll look at the *after-flight* phase: analyzing telemetry data!
 
-As discussed in [chapter 5](https://medium.com/@timhanewich/full-stack-flight-chapter-5-quadcopter-part-3-the-flight-controller-310b3f288975), the *Centauri Flight Controller* logs telemetry data to its onboard flash storage several times per second. This data lives on the device and can easily be accessed later.
+As discussed in [chapter 5](../chapter5), the *Centauri Flight Controller* logs telemetry data to its onboard flash storage several times per second. This data lives on the device and can easily be accessed later.
 
-And as we discussed in [chapter 1](https://medium.com/@timhanewich/full-stack-flight-chapter-1-the-centauri-ecosystem-eacfcecc90f5), Centauri's 3D-printed airframe was designed so the USB port on the Raspberry Pi Pico (the microcontroller) is easily accessible:
+And as we discussed in [chapter 1](../chapter1), Centauri's 3D-printed airframe was designed so the USB port on the Raspberry Pi Pico (the microcontroller) is easily accessible:
 
 ![pico port](https://i.imgur.com/EaqFWzX.png)
 
@@ -72,7 +72,7 @@ With the telemetry data unpacked into a human-readable format (a CSV file), let'
 - **Input Throttle**: the pilot's current throttle input, from 0 to 100, representing 0-100%.
 - **Input Pitch**, **Input Roll**, **Input Yaw**: the pilot's current input on the three axes, ranging from -100 to 100, representing -100% to 100%.
 - **M1 Throttle**, **M2 Throttle**, **M3 Throttle**, **M4 Throttle**: the flight controller's current output for each motor throttle, determined by the PID calculations.
-- **Cmd Last Receved ms**: how long ago a *Control Packet* (see [chapter 2](https://medium.com/@timhanewich/full-stack-flight-chapter-2-defining-a-communication-protocol-41bfc589a319)) was last received, in milliseconds. Helps indicate Rx issues. Represented by 1 byte, so it maxes out at 2,550 ms.
+- **Cmd Last Receved ms**: how long ago a *Control Packet* (see [chapter 2](../chapter2)) was last received, in milliseconds. Helps indicate Rx issues. Represented by 1 byte, so it maxes out at 2,550 ms.
 
 ## Using the Telemetry: Overlay & Dashboarding
 With a heap of telemetry data from the flights *Centauri* took, there's a lot we can do with it, which is amazing!
@@ -96,7 +96,7 @@ Besides overlaying telemetry on top of a video, we can also plot this data in an
 ## Analyzing the Telemetry: Troubleshooting!
 As much as I love showing off the cool telemetry overlays and dashboards, any experienced engineer knows telemetry *also* helps diagnose the root cause of problems. It's not the fun, flashy side of things, but closely reviewing telemetry is sometimes the best way to start figuring out what went wrong!
 
-The best example of a problem occurring and telemetry analysis leading me to a conclusion and later a fix was a flight *attempt* I made on February 13, 2026. This was meant to be the first flight of *Centauri* in "Configuration D" (see [chapter 3](https://medium.com/@timhanewich/full-stack-flight-chapter-3-quadcopter-part-1-designing-a-3d-printed-airframe-9d4f9021a68c)) with the antenna mast.
+The best example of a problem occurring and telemetry analysis leading me to a conclusion and later a fix was a flight *attempt* I made on February 13, 2026. This was meant to be the first flight of *Centauri* in "Configuration D" (see [chapter 3](../chapter3)) with the antenna mast.
 
 As you can see below, it was *not* a successful flight!
 
@@ -129,6 +129,6 @@ And now we've covered the third and final part of the *Centauri* ecosystem: post
 
 In the next chapter, the final chapter of this series (at least for now), I'll share some closing thoughts about the *Centauri* project overall and how I recommend approaching building your own *Centauri* flight system!
 
-Click here to continue reading in this series: [Full-Stack Flight, Chapter 9: Closing Thoughts](https://medium.com/@timhanewich/full-stack-flight-chapter-9-closing-thoughts-1f6855269e5f).
+Click here to continue reading in this series: [Full-Stack Flight, Chapter 9: Closing Thoughts](../chapter9).
 
 *Read to start building? [Join the Full Stack Flight Discord](https://discord.gg/wwqfmCUzGg) to ask questions, share progress, and connect with other makers building their own version of Centauri!*

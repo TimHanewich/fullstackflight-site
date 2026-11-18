@@ -7,7 +7,7 @@ description: 'Reflect on the challenges and rewards of building a quadcopter fro
 # Full-Stack Flight, Chapter 9: Closing Thoughts
 ![banner](https://i.imgur.com/mJ1f6Ak.jpeg)
 
-*This article is part of a 10-part series on how the [Centauri Quadcopter](https://github.com/TimHanewich/centauri) was created. For a list of all other articles, please visit the introductory article found [here](https://medium.com/@timhanewich/full-stack-flight-building-a-quadcopter-ecosystem-from-scratch-18d43386bb6d).*
+*This article is part of a 10-part series on how the [Centauri Quadcopter](https://github.com/TimHanewich/centauri) was created. For a list of all other articles, please visit the introductory article found [here](../chapter0).*
 
 At this stage in the series we've fully explored the entire *Centauri* ecosystem: the quadcopter, the transmitter, and the telemetry analysis program. In this final chapter I'll share some closing thoughts on the project overall, along with a few tips that will hopefully help you if you pursue building your own!
 
@@ -47,13 +47,13 @@ And even after you have everything working, things happen!
 ![crash](https://i.imgur.com/y0qJR6k.gif)
 
 ## Future Improvements
-As I described in [chapter 1](https://medium.com/@timhanewich/full-stack-flight-chapter-1-the-centauri-ecosystem-eacfcecc90f5), *Centauri* was already a huge upgrade over *Scout*, for a number of reasons. However, *Centauri*, at least in its current state as of this writing, is still relatively primitive in the overall landscape of quadcopters out there today.
+As I described in [chapter 1](../chapter1), *Centauri* was already a huge upgrade over *Scout*, for a number of reasons. However, *Centauri*, at least in its current state as of this writing, is still relatively primitive in the overall landscape of quadcopters out there today.
 
 I do plan to make further improvements to *Centauri*, building on this fantastic foundation. The following come to mind as immediate ideas:
 - **Tweak Angle Estimates**: The *Centauri Flight Controller* uses a complementary filter to estimate the pitch and roll angles during flight. While the angles are mostly correct, there are certainly discrepancies. I'll need to take a closer look, identify any potential errors, and then work on improving their accuracy.
-- **Advanced Flight Controller Modes**: as I discussed in [chapter 5](https://medium.com/@timhanewich/full-stack-flight-chapter-5-quadcopter-part-3-the-flight-controller-310b3f288975), the *Centauri Flight Controller*, while impressive, is actually quite primitive in its capabilities. At some point I'd like to equip *Centauri* with additional hardware (sensors) and software to let it hold attitude, hold position, or even fly to various waypoints. This will be quite the undertaking!
-- **Handheld Transmitter**: in [chapter 6](https://medium.com/@timhanewich/full-stack-flight-chapter-6-transmitter-part-1-transceiver-platform-7aee3793da9a) I described the decision to use an "augmented" PC (laptop) as the transmitter instead of building a custom transmitter. That decision worked very well! But at some point I'd like to fly *Centauri* without packing up a full laptop and transceiver platform. For that, I'll need to design, build, and implement a handheld transceiver.
-- **Custom PCB**: as I showed in [chapter 4](https://medium.com/@timhanewich/full-stack-flight-chapter-4-quadcopter-part-2-hardware-and-electronics-package-69a5c26bc30b), my first iteration of the *Centauri quadcopter* is rather messy. I assembled all the hardware onto the 3D-prints and then wired everything together myself. Not the best formula if you're after a clean, sleek-looking quadcopter. At some point I'll develop a custom PCB (printed circuit board) for *Centauri* that will make the final result much sleeker while saving weight (more performance and range).
+- **Advanced Flight Controller Modes**: as I discussed in [chapter 5](../chapter5), the *Centauri Flight Controller*, while impressive, is actually quite primitive in its capabilities. At some point I'd like to equip *Centauri* with additional hardware (sensors) and software to let it hold attitude, hold position, or even fly to various waypoints. This will be quite the undertaking!
+- **Handheld Transmitter**: in [chapter 6](../chapter6) I described the decision to use an "augmented" PC (laptop) as the transmitter instead of building a custom transmitter. That decision worked very well! But at some point I'd like to fly *Centauri* without packing up a full laptop and transceiver platform. For that, I'll need to design, build, and implement a handheld transceiver.
+- **Custom PCB**: as I showed in [chapter 4](../chapter4), my first iteration of the *Centauri quadcopter* is rather messy. I assembled all the hardware onto the 3D-prints and then wired everything together myself. Not the best formula if you're after a clean, sleek-looking quadcopter. At some point I'll develop a custom PCB (printed circuit board) for *Centauri* that will make the final result much sleeker while saving weight (more performance and range).
 
 Those are just the immediate big ideas that come to mind, but I'm sure many more will follow! If you have any ideas or suggestions, I'm all ears.
 

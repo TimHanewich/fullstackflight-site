@@ -7,9 +7,9 @@ description: 'Explore the three parts of the Centauri ecosystem: the quadcopter,
 # Full-Stack Flight, Chapter 1: The Centauri Ecosystem
 ![banner](https://i.imgur.com/JLIMLAe.jpeg)
 
-*This article is part of a 10-part series on how the [Centauri Quadcopter](https://github.com/TimHanewich/centauri) was created. For a list of all other articles, please visit the introductory article found [here](https://medium.com/@timhanewich/full-stack-flight-building-a-quadcopter-ecosystem-from-scratch-18d43386bb6d). This article contains Amazon affiliate links. If you make a purchase through them, I may earn a small commission at no extra cost to you.*
+*This article is part of a 10-part series on how the [Centauri Quadcopter](https://github.com/TimHanewich/centauri) was created. For a list of all other articles, please visit the introductory article found [here](../chapter0). This article contains Amazon affiliate links. If you make a purchase through them, I may earn a small commission at no extra cost to you.*
 
-As was mentioned in [the introductory article](https://medium.com/@timhanewich/full-stack-flight-building-a-quadcopter-ecosystem-from-scratch-18d43386bb6d), *Centauri* is a full quadcopter ecosystem developed from the ground up, with each component designed to support flight of the *Centauri Quadcopter*:
+As was mentioned in [the introductory article](../chapter0), *Centauri* is a full quadcopter ecosystem developed from the ground up, with each component designed to support flight of the *Centauri Quadcopter*:
 
 ![anatomy](https://i.imgur.com/6TYY0Nv.png)
 
@@ -89,6 +89,6 @@ Once converted, that data can be analyzed after a flight to diagnose problems, v
 ## Conclusion
 These three components, the Transmitter, the Quadcopter, and the Analysis Software, form a closed loop. The transmitter captures pilot intent and delivers it wirelessly. The quadcopter receives those commands, senses reality, and continuously corrects itself to match. And the analysis software lets you look back at what actually happened during flight so you can tune, debug, and improve.
 
-In the chapters ahead, we'll take an in depth look at all three components of the *Cetnauri* ecosystem, starting first with the quadcopter! Click here to continue reading in this series: [Full-Stack Flight, Chapter 2: Defining a Communication Protocol](https://medium.com/@timhanewich/full-stack-flight-chapter-2-defining-a-communication-protocol-41bfc589a319).
+In the chapters ahead, we'll take an in depth look at all three components of the *Cetnauri* ecosystem, starting first with the quadcopter! Click here to continue reading in this series: [Full-Stack Flight, Chapter 2: Defining a Communication Protocol](../chapter2).
 
 *Read to start building? [Join the Full Stack Flight Discord](https://discord.gg/wwqfmCUzGg) to ask questions, share progress, and connect with other makers building their own version of Centauri!*

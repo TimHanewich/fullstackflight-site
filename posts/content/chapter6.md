@@ -7,7 +7,7 @@ description: 'Discover how a Raspberry Pi Pico and HC-12 radio module give your 
 # Full-Stack Flight, Chapter 6: Transmitter, Part 1: Transceiver Platform
 ![banner](https://i.imgur.com/1vB7TGB.jpeg)
 
-*This article is part of a 10-part series on how the [Centauri Quadcopter](https://github.com/TimHanewich/centauri) was created. For a list of all other articles, please visit the introductory article found [here](https://medium.com/@timhanewich/full-stack-flight-building-a-quadcopter-ecosystem-from-scratch-18d43386bb6d). This article contains Amazon affiliate links. If you make a purchase through them, I may earn a small commission at no extra cost to you.*
+*This article is part of a 10-part series on how the [Centauri Quadcopter](https://github.com/TimHanewich/centauri) was created. For a list of all other articles, please visit the introductory article found [here](../chapter0). This article contains Amazon affiliate links. If you make a purchase through them, I may earn a small commission at no extra cost to you.*
 
 Over the previous three chapters in this series, we learned how the *Centauri Quadcopter* was designed, fabricated, assembled, wired, and programmed from the ground up. Now, with a functioning quadcopter, it's time to focus on the other half of the equation: how the pilot will control it!
 
@@ -15,7 +15,7 @@ In drone piloting, this is often called the pilot's **transmitter**: a device th
 1. Sending control data to the drone that represents the pilot's control input.
 2. Receiving telemetry data from the drone and presenting it to the pilot on a screen or dashboard.
 
-In many commercial systems, the transmitter may do more than this, and sometimes less. At a bare minimum it handles #1, with #2 being a common addition. My previous quadcopter, [Scout](https://timhanewich.medium.com/taking-flight-with-the-raspberry-pi-pico-micropython-diy-quadcopter-drone-61ed4f7ee746), only did #1 (a single-direction communication stream); but as we discussed in depth in [chapter 2](https://medium.com/@timhanewich/full-stack-flight-chapter-2-defining-a-communication-protocol-41bfc589a319), communication in the *Centauri* system is bidirectional, so the transmitter must *also* be able to receive data from the drone!
+In many commercial systems, the transmitter may do more than this, and sometimes less. At a bare minimum it handles #1, with #2 being a common addition. My previous quadcopter, [Scout](https://timhanewich.medium.com/taking-flight-with-the-raspberry-pi-pico-micropython-diy-quadcopter-drone-61ed4f7ee746), only did #1 (a single-direction communication stream); but as we discussed in depth in [chapter 2](../chapter2), communication in the *Centauri* system is bidirectional, so the transmitter must *also* be able to receive data from the drone!
 
 When designing the pilot side of the *Centauri* ecosystem, I had two options for how to build the transmitter:
 - **Dedicated Device**: build a custom, dedicated system with all the bells and whistles needed to control the quadcopter *and* show telemetry: joysticks, trigger switches, buttons, screens, an onboard battery, etc.
@@ -102,6 +102,6 @@ With the transceiver platform assembled and operational, the PC running our tran
 
 In the next chapter, we'll take a closer look at exactly how the PC transmitter program works to control the *Centauri* drone!
 
-Click here to continue reading in this series: [Full-Stack Flight, Chapter 7: Transmitter, Part 2: The Pilot's Control Interface](https://medium.com/@timhanewich/full-stack-flight-chapter-7-transmitter-part-2-the-pilots-control-interface-dd14b90d5169).
+Click here to continue reading in this series: [Full-Stack Flight, Chapter 7: Transmitter, Part 2: The Pilot's Control Interface](../chapter7).
 
 *Read to start building? [Join the Full Stack Flight Discord](https://discord.gg/wwqfmCUzGg) to ask questions, share progress, and connect with other makers building their own version of Centauri!*

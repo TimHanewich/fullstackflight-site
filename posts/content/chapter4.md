@@ -7,9 +7,9 @@ description: 'Get to know every component onboard Centauri, from sensors and mot
 # Full-Stack Flight, Chapter 4: Quadcopter, Part 2: Hardware and Electronics Package
 ![banner](https://i.imgur.com/dKRuwCe.jpeg)
 
-*This article is part of a 10-part series on how the [Centauri Quadcopter](https://github.com/TimHanewich/centauri) was created. For a list of all other articles, please visit the introductory article found [here](https://medium.com/@timhanewich/full-stack-flight-building-a-quadcopter-ecosystem-from-scratch-18d43386bb6d). This article contains Amazon affiliate links. If you make a purchase through them, I may earn a small commission at no extra cost to you.*
+*This article is part of a 10-part series on how the [Centauri Quadcopter](https://github.com/TimHanewich/centauri) was created. For a list of all other articles, please visit the introductory article found [here](../chapter0). This article contains Amazon affiliate links. If you make a purchase through them, I may earn a small commission at no extra cost to you.*
 
-With the *Centauri Airframe* now 3D-printed and fully assembled in [the last chapter](https://medium.com/@timhanewich/full-stack-flight-chapter-3-quadcopter-part-1-designing-a-3d-printed-airframe-9d4f9021a68c), we are ready to move on to understanding the onboard hardware that makes flight possible, and then how it is all wired together into one fully working system!
+With the *Centauri Airframe* now 3D-printed and fully assembled in [the last chapter](../chapter3), we are ready to move on to understanding the onboard hardware that makes flight possible, and then how it is all wired together into one fully working system!
 
 Like any flight system, the full hardware and electronics package can appear sophisticated and complex, particularly to someone new to this area. In this chapter, however, I'll do my best to thoroughly describe the role of each and every component onboard the *Centauri* quadcopter.
 
@@ -225,6 +225,6 @@ Of the 824 grams above, 347 is the 4S 3300 mAh battery, leaving 477 grams for th
 ## Close
 And now, with our body printed, the hardware assembled onto it, and everything wired up, we are ready to move on to the software phase: the Centauri Flight Controller! In the next chapter I'll detail the role of a flight controller and describe exactly how the Centauri flight controller works to achieve stable flight.
 
-Click here to continue reading in this series: [Full-Stack Flight, Chapter 5: Quadcopter, Part 3: The Flight Controller](https://medium.com/@timhanewich/full-stack-flight-chapter-5-quadcopter-part-3-the-flight-controller-310b3f288975).
+Click here to continue reading in this series: [Full-Stack Flight, Chapter 5: Quadcopter, Part 3: The Flight Controller](../chapter5).
 
 *Read to start building? [Join the Full Stack Flight Discord](https://discord.gg/wwqfmCUzGg) to ask questions, share progress, and connect with other makers building their own version of Centauri!*

@@ -7,7 +7,7 @@ description: 'See how Python turns a laptop and Xbox controller into a drone tra
 # Full-Stack Flight, Chapter 7: Transmitter, Part 2: The Pilot's Control Interface
 ![banner](https://i.imgur.com/AAwQJPK.jpeg)
 
-*This article is part of a 10-part series on how the [Centauri Quadcopter](https://github.com/TimHanewich/centauri) was created. For a list of all other articles, please visit the introductory article found [here](https://medium.com/@timhanewich/full-stack-flight-building-a-quadcopter-ecosystem-from-scratch-18d43386bb6d).*
+*This article is part of a 10-part series on how the [Centauri Quadcopter](https://github.com/TimHanewich/centauri) was created. For a list of all other articles, please visit the introductory article found [here](../chapter0).*
 
 ![transmitter](https://i.imgur.com/MEK0Utk.jpeg)
 
@@ -20,10 +20,10 @@ The *Centauri* Transmitter is really a **3-part** system, acting together as one
 - **PC**: a computer that runs the Transmitter program, acting as "the brain" of the transmitter.
 - **Xbox Controller**: an external gamepad, the control interface the pilot manipulates.
 
-We covered the Transceiver Platform in depth in [the previous chapter](https://medium.com/@timhanewich/full-stack-flight-chapter-6-transmitter-part-1-transceiver-platform-7aee3793da9a). In this chapter, we'll focus on **the PC** and **the Xbox Controller**.
+We covered the Transceiver Platform in depth in [the previous chapter](../chapter6). In this chapter, we'll focus on **the PC** and **the Xbox Controller**.
 
 ## Why a PC + Xbox Controller?
-I described this in [the previous chapter](https://medium.com/@timhanewich/full-stack-flight-chapter-6-transmitter-part-1-transceiver-platform-7aee3793da9a) but will briefly explain it again here. Consider two capabilities any decent transmitter should provide to the pilot:
+I described this in [the previous chapter](../chapter6) but will briefly explain it again here. Consider two capabilities any decent transmitter should provide to the pilot:
 - A sleek, ergonomic, reliable controller they can manipulate to fly the quadcopter.
 - A display screen that shows important input and telemetry data.
 
@@ -166,7 +166,7 @@ You'll also see that four buttons on the controller are monitored for being pres
 And that's how the `continuous_read_xbox()` coroutine works! Think of it as an ongoing bit of code that constantly reads the inputs on the Xbox controller, translates the raw values, and updates internal variables that other coroutines then use.
 
 ## Coroutine: Transmit Control Data
-With control inputs collected from the Xbox controller, we now focus on the next routine: **transmitting these inputs to the quadcopter via Control Packets**. Remember the **Control Packet** we discussed in [chapter 2](https://medium.com/@timhanewich/full-stack-flight-chapter-2-defining-a-communication-protocol-41bfc589a319)? The role of this coroutine is to take the pilot's raw inputs on the Xbox controller and encode them into a **Control Packet** that is sent out continuously at a high frequency.
+With control inputs collected from the Xbox controller, we now focus on the next routine: **transmitting these inputs to the quadcopter via Control Packets**. Remember the **Control Packet** we discussed in [chapter 2](../chapter2)? The role of this coroutine is to take the pilot's raw inputs on the Xbox controller and encode them into a **Control Packet** that is sent out continuously at a high frequency.
 
 ```python
 # set up continuous radio sending
@@ -195,7 +195,7 @@ As you can see above, `continuous_radio_tx()`, responsible for transmitting cont
 
 If armed, it first scales the raw throttle (0-100%) linearly between `idle_throttle` and `max_throttle`, two onboard transmitter settings. Think of `idle_throttle` as the motor throttle when the quadcopter is *armed* but no throttle input has been applied yet (sitting on the ground, motors spinning, ready to take off). `max_throttle` is the maximum throttle the transmitter will ever send, even if the pilot applies 100% throttle on the controller. Both are configurable in the settings; more on that later.
 
-It then packs all four control inputs (throttle, pitch, roll, yaw) into a `bytes` object, which is the Control Packet! Finally, it transmits this Control Packet to the quadcopter by sending it over the serial line (USB) to the Transceiver Platform, which broadcasts it out (read more about the Transceiver Platform in [chapter 6](https://medium.com/@timhanewich/full-stack-flight-chapter-6-transmitter-part-1-transceiver-platform-7aee3793da9a)).
+It then packs all four control inputs (throttle, pitch, roll, yaw) into a `bytes` object, which is the Control Packet! Finally, it transmits this Control Packet to the quadcopter by sending it over the serial line (USB) to the Transceiver Platform, which broadcasts it out (read more about the Transceiver Platform in [chapter 6](../chapter6)).
 
 If disarmed, the transmitter instead ignores all raw inputs on the Xbox controller, encodes a "zero-input" Control Packet in which all controls are at 0%, and broadcasts that out, essentially telling the quadcopter to "shut down all your motors and do nothing".
 
@@ -204,7 +204,7 @@ You'll also see that *during flight* (when armed), this coroutine continuously b
 And speaking of receiving telemetry from the quadcopter, that brings us to our next section!
 
 ## Coroutine: Receive Telemetry
-As we discussed in [Chapter 2 about the Centauri Communication Protocol](https://medium.com/@timhanewich/full-stack-flight-chapter-2-defining-a-communication-protocol-41bfc589a319), *Centauri* supports **bidirectional** communication between the pilot and the quadcopter. While unarmed (not in flight), the quadcopter continuously broadcasts **Telemetry Packets** containing status updates for the pilot.
+As we discussed in [Chapter 2 about the Centauri Communication Protocol](../chapter2), *Centauri* supports **bidirectional** communication between the pilot and the quadcopter. While unarmed (not in flight), the quadcopter continuously broadcasts **Telemetry Packets** containing status updates for the pilot.
 
 In this coroutine, the Transmitter program checks for and receives those Telemetry Packets, unpacks them, and updates the internal variables that track the most recent quadcopter status data.
 
@@ -359,7 +359,7 @@ From here, the pilot has a few options:
 2. **Update Controller Settings**: update the idle throttle and max throttle the transmitter constrains to.
 3. **Update PID Settings**: enter interactive configuration where the pilot can punch in the unique PID gains for each setting (used for PID tuning).
 4. **Adjust PID Master Multiplier**: apply a multiplier across all configured PID values. This is helpful when the pilot wants to increase or decrease the drone's responsiveness while keeping all PID gains proportional to each other.
-5. **Send Settings to Drone**: send the PID settings the pilot set on the transmitter (currently "loaded and ready") off to the drone via a *Settings Update Packet* (read more about this in [Chapter 2](https://medium.com/@timhanewich/full-stack-flight-chapter-2-defining-a-communication-protocol-41bfc589a319)).
+5. **Send Settings to Drone**: send the PID settings the pilot set on the transmitter (currently "loaded and ready") off to the drone via a *Settings Update Packet* (read more about this in [Chapter 2](../chapter2)).
 6. **Return**: go back to the main dashboard.
 
 ![flashing settings gif](https://i.imgur.com/fnvlLw3.gif)
@@ -376,10 +376,10 @@ The `validate_connection()` function sends out a `TIMHPING` message and waits a 
 This is just a simple way for the pilot to confirm the quadcopter is on and functioning as expected!
 
 ## Close
-Wonderful! With the *Centauri* quadcopter covered in previous chapters, the complete *Centauri* Transmitter system covered in this chapter and the last, and the communication protocol between the two covered in detail in [Chapter 2](https://medium.com/@timhanewich/full-stack-flight-chapter-2-defining-a-communication-protocol-41bfc589a319), we now fully understand how the two work together to achieve flight!
+Wonderful! With the *Centauri* quadcopter covered in previous chapters, the complete *Centauri* Transmitter system covered in this chapter and the last, and the communication protocol between the two covered in detail in [Chapter 2](../chapter2), we now fully understand how the two work together to achieve flight!
 
 In the next chapter, we'll look at the *analysis* phase: extracting, unpacking, and analyzing telemetry recorded onboard the quadcopter. The final piece (for now) of the *Centauri* ecosystem!
 
-Click here to continue reading in this series: [Full-Stack Flight, Chapter 8: Unpacking Flight Telemetry for Analysis](https://medium.com/@timhanewich/full-stack-flight-chapter-8-unpacking-flight-telemetry-for-analysis-73d251a4a449).
+Click here to continue reading in this series: [Full-Stack Flight, Chapter 8: Unpacking Flight Telemetry for Analysis](../chapter8).
 
 *Read to start building? [Join the Full Stack Flight Discord](https://discord.gg/wwqfmCUzGg) to ask questions, share progress, and connect with other makers building their own version of Centauri!*

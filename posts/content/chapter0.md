@@ -53,14 +53,14 @@ Being a fan of astronomy, I named this system *Centauri* after [Alpha Centauri](
 Rather than just handing you working quadcopter specs, I'm walking through every design decision and every line of code behind Centauri so you can understand exactly how it works and build your own version of it. Like I did [with Scout](https://timhanewich.medium.com/taking-flight-with-the-raspberry-pi-pico-micropython-diy-quadcopter-drone-61ed4f7ee746), I've published a multi-article series on how I built Centauri from the ground up, covering both the overall architecture and the technical details. Those chapters are listed below:
 
 - [Full-Stack Flight, Chapter 1: The Centauri Ecosystem](../chapter1)
-- [Full-Stack Flight, Chapter 2: Defining a Communication Protocol](https://medium.com/@timhanewich/full-stack-flight-chapter-2-defining-a-communication-protocol-41bfc589a319)
-- [Full-Stack Flight, Chapter 3: Quadcopter, Part 1: Designing a 3D-Printed Airframe](https://medium.com/@timhanewich/full-stack-flight-chapter-3-quadcopter-part-1-designing-a-3d-printed-airframe-9d4f9021a68c)
-- [Full-Stack Flight, Chapter 4: Quadcopter, Part 2: Hardware and Electronics Package](https://medium.com/@timhanewich/full-stack-flight-chapter-4-quadcopter-part-2-hardware-and-electronics-package-69a5c26bc30b)
-- [Full-Stack Flight, Chapter 5: Quadcopter, Part 3: The Flight Controller](https://medium.com/@timhanewich/full-stack-flight-chapter-5-quadcopter-part-3-the-flight-controller-310b3f288975)
-- [Full-Stack Flight, Chapter 6: Transmitter, Part 1: Transceiver Platform](https://medium.com/@timhanewich/full-stack-flight-chapter-6-transmitter-part-1-transceiver-platform-7aee3793da9a)
-- [Full-Stack Flight, Chapter 7: Transmitter, Part 2: The Pilot's Control Interface](https://medium.com/@timhanewich/full-stack-flight-chapter-7-transmitter-part-2-the-pilots-control-interface-dd14b90d5169)
-- [Full-Stack Flight, Chapter 8: Unpacking Flight Telemetry for Analysis](https://medium.com/@timhanewich/full-stack-flight-chapter-8-unpacking-flight-telemetry-for-analysis-73d251a4a449)
-- [Full-Stack Flight, Chapter 9: Closing Thoughts](https://medium.com/@timhanewich/full-stack-flight-chapter-9-closing-thoughts-1f6855269e5f)
+- [Full-Stack Flight, Chapter 2: Defining a Communication Protocol](../chapter2)
+- [Full-Stack Flight, Chapter 3: Quadcopter, Part 1: Designing a 3D-Printed Airframe](../chapter3)
+- [Full-Stack Flight, Chapter 4: Quadcopter, Part 2: Hardware and Electronics Package](../chapter4)
+- [Full-Stack Flight, Chapter 5: Quadcopter, Part 3: The Flight Controller](../chapter5)
+- [Full-Stack Flight, Chapter 6: Transmitter, Part 1: Transceiver Platform](../chapter6)
+- [Full-Stack Flight, Chapter 7: Transmitter, Part 2: The Pilot's Control Interface](../chapter7)
+- [Full-Stack Flight, Chapter 8: Unpacking Flight Telemetry for Analysis](../chapter8)
+- [Full-Stack Flight, Chapter 9: Closing Thoughts](../chapter9)
 
 *Note: This series assumes you have a general understanding of quadcopter flight dynamics. If you do not, please review [part 1 of my series on Scout](https://timhanewich.medium.com/how-i-developed-the-scout-flight-controller-part-1-quadcopter-flight-dynamics-400af73d21db) which covers flight fundamentals.*
 

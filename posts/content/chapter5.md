@@ -7,7 +7,7 @@ description: 'Step inside a MicroPython flight controller running on a Raspberry
 # Full-Stack Flight, Chapter 5: Quadcopter, Part 3: The Flight Controller
 ![banner](https://i.imgur.com/aA4AtE7.jpeg)
 
-*This article is part of a 10-part series on how the [Centauri Quadcopter](https://github.com/TimHanewich/centauri) was created. For a list of all other articles, please visit the introductory article found [here](https://medium.com/@timhanewich/full-stack-flight-building-a-quadcopter-ecosystem-from-scratch-18d43386bb6d). This article contains Amazon affiliate links. If you make a purchase through them, I may earn a small commission at no extra cost to you.*
+*This article is part of a 10-part series on how the [Centauri Quadcopter](https://github.com/TimHanewich/centauri) was created. For a list of all other articles, please visit the introductory article found [here](../chapter0). This article contains Amazon affiliate links. If you make a purchase through them, I may earn a small commission at no extra cost to you.*
 
 With the body printed, the hardware assembled, and everything wired up, we're ready for the software phase: programming the flight controller! Having built both *Scout* and *Centauri*, I can confidently say this is the most challenging part of the entire build, but don't worry, I've done it successfully and will walk you through it!
 
@@ -205,7 +205,7 @@ hc12_set.high()
 time.sleep(0.5) # wait a moment for the HC-12 to successfully get out of AT mode before proceeding with sending any messages
 ```
 
-You'll notice that just after HC-12 setup completes, the first thing it does is send out a "HC12 OK" message, so the pilot can see the quadcopter is powered on and capable of communicating through a working HC-12 unit. This is the **special packet** discussed in [Full-Stack Flight, Chapter 2: Defining a Communication Protocol](https://medium.com/@timhanewich/full-stack-flight-chapter-2-defining-a-communication-protocol-41bfc589a319), which can carry a plain-text, unstructured message.
+You'll notice that just after HC-12 setup completes, the first thing it does is send out a "HC12 OK" message, so the pilot can see the quadcopter is powered on and capable of communicating through a working HC-12 unit. This is the **special packet** discussed in [Full-Stack Flight, Chapter 2: Defining a Communication Protocol](../chapter2), which can carry a plain-text, unstructured message.
 
 ```python
 # define special message packet function for sending special packets
@@ -439,7 +439,7 @@ And you wouldn't be entirely wrong! MicroPython's `UART` class has a `read()` fu
 
 The answer is **performance**. Every call to `UART.read()` allocates a *new* `bytes` object. That additional memory allocation will eventually, within a few loops, push memory to a critical mass and trigger MicroPython's [garbage collector](https://docs.micropython.org/en/latest/library/gc.html) to clear the heap, and that takes *time*! *Precious* time! In a normal Python project, a 200 ms pause for garbage collection goes unnoticed. But here, we *must* maintain a fixed 250 Hz control loop, so the entire process has to complete within 4 ms. Our time budget is tiny and we can't afford garbage collection, so we must avoid allocating new memory each loop.
 
-In the code above, you'll see the handling of the three types of packets the quadcopter may receive from the pilot's transmitter (revisit [chapter 2](https://medium.com/@timhanewich/full-stack-flight-chapter-2-defining-a-communication-protocol-41bfc589a319) for a deeper look):
+In the code above, you'll see the handling of the three types of packets the quadcopter may receive from the pilot's transmitter (revisit [chapter 2](../chapter2) for a deeper look):
 - **PING**: a simple "ping" message: the pilot's transmitter asking "are you there?", encoded as `TIMHPING` in ASCII. The quadcopter responds `TIMHPONG` to confirm "yes, I'm here."
 - **Control Packet**: the transmitter sending updated control input: new throttle, pitch, roll, and yaw values. The packet is unpacked and the input variables are updated (more on this later).
 - **Settings Packet**: the transmitter sending updated flight settings (PID gains). The packet is unpacked and the onboard PID gains are updated.
@@ -749,10 +749,10 @@ if excess_us > 0:
 ## Close
 ![first boot](https://i.imgur.com/rqTUDaU.png)
 
-We've now covered arguably the most challenging part of the entire *Centauri* ecosystem! We designed and printed the airframe in [chapter 3](https://medium.com/@timhanewich/full-stack-flight-chapter-3-quadcopter-part-1-designing-a-3d-printed-airframe-9d4f9021a68c), added and wired up the hardware in [chapter 4](https://medium.com/@timhanewich/full-stack-flight-chapter-4-quadcopter-part-2-hardware-and-electronics-package-69a5c26bc30b), and have now programmed the flight controller firmware here in chapter 5!
+We've now covered arguably the most challenging part of the entire *Centauri* ecosystem! We designed and printed the airframe in [chapter 3](../chapter3), added and wired up the hardware in [chapter 4](../chapter4), and have now programmed the flight controller firmware here in chapter 5!
 
 The *Centauri* quadcopter is now complete! Next, we'll move on to the other half of the duo: **the Pilot's Transmitter**, the device the pilot uses to control the quadcopter in flight.
 
-Click here to continue reading in this series: [Full-Stack Flight, Chapter 6: Transmitter, Part 1: Transceiver Platform](https://medium.com/@timhanewich/full-stack-flight-chapter-6-transmitter-part-1-transceiver-platform-7aee3793da9a).
+Click here to continue reading in this series: [Full-Stack Flight, Chapter 6: Transmitter, Part 1: Transceiver Platform](../chapter6).
 
 *Read to start building? [Join the Full Stack Flight Discord](https://discord.gg/wwqfmCUzGg) to ask questions, share progress, and connect with other makers building their own version of Centauri!*
