@@ -4,6 +4,12 @@ title: 'Centauri Quadcopter Build Guide'
 description: 'A step-by-step guide for building the Centauri Quadcopter.'
 ---
 
+# Centauri Quadcopter: Build Guide
+The following is a step-by-step guide to walk you through the build for the *Centauri Quadcopter*.
+
+## PREVIEW STATE
+> NOTE: This guide is in a preview state. It will be polished up significantly in the coming weeks. But for now, these pictures are provided to assist at at least some level!
+
 ![](https://i.imgur.com/s1BVI6w.png)
 
 ![](https://i.imgur.com/q0pivIj.png)
