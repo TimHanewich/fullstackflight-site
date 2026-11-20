@@ -38,13 +38,13 @@ The critical ingredient! Next we will prepare our *Centauri Flight Controller Ca
 
 First - a look at the anatomy of the Carrier Board.
 
-![anatomy]()
+![anatomy](https://i.imgur.com/N2GZNbZ.png)
 
 As you can see above, a lot of electrical components are packed into a fairly small pacakge. Later, you will be adding these electrical components to the airframe (MPU6050, HC12, 5v Regulator, etc.) and soldering a wire connecting the *component* to the *appropriate pad* on the board. There are also some minor electrical components that do get soldered *directly* onto the board (capacitor, ferrite bead, resistors), but more on that later!
 
 Before we move on, let's focus a moment on a very critical part of the Centauari Quadcopter: providing *power* and *signal* to the four motors. An electronic speed controller exists as a middle man between our MCU (RPi Pico) and the motor itself, transating the MCU's signal commands to three-phase switched output for the motors.
 
-![ESC mapping]()
+![ESC mapping](https://i.imgur.com/IGvGUHp.png)
 
 Mapping:
 - **ESC1** is the *front left* ESC/motor pair
@@ -56,7 +56,7 @@ It is important you know this mapping and hook each ESC up to the correct pads b
 
 And now, a closer look at each ESC pad:
 
-![ESC pad closer look]()
+![ESC pad closer look](https://i.imgur.com/Ljh2yfV.png)
 
 As you can see in the image above:
 - The **Large Square** is the ESC's negative power supply (from the battery)
@@ -70,19 +70,19 @@ Ok, now to start setting up the carrier board! First we will add the Raspberry P
 
 Get your board handy!
 
-![pic of board]()
+![pic of board](https://i.imgur.com/E1IihSN.png)
 
 Add a set of 20 header pins in the Pico's footprint. I am using helping hands here to hold the board for me.
 
-![add header pins]()
+![add header pins](https://i.imgur.com/t7PuCaW.png)
 
 With those header pins added, we will want to solder the pins to the board *underneath* the board, seen here. 
 
-![underneath]()
+![underneath](https://i.imgur.com/LK7zhOl.png)
 
 It can be a bit tricky, but with the board in this position, apply some solder with your soldering iron to the header pin **at the very end**. Just that one pin for now!
 
-![end soldered]()
+![end soldered](https://i.imgur.com/WdrLse9.png)
 
 *Note: in the picture above, I have two pins soldered at either end. I'd recommend only doing one pin at this stage.*
 
@@ -92,23 +92,21 @@ The reason we only solder one pin first is because we want to be able to make an
 
 Once pleased with the position of the pins, continue to solder all of the header pins down to their pads on the board, completing the electrical connection. Be sure they don't touch, which would cause a short!
 
-![all_soldered]()
-
-![all_soldered_top]()
+![all_soldered](https://i.imgur.com/iY5MuKH.png)
 
 With your pins soldered in and in position, slide your pico on. Again, as long as the pins were soldered correctly, it should slide on relatively easily if alignment is correct. If not, not a big deal - you should be able to make minor modifications by bending the pins with pliers.
 
 And now with the pico slid on, apply solder to the *top* of the pins where they meet the pico's pads, completing the electrical connection.
 
-![solder_pico]()
+![solder_pico](https://i.imgur.com/qlzoPu6.png)
 
 Next we will solder on the capacitors, both the 0.1 uF capacitor and the 10 uF capacitor. The 0.1 uF capacitor is a ceramic capacitor and does not have a positive/negative terminal - both legs are interchangable! However, the 10 uF capacitor *does* have a positive/negative terminal! It is very important you get the legs in the right holes.
 
-![caps in board]
+![caps in board](https://i.imgur.com/uhgj3Vk.png)
 
 Shown closely below, the *longer* leg of the 10 uF capacitor is the positive end. The *shorter* leg is the negative end. Ensure you are placing the longer leg in the hole marked with the "+" (positive).
 
-![closer caps in board]()
+![closer caps in board](https://i.imgur.com/1HKbhaC.png)
 
 Wonderful! Now the capacitors are on.
 
@@ -118,7 +116,7 @@ Do the same with the resistors: solder them in where they belong, either directi
 
 Finally, solder in "placeholder" wires to the remaining pads (holes) on the board that will be used: for the batter leads (middle of ESC pads), all four ESCs, the 5v regulator, MPU6050, and HC-12. 
 
-![all_soldered]
+![all_soldered](https://i.imgur.com/Krd50n6.png)
 
 After we add the electrical components (e.g. MPU6050, HC12, 5v Regulator) to the airframe later, we will connect to the board via these placeholder wires that are currently unconnected!
 
