@@ -100,5 +100,31 @@ With your pins soldered in and in position, slide your pico on. Again, as long a
 
 And now with the pico slid on, apply solder to the *top* of the pins where they meet the pico's pads, completing the electrical connection.
 
-![solder_top]()
+![solder_pico]()
 
+Next we will solder on the capacitors, both the 0.1 uF capacitor and the 10 uF capacitor. The 0.1 uF capacitor is a ceramic capacitor and does not have a positive/negative terminal - both legs are interchangable! However, the 10 uF capacitor *does* have a positive/negative terminal! It is very important you get the legs in the right holes.
+
+![caps in board]
+
+Shown closely below, the *longer* leg of the 10 uF capacitor is the positive end. The *shorter* leg is the negative end. Ensure you are placing the longer leg in the hole marked with the "+" (positive).
+
+![closer caps in board]()
+
+Wonderful! Now the capacitors are on.
+
+Next, do the ferrite bead. The ferrite bead needs to be soldered where "BEAD" is on the board, in either direction. *Note: if you do not have a ferrite bead, you may not necessarily need it. Simple connect the two ends with some wire.*
+
+Do the same with the resistors: solder them in where they belong, either direction and orientation is fine. *Note: if you can't tell the ohm value for each (can't tell them apart), use a multimeter to test their resistance.*
+
+Finally, solder in "placeholder" wires to the remaining pads (holes) on the board that will be used: for the batter leads (middle of ESC pads), all four ESCs, the 5v regulator, MPU6050, and HC-12. 
+
+![all_soldered]
+
+After we add the electrical components (e.g. MPU6050, HC12, 5v Regulator) to the airframe later, we will connect to the board via these placeholder wires that are currently unconnected!
+
+## Lower Level Assembly
+Now, with our carrier board ready to go, it is time to begin assembling the drone's lower level, which will hold the internal electrical components that allows the drone to fly.
+
+Using four M2 screws, screw in the carrier board to the lower level of the airframe. Using four M3 screws, screw the MPU6050 frame (with the MPU6050 attached via the double-sided foam tape) just below the board. Ensure you have the MPU6050 in the orientation I have it in in the picture (mounting holes facing forawrd, pins towards the rear).
+
+![lower level pcb and mpu6050]()
