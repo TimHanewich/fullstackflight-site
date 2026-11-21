@@ -204,45 +204,49 @@ And now we move onto what makes a quadcopter a quadcopter: four arms! Each arm w
 
 First step: prep the ESCs. As shown below in this picture, we will not be using the standard connector the ESCs come with. To save weight, space, and for simplicity, we will be directly soldering the ESC's wires to the board (or splicing with your placeholder wires) without connectors. With scissors, cut the connector off at the end.
 
-![connector cut]()
+![connector cut](https://i.imgur.com/dU4gVyR.png)
 
 Position the ESC atop the "bridge" of the arm where it will live. You'll see there is a small hole ("U"-shaped in the latest design spec) that all four of the ESC wires can pass through into the electronics bay. Pass the wires through there where later you'll splice them to the board's placeholder wires.
 
+![pass through hole](https://i.imgur.com/LvQtNlx.png)
+
 Next, secure the ESC down to the bridge using a zip tie. You'll see a small hole that the zip tie will pass through and wrap around to secure the ESC down. Pull it tight! It should reach, but if you have trouble reaching, you can link two zip ties together for extra length.
 
-![pass through hole]()
+![zip tie to secure ESC](https://i.imgur.com/tHsxRR0.png)
 
 Do this for all four arms.
 
-![all four arms]()
+![all four arms](https://i.imgur.com/OC0suvW.png)
 
 Next, using the M3 screws that each motor came with, screw the motors into the end of the arm. You'll see that four screws are not spaced equally, so you'll need to line them up with the motor's bottom screw holes.
 
-![motor mounted]()
+![motor mounted](https://i.imgur.com/hjI7O3h.png)
 
 Like with the ESCs, we will not be using any preassembled connectors on *Centauri*, instead directly soldering the connections where they ought to go! So, these bannana plugs can go! Using scissors, cut them off at the base.
 
-![cut off plugs]()
+![cut off plugs](https://i.imgur.com/u5xOlhe.png)
 
 Next, solder the three motor wires directly to the three pads of the ESCs.
 
-![solder motor to ESC pads]()
+![solder motor to ESC pads](https://i.imgur.com/gsGA5OP.png)
 
 **PRO TIP: Do not solder the motor wires *directly* to the ESC pads.** I have done this previously and had no problems at first. But to do the motor wires being copper, they were having difficulting maintaining a firm connection connection to the pads, later breaking loose and causing flight issues. Unless you are a pro-solderer, I highly recommend connecting the two between a short 22-gauge "middleman" wire like this. The motor --> wire --> ESC connections hold much better.
 
 The picture below shows this on my well-used quadcopter. The remaining pictures will show the build *without* this "middleman" wire as I captured them before learning my lesson, FYI.
 
-![pro-tip middleman wire]()
+![pro-tip middleman wire](https://i.imgur.com/v7BhapZ.png)
 
 Now, all four arms should be prepped with the ESCs, the motors, and the wires passing through the holes in the arms where you will later connect them to the carrier board!
 
-![all four arms, ready]()
+![all four arms, ready](https://i.imgur.com/H5m95Ij.png)
 
 Now, using eight M3x30mm screws (two per arm), connect the arms to the lower level. I *highly* recommend screwing from the *bottom-up*, not *top-down*. Screwing from the bottom-up allows you to secure the arms to the lower level, still in the quadcopter shape even with the upper level removed. You later can easily fasten/remove the upper level to access the electronics bay by only slightly unscrewing these M3x30mm screws.
 
-![all four arms, attached]()
+![all four arms, attached](https://i.imgur.com/8407Erg.png)
 
 ![all four arms, attached video]()
+
+![all four arms attached overhead](https://i.imgur.com/BSqDo9R.png)
 
 And now to complete the electrical connections of each arm! As you can see, each ESC has four wires you must connect to the carrier board:
 - Thick red wire = battery power supply, positive.
@@ -252,4 +256,4 @@ And now to complete the electrical connections of each arm! As you can see, each
 
 All of these wires has a corresponding pad it must go to on the carrier board!
 
-![four wires of ESC to splice]()
+![four wires of ESC to splice](https://i.imgur.com/uUvZ6u0.png)
