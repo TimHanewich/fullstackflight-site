@@ -309,3 +309,55 @@ With the upper level ready to go (with/without the foam and blue tape at this st
 And as seen in the picture below, hopefully your wires in the interior bay are not very compressed and squashed! If you did a decent job splicing them and keeping the connections neat and orderly in there, yours should be fine like mine!
 
 ![interior](https://i.imgur.com/iXkgF0R.png)
+
+## Motor Direction Testing
+Congratulations, your quadcopter is now assembled! Before we can even begin testing for flight, we first must validate that the motors are spinning in the right direction; and if they are not, make corrections. Fortunately, making a direction correction at this stage is quite easy as long as we detect it.
+
+First, we have to understand, based on the wiring you did, what direction each motor is turning in right now. The easiest way to do this is run the quadcopter at a very low, safe throttle (i.e. 8%) with blue taped attached to clearly visually see the direction it turns in:
+
+![blue tape on motors]()
+
+With the blue tape on each motor, it makes it much easier to see the direction it is moving in, either clockwise or counter-clockwise. And if you can't t ell visually, place your finger against it and you will feel it hitting either side which you can use to deduce its direction.
+
+![video of blue tape turning]()
+
+Now, with the direction of each motor noted, compare to the *correct* directions of each motor, depicted below:
+
+![motor directions]()
+
+As seen above, the correct directions are:
+- Front Left: Clockwise
+- Front Right: Counter-Clockwise
+- Rear Left: Counter-Clockwise
+- Rear Right: Clockwise
+
+If you have any that are *not* spinning in the correct direct, don't worry! Changing the direction is simple. Literally all you have to do is unsolder any of the two motor wires (you pick!) from their ESC pads and *swap* them. That is it! 
+
+![swap pads to inverse direction]()
+
+After performing these swaps on the necessary motors, try the blue tape test again - hopefully now your motors spin in the correct direction!
+
+Now, with your motors spinning in the right direction, it is time for a props-on test! A very simple thrust test to validate it can throttle up and produce thrust (moderate to high current draw) without any issues.
+
+Attach your props to the top of the motors. **Ensure you are placing the correct direction of props on each motor.** Each prop has a direction it produces downward thrust in (clockwise or counter-clockwise). Ensure you place the CW props on the CW motors and vice versa. You can tell them apart by the way they appear to "push" air down in whichever direction they spin in.
+
+Great! Now the quadcopter is able to produce downward thrust and, with the right flight settings flashed to it, can *in theory* fly! But before we attempt a flight, this thrust test! Find a way to "hold down" your quadcopter. You may need to devise something clever. As you can see in the picture below, I used two zip ties through the lower level plate on either side to secure it down to a mesh organizer with something heavy in it. This has worked well for me.
+
+![secured down 1]()
+
+![secured down 2]()
+
+![secured down 3]()
+
+With the quadcopter secured down, plug in the battery at the end to boot it up. Once it passes through calibration and is operational, be very careful that each prop can turn smoothly and unobstructed with no wires in the way that it may cut into (turn each prop with your finger around to be sure of this). 
+
+With it booted up, use the transmitter to arm your quadcopter and then gently raise the throttle to test thrust. It is not recommended to remain at high thrust states like this for long periods of time, only for short bursts. It is a large amount of current being pulled form the batteries and ran through the system in this "held down" state, risking frying your electronics.
+
+## Fly!
+And that is it! The complete *core* of the quadcopter build. You can also add things like an FPV All-in-One (AIO) module for FPV flying which I will expand on in the future.
+
+![complete look around]()
+
+Be sure you also read the *Centauri Transmitter* build guide, a complimentary guide to this one for getting your quadcopter up and running!
+
+![fly away]()
