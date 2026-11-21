@@ -263,17 +263,17 @@ And now to complete the final electrical connections in the Centauri Quadcopter:
 
 The same splicing method you've already been using will be useful here! Some pictures below show my completed connections.
 
-![splice1]()
+![splice1](https://i.imgur.com/pX0vHMF.png)
 
-![splice2]()
+![splice2](https://i.imgur.com/Mn8P610.png)
 
-![splice3]()
+![splice3](https://i.imgur.com/YMWVt9x.png)
 
 ![splice video]()
 
 At this stage, while you still have easy access to the electronics bay, it is also a good idea to connect the **U.FL to SMA** connector to the HC-12's U.FL port. This is the cable that will connect the HC-12 to the antenna which will later sit atop the mast. You can see this depicted in the picture below.
 
-![HC-12 U.FL to SMA]()
+![HC-12 U.FL to SMA](https://i.imgur.com/7rPJOCx.png)
 
 As you will also observe in that picture, I passed the cable *under* one of the zip ties holding down the HC-12. I did this to alleviate strain on the HC-12s tiny and weak U.FL port. This prevents something like a simple bump of the wire from ripping it out. I'd recommend this method (which may need you to cut the zip tie and use another), or you can skip this step at your own risk.
 
