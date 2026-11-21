@@ -5,7 +5,11 @@ description: 'A step-by-step guide for building the Centauri Quadcopter.'
 ---
 
 # Centauri Quadcopter: Build Guide
-The following is a step-by-step guide to walk you through the build for the *Centauri Quadcopter*.
+Welcome to the *Centauri Quadcopter* build! This guide walks you step by step through assembling a custom quadcopter, from its 3D-printed airframe to the electronics powered by a Raspberry Pi Pico running MicroPython.
+
+But this isn't just about putting parts together. Centauri is the open-source drone ecosystem behind *Full Stack Flight*, built around a simple idea: **learn the whole drone, not just fly the drone.** As you build, you'll get to know the components that sense motion, receive pilot commands, and turn those commands into motor movement—without hiding the engineering inside a black box.
+
+Expect some soldering, careful wiring, and troubleshooting along the way. Take your time, double-check your connections, and keep propellers off during assembly and initial bench testing. Ready to turn a collection of parts into something you understand? Let's build!
 
 ## Acquire Necessary Components
 There are numerous components needed to build the *Centauri* quadcopter. See [shop]() for a full list of these components and where to buy them!
