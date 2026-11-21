@@ -6,7 +6,7 @@
   <title>Full Stack Flight</title>
   <meta name="description" content="Build a quadcopter from scratch and understand every part." />
   <link rel="preload" href="media/centauri-flight.webp" as="image" />
-  <link rel="stylesheet" href="styles.css?v=fsf-intro-20261118" />
+  <link rel="stylesheet" href="styles.css?v=fsf-build-20261121" />
   <script src="site.js" defer></script>
   <link rel="icon" type="image/svg+xml" href="full-stack-flight.svg">
 
@@ -189,7 +189,40 @@
     </section>
     <section class="getstarted home-section" id="get-started">
       <h2>Start Building</h2>
-      <p class="section-blurb">Ready to build your own Centauri? The <a href="posts/quadcopter-build-guide/">Centauri Quadcopter Build Guide</a> walks you through the build step by step, from gathering the parts and 3D printing the airframe to assembling the electronics and preparing for flight.</p>
+      <ol class="step-grid">
+        <li class="step-card">
+          <span class="step-card__num">01</span>
+          <h3 class="step-card__title">Get the parts</h3>
+          <p class="step-card__description">Start with the hardware for your Centauri build. Visit the shop for boards and parts to bring your project to life.</p>
+          <a class="step-card__cta" href="shop/">Shop boards &amp; parts</a>
+        </li>
+        <li class="step-card">
+          <span class="step-card__num">02</span>
+          <h3 class="step-card__title">Build</h3>
+          <p class="step-card__description">Follow the build guides for a step-by-step walkthrough of building Centauri. Start with the quadcopter; guides for the rest of the ecosystem are coming soon.</p>
+          <ul class="build-guides">
+            <li>
+              <img class="build-guides__icon" src="icons/quadcopter.svg" alt="" width="52" height="52" loading="lazy" />
+              <a class="step-card__cta" href="posts/quadcopter-build-guide/">Quadcopter build guide</a>
+            </li>
+            <li>
+              <img class="build-guides__icon" src="icons/transmitter.svg" alt="" width="52" height="52" loading="lazy" />
+              <span class="build-guides__title">Transmitter</span>
+              <span class="build-guides__status">Coming soon</span>
+            </li>
+            <li>
+              <img class="build-guides__icon" src="icons/link.svg" alt="" width="52" height="52" loading="lazy" />
+              <span class="build-guides__title">Link</span>
+              <span class="build-guides__status">Coming soon</span>
+            </li>
+            <li>
+              <img class="build-guides__icon" src="icons/analysis.svg" alt="" width="52" height="52" loading="lazy" />
+              <span class="build-guides__title">Analysis</span>
+              <span class="build-guides__status">Coming soon</span>
+            </li>
+          </ul>
+        </li>
+      </ol>
     </section>
 
     <section class="maker" id="meet-tim">
