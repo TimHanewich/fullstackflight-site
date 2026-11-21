@@ -126,3 +126,73 @@ Now, with our carrier board ready to go, it is time to begin assembling the dron
 Using four M2 screws, screw in the carrier board to the lower level of the airframe. Using four M3 screws, screw the MPU6050 frame (with the MPU6050 attached via the double-sided foam tape) just below the board. Ensure you have the MPU6050 in the orientation I have it in in the picture (mounting holes facing forawrd, pins towards the rear).
 
 ![lower level pcb and mpu6050]()
+
+At the other end (rear) of the lower level, the HC-12 radio communication module has a position at the very back left corner, closest to where the antenna mast will eventually be situated. The HC-12 has no mounting hole for a screw, so four holes are there to accomodate two zip ties to firmly hold it down. As you can see in the picture above, it makes the most sense to position it in this orientation: wires facing forwad, where they will eventually feed towards the carrier board and U.FL port facing rearward, where a wire will eventually feed towards the antenna mast.
+
+![HC-12]()
+
+![HC-12 underneath]()
+
+Next, secure the MP1584EN 5v regulator in this position. Again, it lacks a mounting hole for a screw so two holes are positioned there for using a small zip tie to securely hold it down. The orientation matters a bit less than the HC-12 so you can flip it around either way you want... just be very sure to note which side is "VIN" (raw battery voltage) and which side is "VOUT" (5v power out) and hook those ends up to the correct pads on the GPIO later!
+
+![all components]()
+
+And now, the completed lower level! Excellent work, the electrical components are now all fastened and ready to be wired together.
+
+As you can see in the pictures above, every component that was added to the lower level I had prewired with "placeholder" wires. That is a personal preference and I have found it easier to solder these wires on *before* mounting them to the lower level instead of soldering them after fastening. It is up to you, but I'd highly recommend this method! And now, we can simply splice the placeholder wires from the carrier board with the placeholder wires of each component.
+
+First, a brief tutorial on my "splicing" method. The video below shows how I use pliers to bend the ends of each placeholder wire into a small hook, hook them together, squash them, apply solder, and slide a heat shrink wrap over them.
+
+https://www.youtube.com/watch?v=iXqHNFa4GMs
+
+Rinse and repeat this for every necessary connection between each component and the carrier board. **IMPORTANT: after completing all connections, double check your work.** If any mistakes are made, particularly with the power supplies, you could very easily permanently fry your components. A 5-minute check confirming every wire of the carrier board is hooked up to the correct component pad is worthwhile!
+
+After you finish, it should look someting like this. You'll notice I also did my best here to trim the wires down so any excess wire is not "bundled up" in the lower level and also more weight the drone has to unnecessarily carry around.
+
+![spliced]()
+
+At this stage, with the core electronics wired up (the carrier board, the 5v regulator, the IMU, and the HC-12), we *technically* have the "brain" of the quadcopter able to operate. You can flash the Centauri Quadcopter flight controller software (found [here](https://github.com/TimHanewich/centauri/tree/master/components/quadcopter/src) on GitHub) to the Raspberry Pi Pico using [Thonny](https://thonny.org/) and a USB cable (after flashing the latest version of MicroPython to your pico). I'll expand on how to do this in the future, but for now, there are plenty of tutorials you can find online through a simple internet search, like [this good one](https://www.youtube.com/watch?v=_ouzuI_ZPLs) for example.
+
+With the Centauri Flight Controller software loaded onto the pico, as soon as the pico gains power, it will boot up the flight controller code and begin trying to operate: verifying connection of the IMU and readability of data, diagnostic communication with the HC-12, and more.
+
+![power supplied]()
+
+At this stage, if you have a way of directly providing a 6.0 to 16.8 volt (the tolerable voltage range the Centauri Quadcopter is designed for, representing 2S-4S), you can technically power it up and verify it operates! **NOTE: be very careful doing this. ONLY provide 6.0-16.8 volts. Be VERY careful to ensure you are connection the negative end and positive ned to the correct placeholder wires of the carrer board. The circular "BATTERY" pad is positive, the square is negative.** And don't let the two wires touch (short) during this. Only do this at this stage if you want to and trust yourself to not make mistakes.
+
+![power supplied video]()
+
+As you can see above, I am using my DC power supply to supply ~12.9 volts (a mostly discharged 4S LiPo's voltage).
+
+The *Centauri Flight Controller* should not be awake! Upon powering it up, you should see the small green LED at the front of the pico turn on solid, hold that for ~5 seconds (it goes through a setup and short calibration phase upon boot), and then proceed with normal operations in which every 0.5 seconds the LED switches between on and off. If you see that - you are good! If you do *not* see that, here is what that might mean:
+- **No LED light at all?** Ensure all electrical connections are made correctly. Ensure the flight controller code is flashed correctly. Ensure no component is physically or electrically damaged (perhaps something was damaged from excessive heat from a soldering iron or reverse voltage, which could be permanent).
+- **LED light pattern of on for one second, off for one second, and it cycles?**: the good news is your Pico has power and the flight controller is running! The bad news is this is the standard pattern to indicate some type of failure/issue was encountered. Something has gone wrong during boot or standard operations such as it failed to access IMU data from the MPU6050 (or configure it) or was not able to communicate with the HC-12 to configure it or verify it is even connected. I recommend plugging your Pico back into your PC via USB, and running `main.py` of the flight controller code directly in Thonny so you can *see* the diagnostic printouts the Pico provides in the terminal which will clearly state why an error is being encountered. Disconnect the DC power supply first before doing this.
+
+Next, move on to completing the lower level electronics bay: adding the battery power connector. You already have two placeholder wires in the carrier board that will carry the power from the battery *into* the board. We will splice a longer wire to those, running it down through the rear of the lower level and out the back where a XT60 female connector will be available for the LiPo battery you use to plug into, supplying power to Centauri!
+
+Again, you can use the "hook" splicing method showcased in the video you watched above. This time, it is obviously with a bit thicker wire which can make it a bit more challenging, but certainly still doable.
+
+![power hook]()
+
+![power hook squashed]()
+
+![power hook soldered]()
+
+And now both the positive and negative power wires should be extended to necessary length to reach the very rear of the lower level where the battery can access it (or maybe you won't need to splice additional length because your placeholder wires are long enough to reach!). 
+
+Now now, with each wire cut to the same length, solder each into a *female* XT60 connector. This is the connector most LiPo batteries used in drones have, allowing it to plug into the electrical system of Centauri and supply power through these two wires. *Note: shame on me for using the same color wire for both positive and negative! Obviously using red/black wires would be easier for quick visual reference, but it isn't totally necessary. If you only have one spool of wire, it is fine to use the same color for both... just be sure you are double and triple checking you have the right connections!*
+
+When connecting the ends of the power lead wires with the XT60 connector, the black "cover" (sheath) slides over them first, *then* you insert the wires into their corresponding positive/negative terminals of the XT60 connector. The picture below depicts which sides of the XT60 connector correspond to  negative/positive. As you can see, the positive (red) wire feeds into the "square-shaped" side, the positive side, while the ground (black) wire feeds into the other. Be very sure to match this connection!
+
+![XT60 connection]()
+
+With the XT60 female connector set up at the very end of the power lead wires, you can now use these six holes to wrap three zip ties around the wires securely holding it down to the lower level.
+
+![3 zip ties holding wire leads]()
+
+![3 zip ties holding wire leads fastened and finished]()
+
+![XT60 at the end]()
+
+Excellent work! And now, after double and triple checking your connections, you should be able to provide electrical power to the Centauri system, this time through a battery itself - the battery you later plan to run the quadcopter on!
+
+![power from battery]()
