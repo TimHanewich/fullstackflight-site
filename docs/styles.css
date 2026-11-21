@@ -159,10 +159,11 @@ main section > h2 { text-align: center; margin-bottom: 20px; }
 .oss-promo__cta::after { content: " \203A"; }
 .oss-promo:hover .oss-promo__cta { text-decoration: underline; }
 
-.step-grid { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 56px; gap: 48px; }
+.step-grid { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 56px; gap: 48px; }
 .step-card { text-align: center; position: relative; padding: 0 12px; }
 .step-card__num { display: block; color: var(--muted); font-size: 13px; letter-spacing: 0.1em; margin-bottom: 16px; }
 .step-card__icon { display: block; width: 52px; height: 52px; color: var(--text); margin: 24px auto; }
+img.step-card__icon { filter: invert(1); }
 .step-card__title { font-size: 19px; font-weight: 500; margin-bottom: 12px; }
 .step-card__description { max-width: 460px; margin: 0 auto 20px; color: var(--muted); font-size: 15px; }
 .step-card__cta { display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; text-decoration: none; }
