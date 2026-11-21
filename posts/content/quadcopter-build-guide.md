@@ -315,15 +315,15 @@ Congratulations, your quadcopter is now assembled! Before we can even begin test
 
 First, we have to understand, based on the wiring you did, what direction each motor is turning in right now. The easiest way to do this is run the quadcopter at a very low, safe throttle (i.e. 8%) with blue taped attached to clearly visually see the direction it turns in:
 
-![blue tape on motors]()
+![blue tape on motors](https://i.imgur.com/J3q0uBU.png)
 
 With the blue tape on each motor, it makes it much easier to see the direction it is moving in, either clockwise or counter-clockwise. And if you can't t ell visually, place your finger against it and you will feel it hitting either side which you can use to deduce its direction.
 
-![video of blue tape turning]()
+![video of blue tape turning](https://i.imgur.com/OFMrsTZ.gif)
 
 Now, with the direction of each motor noted, compare to the *correct* directions of each motor, depicted below:
 
-![motor directions]()
+![motor directions](https://i.imgur.com/ooZAuIK.png)
 
 As seen above, the correct directions are:
 - Front Left: Clockwise
@@ -333,7 +333,7 @@ As seen above, the correct directions are:
 
 If you have any that are *not* spinning in the correct direct, don't worry! Changing the direction is simple. Literally all you have to do is unsolder any of the two motor wires (you pick!) from their ESC pads and *swap* them. That is it! 
 
-![swap pads to inverse direction]()
+![swap pads to inverse direction](https://i.imgur.com/NtJtRON.png)
 
 After performing these swaps on the necessary motors, try the blue tape test again - hopefully now your motors spin in the correct direction!
 
@@ -343,11 +343,11 @@ Attach your props to the top of the motors. **Ensure you are placing the correct
 
 Great! Now the quadcopter is able to produce downward thrust and, with the right flight settings flashed to it, can *in theory* fly! But before we attempt a flight, this thrust test! Find a way to "hold down" your quadcopter. You may need to devise something clever. As you can see in the picture below, I used two zip ties through the lower level plate on either side to secure it down to a mesh organizer with something heavy in it. This has worked well for me.
 
-![secured down 1]()
+![secured down 1](https://i.imgur.com/tcO7yJK.png)
 
-![secured down 2]()
+![secured down 2](https://i.imgur.com/o3aqrhy.png)
 
-![secured down 3]()
+![secured down 3](https://i.imgur.com/rHEKpLz.png)
 
 With the quadcopter secured down, plug in the battery at the end to boot it up. Once it passes through calibration and is operational, be very careful that each prop can turn smoothly and unobstructed with no wires in the way that it may cut into (turn each prop with your finger around to be sure of this). 
 
@@ -356,8 +356,8 @@ With it booted up, use the transmitter to arm your quadcopter and then gently ra
 ## Fly!
 And that is it! The complete *core* of the quadcopter build. You can also add things like an FPV All-in-One (AIO) module for FPV flying which I will expand on in the future.
 
-![complete look around]()
+![complete look around](https://i.imgur.com/WRwrcy4.gif)
 
 Be sure you also read the *Centauri Transmitter* build guide, a complimentary guide to this one for getting your quadcopter up and running!
 
-![fly away]()
+![fly away](https://i.imgur.com/iVYgeHR.gif)
