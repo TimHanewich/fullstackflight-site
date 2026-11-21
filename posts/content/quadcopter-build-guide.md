@@ -230,13 +230,15 @@ Like with the ESCs, we will not be using any preassembled connectors on *Centaur
 
 ![cut off plugs](https://i.imgur.com/u5xOlhe.png)
 
-Next, solder the three motor wires directly to the three pads of the ESCs.
+Next, connect each of the three motor wires to its ESC pad using a short 22-gauge "middleman" wire, rather than soldering the motor wires *directly* to the pads. Solder each motor wire to an intermediate wire, insulate the splice with heat shrink, and solder the other end of the intermediate wire to the corresponding ESC pad.
+
+**PRO TIP:** My earlier direct connections eventually broke loose and caused flight issues. I've found the motor --> wire --> ESC connections hold much better on my build. Whatever method you use, inspect your solder joints and secure the wiring so vibration and movement do not pull on the pads.
+
+The photo below shows the *older direct-soldering (without the "middleman wire") approach*, not the recommended method:
 
 ![solder motor to ESC pads](https://i.imgur.com/gsGA5OP.png)
 
-**PRO TIP: Do not solder the motor wires *directly* to the ESC pads.** I have done this previously and had no problems at first. But due to the motor wires being copper, they were having difficulty maintaining a firm connection to the pads, later breaking loose and causing flight issues. Unless you are a pro-solderer, I highly recommend connecting the two between a short 22-gauge "middleman" wire like this. The motor --> wire --> ESC connections hold much better.
-
-The picture below shows this on my well-used quadcopter. The remaining pictures will show the build *without* this "middleman" wire as I captured them before learning my lesson, FYI.
+The next picture shows the recommended "middleman" wires on my well-used quadcopter. The remaining build pictures were captured before this change, so they still show the older approach.
 
 ![pro-tip middleman wire](https://i.imgur.com/v7BhapZ.png)
 
@@ -345,7 +347,11 @@ Now, with your motors spinning in the right direction, it is time for a props-on
 
 Attach your props to the top of the motors. **Ensure you are placing the correct direction of props on each motor.** Each prop has a direction it produces downward thrust in (clockwise or counter-clockwise). Ensure you place the CW props on the CW motors and vice versa. You can tell them apart by the way they appear to "push" air down in whichever direction they spin in.
 
-Great! Now the quadcopter is able to produce downward thrust and, with the right flight settings flashed to it, can *in theory* fly! But before we attempt a flight, this thrust test! Find a way to "hold down" your quadcopter. You may need to devise something clever. As you can see in the picture below, I used two zip ties through the lower level plate on either side to secure it down to a mesh organizer with something heavy in it. This has worked well for me.
+Great! Now the quadcopter is able to produce downward thrust and, with the right flight settings flashed to it, can *in theory* fly! Before attempting a flight, a restrained thrust test can help check its operation under load, but **this is a hazardous test, not a casual bench check. Spinning propellers can cause serious injury, and the aircraft can shift, tip, or break free if the mounting fails. A propeller can also break or detach even if the aircraft remains secured.**
+
+Use a secure, sturdy test fixture and a stable, firmly anchored base designed to withstand the aircraft's full thrust and vibration. Both the mounting points and restraints must be strong enough for the load, without damaging the airframe or interfering with the propellers. Do not hold the aircraft down by hand or assume that adding weight to a loose object makes it safe. **If you cannot verify that your setup is suitable, do not perform this test.**
+
+The pictures below show an improvised setup I previously used: zip ties securing the lower level to a weighted mesh organizer. They document my build, **not a verified safe fixture or a setup to copy without assessing its strength and stability.** Keep people, pets, loose objects, and yourself clear of the propellers and potential debris, wear eye protection, and plan how to stop the motors without approaching them. Never try to catch or restrain the aircraft if it moves; stop the motors from a safe distance.
 
 ![secured down 1](https://i.imgur.com/tcO7yJK.png)
 
@@ -353,7 +359,9 @@ Great! Now the quadcopter is able to produce downward thrust and, with the right
 
 ![secured down 3](https://i.imgur.com/rHEKpLz.png)
 
-With the quadcopter secured down, plug in the battery at the end to boot it up. Once it passes through calibration and is operational, be very careful that each prop can turn smoothly and unobstructed with no wires in the way that it may cut into (turn each prop with your finger around to be sure of this). 
+With the quadcopter secured down and **the battery disconnected and any other power sources removed**, gently turn each propeller by hand to check that it rotates freely without contacting wires, restraints, or the test fixture. Make any adjustments while the aircraft is unpowered.
+
+Once these checks are complete, remove your hands and tools from the propeller area, ensure everyone is clear, and connect the battery to boot the controller. Keep clear of the propellers from this point onward, even before arming: unexpected motor startup is possible. Let the controller complete calibration without touching the aircraft. **Disconnect the battery and wait for all motors to stop before making any further checks or adjustments.**
 
 With it booted up, use the transmitter to arm your quadcopter and then gently raise the throttle to test thrust. It is not recommended to remain at high thrust states like this for long periods of time, only for short bursts. It is a large amount of current being pulled from the batteries and run through the system in this "held down" state, risking frying your electronics.
 
