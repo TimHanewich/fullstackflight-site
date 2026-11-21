@@ -284,3 +284,24 @@ Bravo! Will all the connections made, you can now test the end-to-end motor conn
 In the video above, you'll see I already assembled the antenna mast and attached to the rear left arm, running the U.FL to SMA cable to the top where a small 433 MHz antenna is attached. At this stage it isn't totally necessary as, even without an antenna, the HC-12 should be able to receive control commands when in close proximity to the transmitter itself. Only a few feet across a room should be doable without the antenna. 
 
 The *Centauri transmitter* is sending out control commands to the *Centauri Quadcopter* to turn the motors on ("arm" it), so be sure to follow the Transmitter build guide to get that end up and running to be able to perform this test!
+
+## Upper Level
+Next we move on to the upper level of the Centauri airframe, the top that will cover the electronics bay you have been working in! The upper level is quite self-explanatory: one single long piece (same dimensions as lower level), with the optional "GoPro" mount at the front, secured to the upper level via M3 screws if you want it for recording or FPV flying.
+
+Before you secure the upper level to the quadcopter, prepare velcro strips that will be threaded behind it to secure the LiPo battery to the top during flight. 
+
+![velcro]()
+
+As you can see in the picture above, they thread through the upper level on both sides, running into the electrical bay and then back ground, eventually reaching around the battery to pull it snug against the upper level. 
+
+First start with very long velcro straps with plenty of extra slack. Then, with your battery positioned on top (this is my chunky 3,300 mAh 4S pack), pull them down against it and make a cut with scissors where you feel is best to wrap all the way around it without any excess slack getting in the way.
+
+![cut to length]()
+
+*Note*: One more thing to note here, which you may see in pictures further down. These velcro straps are good, but don't give me quite the confidence I need that it will secure it in place during a high-performance flight. As the picture below shows, I usually place some double sided foam tape *between* the position of those velcro straps and then wrap some blue painters tape around the battery, pressing the blue taped area into the foam tape. This sticky foam tape securely holding the blue painters tape is quite secure! And when wanting to change the battery, I simply peel back that foam tape until the battery is free, and then use the same blue tape to wrap around the next battery, treating the blue tape a lot like a strap!
+
+![blue tape](https://i.imgur.com/SYAZVZy.png)
+
+With the upper level ready to go (with/without the foam and blue tape at this stage), align it on the top of the quadcopter, lined up with the eight M3 holes where they need to be for the M3*30mm screws to continue through them, securing it to the airframe. Use M3 nuts to secure the screws down firmly.
+
+And as seen in the picture below, hopefully your wires in the interior bay are not very compressed and squashed! If you did a decent job splicing them and keeping the connections neat and orderly in there, yours should be fine like mine!
