@@ -269,7 +269,7 @@ The same splicing method you've already been using will be useful here! Some pic
 
 ![splice3](https://i.imgur.com/YMWVt9x.png)
 
-![splice video]()
+![splice video](https://i.imgur.com/eOagibV.gif)
 
 At this stage, while you still have easy access to the electronics bay, it is also a good idea to connect the **U.FL to SMA** connector to the HC-12's U.FL port. This is the cable that will connect the HC-12 to the antenna which will later sit atop the mast. You can see this depicted in the picture below.
 
@@ -279,7 +279,7 @@ As you will also observe in that picture, I passed the cable *under* one of the 
 
 Bravo! Will all the connections made, you can now test the end-to-end motor connectivity in its current state.
 
-![video running]()
+![video running](https://i.imgur.com/V9xi3f6.gif)
 
 In the video above, you'll see I already assembled the antenna mast and attached to the rear left arm, running the U.FL to SMA cable to the top where a small 433 MHz antenna is attached. At this stage it isn't totally necessary as, even without an antenna, the HC-12 should be able to receive control commands when in close proximity to the transmitter itself. Only a few feet across a room should be doable without the antenna. 
 
