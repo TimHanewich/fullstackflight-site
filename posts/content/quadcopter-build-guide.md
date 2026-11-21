@@ -141,7 +141,9 @@ At the other end (rear) of the lower level, the HC-12 radio communication module
 
 ![HC-12 underneath](https://i.imgur.com/mQKbjTy.png)
 
-Next, secure the MP1584EN 5v regulator in this position. Again, it lacks a mounting hole for a screw so two holes are positioned there for using a small zip tie to securely hold it down. The orientation matters a bit less than the HC-12 so you can flip it around either way you want... just be very sure to note which side is "VIN" (raw battery voltage) and which side is "VOUT" (5v power out) and hook those ends up to the correct pads on the GPIO later!
+Next, secure the MP1584EN 5v regulator in this position. Again, it lacks a mounting hole for a screw so two holes are positioned there for using a small zip tie to securely hold it down. The orientation matters a bit less than the HC-12 so you can flip it around either way you want... just be very sure to note which side is "VIN" (raw battery voltage) and which side is "VOUT" (5v power out) and hook those ends up to the correct pads on the carrier board later!
+
+Match the labels, not opposites: Connect the carrier board's **VIN to the module's VIN**, and the carrier board's **VOUT to the module's VOUT**. Do not connect VIN to VOUT. Match positive to positive and negative/ground to negative/ground on each pair.
 
 ![all components](https://i.imgur.com/ynpOb9W.png)
 
