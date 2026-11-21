@@ -290,13 +290,13 @@ Next we move on to the upper level of the Centauri airframe, the top that will c
 
 Before you secure the upper level to the quadcopter, prepare velcro strips that will be threaded behind it to secure the LiPo battery to the top during flight. 
 
-![velcro]()
+![velcro](https://i.imgur.com/qjLj1fp.png)
 
 As you can see in the picture above, they thread through the upper level on both sides, running into the electrical bay and then back ground, eventually reaching around the battery to pull it snug against the upper level. 
 
 First start with very long velcro straps with plenty of extra slack. Then, with your battery positioned on top (this is my chunky 3,300 mAh 4S pack), pull them down against it and make a cut with scissors where you feel is best to wrap all the way around it without any excess slack getting in the way.
 
-![cut to length]()
+![cut to length](https://i.imgur.com/xkkK90w.png)
 
 *Note*: One more thing to note here, which you may see in pictures further down. These velcro straps are good, but don't give me quite the confidence I need that it will secure it in place during a high-performance flight. As the picture below shows, I usually place some double sided foam tape *between* the position of those velcro straps and then wrap some blue painters tape around the battery, pressing the blue taped area into the foam tape. This sticky foam tape securely holding the blue painters tape is quite secure! And when wanting to change the battery, I simply peel back that foam tape until the battery is free, and then use the same blue tape to wrap around the next battery, treating the blue tape a lot like a strap!
 
@@ -304,4 +304,8 @@ First start with very long velcro straps with plenty of extra slack. Then, with 
 
 With the upper level ready to go (with/without the foam and blue tape at this stage), align it on the top of the quadcopter, lined up with the eight M3 holes where they need to be for the M3*30mm screws to continue through them, securing it to the airframe. Use M3 nuts to secure the screws down firmly.
 
+![screw it in](https://i.imgur.com/RpL3OXv.png)
+
 And as seen in the picture below, hopefully your wires in the interior bay are not very compressed and squashed! If you did a decent job splicing them and keeping the connections neat and orderly in there, yours should be fine like mine!
+
+![interior](https://i.imgur.com/iXkgF0R.png)
