@@ -40,7 +40,9 @@ The critical ingredient! Next we will prepare our *Centauri Flight Controller Ca
 
 ![board](https://i.imgur.com/W8DuJQv.gif)
 
-First - a look at the anatomy of the Carrier Board.
+First, a look at the anatomy of the Carrier Board.
+
+**Wire sizes:** The board has two sizes of wiring holes. The larger holes for the battery leads and ESC power leads accept thicker **16 AWG wire** for higher current. Use **22 AWG wire** in the smaller holes for signal and other low-current connections, not motor power.
 
 ![anatomy](https://i.imgur.com/N2GZNbZ.png)
 
