@@ -12,7 +12,7 @@ Centauri is the open-source drone ecosystem behind *Full Stack Flight*, built ar
 Expect some soldering, careful wiring, and troubleshooting along the way. Take your time, double-check your connections, and keep propellers off during assembly and initial bench testing. Let's go!
 
 ## Acquire Necessary Components
-There are numerous components needed to build the *Centauri* quadcopter. See [shop](../shop) for a full list of these components and where to buy them!
+There are numerous components needed to build the *Centauri* quadcopter. See [shop](../../shop) for a full list of these components and where to buy them!
 
 ## 3D Printing
 Before we can build our quadcopter, we first must fabricate the body! The body of the Centauri Quadcopter is fully 3D-printed with the design files themselves being freely available to everyone!
