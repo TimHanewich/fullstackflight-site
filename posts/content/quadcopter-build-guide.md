@@ -15,7 +15,7 @@ Expect some soldering, careful wiring, and troubleshooting along the way. Take y
 There are numerous components needed to build the *Centauri* quadcopter. See [shop](../shop) for a full list of these components and where to buy them!
 
 ## 3D Printing
-Before we can build our quadcopter, we first must fabriate the body! The body of the Centauri Quadcopter is fully 3D-printed with the design files themselves being freely available to everyone!
+Before we can build our quadcopter, we first must fabricate the body! The body of the Centauri Quadcopter is fully 3D-printed with the design files themselves being freely available to everyone!
 
 ![on thingiverse](https://i.imgur.com/njYvCxp.png)
 
@@ -23,7 +23,7 @@ You can use a 3D slicer tool like [Cura](https://ultimaker.com/software/ultimake
 
 ![on cura](https://i.imgur.com/RtH0Uqt.png)
 
-While I'm not showing pictures of every part being printed, here a few cool shots!
+While I'm not showing pictures of every part being printed, here are a few cool shots!
 
 The finished lower level and IMU frame:
 
@@ -33,7 +33,7 @@ Two arms being printed:
 
 ![arms printed](https://i.imgur.com/BSvSEuq.gif)
 
-After you finish the print, add a small piece of double-sided foam tape to the MPU6050 (IMU) frame. This foam tape will secure the MPU6050 to the frame, doing a significantly better job filtering out high frequency noise (vibrations) then screwing it in directly would do.
+After you finish the print, add a small piece of double-sided foam tape to the MPU6050 (IMU) frame. This foam tape will secure the MPU6050 to the frame, doing a significantly better job filtering out high frequency noise (vibrations) than screwing it in directly would do.
 
 ## Carrier Board Setup
 The critical ingredient! Next we will prepare our *Centauri Flight Controller Carrier Board*, a printed circuit board, to serve as the "nervous system" of the quadcopter, handling all necessary electrical components between components we will later add.
@@ -44,9 +44,9 @@ First - a look at the anatomy of the Carrier Board.
 
 ![anatomy](https://i.imgur.com/N2GZNbZ.png)
 
-As you can see above, a lot of electrical components are packed into a fairly small pacakge. Later, you will be adding these electrical components to the airframe (MPU6050, HC12, 5v Regulator, etc.) and soldering a wire connecting the *component* to the *appropriate pad* on the board. There are also some minor electrical components that do get soldered *directly* onto the board (capacitor, ferrite bead, resistors), but more on that later!
+As you can see above, a lot of electrical components are packed into a fairly small package. Later, you will be adding these electrical components to the airframe (MPU6050, HC12, 5v Regulator, etc.) and soldering a wire connecting the *component* to the *appropriate pad* on the board. There are also some minor electrical components that do get soldered *directly* onto the board (capacitor, ferrite bead, resistors), but more on that later!
 
-Before we move on, let's focus a moment on a very critical part of the Centauari Quadcopter: providing *power* and *signal* to the four motors. An electronic speed controller exists as a middle man between our MCU (RPi Pico) and the motor itself, transating the MCU's signal commands to three-phase switched output for the motors.
+Before we move on, let's focus a moment on a very critical part of the Centauri Quadcopter: providing *power* and *signal* to the four motors. An electronic speed controller exists as a middle man between our MCU (RPi Pico) and the motor itself, translating the MCU's signal commands to three-phase switched output for the motors.
 
 ![ESC mapping](https://i.imgur.com/IGvGUHp.png)
 
@@ -64,7 +64,7 @@ And now, a closer look at each ESC pad:
 
 As you can see in the image above:
 - The **Large Square** is the ESC's negative power supply (from the battery)
-- The **Large Circle** is the ESC's postitive power supply (from the battery)
+- The **Large Circle** is the ESC's positive power supply (from the battery)
 - The **Small Square** is the signal's ground (from the MCU)
 - The **Small Circle** is the signal itself (from the MCU)
 
@@ -90,7 +90,7 @@ It can be a bit tricky, but with the board in this position, apply some solder w
 
 *Note: in the picture above, I have two pins soldered at either end. I'd recommend only doing one pin at this stage.*
 
-The reason we only solder one pin first is because we want to be able to make any tweaks of position of the header pins necessary *before* soldering the remaining. Once you solder multiple pins, it becomes very difficult (if not impossible) to head up all pins at once with a soldering iron to make necessary corrections in position. So, using your soldering iron, heat up the solder at that one pin, using a gloved hand, reposition the pins just a touch to ensure they sit flush against the board and are facing upwards. Once pleased with their positiion, then remove the soldering iron, let the pin cool. Now your header pins should be in a good position, ready for you to "lock in" the position by soldering the remaining.
+The reason we only solder one pin first is because we want to be able to make any tweaks of position of the header pins necessary *before* soldering the remaining. Once you solder multiple pins, it becomes very difficult (if not impossible) to heat up all pins at once with a soldering iron to make necessary corrections in position. So, using your soldering iron, heat up the solder at that one pin, using a gloved hand, reposition the pins just a touch to ensure they sit flush against the board and are facing upwards. Once pleased with their position, then remove the soldering iron, let the pin cool. Now your header pins should be in a good position, ready for you to "lock in" the position by soldering the remaining.
 
 *Note: if you made the mistake, like I have, of soldering them all too early, all is not lost. You can use pliers to gently bend the header pins back into a position that the RPi pico can then slot into. It may take a few tries, but be patient and gentle!*
 
@@ -104,7 +104,7 @@ And now with the pico slid on, apply solder to the *top* of the pins where they 
 
 ![solder_pico](https://i.imgur.com/qlzoPu6.png)
 
-Next we will solder on the capacitors, both the 0.1 uF capacitor and the 10 uF capacitor. The 0.1 uF capacitor is a ceramic capacitor and does not have a positive/negative terminal - both legs are interchangable! However, the 10 uF capacitor *does* have a positive/negative terminal! It is very important you get the legs in the right holes.
+Next we will solder on the capacitors, both the 0.1 uF capacitor and the 10 uF capacitor. The 0.1 uF capacitor is a ceramic capacitor and does not have a positive/negative terminal - both legs are interchangeable! However, the 10 uF capacitor *does* have a positive/negative terminal! It is very important you get the legs in the right holes.
 
 ![caps in board](https://i.imgur.com/uhgj3Vk.png)
 
@@ -114,24 +114,24 @@ Shown closely below, the *longer* leg of the 10 uF capacitor is the positive end
 
 Wonderful! Now the capacitors are on.
 
-Next, do the ferrite bead. The ferrite bead needs to be soldered where "BEAD" is on the board, in either direction. *Note: if you do not have a ferrite bead, you may not necessarily need it. Simple connect the two ends with some wire.*
+Next, do the ferrite bead. The ferrite bead needs to be soldered where "BEAD" is on the board, in either direction. *Note: if you do not have a ferrite bead, you may not necessarily need it. Simply connect the two ends with some wire.*
 
 Do the same with the resistors: solder them in where they belong, either direction and orientation is fine. *Note: if you can't tell the ohm value for each (can't tell them apart), use a multimeter to test their resistance.*
 
-Finally, solder in "placeholder" wires to the remaining pads (holes) on the board that will be used: for the batter leads (middle of ESC pads), all four ESCs, the 5v regulator, MPU6050, and HC-12. 
+Finally, solder in "placeholder" wires to the remaining pads (holes) on the board that will be used: for the battery leads (middle of ESC pads), all four ESCs, the 5v regulator, MPU6050, and HC-12. 
 
 ![all_soldered](https://i.imgur.com/Krd50n6.png)
 
 After we add the electrical components (e.g. MPU6050, HC12, 5v Regulator) to the airframe later, we will connect to the board via these placeholder wires that are currently unconnected!
 
 ## Lower Level Assembly
-Now, with our carrier board ready to go, it is time to begin assembling the drone's lower level, which will hold the internal electrical components that allows the drone to fly.
+Now, with our carrier board ready to go, it is time to begin assembling the drone's lower level, which will hold the internal electrical components that allow the drone to fly.
 
-Using four M2 screws, screw in the carrier board to the lower level of the airframe. Using four M3 screws, screw the MPU6050 frame (with the MPU6050 attached via the double-sided foam tape) just below the board. Ensure you have the MPU6050 in the orientation I have it in in the picture (mounting holes facing forawrd, pins towards the rear).
+Using four M2 screws, screw in the carrier board to the lower level of the airframe. Using four M3 screws, screw the MPU6050 frame (with the MPU6050 attached via the double-sided foam tape) just below the board. Ensure you have the MPU6050 in the orientation I have it in in the picture (mounting holes facing forward, pins towards the rear).
 
 ![lower level pcb and mpu6050](https://i.imgur.com/iEqxfzY.png)
 
-At the other end (rear) of the lower level, the HC-12 radio communication module has a position at the very back left corner, closest to where the antenna mast will eventually be situated. The HC-12 has no mounting hole for a screw, so four holes are there to accomodate two zip ties to firmly hold it down. As you can see in the picture above, it makes the most sense to position it in this orientation: wires facing forwad, where they will eventually feed towards the carrier board and U.FL port facing rearward, where a wire will eventually feed towards the antenna mast.
+At the other end (rear) of the lower level, the HC-12 radio communication module has a position at the very back left corner, closest to where the antenna mast will eventually be situated. The HC-12 has no mounting hole for a screw, so four holes are there to accommodate two zip ties to firmly hold it down. As you can see in the picture above, it makes the most sense to position it in this orientation: wires facing forward, where they will eventually feed towards the carrier board and U.FL port facing rearward, where a wire will eventually feed towards the antenna mast.
 
 ![HC-12](https://i.imgur.com/XfoyiiW.png)
 
@@ -153,7 +153,7 @@ https://www.youtube.com/watch?v=iXqHNFa4GMs
 
 Rinse and repeat this for every necessary connection between each component and the carrier board. **IMPORTANT: after completing all connections, double check your work.** If any mistakes are made, particularly with the power supplies, you could very easily permanently fry your components. A 5-minute check confirming every wire of the carrier board is hooked up to the correct component pad is worthwhile!
 
-After you finish, it should look someting like this. You'll notice I also did my best here to trim the wires down so any excess wire is not "bundled up" in the lower level and also more weight the drone has to unnecessarily carry around.
+After you finish, it should look something like this. You'll notice I also did my best here to trim the wires down so any excess wire is not "bundled up" in the lower level and also more weight the drone has to unnecessarily carry around.
 
 ![spliced](https://i.imgur.com/8bvDEF0.png)
 
@@ -163,13 +163,13 @@ With the Centauri Flight Controller software loaded onto the pico, as soon as th
 
 ![power supplied](https://i.imgur.com/WIBDIdI.png)
 
-At this stage, if you have a way of directly providing a 6.0 to 16.8 volt (the tolerable voltage range the Centauri Quadcopter is designed for, representing 2S-4S), you can technically power it up and verify it operates! **NOTE: be very careful doing this. ONLY provide 6.0-16.8 volts. Be VERY careful to ensure you are connection the negative end and positive ned to the correct placeholder wires of the carrer board. The circular "BATTERY" pad is positive, the square is negative.** And don't let the two wires touch (short) during this. Only do this at this stage if you want to and trust yourself to not make mistakes.
+At this stage, if you have a way of directly providing a 6.0 to 16.8 volt (the tolerable voltage range the Centauri Quadcopter is designed for, representing 2S-4S), you can technically power it up and verify it operates! **NOTE: be very careful doing this. ONLY provide 6.0-16.8 volts. Be VERY careful to ensure you are connecting the negative end and positive end to the correct placeholder wires of the carrier board. The circular "BATTERY" pad is positive, the square is negative.** And don't let the two wires touch (short) during this. Only do this at this stage if you want to and trust yourself to not make mistakes.
 
 ![power supplied video](https://i.imgur.com/vK9ycqX.gif)
 
 As you can see above, I am using my DC power supply to supply ~12.9 volts (a mostly discharged 4S LiPo's voltage).
 
-The *Centauri Flight Controller* should not be awake! Upon powering it up, you should see the small green LED at the front of the pico turn on solid, hold that for ~5 seconds (it goes through a setup and short calibration phase upon boot), and then proceed with normal operations in which every 0.5 seconds the LED switches between on and off. If you see that - you are good! If you do *not* see that, here is what that might mean:
+The *Centauri Flight Controller* should now be awake! Upon powering it up, you should see the small green LED at the front of the pico turn on solid, hold that for ~5 seconds (it goes through a setup and short calibration phase upon boot), and then proceed with normal operations in which every 0.5 seconds the LED switches between on and off. If you see that - you are good! If you do *not* see that, here is what that might mean:
 - **No LED light at all?** Ensure all electrical connections are made correctly. Ensure the flight controller code is flashed correctly. Ensure no component is physically or electrically damaged (perhaps something was damaged from excessive heat from a soldering iron or reverse voltage, which could be permanent).
 - **LED light pattern of on for one second, off for one second, and it cycles?**: the good news is your Pico has power and the flight controller is running! The bad news is this is the standard pattern to indicate some type of failure/issue was encountered. Something has gone wrong during boot or standard operations such as it failed to access IMU data from the MPU6050 (or configure it) or was not able to communicate with the HC-12 to configure it or verify it is even connected. I recommend plugging your Pico back into your PC via USB, and running `main.py` of the flight controller code directly in Thonny so you can *see* the diagnostic printouts the Pico provides in the terminal which will clearly state why an error is being encountered. Disconnect the DC power supply first before doing this.
 
@@ -185,7 +185,7 @@ Again, you can use the "hook" splicing method showcased in the video you watched
 
 And now both the positive and negative power wires should be extended to necessary length to reach the very rear of the lower level where the battery can access it (or maybe you won't need to splice additional length because your placeholder wires are long enough to reach!). 
 
-Now now, with each wire cut to the same length, solder each into a *female* XT60 connector. This is the connector most LiPo batteries used in drones have, allowing it to plug into the electrical system of Centauri and supply power through these two wires. *Note: shame on me for using the same color wire for both positive and negative! Obviously using red/black wires would be easier for quick visual reference, but it isn't totally necessary. If you only have one spool of wire, it is fine to use the same color for both... just be sure you are double and triple checking you have the right connections!*
+And now, with each wire cut to the same length, solder each into a *female* XT60 connector. This is the connector most LiPo batteries used in drones have, allowing it to plug into the electrical system of Centauri and supply power through these two wires. *Note: shame on me for using the same color wire for both positive and negative! Obviously using red/black wires would be easier for quick visual reference, but it isn't totally necessary. If you only have one spool of wire, it is fine to use the same color for both... just be sure you are double and triple checking you have the right connections!*
 
 When connecting the ends of the power lead wires with the XT60 connector, the black "cover" (sheath) slides over them first, *then* you insert the wires into their corresponding positive/negative terminals of the XT60 connector. The picture below depicts which sides of the XT60 connector correspond to  negative/positive. As you can see, the positive (red) wire feeds into the "square-shaped" side, the positive side, while the ground (black) wire feeds into the other. Be very sure to match this connection!
 
@@ -226,7 +226,7 @@ Next, using the M3 screws that each motor came with, screw the motors into the e
 
 ![motor mounted](https://i.imgur.com/hjI7O3h.png)
 
-Like with the ESCs, we will not be using any preassembled connectors on *Centauri*, instead directly soldering the connections where they ought to go! So, these bannana plugs can go! Using scissors, cut them off at the base.
+Like with the ESCs, we will not be using any preassembled connectors on *Centauri*, instead directly soldering the connections where they ought to go! So, these banana plugs can go! Using scissors, cut them off at the base.
 
 ![cut off plugs](https://i.imgur.com/u5xOlhe.png)
 
@@ -234,13 +234,13 @@ Next, solder the three motor wires directly to the three pads of the ESCs.
 
 ![solder motor to ESC pads](https://i.imgur.com/gsGA5OP.png)
 
-**PRO TIP: Do not solder the motor wires *directly* to the ESC pads.** I have done this previously and had no problems at first. But to do the motor wires being copper, they were having difficulting maintaining a firm connection connection to the pads, later breaking loose and causing flight issues. Unless you are a pro-solderer, I highly recommend connecting the two between a short 22-gauge "middleman" wire like this. The motor --> wire --> ESC connections hold much better.
+**PRO TIP: Do not solder the motor wires *directly* to the ESC pads.** I have done this previously and had no problems at first. But due to the motor wires being copper, they were having difficulty maintaining a firm connection to the pads, later breaking loose and causing flight issues. Unless you are a pro-solderer, I highly recommend connecting the two between a short 22-gauge "middleman" wire like this. The motor --> wire --> ESC connections hold much better.
 
 The picture below shows this on my well-used quadcopter. The remaining pictures will show the build *without* this "middleman" wire as I captured them before learning my lesson, FYI.
 
 ![pro-tip middleman wire](https://i.imgur.com/v7BhapZ.png)
 
-Now, all four arms should be prepped with the ESCs, the motors, and the wires passing through the holes in the arms where you will later connect them to the carrier board! You'll also see that any slack remaining in the motors wires (if you did not want to cut it down) can be securely fastened to the side of the arm via zip tie to ensure it doesn't hit the propeller during flight.
+Now, all four arms should be prepped with the ESCs, the motors, and the wires passing through the holes in the arms where you will later connect them to the carrier board! You'll also see that any slack remaining in the motor wires (if you did not want to cut it down) can be securely fastened to the side of the arm via zip tie to ensure it doesn't hit the propeller during flight.
 
 ![all four arms, ready](https://i.imgur.com/H5m95Ij.png)
 
@@ -258,7 +258,7 @@ And now to complete the electrical connections of each arm! As you can see, each
 - Thin white wire = throttle signal.
 - Thin black wire = throttle signal ground.
 
-All of these wires has a corresponding pad it must go to on the carrier board!
+All of these wires have a corresponding pad it must go to on the carrier board!
 
 ![four wires of ESC to splice](https://i.imgur.com/uUvZ6u0.png)
 
@@ -279,9 +279,9 @@ At this stage, while you still have easy access to the electronics bay, it is al
 
 ![HC-12 U.FL to SMA](https://i.imgur.com/7rPJOCx.png)
 
-As you will also observe in that picture, I passed the cable *under* one of the zip ties holding down the HC-12. I did this to alleviate strain on the HC-12s tiny and weak U.FL port. This prevents something like a simple bump of the wire from ripping it out. I'd recommend this method (which may need you to cut the zip tie and use another), or you can skip this step at your own risk.
+As you will also observe in that picture, I passed the cable *under* one of the zip ties holding down the HC-12. I did this to alleviate strain on the HC-12's tiny and weak U.FL port. This prevents something like a simple bump of the wire from ripping it out. I'd recommend this method (which may need you to cut the zip tie and use another), or you can skip this step at your own risk.
 
-Bravo! Will all the connections made, you can now test the end-to-end motor connectivity in its current state.
+Bravo! With all the connections made, you can now test the end-to-end motor connectivity in its current state.
 
 ![video running](https://i.imgur.com/V9xi3f6.gif)
 
@@ -296,7 +296,7 @@ Before you secure the upper level to the quadcopter, prepare velcro strips that 
 
 ![velcro](https://i.imgur.com/qjLj1fp.png)
 
-As you can see in the picture above, they thread through the upper level on both sides, running into the electrical bay and then back ground, eventually reaching around the battery to pull it snug against the upper level. 
+As you can see in the picture above, they thread through the upper level on both sides, running into the electrical bay and then back out, eventually reaching around the battery to pull it snug against the upper level. 
 
 First start with very long velcro straps with plenty of extra slack. Then, with your battery positioned on top (this is my chunky 3,300 mAh 4S pack), pull them down against it and make a cut with scissors where you feel is best to wrap all the way around it without any excess slack getting in the way.
 
@@ -317,11 +317,11 @@ And as seen in the picture below, hopefully your wires in the interior bay are n
 ## Motor Direction Testing
 Congratulations, your quadcopter is now assembled! Before we can even begin testing for flight, we first must validate that the motors are spinning in the right direction; and if they are not, make corrections. Fortunately, making a direction correction at this stage is quite easy as long as we detect it.
 
-First, we have to understand, based on the wiring you did, what direction each motor is turning in right now. The easiest way to do this is run the quadcopter at a very low, safe throttle (i.e. 8%) with blue taped attached to clearly visually see the direction it turns in:
+First, we have to understand, based on the wiring you did, what direction each motor is turning in right now. The easiest way to do this is run the quadcopter at a very low, safe throttle (i.e. 8%) with blue tape attached to clearly visually see the direction it turns in:
 
 ![blue tape on motors](https://i.imgur.com/J3q0uBU.png)
 
-With the blue tape on each motor, it makes it much easier to see the direction it is moving in, either clockwise or counter-clockwise. And if you can't t ell visually, place your finger against it and you will feel it hitting either side which you can use to deduce its direction.
+With the blue tape on each motor, it makes it much easier to see the direction it is moving in, either clockwise or counter-clockwise. And if you can't tell visually, place your finger against it and you will feel it hitting either side which you can use to deduce its direction.
 
 ![video of blue tape turning](https://i.imgur.com/OFMrsTZ.gif)
 
@@ -335,7 +335,7 @@ As seen above, the correct directions are:
 - Rear Left: Counter-Clockwise
 - Rear Right: Clockwise
 
-If you have any that are *not* spinning in the correct direct, don't worry! Changing the direction is simple. Literally all you have to do is unsolder any of the two motor wires (you pick!) from their ESC pads and *swap* them. That is it! 
+If you have any that are *not* spinning in the correct direction, don't worry! Changing the direction is simple. Literally all you have to do is unsolder any two motor wires (you pick!) from their ESC pads and *swap* them. That is it! 
 
 ![swap pads to inverse direction](https://i.imgur.com/NtJtRON.png)
 
@@ -355,13 +355,13 @@ Great! Now the quadcopter is able to produce downward thrust and, with the right
 
 With the quadcopter secured down, plug in the battery at the end to boot it up. Once it passes through calibration and is operational, be very careful that each prop can turn smoothly and unobstructed with no wires in the way that it may cut into (turn each prop with your finger around to be sure of this). 
 
-With it booted up, use the transmitter to arm your quadcopter and then gently raise the throttle to test thrust. It is not recommended to remain at high thrust states like this for long periods of time, only for short bursts. It is a large amount of current being pulled form the batteries and ran through the system in this "held down" state, risking frying your electronics.
+With it booted up, use the transmitter to arm your quadcopter and then gently raise the throttle to test thrust. It is not recommended to remain at high thrust states like this for long periods of time, only for short bursts. It is a large amount of current being pulled from the batteries and run through the system in this "held down" state, risking frying your electronics.
 
 ## Fly!
 And that is it! The complete *core* of the quadcopter build. You can also add things like an FPV All-in-One (AIO) module for FPV flying which I will expand on in the future.
 
 ![complete look around](https://i.imgur.com/WRwrcy4.gif)
 
-Be sure you also read the *Centauri Transmitter* build guide, a complimentary guide to this one for getting your quadcopter up and running!
+Be sure you also read the *Centauri Transmitter* build guide, a complementary guide to this one for getting your quadcopter up and running!
 
 ![fly away](https://i.imgur.com/iVYgeHR.gif)
