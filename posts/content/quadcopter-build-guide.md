@@ -137,6 +137,8 @@ Next, secure the MP1584EN 5v regulator in this position. Again, it lacks a mount
 
 ![all components](https://i.imgur.com/ynpOb9W.png)
 
+![all components video](https://i.imgur.com/wkcn345.gif)
+
 And now, the completed lower level! Excellent work, the electrical components are now all fastened and ready to be wired together.
 
 As you can see in the pictures above, every component that was added to the lower level I had prewired with "placeholder" wires. That is a personal preference and I have found it easier to solder these wires on *before* mounting them to the lower level instead of soldering them after fastening. It is up to you, but I'd highly recommend this method! And now, we can simply splice the placeholder wires from the carrier board with the placeholder wires of each component.
@@ -159,7 +161,7 @@ With the Centauri Flight Controller software loaded onto the pico, as soon as th
 
 At this stage, if you have a way of directly providing a 6.0 to 16.8 volt (the tolerable voltage range the Centauri Quadcopter is designed for, representing 2S-4S), you can technically power it up and verify it operates! **NOTE: be very careful doing this. ONLY provide 6.0-16.8 volts. Be VERY careful to ensure you are connection the negative end and positive ned to the correct placeholder wires of the carrer board. The circular "BATTERY" pad is positive, the square is negative.** And don't let the two wires touch (short) during this. Only do this at this stage if you want to and trust yourself to not make mistakes.
 
-![power supplied video]()
+![power supplied video](https://i.imgur.com/vK9ycqX.gif)
 
 As you can see above, I am using my DC power supply to supply ~12.9 volts (a mostly discharged 4S LiPo's voltage).
 
