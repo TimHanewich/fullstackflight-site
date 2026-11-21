@@ -257,3 +257,30 @@ And now to complete the electrical connections of each arm! As you can see, each
 All of these wires has a corresponding pad it must go to on the carrier board!
 
 ![four wires of ESC to splice](https://i.imgur.com/uUvZ6u0.png)
+
+## Complete Electrical Connections
+And now to complete the final electrical connections in the Centauri Quadcopter: the ones that will allow it to fly! You will now splice all four wires of each of the four ESCs to their appropriate pads (placeholder wires) on the carrier board. Be sure to reference the picture above in this guide that shows how each ESC group on the carrier board maps to a particular arm (e.g. front left, front right), as connecting them up correctly is vital.
+
+The same splicing method you've already been using will be useful here! Some pictures below show my completed connections.
+
+![splice1]()
+
+![splice2]()
+
+![splice3]()
+
+![splice video]()
+
+At this stage, while you still have easy access to the electronics bay, it is also a good idea to connect the **U.FL to SMA** connector to the HC-12's U.FL port. This is the cable that will connect the HC-12 to the antenna which will later sit atop the mast. You can see this depicted in the picture below.
+
+![HC-12 U.FL to SMA]()
+
+As you will also observe in that picture, I passed the cable *under* one of the zip ties holding down the HC-12. I did this to alleviate strain on the HC-12s tiny and weak U.FL port. This prevents something like a simple bump of the wire from ripping it out. I'd recommend this method (which may need you to cut the zip tie and use another), or you can skip this step at your own risk.
+
+Bravo! Will all the connections made, you can now test the end-to-end motor connectivity in its current state.
+
+![video running]()
+
+In the video above, you'll see I already assembled the antenna mast and attached to the rear left arm, running the U.FL to SMA cable to the top where a small 433 MHz antenna is attached. At this stage it isn't totally necessary as, even without an antenna, the HC-12 should be able to receive control commands when in close proximity to the transmitter itself. Only a few feet across a room should be doable without the antenna. 
+
+The *Centauri transmitter* is sending out control commands to the *Centauri Quadcopter* to turn the motors on ("arm" it), so be sure to follow the Transmitter build guide to get that end up and running to be able to perform this test!
