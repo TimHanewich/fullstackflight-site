@@ -44,6 +44,8 @@ First, a look at the anatomy of the Carrier Board.
 
 **Wire sizes:** The board has two sizes of wiring holes. The larger holes for the battery leads and ESC power leads accept thicker **16 AWG wire** for higher current. Use **22 AWG wire** in the smaller holes for signal and other low-current connections, not motor power.
 
+**Power pad polarity:** Across this carrier board's power-supply connections, **circular pads are positive (+)** and **square pads are negative (-/ground)**. Pay close attention to the pad shapes and labels when identifying polarity before wiring or applying power.
+
 ![anatomy](https://i.imgur.com/N2GZNbZ.png)
 
 As you can see above, a lot of electrical components are packed into a fairly small package. Later, you will be adding these electrical components to the airframe (MPU6050, HC12, 5v Regulator, etc.) and soldering a wire connecting the *component* to the *appropriate pad* on the board. There are also some minor electrical components that do get soldered *directly* onto the board (capacitor, ferrite bead, resistors), but more on that later!
