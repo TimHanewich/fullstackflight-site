@@ -19,7 +19,7 @@ Before we can build our quadcopter, we first must fabriate the body! The body of
 
 ![on thingiverse](https://i.imgur.com/njYvCxp.png)
 
-You can use a 3D slicer tool like [Cura]() to drag these parts (`.stl` files) and prepare a print on whatever 3D-printer you have access to. Normal [PLA]() will work and is certainly light enough!
+You can use a 3D slicer tool like [Cura](https://ultimaker.com/software/ultimaker-cura/) to drag these parts (`.stl` files) and prepare a print on whatever 3D-printer you have access to. Normal PLA will work and is certainly light enough!
 
 ![on cura](https://i.imgur.com/RtH0Uqt.png)
 
