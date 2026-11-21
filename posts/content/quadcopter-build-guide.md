@@ -236,7 +236,7 @@ The picture below shows this on my well-used quadcopter. The remaining pictures 
 
 ![pro-tip middleman wire](https://i.imgur.com/v7BhapZ.png)
 
-Now, all four arms should be prepped with the ESCs, the motors, and the wires passing through the holes in the arms where you will later connect them to the carrier board!
+Now, all four arms should be prepped with the ESCs, the motors, and the wires passing through the holes in the arms where you will later connect them to the carrier board! You'll also see that any slack remaining in the motors wires (if you did not want to cut it down) can be securely fastened to the side of the arm via zip tie to ensure it doesn't hit the propeller during flight.
 
 ![all four arms, ready](https://i.imgur.com/H5m95Ij.png)
 
@@ -244,7 +244,7 @@ Now, using eight M3x30mm screws (two per arm), connect the arms to the lower lev
 
 ![all four arms, attached](https://i.imgur.com/8407Erg.png)
 
-![all four arms, attached video]()
+![all four arms, attached video](https://i.imgur.com/e9Bz6Nr.gif)
 
 ![all four arms attached overhead](https://i.imgur.com/BSqDo9R.png)
 
