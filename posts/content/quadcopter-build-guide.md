@@ -125,17 +125,17 @@ Now, with our carrier board ready to go, it is time to begin assembling the dron
 
 Using four M2 screws, screw in the carrier board to the lower level of the airframe. Using four M3 screws, screw the MPU6050 frame (with the MPU6050 attached via the double-sided foam tape) just below the board. Ensure you have the MPU6050 in the orientation I have it in in the picture (mounting holes facing forawrd, pins towards the rear).
 
-![lower level pcb and mpu6050]()
+![lower level pcb and mpu6050](https://i.imgur.com/iEqxfzY.png)
 
 At the other end (rear) of the lower level, the HC-12 radio communication module has a position at the very back left corner, closest to where the antenna mast will eventually be situated. The HC-12 has no mounting hole for a screw, so four holes are there to accomodate two zip ties to firmly hold it down. As you can see in the picture above, it makes the most sense to position it in this orientation: wires facing forwad, where they will eventually feed towards the carrier board and U.FL port facing rearward, where a wire will eventually feed towards the antenna mast.
 
-![HC-12]()
+![HC-12](https://i.imgur.com/XfoyiiW.png)
 
-![HC-12 underneath]()
+![HC-12 underneath](https://i.imgur.com/mQKbjTy.png)
 
 Next, secure the MP1584EN 5v regulator in this position. Again, it lacks a mounting hole for a screw so two holes are positioned there for using a small zip tie to securely hold it down. The orientation matters a bit less than the HC-12 so you can flip it around either way you want... just be very sure to note which side is "VIN" (raw battery voltage) and which side is "VOUT" (5v power out) and hook those ends up to the correct pads on the GPIO later!
 
-![all components]()
+![all components](https://i.imgur.com/ynpOb9W.png)
 
 And now, the completed lower level! Excellent work, the electrical components are now all fastened and ready to be wired together.
 
@@ -149,13 +149,13 @@ Rinse and repeat this for every necessary connection between each component and 
 
 After you finish, it should look someting like this. You'll notice I also did my best here to trim the wires down so any excess wire is not "bundled up" in the lower level and also more weight the drone has to unnecessarily carry around.
 
-![spliced]()
+![spliced](https://i.imgur.com/8bvDEF0.png)
 
 At this stage, with the core electronics wired up (the carrier board, the 5v regulator, the IMU, and the HC-12), we *technically* have the "brain" of the quadcopter able to operate. You can flash the Centauri Quadcopter flight controller software (found [here](https://github.com/TimHanewich/centauri/tree/master/components/quadcopter/src) on GitHub) to the Raspberry Pi Pico using [Thonny](https://thonny.org/) and a USB cable (after flashing the latest version of MicroPython to your pico). I'll expand on how to do this in the future, but for now, there are plenty of tutorials you can find online through a simple internet search, like [this good one](https://www.youtube.com/watch?v=_ouzuI_ZPLs) for example.
 
 With the Centauri Flight Controller software loaded onto the pico, as soon as the pico gains power, it will boot up the flight controller code and begin trying to operate: verifying connection of the IMU and readability of data, diagnostic communication with the HC-12, and more.
 
-![power supplied]()
+![power supplied](https://i.imgur.com/WIBDIdI.png)
 
 At this stage, if you have a way of directly providing a 6.0 to 16.8 volt (the tolerable voltage range the Centauri Quadcopter is designed for, representing 2S-4S), you can technically power it up and verify it operates! **NOTE: be very careful doing this. ONLY provide 6.0-16.8 volts. Be VERY careful to ensure you are connection the negative end and positive ned to the correct placeholder wires of the carrer board. The circular "BATTERY" pad is positive, the square is negative.** And don't let the two wires touch (short) during this. Only do this at this stage if you want to and trust yourself to not make mistakes.
 
@@ -171,11 +171,11 @@ Next, move on to completing the lower level electronics bay: adding the battery 
 
 Again, you can use the "hook" splicing method showcased in the video you watched above. This time, it is obviously with a bit thicker wire which can make it a bit more challenging, but certainly still doable.
 
-![power hook]()
+![power hook](https://i.imgur.com/FpjlZOx.png)
 
-![power hook squashed]()
+![power hook squashed](https://i.imgur.com/FiNKBHb.png)
 
-![power hook soldered]()
+![power hook soldered](https://i.imgur.com/F15qvmG.png)
 
 And now both the positive and negative power wires should be extended to necessary length to reach the very rear of the lower level where the battery can access it (or maybe you won't need to splice additional length because your placeholder wires are long enough to reach!). 
 
@@ -183,16 +183,16 @@ Now now, with each wire cut to the same length, solder each into a *female* XT60
 
 When connecting the ends of the power lead wires with the XT60 connector, the black "cover" (sheath) slides over them first, *then* you insert the wires into their corresponding positive/negative terminals of the XT60 connector. The picture below depicts which sides of the XT60 connector correspond to  negative/positive. As you can see, the positive (red) wire feeds into the "square-shaped" side, the positive side, while the ground (black) wire feeds into the other. Be very sure to match this connection!
 
-![XT60 connection]()
+![XT60 connection](https://i.imgur.com/23Rsb35.png)
 
 With the XT60 female connector set up at the very end of the power lead wires, you can now use these six holes to wrap three zip ties around the wires securely holding it down to the lower level.
 
-![3 zip ties holding wire leads]()
+![3 zip ties holding wire leads](https://i.imgur.com/HZ8tOz8.png)
 
-![3 zip ties holding wire leads fastened and finished]()
+![3 zip ties holding wire leads fastened and finished](https://i.imgur.com/6pnHDg1.png)
 
-![XT60 at the end]()
+![XT60 at the end](https://i.imgur.com/6HF4Flt.png)
 
 Excellent work! And now, after double and triple checking your connections, you should be able to provide electrical power to the Centauri system, this time through a battery itself - the battery you later plan to run the quadcopter on!
 
-![power from battery]()
+![power from battery](https://i.imgur.com/0XTJ2uF.png)
