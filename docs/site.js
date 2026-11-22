@@ -29,6 +29,7 @@
   }
 
   document.querySelectorAll(".eco-pane[data-photo-gallery]").forEach((pane) => {
+    const name = pane.dataset.photoGallery;
     const photos = pane.querySelector(".eco-photos");
     const images = Array.from(photos.querySelectorAll(".eco-photo"));
     const arrows = photos.querySelectorAll(".eco-photo-arrow");
@@ -73,7 +74,7 @@
     images.forEach((image) => {
       image.addEventListener("load", updateStatus);
       image.addEventListener("error", () => {
-        console.error("Unable to load quadcopter photo: " + image.src);
+        console.error("Unable to load " + name + " photo: " + image.src);
         updateStatus();
       });
     });
@@ -86,7 +87,7 @@
     });
     preview.tabIndex = 0;
     preview.setAttribute("role", "group");
-    preview.setAttribute("aria-label", "Centauri quadcopter preview. Focus or tap to view photos.");
+    preview.setAttribute("aria-label", name + " preview. Focus or tap to view photos.");
     photos.hidden = false;
     showPhotos(false);
     preview.addEventListener("focus", () => {
