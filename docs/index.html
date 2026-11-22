@@ -112,8 +112,22 @@
             <p>The pilot's control interface. A Python program reads an Xbox controller and sends commands through a Pico-powered HC-12 radio. A terminal dashboard shows inputs and pre-flight telemetry, with wireless PID updates for easier tuning.</p>
           </div>
         </div>
-        <div class="eco-pane" data-model="models/link.glb" data-center="OLED_screen">
-          <canvas class="eco-canvas" role="img" aria-label="3D view of the Centauri Link radio monitor"></canvas>
+        <div class="eco-pane" data-model="models/link.glb" data-center="OLED_screen" data-photo-gallery="Centauri Link">
+          <div class="eco-preview">
+            <canvas class="eco-canvas" role="img" aria-label="3D view of the Centauri Link radio monitor"></canvas>
+            <div class="eco-photos" id="link-photos" role="region" aria-roledescription="carousel" aria-label="Centauri Link photos" hidden>
+              <img class="eco-photo" src="https://i.imgur.com/Vpz9GPh.png" alt="The real Centauri Link radio monitor, photo 1 of 3" loading="lazy" />
+              <img class="eco-photo" src="https://i.imgur.com/1S3idzD.jpeg" alt="The real Centauri Link radio monitor, photo 2 of 3" loading="lazy" hidden />
+              <img class="eco-photo" src="https://i.imgur.com/EvRSIi8.jpeg" alt="The real Centauri Link radio monitor, photo 3 of 3" loading="lazy" hidden />
+              <p class="eco-photo-status" hidden></p>
+              <button class="eco-photo-arrow eco-photo-arrow--previous" type="button" data-direction="-1" aria-label="Previous Link photo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg>
+              </button>
+              <button class="eco-photo-arrow eco-photo-arrow--next" type="button" data-direction="1" aria-label="Next Link photo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg>
+              </button>
+            </div>
+          </div>
           <div class="eco-info">
             <h3>LINK</h3>
             <p>Validate radio communication before taking flight. A small handheld device passively listens for Centauri radio communications. Check reception over distance, without risking your quadcopter on a long-range flight.</p>
