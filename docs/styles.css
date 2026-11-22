@@ -109,8 +109,8 @@ img { max-width: 100%; }
   background: linear-gradient(180deg, var(--hero-top), var(--hero-center) 42%, transparent 65%, var(--hero-bottom));
 }
 .landing-content { width: 100%; max-width: 1080px; padding: 24px; text-align: center; }
-.landing h1 { font-size: clamp(36px, 4.2vw, 60px); line-height: 1.12; font-weight: 500; letter-spacing: -1.6px; }
-.landing-tagline { margin-top: 12px; font-size: clamp(18px, 2vw, 22px); font-weight: 500; line-height: 1.4; }
+.landing h1 { font-size: clamp(40px, 5vw, 72px); line-height: 1.12; font-weight: 700; letter-spacing: -1.6px; text-wrap: balance; }
+.landing-tagline { max-width: 760px; margin: 24px auto 0; font-size: clamp(17px, 1.8vw, 22px); font-weight: 400; line-height: 1.6; color: rgba(255, 255, 255, 0.88); }
 
 .intro { max-width: 850px; margin: auto; text-align: center; padding: 100px 24px 64px; }
 .intro h2, main section > h2 { font-size: clamp(30px, 3.5vw, 44px); font-weight: 500; letter-spacing: -1.2px; line-height: 1.2; }
@@ -380,7 +380,7 @@ img.step-card__icon { filter: invert(1); }
   .landing { min-height: 660px; max-height: 960px; background-position: center; }
   .landing-video { object-position: center; }
   .landing h1 { letter-spacing: -1px; }
-  .landing-tagline { max-width: 290px; margin: 16px auto 0; }
+  .landing-tagline { max-width: 560px; margin: 20px auto 0; }
   .intro { padding: 64px 24px 44px; }
   .intro > p:last-child { font-size: 16px; }
   .build, .getstarted, .chapters, .community, .parts, .shop, .cohort { width: calc(100% - 40px); padding: 56px 0; }
@@ -425,7 +425,7 @@ img.step-card__icon { filter: invert(1); }
 @media (max-width: 480px) {
   .header-inner { gap: 12px; }
   .site-brand span { display: none; }
-  .landing h1 { font-size: 36px; }
+  .landing h1 { font-size: 40px; }
   .chapter-grid { grid-template-columns: 1fr; }
   .chapter-card--wide .chapter-num { font-size: 17px; }
   .cohort-facts strong { font-size: 32px; }
