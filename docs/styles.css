@@ -14,9 +14,7 @@
   --header-height: 81px;
   --white: #ffffff;
   --hero-bg: #102033;
-  --hero-top: rgba(8, 18, 30, 0.72);
-  --hero-center: rgba(8, 18, 30, 0.32);
-  --hero-bottom: rgba(8, 18, 30, 0.7);
+  --hero-overlay: rgba(0, 0, 0, 0.5);
   --font: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 }
 
@@ -106,7 +104,7 @@ img { max-width: 100%; }
 .landing-video { object-fit: cover; object-position: center 58%; z-index: -2; filter: blur(5px); transform: scale(1.06); }
 .landing-overlay {
   z-index: -1;
-  background: linear-gradient(180deg, var(--hero-top), var(--hero-center) 42%, transparent 65%, var(--hero-bottom));
+  background: var(--hero-overlay);
 }
 .landing-content { width: 100%; max-width: 1080px; padding: 24px; text-align: center; }
 .landing h1 { font-size: clamp(40px, 5vw, 72px); line-height: 1.12; font-weight: 700; letter-spacing: -1.6px; text-wrap: balance; }
