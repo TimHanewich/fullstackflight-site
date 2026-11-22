@@ -127,6 +127,16 @@ main section > h2 { text-align: center; margin-bottom: 20px; }
 .eco-grid { display: grid; grid-template-columns: repeat(4, minmax(220px, 1fr)); gap: 16px; overflow-x: auto; }
 .eco-pane { position: relative; background: var(--bg-soft); overflow: hidden; min-width: 0; }
 .eco-canvas { display: block; width: 100%; height: 230px; }
+.eco-preview { position: relative; height: 230px; }
+.eco-preview:focus-visible { outline-offset: -3px; }
+.eco-photos { position: absolute; inset: 0; background: var(--bg-soft); }
+.eco-photo { display: block; width: 100%; height: 100%; object-fit: contain; }
+.eco-photo-status { position: absolute; inset: 0; display: grid; place-items: center; padding: 24px; color: var(--muted); background: var(--bg-soft); text-align: center; font-size: 14px; }
+.eco-photo-arrow { position: absolute; top: 50%; transform: translateY(-50%); display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 50%; background: transparent; color: var(--white); }
+.eco-photo-arrow--previous { left: 0; }
+.eco-photo-arrow--next { right: 0; }
+.eco-photo-arrow svg { width: 28px; height: 28px; padding: 4px; border-radius: 50%; background: rgba(10, 13, 18, 0.55); }
+.eco-photo-arrow:hover svg { background: rgba(10, 13, 18, 0.85); color: var(--accent); }
 .eco-img { display: block; width: 100%; height: 230px; object-fit: cover; object-position: left top; }
 .eco-info { padding: 8px 20px 24px; text-align: center; }
 .eco-shot .eco-info { padding-top: 24px; }

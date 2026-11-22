@@ -6,8 +6,8 @@
   <title>Full Stack Flight</title>
   <meta name="description" content="Build a quadcopter from scratch and understand every part." />
   <link rel="preload" href="media/centauri-flight.webp" as="image" />
-  <link rel="stylesheet" href="styles.css?v=fsf-video-corner-20261122-scroll" />
-  <script src="site.js?v=fsf-video-corner-20261122-scroll" defer></script>
+  <link rel="stylesheet" href="styles.css?v=fsf-quadcopter-photos-20261122-arrows" />
+  <script src="site.js?v=fsf-quadcopter-photos-20261122-arrows" defer></script>
   <link rel="icon" type="image/svg+xml" href="full-stack-flight.svg">
 
   <!--Microsoft Clarity-->
@@ -70,8 +70,22 @@
       <h2>The Centauri Ecosystem</h2>
       <p class="section-blurb">Four connected systems, built from scratch from the ground up.<br />Explore the hardware, the code, and everything in between.</p>
       <div class="eco-grid">
-        <div class="eco-pane" data-model="models/quadcopter.glb">
-          <canvas class="eco-canvas" role="img" aria-label="3D view of the Centauri quadcopter"></canvas>
+        <div class="eco-pane" data-model="models/quadcopter.glb" data-photo-gallery>
+          <div class="eco-preview">
+            <canvas class="eco-canvas" role="img" aria-label="3D view of the Centauri quadcopter"></canvas>
+            <div class="eco-photos" id="quadcopter-photos" role="region" aria-roledescription="carousel" aria-label="Centauri quadcopter photos" hidden>
+              <img class="eco-photo" src="https://i.imgur.com/g1joibO.jpeg" alt="The real Centauri quadcopter, photo 1 of 3" loading="lazy" />
+              <img class="eco-photo" src="https://i.imgur.com/Qojtf4m.jpeg" alt="The real Centauri quadcopter, photo 2 of 3" loading="lazy" hidden />
+              <img class="eco-photo" src="https://i.imgur.com/N1u5wN2.jpeg" alt="The real Centauri quadcopter, photo 3 of 3" loading="lazy" hidden />
+              <p class="eco-photo-status" hidden></p>
+              <button class="eco-photo-arrow eco-photo-arrow--previous" type="button" data-direction="-1" aria-label="Previous quadcopter photo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg>
+              </button>
+              <button class="eco-photo-arrow eco-photo-arrow--next" type="button" data-direction="1" aria-label="Next quadcopter photo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg>
+              </button>
+            </div>
+          </div>
           <div class="eco-info">
             <h3>QUADCOPTER</h3>
             <p>The star of the show! A custom 3D-printed airframe with a Raspberry Pi Pico running a MicroPython flight controller. It reads pilot commands, senses motion, and adjusts all four motors through a 250 Hz PID loop to keep you flying.</p>
@@ -437,7 +451,7 @@
       requestAnimationFrame(animate);
       const dt = clock.getDelta();
       panes.forEach((p) => {
-        if (!p.visible || p.failed || document.hidden) return;
+        if (!p.visible || p.failed || document.hidden || p.pane.classList.contains("is-showing-photos")) return;
         resize(p);
         if (!reducedMotion.matches) p.pivot.rotation.y += dt * 0.2;
         p.renderer.render(p.scene, p.camera);
