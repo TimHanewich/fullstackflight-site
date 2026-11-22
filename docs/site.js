@@ -58,7 +58,8 @@
     };
     const showPhotos = (show) => {
       active = show;
-      photos.hidden = !show;
+      photos.inert = !show;
+      photos.setAttribute("aria-hidden", String(!show));
       pane.classList.toggle("is-showing-photos", show);
       const model = pane.querySelector(".eco-canvas, .model-status");
       if (model) model.setAttribute("aria-hidden", String(show));
@@ -86,16 +87,18 @@
     preview.tabIndex = 0;
     preview.setAttribute("role", "group");
     preview.setAttribute("aria-label", "Centauri quadcopter preview. Focus or tap to view photos.");
+    photos.hidden = false;
+    showPhotos(false);
     preview.addEventListener("focus", () => {
       if (!active && preview.matches(":focus-visible")) showPhotos(true);
     });
     preview.addEventListener("click", (event) => {
       if (!event.target.closest("button")) showPhotos(!active);
     });
-    pane.addEventListener("pointerenter", (event) => {
+    preview.addEventListener("pointerenter", (event) => {
       if (event.pointerType === "mouse") showPhotos(true);
     });
-    pane.addEventListener("pointerleave", (event) => {
+    preview.addEventListener("pointerleave", (event) => {
       if (event.pointerType === "mouse") {
         if (photos.contains(document.activeElement)) preview.focus({ preventScroll: true });
         showPhotos(false);
