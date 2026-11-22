@@ -133,7 +133,7 @@ main section > h2 { text-align: center; margin-bottom: 20px; }
 .is-showing-photos .eco-preview .eco-canvas, .is-showing-photos .eco-preview .model-status { opacity: 0; }
 .eco-photos { position: absolute; inset: 0; background: var(--bg-soft); opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.3s ease, visibility 0s linear 0.3s; }
 .is-showing-photos .eco-photos { opacity: 1; visibility: visible; pointer-events: auto; transition-delay: 0s; }
-.eco-photo { display: block; width: 100%; height: 100%; object-fit: cover; }
+.eco-photo { display: block; width: 100%; height: 100%; object-fit: contain; }
 .eco-photo-status { position: absolute; inset: 0; display: grid; place-items: center; padding: 24px; color: var(--muted); background: var(--bg-soft); text-align: center; font-size: 14px; }
 .eco-photo-arrow { position: absolute; top: 50%; transform: translateY(-50%); display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 50%; background: transparent; color: var(--white); }
 .eco-photo-arrow--previous { left: 0; }
