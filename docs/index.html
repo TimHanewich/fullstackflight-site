@@ -6,8 +6,8 @@
   <title>Full Stack Flight</title>
   <meta name="description" content="Build a quadcopter from scratch and understand every part." />
   <link rel="preload" href="media/centauri-flight.webp" as="image" />
-  <link rel="stylesheet" href="styles.css?v=fsf-video-corner-20261122" />
-  <script src="site.js?v=fsf-video-corner-20261122" defer></script>
+  <link rel="stylesheet" href="styles.css?v=fsf-video-corner-20261122-scroll" />
+  <script src="site.js?v=fsf-video-corner-20261122-scroll" defer></script>
   <link rel="icon" type="image/svg+xml" href="full-stack-flight.svg">
 
   <!--Microsoft Clarity-->
@@ -119,24 +119,13 @@
         </div>
       </div>
 
-      <section class="video-corner" id="video-corner" aria-labelledby="video-corner-title">
-        <h2 id="video-corner-title">Video Corner</h2>
-        <p class="section-blurb">Quick discoveries, behind-the-scenes builds, and Centauri in flight.</p>
-        <div class="video-corner__controls" hidden>
-          <button type="button" data-direction="-1" aria-label="Previous videos" aria-controls="video-carousel">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg>
-          </button>
-          <button type="button" data-direction="1" aria-label="Next videos" aria-controls="video-carousel">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg>
-          </button>
-        </div>
+      <section class="video-corner" id="video-corner" aria-label="Videos">
         <ul class="video-carousel" id="video-carousel" tabindex="0" aria-label="Videos from the build. Scroll to browse.">
           <li class="video-card video-card--short">
             <a class="video-card__link" href="https://www.youtube.com/shorts/8C9OAwhAngs" data-video-id="8C9OAwhAngs" data-format="short" target="_blank" rel="noopener">
               <div class="video-card__preview">
                 <img src="https://i.ytimg.com/vi/8C9OAwhAngs/hqdefault.jpg" alt="" loading="lazy" width="480" height="360" />
                 <span class="video-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m9 5 11 7-11 7z"/></svg></span>
-                <span class="video-card__badge">Short</span>
               </div>
               <h3>I invented a language for my drone</h3>
             </a>
@@ -146,7 +135,6 @@
               <div class="video-card__preview">
                 <img src="https://i.ytimg.com/vi/gJ3T6LsLneg/hqdefault.jpg" alt="" loading="lazy" width="480" height="360" />
                 <span class="video-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m9 5 11 7-11 7z"/></svg></span>
-                <span class="video-card__badge">Short</span>
               </div>
               <h3>This $4 Computer is Flying my Drone</h3>
             </a>
@@ -156,7 +144,6 @@
               <div class="video-card__preview">
                 <img src="https://i.ytimg.com/vi/dh1Hp4LlTdI/hqdefault.jpg" alt="" loading="lazy" width="480" height="360" />
                 <span class="video-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m9 5 11 7-11 7z"/></svg></span>
-                <span class="video-card__badge">Watch</span>
               </div>
               <h3>Before and after building a custom PCB for my drone</h3>
             </a>
@@ -166,7 +153,6 @@
               <div class="video-card__preview">
                 <img src="https://i.ytimg.com/vi/-Kj5vSNrLSk/hqdefault.jpg" alt="" loading="lazy" width="480" height="360" />
                 <span class="video-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m9 5 11 7-11 7z"/></svg></span>
-                <span class="video-card__badge">Watch</span>
               </div>
               <h3>Centauri Test Flight - Two Perspectives Snippet</h3>
             </a>

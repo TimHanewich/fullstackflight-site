@@ -31,27 +31,6 @@
   const carousel = document.querySelector(".video-carousel");
   if (carousel) {
     const corner = carousel.closest(".video-corner");
-    const controls = corner.querySelector(".video-corner__controls");
-    const buttons = controls.querySelectorAll("button");
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-    const updateControls = () => {
-      buttons[0].disabled = carousel.scrollLeft <= 1;
-      buttons[1].disabled = carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 1;
-    };
-    controls.hidden = false;
-    buttons.forEach((button) => {
-      button.addEventListener("click", () => {
-        carousel.scrollBy({
-          left: Number(button.dataset.direction) * carousel.clientWidth * 0.8,
-          behavior: reducedMotion.matches ? "instant" : "smooth"
-        });
-      });
-    });
-    carousel.addEventListener("scroll", updateControls, { passive: true });
-    new ResizeObserver(updateControls).observe(carousel);
-    updateControls();
-
     const dialog = corner.querySelector(".video-dialog");
     const player = dialog.querySelector(".video-dialog__player");
     const title = dialog.querySelector("#video-dialog-title");

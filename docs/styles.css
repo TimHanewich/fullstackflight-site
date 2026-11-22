@@ -140,12 +140,8 @@ main section > h2 { text-align: center; margin-bottom: 20px; }
 .video-wrap { position: relative; aspect-ratio: 16 / 9; background: var(--bg-soft); }
 .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .video-corner { margin-top: 80px; }
-.video-corner__controls { display: flex; justify-content: flex-end; gap: 8px; margin: -20px 0 20px; }
-.video-corner__controls[hidden] { display: none; }
-.video-corner__controls button, .video-dialog__close { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; border: 1px solid var(--border); background: var(--bg); color: var(--text); cursor: pointer; }
-.video-corner__controls button:hover:not(:disabled), .video-dialog__close:hover { border-color: var(--accent); color: var(--accent); }
-.video-corner__controls button:disabled { opacity: 0.35; cursor: default; }
-.video-corner__controls svg { width: 24px; height: 24px; }
+.video-dialog__close { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; border: 1px solid var(--border); background: var(--bg); color: var(--text); cursor: pointer; }
+.video-dialog__close:hover { border-color: var(--accent); color: var(--accent); }
 .video-carousel { --preview-height: clamp(210px, 30vw, 300px); display: flex; gap: 20px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: 6px; scrollbar-color: var(--border) transparent; list-style: none; padding: 8px 6px 20px; }
 .video-card { flex: 0 0 min(calc(var(--preview-height) * 16 / 9), 78vw); scroll-snap-align: start; min-width: 0; }
 .video-card--short { flex-basis: calc(var(--preview-height) * 9 / 16); }
@@ -154,7 +150,6 @@ main section > h2 { text-align: center; margin-bottom: 20px; }
 .video-card__preview img { display: block; width: 100%; height: 100%; object-fit: cover; transition: opacity 0.2s ease; }
 .video-card__play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: rgba(10, 13, 18, 0.85); color: var(--white); transition: background 0.2s ease; }
 .video-card__play svg { width: 28px; height: 28px; }
-.video-card__badge { position: absolute; bottom: 12px; left: 12px; padding: 3px 10px; background: rgba(10, 13, 18, 0.85); color: var(--white); font-size: 12px; }
 .video-card h3 { margin-top: 14px; font-size: 16px; font-weight: 500; line-height: 1.5; }
 .video-card__link:hover { color: var(--accent); }
 .video-card__link:hover img { opacity: 0.85; }
