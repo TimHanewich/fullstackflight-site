@@ -139,6 +139,36 @@ main section > h2 { text-align: center; margin-bottom: 20px; }
 .build-desc p + p { margin-top: 16px; }
 .video-wrap { position: relative; aspect-ratio: 16 / 9; background: var(--bg-soft); }
 .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video-corner { margin-top: 80px; }
+.video-corner__controls { display: flex; justify-content: flex-end; gap: 8px; margin: -20px 0 20px; }
+.video-corner__controls[hidden] { display: none; }
+.video-corner__controls button, .video-dialog__close { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; border: 1px solid var(--border); background: var(--bg); color: var(--text); cursor: pointer; }
+.video-corner__controls button:hover:not(:disabled), .video-dialog__close:hover { border-color: var(--accent); color: var(--accent); }
+.video-corner__controls button:disabled { opacity: 0.35; cursor: default; }
+.video-corner__controls svg { width: 24px; height: 24px; }
+.video-carousel { --preview-height: clamp(210px, 30vw, 300px); display: flex; gap: 20px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: 6px; scrollbar-color: var(--border) transparent; list-style: none; padding: 8px 6px 20px; }
+.video-card { flex: 0 0 min(calc(var(--preview-height) * 16 / 9), 78vw); scroll-snap-align: start; min-width: 0; }
+.video-card--short { flex-basis: calc(var(--preview-height) * 9 / 16); }
+.video-card__link { display: block; height: 100%; color: var(--text); text-decoration: none; }
+.video-card__preview { position: relative; height: var(--preview-height); overflow: hidden; background: var(--bg); border: 1px solid var(--border); }
+.video-card__preview img { display: block; width: 100%; height: 100%; object-fit: cover; transition: opacity 0.2s ease; }
+.video-card__play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: rgba(10, 13, 18, 0.85); color: var(--white); transition: background 0.2s ease; }
+.video-card__play svg { width: 28px; height: 28px; }
+.video-card__badge { position: absolute; bottom: 12px; left: 12px; padding: 3px 10px; background: rgba(10, 13, 18, 0.85); color: var(--white); font-size: 12px; }
+.video-card h3 { margin-top: 14px; font-size: 16px; font-weight: 500; line-height: 1.5; }
+.video-card__link:hover { color: var(--accent); }
+.video-card__link:hover img { opacity: 0.85; }
+.video-card__link:hover .video-card__play { background: var(--button-bg); }
+.video-dialog { width: min(960px, calc(100% - 40px)); max-height: calc(100svh - 40px); margin: auto; padding: 20px; border: 1px solid var(--border); background: var(--bg); color: var(--text); }
+.video-dialog::backdrop { background: rgba(0, 0, 0, 0.8); }
+.video-dialog--short { width: min(400px, calc((100svh - 200px) * 9 / 16 + 40px), calc(100% - 40px)); }
+.video-dialog__header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 16px; }
+.video-dialog__header h3 { font-size: 16px; font-weight: 500; line-height: 1.5; }
+.video-dialog__close { flex-shrink: 0; padding: 0 12px; font: inherit; font-size: 14px; }
+.video-dialog__player { aspect-ratio: 16 / 9; background: #000; }
+.video-dialog--short .video-dialog__player { aspect-ratio: 9 / 16; }
+.video-dialog__player iframe { display: block; width: 100%; height: 100%; border: 0; }
+.video-dialog__youtube { display: inline-flex; align-items: center; min-height: 44px; margin-top: 8px; font-size: 14px; }
 .oss-promo {
   display: flex;
   align-items: center;
@@ -355,6 +385,8 @@ img.step-card__icon { filter: invert(1); }
   .eco-grid { gap: 12px; }
   .eco-info h3 { font-size: 22px; }
   .build-grid { grid-template-columns: 1fr; margin-top: 48px; gap: 28px; }
+  .video-corner { margin-top: 48px; }
+  .video-carousel { gap: 16px; }
   .oss-promo { flex-wrap: wrap; gap: 16px; margin-top: 40px; }
   .oss-promo__text { flex: 1; }
   .oss-promo__cta { margin-left: 50px; }
