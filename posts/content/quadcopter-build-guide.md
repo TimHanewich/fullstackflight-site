@@ -167,6 +167,8 @@ At this stage, with the core electronics wired up (the carrier board, the 5v reg
 
 With the Centauri Flight Controller software loaded onto the pico, as soon as the pico gains power, it will boot up the flight controller code and begin trying to operate: verifying connection of the IMU and readability of data, diagnostic communication with the HC-12, and more.
 
+**Optional: DC power supply test.** You do not have to perform this test if you do not have a DC power supply or simply do not want to. If you skip it, jump ahead to the paragraph beginning "Next, move on to completing the lower level electronics bay" below and continue adding the battery power connector.
+
 ![power supplied](https://i.imgur.com/WIBDIdI.png)
 
 At this stage, if you have a way of directly providing a 6.0 to 16.8 volt (the tolerable voltage range the Centauri Quadcopter is designed for, representing 2S-4S), you can technically power it up and verify it operates! **NOTE: be very careful doing this. ONLY provide 6.0-16.8 volts. Be VERY careful to ensure you are connecting the negative end and positive end to the correct placeholder wires of the carrier board. The circular "BATTERY" pad is positive, the square is negative.** And don't let the two wires touch (short) during this. Only do this at this stage if you want to and trust yourself to not make mistakes.
