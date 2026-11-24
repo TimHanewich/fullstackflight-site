@@ -52,7 +52,7 @@ And true to the goal of keeping this whole system understandable and approachabl
 
 ![flying gif](https://i.imgur.com/3GprQfl.gif)
 
-Being a fan of astronomy, I named this system *Centauri* after [Alpha Centauri](https://en.wikipedia.org/wiki/Alpha_Centauri), the closest star system to our solar system. The name reflects my love of astronomy and seemed fitting for a project about flight and exploration.
+Being a fan of astronomy, I named this system *Centauri* after [Alpha Centauri](https://en.wikipedia.org/wiki/Alpha_Centauri), the closest star system to our solar system. Alpha Centauri contains three stars, with two being more prominent. When I named the project, Centauri had three components: the quadcopter, transmitter, and analysis software. The quadcopter and transmitter took most of my attention, so the comparison felt fitting! Link brings the ecosystem to four systems.
 
 ## Full Stack Flight: 9-Part Educational Series
 Rather than just handing you working quadcopter specs, I'm walking through every design decision and every line of code behind Centauri so you can understand exactly how it works and build your own version of it. Like I did [with Scout](https://timhanewich.medium.com/taking-flight-with-the-raspberry-pi-pico-micropython-diy-quadcopter-drone-61ed4f7ee746), I've published a multi-article series on how I built Centauri from the ground up, covering both the overall architecture and the technical details. Those chapters are listed below:
