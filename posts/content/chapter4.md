@@ -11,9 +11,9 @@ description: 'Get to know the hardware onboard Centauri and how its carrier boar
 
 With the airframe covered in [the last chapter](../chapter3), let's look at the hardware that makes flight possible.
 
-The original aircraft used point-to-point wiring. The current build uses the **Centauri Flight Controller Carrier Board**, which handles electrical routing between the components. You don't need to recreate the old wiring diagram or work through each Pico pin assignment. Solder the Pico and small components onto the board, then connect the external modules and ESCs to its labeled pads.
+The **Centauri Flight Controller Carrier Board** handles electrical routing between the components. You don't need to build those connections with point-to-point wiring or work through each Pico pin assignment. Solder the Pico and small components onto the board, then connect the external modules and ESCs to its labeled pads.
 
-The board is sold as a bare, unpopulated PCB. Electronics, motors, battery, and other parts are separate. The [shop and parts lists](../../shop/) explain what to buy, and the [Quadcopter Build Guide](../quadcopter-build-guide/) walks through assembly. Some photos below show my original aircraft and are included as development history.
+The board is sold as a bare, unpopulated PCB. Electronics, motors, battery, and other parts are separate. The [shop and parts lists](../../shop/) explain what to buy, and the [Quadcopter Build Guide](../quadcopter-build-guide/) walks through assembly. 
 
 Like any flight system, the full hardware and electronics package can appear sophisticated and complex, particularly to someone new to this area. In this chapter, however, I'll do my best to thoroughly describe the role of each and every component onboard the *Centauri* quadcopter.
 
@@ -90,7 +90,7 @@ In *Centauri* I used the [MPU-6050](https://amzn.to/4yh76Ev), a very common, low
 
 As described in the previous chapter, all three critical avionics elements are securely mounted on the **lower level** of the airframe:
 
-![avionics mounted to lower level](https://i.imgur.com/CpW4sjG.png)
+![avionics mounted to lower level](https://i.imgur.com/iEqxfzY.png)
 
 ## Propulsion
 What physical components onboard the quadcopter allow it to actually lift off? Enter the **propulsion** package!
@@ -107,7 +107,7 @@ While I went with very high-performance motors in my previous quadcopter build, 
 
 ![motors](https://i.imgur.com/xHjQw91.png)
 
-The image above shows an early assembly. I removed the banana connectors and originally soldered the motor leads directly to the ESC pads. Those joints later broke loose on my build. I now use short intermediate wires with insulated splices and strain relief, as shown in the build guide. Wire size must suit the motor current; these are power connections, not signal wires.
+The motors connect to their ESCs through short intermediate wires with insulated splices and strain relief, as shown in the build guide. This avoids pulling directly on the ESC pads when the motor leads move. Wire size must suit the motor current; these are power connections, not signal wires.
 
 **Electronic Speed Controllers**: in the picture of the motors above, you'll notice each motor has **three** wires stemming from it. That may surprise you at first if you're more familiar with traditional *brushed* DC motors, which have only two wires: a positive and a negative. A brushless DC motor ("BLDC") has three wires to allow for the rapid switching of magnetic poles within the motor itself, which is what causes the rotor to begin rotating.
 
@@ -132,17 +132,15 @@ Note that I have experimented with alternative supplies: a [2S 18650 Li-ion pack
 
 The supply current from the battery directly powers the ESCs and motors. But what about the other onboard components that require a much lower voltage?
 
-**MP1584EN Buck Converter**: the current build uses an MP1584EN module to step battery voltage down to a regulated 5V supply. The ESCs receive raw battery power; the Pico and HC-12 use the regulated supply, and the MPU-6050 receives 3.3V from the Pico. The carrier board routes these connections.
+**MP1584EN Buck Converter**: an MP1584EN module is used to step battery voltage down to a regulated 5V supply. The ESCs receive raw battery power; the Pico and HC-12 use the regulated supply, and the MPU-6050 receives 3.3V from the Pico. The carrier board routes these connections.
 
 Before connecting the regulator output to the rest of the electronics, verify it is set to 5V with a multimeter. Match the carrier board's VIN pads to the module's VIN terminals and VOUT pads to VOUT, with positive and ground matched on each pair. The build guide shows the mounting and connections.
 
-The following regulator photo shows the original LM2596, which had a larger footprint and its own printed holder.
-
-![LM2596 mounted to lower level](https://i.imgur.com/BdDh9rQ.png)
+![MP1584EN regulator mounted beside the radio and carrier board](https://i.imgur.com/ynpOb9W.png)
 
 A buck converter regulates its output within its specified input range and load limits. Set and check the output before connecting sensitive electronics; do not assume that a module arrives adjusted correctly.
 
-That was the starting point for my original power system. The current carrier board also provides positions for the capacitors and ferrite bead described in the build guide. Populate those as shown rather than treating the following development story as an instruction to leave them out.
+The carrier board provides positions for the capacitors and ferrite bead described in the build guide. Populate those as shown to complete the power-filtering connections.
 
 While building *Centauri*, I learned that managing and regulating the power supply fed to the other critical and highly-sensitive modules onboard is very important for performance and reliability. The ESCs, described in the "Propulsion" section above, rapidly switch the current provided to the motors (at several thousand times per second), and this rapid switching can introduce serious [**electrical noise**](https://claude.ai/share/f9b4ea50-dac4-44b4-b492-9cfcd169bb15) that ripples throughout the electrical system. The good news is that I figured out a decent way to combat this (for the most part), and I'll share all about it below!
 
@@ -154,9 +152,9 @@ I discovered this after some pretty severe accidents. The *Centauri* quadcopter 
 
 I made some changes, described below, that drastically reduced the noise in the system, leading to a much cleaner signal received by the antenna and HC-12, and boosting range and performance:
 
-**10 uF Capacitor** and **0.1 uF Capacitor**: in the original wiring, I placed these at the HC-12's power pins to reduce supply noise. On the current build, they are soldered into their labeled carrier-board positions. The 10 uF capacitor is polarized; match its positive lead to the board's positive marking. The [10 uF capacitor](https://amzn.to/4bFcebU) filters out low-to-mid frequency noise while the [0.1 uF capacitor](https://amzn.to/44lKKUT) filters out high-frequency noise. Both act as a small local charge reservoir that can be drawn upon when minor disturbances in the supply voltage occur, "smoothing" out the stability of the voltage supplied to the HC-12.
+**10 uF Capacitor** and **0.1 uF Capacitor**: these help reduce supply noise and are soldered into their labeled carrier-board positions. The 10 uF capacitor is polarized; match its positive lead to the board's positive marking. The [10 uF capacitor](https://amzn.to/4bFcebU) filters out low-to-mid frequency noise while the [0.1 uF capacitor](https://amzn.to/44lKKUT) filters out high-frequency noise. Both act as a small local charge reservoir that can be drawn upon when minor disturbances in the supply voltage occur, "smoothing" out the stability of the voltage supplied to the HC-12.
 
-**Ferrite Beads**: in my original point-to-point build, I used two ferrite beads to reduce electrical noise affecting the HC-12. The current carrier-board build uses one bead at the board's labeled BEAD position, as shown in the build guide. You don't need to recreate the old two-bead wiring arrangement. A ferrite bead is like a selective gatekeeper: it lets desired electrical signals, like DC power, pass through while blocking high-frequency interference (like that created by four noisy ESCs!) from getting through. In a way, ferrite beads act as resistors to unwanted high frequencies. I purchased [a pack of ferrite beads](https://amzn.to/3SVQRNa) and placed one on the HC-12's VCC line and one on the GND line.
+**Ferrite Bead**: solder one bead into the carrier board's labeled BEAD position, as shown in the build guide. A ferrite bead helps reduce high-frequency interference on the power supply while allowing DC power through. It works with the capacitors to help keep electrical noise from the ESCs out of the radio's supply. I used a bead from [this pack](https://amzn.to/3SVQRNa).
 
 After implementing the capacitors and ferrite beads, I saw quite a bit of improvement in the ambient electrical noise present while the ESCs are operating:
 
@@ -185,7 +183,7 @@ This AIO module frame and all other assets are available on [Centauri's GitHub r
 
 With the FPV AIO module onboard the quadcopter body with a 5v supply, all we have to do to watch its live transmission is get our hands on analog FPV goggles or a FPV monitor! I purchased the [SoloGood FPV Monitor](https://amzn.to/4fwKjxb) and have had a lot of success with it for flying the quadcopter *and* recording the video feed via its onboard DVR.
 
-**433 MHz Antenna**: the current build uses an external antenna on the rear-left mast. I previously tried the HC-12's spring antenna and several external mounting positions, described in chapter 3. Those were development experiments; use the current shop's antenna and cable for the documented build. Reception varies with installation and surroundings, so test your own link before flying and comply with local radio rules.
+**433 MHz Antenna**: an external antenna on the rear-left mast connects to the HC-12. Chapter 3 explains the trade-offs behind antenna placement. The [shop](../../shop/#quadcopter-parts) lists the antenna and cable. Reception varies with installation and surroundings, so test your own link before flying and comply with local radio rules.
 
 Let me tell you, finding and using *the right* antenna proved harder than I thought! I assumed it would be as simple as picking a 433 MHz antenna off of Amazon and being done. This is *not* the case; in the world of antennas, none is *exactly* perfect, and you have to be very discriminating about which you use.
 
@@ -193,22 +191,14 @@ Long story short, I purchased and used the [TI.10.0111](https://www.digikey.com/
 
 **U.FL to SMA Coaxial Cable**: if you *do* go down the "Configuration B, C, or D" route with an external antenna, you will need to purchase a U.FL to SMA coaxial cable: this is the cable that connects the 433 MHz antenna to the HC-12. The antenna screws into one end of the cable while the other snaps into the HC-12.
 
-If you are building *Centauri* in Configuration B or C (side-mounted or rear-mounted antenna), I found a 6-inch cable provides enough slack to connect the two in their positions, though it may be *a bit* tight in Configuration C (rear-mounted). My original mast-mounted build used a 12-inch cable because the HC-12 was farther forward. The current frame relocates it near the rear-left mast, and the shop specifies a 6-inch U.FL-to-SMA cable. Follow the current parts list and secure the cable to avoid pulling on the small U.FL connector.
+A 6-inch U.FL-to-SMA cable connects the rear-left HC-12 to the mast-mounted antenna. Follow the [parts list](../../shop/#quadcopter-parts) and secure the cable to avoid pulling on the small U.FL connector.
 
 ## Wiring
-On the current build, the carrier board handles the routing. Populate the board, then solder the external components to its labeled pads following the [build guide](../quadcopter-build-guide/). There is no need to reproduce the point-to-point wiring below.
+The carrier board handles electrical routing. Populate the board, then solder the external components to its labeled pads following the [build guide](../quadcopter-build-guide/). It saves you from creating the routing by hand.
 
 Keep these assembly checks in mind: circular power pads are positive and square power pads are ground; battery and ESC power leads use the larger holes and suitably rated wire; signal connections use the smaller holes. Match ESC1 to front left, ESC2 to front right, ESC3 to rear left, and ESC4 to rear right. Check polarity and regulator output before applying power, and keep propellers off during assembly and initial testing.
 
-### Original wiring reference
-
-The diagram below records my earlier build. It remains useful for understanding the separate power paths, but its regulator, filtering arrangement, and physical wiring are not the current assembly instructions. Detailed pin assignments and schematics remain available in the repository for readers who want to inspect them.
-
-![wiring diagram](https://i.imgur.com/0YmcytB.png)
-
-*Note: click [here](https://app.diagrams.net/#Uhttps%3A%2F%2Fraw.githubusercontent.com%2FTimHanewich%2Fcentauri%2F880aef867fc2f1b2ec5d29fdde0b9acc81f665ad%2Fcomponents%2Fquadcopter%2Fwiring.drawio#%7B%22pageId%22%3A%22W1gebfnubh0FSxZTr-fW%22%7D) to open that wiring diagram as an interactive design on draw.io!*
-
-The main relationships are unchanged: battery power feeds the ESCs, regulated power feeds the avionics, and the voltage divider lets the Pico measure battery voltage. The Pico sends a separate throttle signal to each ESC. The carrier board routes those connections to labeled positions, so assembly does not require working through GPIO numbers.
+Battery power feeds the ESCs, regulated power feeds the avionics, and the voltage divider lets the Pico measure battery voltage. The Pico sends a separate throttle signal to each ESC. The carrier board routes those connections to labeled positions, so assembly does not require working through GPIO numbers. Schematics and source files are available in the [Centauri repository](https://github.com/TimHanewich/centauri) if you want to explore further.
 
 ## The Finished Product
 So what does the airframe, fully printed, look like with all of this hardware onboard and wired up together? See below!
@@ -225,19 +215,13 @@ View from the rear:
 
 ![rear](https://i.imgur.com/c21DvcF.jpeg)
 
-My original wiring was messy. I left too much slack and had to zip-tie the excess away from the propellers. That experience helped motivate the carrier board: it replaces much of that point-to-point wiring with fixed routing, leaving fewer connections to organize by hand.
-
-Here is the lower electronics bay of the carrier-board build, also shown in the assembly guide:
+The carrier board keeps the connections organized, leaving fewer wires to route by hand. Here is the lower electronics bay, also shown in the assembly guide:
 
 ![Carrier-board build with the Pico, IMU, radio, and regulator installed](https://i.imgur.com/8bvDEF0.png)
 
 You still need to keep external wires short enough to fit, insulate splices, and secure them away from moving parts.
 
-This original aircraft was a bit on the heavy side for a 5-inch quadcopter. Fully kitted out with the antenna mast and the battery shown, it weighed 824 grams. This is a historical measurement, not a weight specification for the current PCB build:
-
-![weight](https://i.imgur.com/HzmTECO.jpeg)
-
-Of the 824 grams above, 347 is the 4S 3300 mAh battery, leaving 477 grams for the fully assembled body without the battery.
+Assembled weight depends on your battery, camera, printed parts, and wiring. Weigh your completed aircraft with its flight battery and any accessories fitted; filament weight alone does not tell you the aircraft's takeoff weight.
 
 ## Close
 And now, with our body printed, the hardware assembled onto it, and everything wired up, we are ready to move on to the software phase: the Centauri Flight Controller! In the next chapter I'll detail the role of a flight controller and describe exactly how the Centauri flight controller works to achieve stable flight.

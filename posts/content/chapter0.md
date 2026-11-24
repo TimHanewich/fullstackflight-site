@@ -44,15 +44,15 @@ Altogether, Centauri is a complete quadcopter ecosystem developed from the groun
 - **Analysis Software**: a lightweight Python script that unpacks logged telemetry (a binary file) into a human-readable CSV file that can then be plotted and graphed.
 - **Centauri Link**: a handheld monitor that passively listens for Centauri radio traffic. It helps you check reception on foot before attempting a flight.
 
-Since the original build, I've also developed a flight controller carrier board. It handles the electrical routing between components, saving you from recreating the point-to-point wiring shown in this series. You still solder in the Pico and small board-mounted components, then wire the external modules and ESCs to labeled pads. The [shop](../../shop/) lists the bare boards and the components you gather separately.
+The flight controller carrier board handles the electrical routing between components, saving you from building the connections with point-to-point wiring. You solder in the Pico and small board-mounted components, then connect the external modules and ESCs to labeled pads. The [shop](../../shop/) lists the bare boards and the components you gather separately.
 
-For assembly instructions for the current PCB-based aircraft, follow the [Quadcopter Build Guide](../quadcopter-build-guide/). This series explains the design decisions behind it, including some earlier versions.
+This series explains Centauri's engineering and design decisions. Follow the [Quadcopter Build Guide](../quadcopter-build-guide/) for step-by-step assembly instructions.
 
 And true to the goal of keeping this whole system understandable and approachable, Centauri is **fully open source**. Every bit of it, the flight controller code, the airframe design files, the transmitter software, and the telemetry analysis tools, is available for free on [GitHub](https://github.com/TimHanewich/centauri). Anyone is welcome to explore it, learn from it, build their own, or contribute back!
 
 ![flying gif](https://i.imgur.com/3GprQfl.gif)
 
-Being a fan of astronomy, I named this system *Centauri* after [Alpha Centauri](https://en.wikipedia.org/wiki/Alpha_Centauri), the closest star system to our solar system. Alpha Centauri contains three stars with two being more prominent. That reminded me of the original three components of this project, with the Quadcopter and Transmitter taking most of my attention. Link joined the ecosystem later.
+Being a fan of astronomy, I named this system *Centauri* after [Alpha Centauri](https://en.wikipedia.org/wiki/Alpha_Centauri), the closest star system to our solar system. The name reflects my love of astronomy and seemed fitting for a project about flight and exploration.
 
 ## Full Stack Flight: 9-Part Educational Series
 Rather than just handing you working quadcopter specs, I'm walking through every design decision and every line of code behind Centauri so you can understand exactly how it works and build your own version of it. Like I did [with Scout](https://timhanewich.medium.com/taking-flight-with-the-raspberry-pi-pico-micropython-diy-quadcopter-drone-61ed4f7ee746), I've published a multi-article series on how I built Centauri from the ground up, covering both the overall architecture and the technical details. Those chapters are listed below:

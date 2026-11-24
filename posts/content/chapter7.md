@@ -31,7 +31,7 @@ I considered designing, printing, assembling, and building a custom transmitter 
 
 So you can think of the Centauri Transmitter as a program that runs on a laptop, leveraging attached, specialized hardware that makes the transmitter's entire operation possible!
 
-The carrier board on the aircraft does not change the transmitter's role. The code snippets below document the revision linked in this chapter; use the [current transmitter source](https://github.com/TimHanewich/centauri/tree/master/components/transmitter) for installation and check its controls before operating your build. The aircraft reports status telemetry while throttle is zero, not continuously during flight.
+The [transmitter source](https://github.com/TimHanewich/centauri/tree/master/components/transmitter) includes installation instructions. Check controller inputs and arming controls before operating your build. The aircraft reports status telemetry while throttle is zero; during flight, the radio prioritizes pilot commands.
 
 ## How the Transmitter Operates
 The transmitter program itself is written in **Python**, with an assortment of SDK dependencies I'll describe later in this chapter. There are **four** critical coroutines that run within the transmitter program, side by side, continuously and indefinitely:
@@ -163,7 +163,7 @@ This is just a basic mathematical model that uses trigonometry to transform an i
 You'll also see that four buttons on the controller are monitored for being pressed: **A**, **B**, **LB**, and **RB**:
 - **A**: "arms" the drone, moving the transmitter into a mode where it broadcasts non-zero throttle control packets. This basically enters flight mode!
 - **B**: "disarms" the drone, shifting the transmitter to *only* broadcast zero-throttle packets, telling the quadcopter to stop spinning its motors.
-- **LB** and **RB**: switch between "rate mode" and "angle mode", covered in chapter 5. *Note: while this mode-switch capability exists, it isn't implemented. As of this writing, the Centauri Flight Controller doesn't yet support angle mode.*
+- **LB** and **RB**: switch between "rate mode" and "angle mode", covered in chapter 5. *The flight controller supports rate control; these buttons do not enable angle control.*
 
 And that's how the `continuous_read_xbox()` coroutine works! Think of it as an ongoing bit of code that constantly reads the inputs on the Xbox controller, translates the raw values, and updates internal variables that other coroutines then use.
 
@@ -380,7 +380,7 @@ This is just a simple way for the pilot to confirm the quadcopter is on and func
 ## Close
 Wonderful! With the *Centauri* quadcopter covered in previous chapters, the complete *Centauri* Transmitter system covered in this chapter and the last, and the communication protocol between the two covered in detail in [Chapter 2](../chapter2), we now fully understand how the two work together to achieve flight!
 
-In the next chapter, we'll look at the *analysis* phase: extracting, unpacking, and analyzing telemetry recorded onboard the quadcopter. The final piece (for now) of the *Centauri* ecosystem!
+In the next chapter, we'll look at the *analysis* phase: extracting, unpacking, and analyzing telemetry recorded onboard the quadcopter. These tools help us understand what happened during flight.
 
 Click here to continue reading in this series: [Full-Stack Flight, Chapter 8: Unpacking Flight Telemetry for Analysis](../chapter8).
 

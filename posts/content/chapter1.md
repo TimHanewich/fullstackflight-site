@@ -11,14 +11,12 @@ description: 'Explore the Centauri quadcopter, pilot transmitter, Link radio mon
 
 As was mentioned in [the introductory article](../chapter0), *Centauri* is a full quadcopter ecosystem developed from the ground up, with each component designed to support flight of the *Centauri Quadcopter*:
 
-![anatomy](https://i.imgur.com/6TYY0Nv.png)
-
 - **The Centauri Quadcopter**: I designed the complete quadcopter package from scratch, including the onboard flight controller ("brain"), the 3D-printed airframe, wiring schematics, and more.
 - **The Centauri Transmitter**: this is what the pilot uses to control the quadcopter during flight. To keep things simple and accessible, it's a lightweight program that runs on the user's computer and can be controlled with a plugged-in gamepad like an Xbox controller.
 - **Analysis Software**: a lightweight Python script that unpacks logged telemetry (a binary file) into a human-readable CSV file that can then be plotted and graphed.
 - **Centauri Link**: a handheld device that passively listens for radio traffic to help check reception before flight.
 
-The overview diagram shows the original three-component ecosystem, before Link was added. The current aircraft also uses a carrier PCB to simplify electrical connections. See the [Quadcopter Build Guide](../quadcopter-build-guide/) for that assembly.
+The aircraft uses a carrier PCB to simplify electrical connections. See the [Quadcopter Build Guide](../quadcopter-build-guide/) for step-by-step assembly instructions.
 
 In this article, I'll describe each of these components, their roles, and how they work together.
 
@@ -68,7 +66,7 @@ As you can see in the image above, I went for a *very* simple and accessible des
 ## Analysis Software
 ![analysis](https://i.imgur.com/qYf9UDG.png)
 
-The **analysis software** lets us inspect recorded flight data. In the firmware revision explained in chapter 5, telemetry is collected into a RAM buffer during flight and flushed to onboard flash storage while throttle is zero. Buffer and flash capacity limit how much can be retained. Because the storage on the Raspberry Pi Pico is tiny (only 2 MB) *and* the flight controller must be as efficient as possible, wasting no precious CPU cycles on formatting, the telemetry is logged in raw binary format.
+The **analysis software** lets us inspect recorded flight data. As explained in chapter 5, telemetry is collected into a RAM buffer during flight and flushed to onboard flash storage while throttle is zero. Buffer and flash capacity limit how much can be retained. Because the storage on the Raspberry Pi Pico is tiny (only 2 MB) *and* the flight controller must be as efficient as possible, wasting no precious CPU cycles on formatting, the telemetry is logged in raw binary format.
 
 The analysis software that comes with Centauri is a lightweight Python script that decodes a binary telemetry file retrieved from the quadcopter's Raspberry Pi Pico into a human-readable CSV file containing the data it captured:
 - Battery Voltage
@@ -98,6 +96,6 @@ The [Link section of the shop](../../shop/#link) lists its bare carrier board, e
 ## Conclusion
 The Transmitter, Quadcopter, and Analysis Software cover control, flight, and review. Link adds a portable way to observe the radio traffic before flying. The transmitter captures pilot intent and delivers it wirelessly. The quadcopter receives those commands, senses reality, and continuously corrects itself to match. And the analysis software lets you look back at what actually happened during flight so you can tune, debug, and improve.
 
-In the chapters ahead, we'll take an in depth look at all three components of the *Cetnauri* ecosystem, starting first with the quadcopter! Click here to continue reading in this series: [Full-Stack Flight, Chapter 2: Defining a Communication Protocol](../chapter2).
+In the chapters ahead, we'll take an in depth look at the components of the *Centauri* ecosystem, starting first with the quadcopter! Click here to continue reading in this series: [Full-Stack Flight, Chapter 2: Defining a Communication Protocol](../chapter2).
 
 *Ready to start building? [Join the Full Stack Flight Discord](https://discord.gg/wwqfmCUzGg) to ask questions, share progress, and connect with other makers building their own version of Centauri!*

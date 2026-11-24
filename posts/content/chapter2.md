@@ -21,7 +21,7 @@ There are 4 different classifications of information (data) that may be exchange
 
 Designing a protocol to efficiently carry the data in each of these four exchanges was a big challenge! I'll explain more on the design and decisions for each below, starting with the most important: the **Control Packet**.
 
-The carrier board simplifies hardware connections without changing the purpose of these packets. The layouts and code links below document the firmware revision used for this article. Check the [current Centauri source](https://github.com/TimHanewich/centauri) when implementing a transmitter, decoder, or Link monitor; both ends must agree on packet format and radio settings.
+The carrier board simplifies hardware connections; the protocol defines the messages those components exchange. The [Centauri source](https://github.com/TimHanewich/centauri) includes the packet packing and unpacking functions. A transmitter, aircraft, decoder, or Link monitor must use compatible packet formats and radio settings.
 
 ## The "Control Packet"
 As mentioned above, the Control Packet is likely the most important packet of all. It is indeed where most of my time was spent optimizing efficiency, given its critical, high-bandwidth, low-latency requirement.

@@ -29,7 +29,7 @@ We can think of the transmitter as three separate components brought together as
 
 Since the gamepad side is very simple (buy [an Xbox controller](https://amzn.to/4wUxGlE) and plug it into the PC via USB!), I'll focus on how I developed the other two components: **the transceiver platform** and the **transmitter program**. In this article, I'll focus on *the transceiver platform*.
 
-The [transmitter parts list](../../shop/#transmitter) includes the current sourcing links. The source links below point to the revision used when this chapter was written; check the [current transmitter repository](https://github.com/TimHanewich/centauri/tree/master/components/transmitter) for setup instructions.
+The [transmitter parts list](../../shop/#transmitter) includes sourcing links, and the [transmitter repository](https://github.com/TimHanewich/centauri/tree/master/components/transmitter) provides setup instructions.
 
 Telemetry from the aircraft is sent while throttle is zero. During flight, the radio link prioritizes receiving pilot commands.
 
@@ -75,7 +75,7 @@ And so our code is quite simple too! You can find the complete source code (two 
 
 As shown in the diagram above, there are **four types** of communication exchanged between the PC program and the transceiver platform (connected via USB, using UART to communicate):
 1. **PING/PONG**: the PC can send `TRANPING` (encoded in ASCII) to the transceiver as a "hey, are you there?" check. If received, the transceiver responds `TRANPONG` to confirm it's on.
-2. **STATUS**: the PC can also request a status update. If the PC sends the message `TRANSTATUS?` (encoded in ASCII), the transceiver responds with the HC-12's configuration (mode, channel, power). *Note: as of this writing, this functionality is available but not used.*
+2. **STATUS**: the PC can also request a status update. If the PC sends the message `TRANSTATUS?` (encoded in ASCII), the transceiver responds with the HC-12's configuration (mode, channel, power). *This request is available but is not used by the transmitter dashboard.*
 3. **TRAN Message**: the transceiver platform can send any unstructured message to the PC to flag a situation, status, or issue. To ensure a message that originated from *the transceiver* isn't confused with one that originated from *the drone*, `TRAN` (encoded in ASCII) is prepended to the message.
 4. **"Passthrough" Communication**: for all other binary payloads the transceiver platform receives from or sends to the PC, if it *isn't* one of the payload types above, it can be assumed to be a message either from the drone (bound for the transmitter) or from the transmitter (bound for the drone).
 

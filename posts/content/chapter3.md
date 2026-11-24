@@ -15,9 +15,9 @@ After a month and change of planning and designing, I had a finished body!
 
 ![flyaround_1080](https://i.imgur.com/bh22aYF.gif)
 
-The current carrier-board airframe files are [on Thingiverse](https://www.thingiverse.com/thing:7429193). Follow the [Quadcopter Build Guide](../quadcopter-build-guide/) to assemble that version.
+The airframe design files are [on Thingiverse](https://www.thingiverse.com/thing:7429193). Follow the [Quadcopter Build Guide](../quadcopter-build-guide/) for assembly instructions.
 
-This chapter documents the original airframe and the antenna layouts I tried while developing it. The carrier-board revision changes the lower electronics bay: the Pico is soldered onto the carrier board, the HC-12 sits at the rear left near the antenna mast, and a smaller MP1584EN regulator replaces the LM2596 and its printed holder. The older layouts below explain how I arrived at the design; use the current files and build guide when gathering and assembling parts.
+The lower electronics bay holds the Pico on its carrier board, the MPU-6050, an HC-12 at the rear left near the antenna mast, and an MP1584EN 5V regulator. The frame keeps these components accessible while protecting them beneath the upper plate.
 
 In this chapter I'll walk through the design decisions and the process behind developing the *Centauri* quadcopter body.
 
@@ -36,13 +36,13 @@ Designing a quadcopter airframe, as I quickly discovered, is challenging! The de
 
 **Antenna line-of-sight**: I'll expand on this in the next chapter on the hardware package, but there's a 433 MHz "rubber ducky" antenna onboard for bidirectional communication with the pilot (transmitter). Maintaining that link is *vital* in flight. Even a half-second delay could be catastrophic mid-maneuver. So optimal antenna positioning, with little to no obstruction, was a primary concern.
 
-**Future Expansion**: I wanted this body to be future-proof for near-term iterations. What do I mean by that? Down the road, I may add a [TF Luna](https://en.benewake.com/TFLuna/index.html) LiDAR unit to the underbelly to enable altitude tracking and controlled landings. I didn't plan to include it in the first build of *Centauri*, but I wanted to design with it in mind so that adding it later wouldn't require a full redesign! That meant including mounting holes at the bottom for the LiDAR unit, plus the option to add a "stand" so the unit doesn't scrape the ground when the quadcopter is at rest.
+**Future Expansion**: I wanted to leave room for further experiments. What do I mean by that? Down the road, I may add a [TF Luna](https://en.benewake.com/TFLuna/index.html) LiDAR unit to the underbelly to enable altitude tracking and controlled landings. I didn't plan to include it in the first build of *Centauri*, but I wanted to design with it in mind so that adding it later wouldn't require a full redesign! That meant including mounting holes at the bottom for the LiDAR unit, plus the option to add a "stand" so the unit doesn't scrape the ground when the quadcopter is at rest.
 
 **Simplicity**: As with any engineering design, the real measure of success is meeting *all* of the criteria in as efficient a package as possible. My goal was *not* to over-engineer the airframe, but to arrive at a simple, intuitive solution that achieves the goal with minimal complexity.
 
-## Original Airframe Design
+## Airframe Design
 
-The dimensions, component mounting photos, and unused expansion features in this section belong to the original frame. The current carrier-board revision keeps the same general two-level approach but reorganizes the lower bay. For current mounting positions and printed parts, use the build guide rather than reproducing this older layout.
+The two-level frame separates the electronics bay from the battery and camera mount. The [build guide](../quadcopter-build-guide/) shows how to print and assemble the parts.
 In this section I'll document, in detail, the airframe design I developed to accommodate all of those criteria. I spent *a lot* of time in Blender mocking up the hardware components the drone would have to fit, designing a frame around them, and shifting their positions until I found the optimal layout!
 
 Given my 5-inch goal (prop diameter) and my desire to keep the frame 3D-printer friendly (not huge!), my first decision was to space the motors exactly 200mm apart:
@@ -69,36 +69,21 @@ The arms incorporate several design considerations:
 
 The arm above is shared by all four positions, with only minor modifications on some versions to accommodate an antenna mast.
 
-Now let's take a closer look at the onboard components inside the airframe. The lower level holds:
-- The Raspberry Pi Pico (microcontroller)
-- HC-12 radio communications module
-- MPU-6050 IMU
-- LM2596 5V voltage regulator
-- A small gap at the bottom right that holds down the pigtail connecting the battery to the electronics system (input).
+The lower level holds the electronics needed for flight: the carrier board with its Raspberry Pi Pico, the HC-12 radio module, the MPU-6050 IMU, and the MP1584EN 5V regulator.
 
-![level1_components](https://i.imgur.com/ZPm43ir.png)
+![Lower electronics bay with the carrier board and external modules mounted](https://i.imgur.com/iEqxfzY.png)
 
-As you can see above, the lower level ("level 1") contains the bulk of the electronics package needed for flight.
+The carrier board is secured to the lower plate with M2 screws. The Pico is soldered onto the board, with its USB port accessible from outside the frame for programming and downloading telemetry.
 
-First, the Raspberry Pi Pico (the microcontroller, or "brain," that runs the flight controller) is mounted at the very front of the lower level, fastened with M2 screws. This placement keeps its USB port accessible from the outside, making it easy to flash new firmware or recover recorded telemetry!
+The MPU-6050 sits in a small printed frame near the center of the aircraft. Double-sided foam tape secures the sensor and helps isolate it from motor vibration. Its orientation matters; the build guide shows how to position it.
 
-![RPi Pico mount holes](https://i.imgur.com/wM847lX.png)
+The HC-12 sits at the rear left, close to the antenna mast. Zip ties secure it to the lower plate, with its antenna connector facing rearward. This keeps the coaxial cable route short.
 
-Just behind the Raspberry Pi Pico sits the HC-12 radio control module. Unlike the Pico, the HC-12 has no mounting holes, so I added slots where two very thin zip ties can pass through the lower level and clamp it down tightly. It doesn't budge!
+![HC-12 mounted at the rear left of the electronics bay](https://i.imgur.com/XfoyiiW.png)
 
-![HC12 zip tie holes](https://i.imgur.com/FPvwvV1.png)
+The MP1584EN regulator is also secured with a zip tie. It supplies regulated 5V power for the electronics. Battery leads exit through the rear of the lower plate and are held down with zip ties, ending in an XT60 connector for the flight battery.
 
-Just behind the HC-12 is the [MPU-6050](https://amzn.to/4yh76Ev) (IMU). As mentioned, the IMU's position is *very* important! Here, the MPU-6050 sits in the exact middle of the airframe, right at the center of gravity, giving it the most accurate gyroscope readings.
-
-You'll also notice the MPU-6050 sits in a 3D-printed frame I designed for it. The MPU-6050 does have a hole for screwing it directly into the body, but doing so would transmit vibrations that throw off the IMU readings and inhibit stable flight. Instead, the board rests on double-sided foam tape inside this frame, a lightweight but effective filter against the high-frequency vibrations from the motors.
-
-![MPU-6050 frame](https://i.imgur.com/oWLZmZr.png)
-
-At the rear of the lower level lives the LM2596 module, a voltage regulator ("buck converter") that steps the LiPo battery's voltage (12+ volts) down to the stable 5V supply the logic electronics need. Like the MPU-6050, it sits in a 3D-printed frame, not for vibration damping this time, but for organization and secure mounting (I'd used this frame in previous projects).
-
-Next to the LM2596 frame is an open space where the positive and negative input lines are fastened down with zip ties. At the end of these lines is a female [XT60 connector](https://amzn.to/4yjAuKt) that the onboard LiPo battery plugs into.
-
-![LM2596 frame and pigtail area](https://i.imgur.com/W3MXaAe.png)
+![Carrier board, radio, IMU, and regulator mounted in the lower bay](https://i.imgur.com/ynpOb9W.png)
 
 The upper level holds three components:
 - The battery, which takes up the vast majority of this level. As mentioned, I used a rather large 4S 3,300 mAh battery!
@@ -135,7 +120,7 @@ As seen above, the only thing that changes across the four configurations is the
 - **Configuration C: Rear-Mounted Antenna** - this moves the externally mounted antenna to the rear of the airframe, directly behind the battery. That solves most of the "LiPo blocking" problem from Configuration B, letting the antenna keep direct line of sight to the transmitter in many more orientations. However, during resonance testing with a NanoVNA, I found that positioning the antenna so close to a dense battery hurt its ability to receive reliably.
 - **Configuration D: Mast-Mounted Antenna = Greatest Range** - the "final" configuration, with the externally mounted antenna perched atop a "mast" at the rear of the body. The mast puts space between the LiPo battery and the antenna, getting the antenna into free air. This configuration delivers the greatest range but it's also by far the most fragile. Any roll the quadcopter makes will almost certainly snap the mast and end your day of flying, so be careful! I've successfully flown at ~100 meters with no problems in this configuration.
 
-For a current build, use the mast-mounted airframe and antenna parts linked in the shop and build guide. Configuration A was an early development option; the range observations here describe my tests and are not guarantees for another aircraft or flight location.
+I recommend the mast-mounted airframe and antenna parts linked in the shop and build guide. The range observations here describe my tests and are not guarantees for another aircraft or flight location.
 
 If you're experienced or want to make sure your build goes the distance, I recommend **Configuration D**: it's more complex, but it's the best configuration for performance. You can also *start* with Configuration A and later move to **Configuration D** by printing the rear-left arm with the antenna mast and swapping it in.
 
@@ -148,25 +133,9 @@ All parts required to assemble every configuration are available in the design [
 ## Printing
 With the design covered, let's talk about printing!
 
-The current shop estimates approximately **155 grams of PLA at 30% infill** for the carrier-board airframe. At $15 per kilogram, that is about **$2.33 in filament**, excluding waste and printing costs. Use the current design files and parts list; the LM2596 holder is no longer needed.
+The airframe uses approximately **155 grams of PLA at 30% infill**. At $15 per kilogram, that is about **$2.33 in filament**, excluding waste and printing costs. Actual usage depends on your slicer settings.
 
-The inventory and weights below are measurements from the original Configuration D print, which used 164 grams including its LM2596 holder. They are retained to show the earlier design, not as a shopping checklist for the current version:
-
-![complete set](https://i.imgur.com/WtEIdg4.png)
-
-Printing every component at 30% infill takes **164 grams** of PLA, as shown below:
-
-|Part|PLA @ 30% Infill|
-|-|-|
-|Level 1 (Lower Level)|30 g|
-|Level 2 (Upper Level)|30 g|
-|4 Arms|68 g|
-|MPU-6050 Frame|4 g|
-|LM2596 Frame|9 g|
-|GoPro Mount|8 g|
-|Antenna Mast (3 components)|15 g|
-
-At **164 grams** of PLA, and assuming roughly $15.00 per 1,000-gram roll, that comes out to just **$2.46** in PLA to print the entire Centauri body!
+Print one lower plate, one upper plate, four arms, the MPU-6050 frame, and the three antenna-mast components. Add the GoPro mount if you plan to mount a camera. The [shop's airframe list](../../shop/#quadcopter-parts) links the design files and mounting hardware.
 
 Below are some photos I got while printing a few of the parts!
 

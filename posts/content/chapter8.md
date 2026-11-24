@@ -19,9 +19,9 @@ And as we discussed in [chapter 1](../chapter1), Centauri's 3D-printed airframe 
 
 Because the port is so accessible, it's very easy to plug a USB cable between your computer and the quadcopter after a flight and pull off the telemetry!
 
-The photo above shows the original frame. The carrier-board airframe also keeps the Pico's USB port accessible. Disconnect the flight battery before connecting USB, keep propellers off while working on the powered aircraft, and allow buffered telemetry to finish saving before removing flight power.
+Disconnect the flight battery before connecting USB, keep propellers off while working on the powered aircraft, and allow buffered telemetry to finish saving before removing flight power.
 
-The decoder and firmware links in this chapter identify the revision used for these examples. Use a decoder compatible with the firmware that produced your log; see the [current analysis source](https://github.com/TimHanewich/centauri/tree/master/components/analysis).
+Use a decoder compatible with the firmware that produced your log; see the [analysis source](https://github.com/TimHanewich/centauri/tree/master/components/analysis).
 
 ## Accessing the Telemetry
 After plugging in your Raspberry Pi Pico (which has already been configured with MicroPython, flashed with the *Centauri Flight Controller Firmware*, and completed a successful flight), you can use [Thonny](https://thonny.org/) to access the files on the Pico's small flash memory, shown below:
@@ -71,7 +71,7 @@ With the telemetry data unpacked into a human-readable format (a CSV file), let'
 - **Seconds**: the exact timestamp, in seconds, this telemetry frame was taken at. Note that this may *decrease* from a high timestamp to a low one if the quadcopter is rebooted (system time resets back to 0).
 - **Battery Voltage**: raw battery supply voltage.
 - **Pitch Rate**, **Roll Rate**, **Yaw Rate**: the *actual* angular velocity of the quadcopter's body.
-- **Pitch Angle** and **Roll Angle**: the angle estimates, calculated by the flight controller's complementary filter. (*Note: as of this writing, I believe these to be only mildly accurate; I need to tweak the calculation.*)
+- **Pitch Angle** and **Roll Angle**: the angle estimates, calculated by the flight controller's complementary filter. These are estimates and should not be treated as precise attitude measurements.
 - **G-Force**: how many G's the quadcopter is pulling at that moment.
 - **Input Throttle**: the pilot's current throttle input, from 0 to 100, representing 0-100%.
 - **Input Pitch**, **Input Roll**, **Input Yaw**: the pilot's current input on the three axes, ranging from -100 to 100, representing -100% to 100%.
@@ -89,7 +89,7 @@ The above is just a short clip from a much longer flight with *Centauri*. You ca
 
 https://www.youtube.com/watch?v=evh0FCPapC8
 
-The [current DashWare instructions](https://github.com/TimHanewich/centauri/tree/master/dashware) include a reusable project template and the synchronization workflow:
+The [DashWare instructions](https://github.com/TimHanewich/centauri/tree/master/dashware) include a reusable project template and the synchronization workflow:
 
 1. Copy `dashware/project/` into `Documents\DashWare Projects`, rename the copied project folder, and open it in DashWare. It prompts for your telemetry `data.csv` and flight `video.MP4`.
 2. For DVR footage, use FFmpeg to produce constant-frame-rate video.
@@ -137,7 +137,7 @@ Below are a few direct download links to raw `log` binary files:
 Download a `log` file above and pass it to [main.py](https://github.com/TimHanewich/centauri/blob/880aef867fc2f1b2ec5d29fdde0b9acc81f665ad/components/analysis/src/main.py) to unpack it, save it as a CSV file, and test your analysis skills!
 
 ## Close
-We've now covered post-flight analysis, one of the four systems in the current Centauri ecosystem. Link, the handheld radio monitor added after this series was written, supports reception checks before flight. This is a powerful capability that gives you a strong understanding of how your own *Centauri* quadcopter is working and helps you diagnose challenges (plus, it looks cool as an overlay!).
+We've covered how to retrieve, decode, and analyze Centauri's flight telemetry. This is a powerful capability that gives you a strong understanding of how your own *Centauri* quadcopter is working and helps you diagnose challenges (plus, it looks cool as an overlay!).
 
 In the next chapter, the final chapter of this series (at least for now), I'll share some closing thoughts about the *Centauri* project overall and how I recommend approaching building your own *Centauri* flight system!
 
