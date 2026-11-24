@@ -45,7 +45,9 @@ The second is the **control loop**: the core loop that continuously and rapidly 
 
 The graphic above depicts the high-level architecture of the Centauri Flight Controller, split into its two "phases." I'll describe each step in detail in the sections below, alongside some code snippets!
 
-If you'd like to follow along with the entire flight controller code as you read, you can find it [here](https://github.com/TimHanewich/centauri/blob/880aef867fc2f1b2ec5d29fdde0b9acc81f665ad/components/quadcopter/src/main.py)!
+The snippets in this chapter describe a [specific revision of the flight controller](https://github.com/TimHanewich/centauri/blob/880aef867fc2f1b2ec5d29fdde0b9acc81f665ad/components/quadcopter/src/main.py). They explain its operation, but aren't a substitute for the [current source and setup instructions](https://github.com/TimHanewich/centauri/tree/master/components/quadcopter/src).
+
+The carrier board completes electrical connections; the Pico still runs the flight controller described here. For the current hardware assembly, follow the [Quadcopter Build Guide](../quadcopter-build-guide/). Firmware settings, battery calibration, and timing measurements below belong to the revision shown and should be checked against the code you install.
 
 Before we dive into the code, I want to mention that its style likely won't match the traditional Python "best practices" you may have read about or seen online. I keep traditional abstraction layers like modules, classes, and functions to a minimum, and my use of math, slicing, and the like is decidedly "not normal." There's a reason for all of this: **performance**. I'll elaborate at the end of this chapter, but wanted to give you a heads-up here.
 

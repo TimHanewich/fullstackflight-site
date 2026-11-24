@@ -29,6 +29,10 @@ We can think of the transmitter as three separate components brought together as
 
 Since the gamepad side is very simple (buy [an Xbox controller](https://amzn.to/4wUxGlE) and plug it into the PC via USB!), I'll focus on how I developed the other two components: **the transceiver platform** and the **transmitter program**. In this article, I'll focus on *the transceiver platform*.
 
+The [transmitter parts list](../../shop/#transmitter) includes the current sourcing links. The source links below point to the revision used when this chapter was written; check the [current transmitter repository](https://github.com/TimHanewich/centauri/tree/master/components/transmitter) for setup instructions.
+
+Telemetry from the aircraft is sent while throttle is zero. During flight, the radio link prioritizes receiving pilot commands.
+
 ## Quick Reference: Complete Hardware List
 Before diving in, here's a one-stop shopping list of every component used to build the transceiver platform, for easy reference! Just in case you visited this chapter specifically to find a link to something you needed to buy. 😊
 

@@ -31,6 +31,8 @@ I considered designing, printing, assembling, and building a custom transmitter 
 
 So you can think of the Centauri Transmitter as a program that runs on a laptop, leveraging attached, specialized hardware that makes the transmitter's entire operation possible!
 
+The carrier board on the aircraft does not change the transmitter's role. The code snippets below document the revision linked in this chapter; use the [current transmitter source](https://github.com/TimHanewich/centauri/tree/master/components/transmitter) for installation and check its controls before operating your build. The aircraft reports status telemetry while throttle is zero, not continuously during flight.
+
 ## How the Transmitter Operates
 The transmitter program itself is written in **Python**, with an assortment of SDK dependencies I'll describe later in this chapter. There are **four** critical coroutines that run within the transmitter program, side by side, continuously and indefinitely:
 

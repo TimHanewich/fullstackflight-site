@@ -16,10 +16,12 @@ As mentioned in [the previous article](../chapter1), *Centauri* is an entire qua
 There are 4 different classifications of information (data) that may be exchanged between the Transmitter and Drone:
 1. **Control Packet** (*transmitter --> drone*): an update in the throttle, pitch, roll, and yaw input the pilot is applying. (high frequency during flight)
 2. **Settings Update Packet** (*transmitter --> drone*): an update in the PID gains that the drone will use to stabilize while flying. This allows for "on the fly" updates without having to "hard-code" these into the flight controller code!
-3. **Telemetry Packet** (*drone --> transmitter*): periodic packet the drone will broadcast out to update the transmitter (pilot) of its status: battery level, IMU data, etc. Broadcasted every 2 seconds while *not* armed.
+3. **Telemetry Packet** (*drone --> transmitter*): periodic packet the drone will broadcast out to update the transmitter (pilot) of its status: battery level, IMU data, etc. Sent periodically while throttle is zero.
 4. **Special Packet** (*drone --> transmitter*): a free-form text message that drone can transmit out to convey a direct message back to the pilot. Can contain any message. Used for things like confirming calibration, relaying problems.
 
 Designing a protocol to efficiently carry the data in each of these four exchanges was a big challenge! I'll explain more on the design and decisions for each below, starting with the most important: the **Control Packet**.
+
+The carrier board simplifies hardware connections without changing the purpose of these packets. The layouts and code links below document the firmware revision used for this article. Check the [current Centauri source](https://github.com/TimHanewich/centauri) when implementing a transmitter, decoder, or Link monitor; both ends must agree on packet format and radio settings.
 
 ## The "Control Packet"
 As mentioned above, the Control Packet is likely the most important packet of all. It is indeed where most of my time was spent optimizing efficiency, given its critical, high-bandwidth, low-latency requirement.

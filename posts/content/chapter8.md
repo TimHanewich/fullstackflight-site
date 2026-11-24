@@ -19,6 +19,10 @@ And as we discussed in [chapter 1](../chapter1), Centauri's 3D-printed airframe 
 
 Because the port is so accessible, it's very easy to plug a USB cable between your computer and the quadcopter after a flight and pull off the telemetry!
 
+The photo above shows the original frame. The carrier-board airframe also keeps the Pico's USB port accessible. Disconnect the flight battery before connecting USB, keep propellers off while working on the powered aircraft, and allow buffered telemetry to finish saving before removing flight power.
+
+The decoder and firmware links in this chapter identify the revision used for these examples. Use a decoder compatible with the firmware that produced your log; see the [current analysis source](https://github.com/TimHanewich/centauri/tree/master/components/analysis).
+
 ## Accessing the Telemetry
 After plugging in your Raspberry Pi Pico (which has already been configured with MicroPython, flashed with the *Centauri Flight Controller Firmware*, and completed a successful flight), you can use [Thonny](https://thonny.org/) to access the files on the Pico's small flash memory, shown below:
 
@@ -77,7 +81,7 @@ With the telemetry data unpacked into a human-readable format (a CSV file), let'
 ## Using the Telemetry: Overlay & Dashboarding
 With a heap of telemetry data from the flights *Centauri* took, there's a lot we can do with it, which is amazing!
 
-The first use of the telemetry I want to highlight (and probably the flashiest 😊) is as a *telemetry overlay* on any onboard or ground-based video recordings of *Centauri* flying. [Dashware](https://dashware.software.informer.com/) is a discontinued, yet still widely used, PC app that lets you overlay telemetry data onto a video recording. I developed [Centauri telemetry-specific Dashware assets](https://github.com/TimHanewich/centauri/tree/880aef867fc2f1b2ec5d29fdde0b9acc81f665ad/dashware) that you can use to overlay your *Centauri* telemetry data directly onto a video with only a few clicks and timing syncs!
+The first use of the telemetry I want to highlight (and probably the flashiest 😊) is as a *telemetry overlay* on any onboard or ground-based video recordings of *Centauri* flying. [Dashware](https://dashware.software.informer.com/) is a discontinued, yet still widely used, PC app that lets you overlay telemetry data onto a video recording. The [Centauri DashWare project](https://github.com/TimHanewich/centauri/tree/master/dashware) includes a reusable template, data profile, and gauges. These save setup work, but the footage and telemetry still need careful timing checks before export.
 
 ![example telemetry overlay gif](https://i.imgur.com/bUNN34B.gif)
 
@@ -85,7 +89,15 @@ The above is just a short clip from a much longer flight with *Centauri*. You ca
 
 https://www.youtube.com/watch?v=evh0FCPapC8
 
-*While I do mention the step-by-step process for overlaying telemetry data onto a video [in this section on GitHub](https://github.com/TimHanewich/centauri/tree/880aef867fc2f1b2ec5d29fdde0b9acc81f665ad/dashware#steps-to-overlaying-telemetry-on-onboard-footage), I don't go into great detail. If it would be helpful for me to write a dedicated article on that, let me know! Reach out to me on the [Full Stack Flight Discord](https://discord.gg/wwqfmCUzGg).*
+The [current DashWare instructions](https://github.com/TimHanewich/centauri/tree/master/dashware) include a reusable project template and the synchronization workflow:
+
+1. Copy `dashware/project/` into `Documents\DashWare Projects`, rename the copied project folder, and open it in DashWare. It prompts for your telemetry `data.csv` and flight `video.MP4`.
+2. For DVR footage, use FFmpeg to produce constant-frame-rate video.
+3. Find two recognizable events in both the footage and telemetry. Compare the elapsed time between them to check for duration drift.
+4. If those durations differ, adjust the video's duration in Premiere Pro to match the telemetry clock.
+5. Align the corrected video and telemetry in DashWare, then export the overlay.
+
+A start-time offset fixes an initial mismatch, but cannot fix footage that gradually falls out of sync. Correct duration drift before doing the final alignment.
 
 Besides overlaying telemetry on top of a video, we can also plot this data in any dashboarding or reporting software like Power BI or Tableau. Or, in the modern era, you can prompt any AI coding agent to create a bespoke dashboard for you, like the one I made below in 5 minutes.
 
@@ -125,7 +137,7 @@ Below are a few direct download links to raw `log` binary files:
 Download a `log` file above and pass it to [main.py](https://github.com/TimHanewich/centauri/blob/880aef867fc2f1b2ec5d29fdde0b9acc81f665ad/components/analysis/src/main.py) to unpack it, save it as a CSV file, and test your analysis skills!
 
 ## Close
-And now we've covered the third and final part of the *Centauri* ecosystem: post-flight analysis scripts and tools for analyzing real flight telemetry. This is a powerful capability that gives you a strong understanding of how your own *Centauri* quadcopter is working and helps you diagnose challenges (plus, it looks cool as an overlay!).
+We've now covered post-flight analysis, one of the four systems in the current Centauri ecosystem. Link, the handheld radio monitor added after this series was written, supports reception checks before flight. This is a powerful capability that gives you a strong understanding of how your own *Centauri* quadcopter is working and helps you diagnose challenges (plus, it looks cool as an overlay!).
 
 In the next chapter, the final chapter of this series (at least for now), I'll share some closing thoughts about the *Centauri* project overall and how I recommend approaching building your own *Centauri* flight system!
 

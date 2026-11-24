@@ -9,7 +9,7 @@ description: 'Reflect on the challenges and rewards of building a quadcopter fro
 
 *This article is part of a 10-part series on how the [Centauri Quadcopter](https://github.com/TimHanewich/centauri) was created. For a list of all other articles, please visit the introductory article found [here](../chapter0).*
 
-At this stage in the series we've fully explored the entire *Centauri* ecosystem: the quadcopter, the transmitter, and the telemetry analysis program. In this final chapter I'll share some closing thoughts on the project overall, along with a few tips that will hopefully help you if you pursue building your own!
+At this stage in the series we've explored the original Centauri ecosystem: the quadcopter, transmitter, and telemetry analysis program. The carrier boards and Link radio monitor were added later, and the current aircraft assembly has its own build guide. In this final chapter I'll share some closing thoughts on the project overall, along with a few tips that will hopefully help you if you pursue building your own!
 
 ## Why do all this?
 The first question I want to address is the "why do all this?" question. As you can probably tell from the series, building a fully custom quadcopter and pilot transmitter is a daunting undertaking. Financially, it may even be *cheaper* to buy an off-the-shelf quadcopter/transmitter pair and call it a day! And from a time-to-value perspective, you'd be looking at potentially months of research and development before ever getting in the air, versus maybe a 2-day shipping window if you buy off the shelf.
@@ -52,7 +52,7 @@ As I described in [chapter 1](../chapter1), *Centauri* was already a huge upgrad
 I do plan to make further improvements to *Centauri*, building on this fantastic foundation. The following come to mind as immediate ideas:
 - **Tweak Angle Estimates**: The *Centauri Flight Controller* uses a complementary filter to estimate the pitch and roll angles during flight. While the angles are mostly correct, there are certainly discrepancies. I'll need to take a closer look, identify any potential errors, and then work on improving their accuracy.
 - **Advanced Flight Controller Modes**: as I discussed in [chapter 5](../chapter5), the *Centauri Flight Controller*, while impressive, is actually quite primitive in its capabilities. At some point I'd like to equip *Centauri* with additional hardware (sensors) and software to let it hold attitude, hold position, or even fly to various waypoints. This will be quite the undertaking!
-- **Handheld Transmitter**: in [chapter 6](../chapter6) I described the decision to use an "augmented" PC (laptop) as the transmitter instead of building a custom transmitter. That decision worked very well! But at some point I'd like to fly *Centauri* without packing up a full laptop and transceiver platform. For that, I'll need to design, build, and implement a handheld transceiver.
+- **Handheld Transmitter**: in [chapter 6](../chapter6) I described the decision to use an "augmented" PC (laptop) as the transmitter instead of building a custom transmitter. That decision worked very well! But at some point I'd like to fly *Centauri* without packing up a full laptop and transceiver platform. For that, I'll need to design, build, and implement a handheld pilot transmitter. Link is already handheld, but it only monitors radio traffic and cannot control the aircraft.
 
 
 Those are just the immediate big ideas that come to mind, but I'm sure many more will follow! If you have any ideas or suggestions, I'm all ears.
@@ -60,7 +60,11 @@ Those are just the immediate big ideas that come to mind, but I'm sure many more
 ## The Centauri Carrier PCB Is Now Available
 Since building the original version shown in [chapter 4](../chapter4), I've developed a custom carrier PCB for Centauri, and it is now available for sale through Full Stack Flight! It offers a cleaner foundation for assembling your own electronics while keeping the project open and understandable.
 
-This is a **bare carrier PCB**, not a complete flight controller or drone kit. You'll still need to source and assemble the components for your build.
+This is a **bare carrier PCB**, not a complete flight controller or drone kit. It handles the electrical routing that I originally built with point-to-point wiring. You still solder in the Pico and small components, then connect the external modules and ESCs to labeled pads.
+
+The [shop](../../shop/) lists the Flight Controller Carrier Board at $29.99 plus shipping and the Link Carrier Board at $19.99 plus shipping, with separate parts lists for each build. Link is a handheld radio monitor for checking reception; it does not replace the pilot's transmitter.
+
+Start with the [Quadcopter Build Guide](../quadcopter-build-guide/) for the current aircraft. The earlier chapters preserve the original design process, including hardware layouts that have since changed. Building from that work saves you some of the research I had to do, though assembly, troubleshooting, and flight testing still take care and patience.
 
 ## Join The Community!
 In the three years since I released [my write-up series on *Scout*](https://timhanewich.medium.com/taking-flight-with-the-raspberry-pi-pico-micropython-diy-quadcopter-drone-61ed4f7ee746), I've had so many positive interactions with members of the maker community; people that were just like me when I first sat down to build my own custom quadcopter flight controller. Messages, YouTube comments, tweets, and more.

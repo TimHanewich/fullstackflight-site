@@ -15,7 +15,9 @@ After a month and change of planning and designing, I had a finished body!
 
 ![flyaround_1080](https://i.imgur.com/bh22aYF.gif)
 
-You can find the design files for the *Centauri* airframe [on Thingiverse](https://www.thingiverse.com/thing:7194383)!
+The current carrier-board airframe files are [on Thingiverse](https://www.thingiverse.com/thing:7429193). Follow the [Quadcopter Build Guide](../quadcopter-build-guide/) to assemble that version.
+
+This chapter documents the original airframe and the antenna layouts I tried while developing it. The carrier-board revision changes the lower electronics bay: the Pico is soldered onto the carrier board, the HC-12 sits at the rear left near the antenna mast, and a smaller MP1584EN regulator replaces the LM2596 and its printed holder. The older layouts below explain how I arrived at the design; use the current files and build guide when gathering and assembling parts.
 
 In this chapter I'll walk through the design decisions and the process behind developing the *Centauri* quadcopter body.
 
@@ -30,7 +32,7 @@ Designing a quadcopter airframe, as I quickly discovered, is challenging! The de
 
 **Onboard Prong (GoPro) Mount**: Something I wished *Scout* had was the ability to capture onboard video! This quadcopter needed a "prong" mount so I could screw in my GoPro (or any compatible device) to record in-flight footage.
 
-**IMU Close to Center of Mass**: As you may know, one of the things a flight controller does to achieve stable flight is continuously monitor the *actual* change in orientation (gyro rates) during flight. Because clean gyro readings are *absolutely critical* to stable flight, it's essential that the IMU sits as close to the quadcopter's center of mass as possible. Off-center placement skews these readings, introducing error and, in turn, instability.
+**IMU Close to Center of Mass**: As you may know, one of the things a flight controller does to achieve stable flight is continuously monitor the *actual* change in orientation (gyro rates) during flight. Because clean gyro readings are *absolutely critical* to stable flight, it's essential that the IMU sits as close to the quadcopter's center of mass as possible. An off-center accelerometer also senses acceleration caused by rotation around the center of mass. Gyroscope angular-rate readings do not inherently change with position on a rigid frame, but mounting vibration can still spoil the measurements.
 
 **Antenna line-of-sight**: I'll expand on this in the next chapter on the hardware package, but there's a 433 MHz "rubber ducky" antenna onboard for bidirectional communication with the pilot (transmitter). Maintaining that link is *vital* in flight. Even a half-second delay could be catastrophic mid-maneuver. So optimal antenna positioning, with little to no obstruction, was a primary concern.
 
@@ -38,7 +40,9 @@ Designing a quadcopter airframe, as I quickly discovered, is challenging! The de
 
 **Simplicity**: As with any engineering design, the real measure of success is meeting *all* of the criteria in as efficient a package as possible. My goal was *not* to over-engineer the airframe, but to arrive at a simple, intuitive solution that achieves the goal with minimal complexity.
 
-## Design Solution
+## Original Airframe Design
+
+The dimensions, component mounting photos, and unused expansion features in this section belong to the original frame. The current carrier-board revision keeps the same general two-level approach but reorganizes the lower bay. For current mounting positions and printed parts, use the build guide rather than reproducing this older layout.
 In this section I'll document, in detail, the airframe design I developed to accommodate all of those criteria. I spent *a lot* of time in Blender mocking up the hardware components the drone would have to fit, designing a frame around them, and shifting their positions until I found the optimal layout!
 
 Given my 5-inch goal (prop diameter) and my desire to keep the frame 3D-printer friendly (not huge!), my first decision was to space the motors exactly 200mm apart:
@@ -131,7 +135,7 @@ As seen above, the only thing that changes across the four configurations is the
 - **Configuration C: Rear-Mounted Antenna** - this moves the externally mounted antenna to the rear of the airframe, directly behind the battery. That solves most of the "LiPo blocking" problem from Configuration B, letting the antenna keep direct line of sight to the transmitter in many more orientations. However, during resonance testing with a NanoVNA, I found that positioning the antenna so close to a dense battery hurt its ability to receive reliably.
 - **Configuration D: Mast-Mounted Antenna = Greatest Range** - the "final" configuration, with the externally mounted antenna perched atop a "mast" at the rear of the body. The mast puts space between the LiPo battery and the antenna, getting the antenna into free air. This configuration delivers the greatest range but it's also by far the most fragile. Any roll the quadcopter makes will almost certainly snap the mast and end your day of flying, so be careful! I've successfully flown at ~100 meters with no problems in this configuration.
 
-If you're just starting out and only want to confirm your quadcopter works, I recommend **Configuration A**: it's simple, low-cost, and durable enough for the early crashes you'll inevitably take.
+For a current build, use the mast-mounted airframe and antenna parts linked in the shop and build guide. Configuration A was an early development option; the range observations here describe my tests and are not guarantees for another aircraft or flight location.
 
 If you're experienced or want to make sure your build goes the distance, I recommend **Configuration D**: it's more complex, but it's the best configuration for performance. You can also *start* with Configuration A and later move to **Configuration D** by printing the rear-left arm with the antenna mast and swapping it in.
 
@@ -144,7 +148,9 @@ All parts required to assemble every configuration are available in the design [
 ## Printing
 With the design covered, let's talk about printing!
 
-There are **twelve** unique parts to the Centauri airframe (in "Configuration D"):
+The current shop estimates approximately **155 grams of PLA at 30% infill** for the carrier-board airframe. At $15 per kilogram, that is about **$2.33 in filament**, excluding waste and printing costs. Use the current design files and parts list; the LM2596 holder is no longer needed.
+
+The inventory and weights below are measurements from the original Configuration D print, which used 164 grams including its LM2596 holder. They are retained to show the earlier design, not as a shopping checklist for the current version:
 
 ![complete set](https://i.imgur.com/WtEIdg4.png)
 
