@@ -75,12 +75,14 @@ def time_html(published):
     return f'<time datetime="{published.isoformat()}">{label}</time>'
 
 
-def render_page(template, title, description, content, root, published=date.min):
+def render_page(template, title, description, content, root, published=date.min,
+                learn_current=False):
     values = {
         "title": escape(title, quote=True),
         "description": escape(description, quote=True),
         "content": content,
         "root": root,
+        "learn_current": ' aria-current="page"' if learn_current else "",
         "date": f'<p class="post-date">{time_html(published)}</p>' if published != date.min else "",
     }
     return PLACEHOLDER.sub(lambda match: values[match[1]], template)
@@ -130,7 +132,7 @@ def build(content_dir=POSTS_DIR / "content", template_path=POSTS_DIR / "template
         raise ValueError(f"No Markdown files found in {content_dir}.")
     template = template_path.read_text(encoding="utf-8")
     placeholders = set(PLACEHOLDER.findall(template))
-    expected = {"title", "description", "content", "root", "date"}
+    expected = {"title", "description", "content", "root", "date", "learn_current"}
     if placeholders != expected or GENERATED_MARKER not in template:
         raise ValueError(
             "Template must retain the generated-file comment and placeholders: "
@@ -169,7 +171,8 @@ def build(content_dir=POSTS_DIR / "content", template_path=POSTS_DIR / "template
         )
     index = render_page(
         template, "Articles", "Learn how Centauri was designed, built, and tested.",
-        '<ul class="post-list">\n' + "\n".join(items) + "\n</ul>", "../"
+        '<ul class="post-list">\n' + "\n".join(items) + "\n</ul>", "../",
+        learn_current=True
     )
 
     # Validate everything before changing published files.
