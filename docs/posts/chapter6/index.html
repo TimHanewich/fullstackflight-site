@@ -109,6 +109,8 @@
 <p>We can think of the transmitter as three separate components brought together as one:</p>
 <p><img src="https://i.imgur.com/ysyQIHS.png" alt="pic of 3-part transmitter system" /></p>
 <p>Since the gamepad side is very simple (buy <a href="https://amzn.to/4wUxGlE">an Xbox controller</a> and plug it into the PC via USB!), I'll focus on how I developed the other two components: <strong>the transceiver platform</strong> and the <strong>transmitter program</strong>. In this article, I'll focus on <em>the transceiver platform</em>.</p>
+<p>The <a href="../../shop/#transmitter">transmitter parts list</a> includes sourcing links, and the <a href="https://github.com/TimHanewich/centauri/tree/master/components/transmitter">transmitter repository</a> provides setup instructions.</p>
+<p>Telemetry from the aircraft is sent while throttle is zero. During flight, the radio link prioritizes receiving pilot commands.</p>
 <h2>Quick Reference: Complete Hardware List</h2>
 <p>Before diving in, here's a one-stop shopping list of every component used to build the transceiver platform, for easy reference! Just in case you visited this chapter specifically to find a link to something you needed to buy. 😊</p>
 <ul>
@@ -141,7 +143,7 @@
 <p>As shown in the diagram above, there are <strong>four types</strong> of communication exchanged between the PC program and the transceiver platform (connected via USB, using UART to communicate):</p>
 <ol>
 <li><strong>PING/PONG</strong>: the PC can send <code>TRANPING</code> (encoded in ASCII) to the transceiver as a &quot;hey, are you there?&quot; check. If received, the transceiver responds <code>TRANPONG</code> to confirm it's on.</li>
-<li><strong>STATUS</strong>: the PC can also request a status update. If the PC sends the message <code>TRANSTATUS?</code> (encoded in ASCII), the transceiver responds with the HC-12's configuration (mode, channel, power). <em>Note: as of this writing, this functionality is available but not used.</em></li>
+<li><strong>STATUS</strong>: the PC can also request a status update. If the PC sends the message <code>TRANSTATUS?</code> (encoded in ASCII), the transceiver responds with the HC-12's configuration (mode, channel, power). <em>This request is available but is not used by the transmitter dashboard.</em></li>
 <li><strong>TRAN Message</strong>: the transceiver platform can send any unstructured message to the PC to flag a situation, status, or issue. To ensure a message that originated from <em>the transceiver</em> isn't confused with one that originated from <em>the drone</em>, <code>TRAN</code> (encoded in ASCII) is prepended to the message.</li>
 <li><strong>&quot;Passthrough&quot; Communication</strong>: for all other binary payloads the transceiver platform receives from or sends to the PC, if it <em>isn't</em> one of the payload types above, it can be assumed to be a message either from the drone (bound for the transmitter) or from the transmitter (bound for the drone).</li>
 </ol>

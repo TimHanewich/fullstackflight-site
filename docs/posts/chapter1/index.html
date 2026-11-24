@@ -5,9 +5,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Full-Stack Flight, Chapter 1: The Centauri Ecosystem | Full Stack Flight</title>
-  <meta name="description" content="Explore the three parts of the Centauri ecosystem: the quadcopter, the pilot transmitter, and the telemetry analysis tools. See how they work together to turn pilot input into flight and flight data into insight." />
+  <meta name="description" content="Explore the Centauri quadcopter, pilot transmitter, Link radio monitor, and telemetry analysis tools, and see how they support building, testing, and flying." />
   <meta property="og:title" content="Full-Stack Flight, Chapter 1: The Centauri Ecosystem" />
-  <meta property="og:description" content="Explore the three parts of the Centauri ecosystem: the quadcopter, the pilot transmitter, and the telemetry analysis tools. See how they work together to turn pilot input into flight and flight data into insight." />
+  <meta property="og:description" content="Explore the Centauri quadcopter, pilot transmitter, Link radio monitor, and telemetry analysis tools, and see how they support building, testing, and flying." />
   <link rel="stylesheet" href="../../styles.css?v=no-footer-20261117" />
   <script src="../../site.js" defer></script>
   <link rel="icon" type="image/svg+xml" href="../../full-stack-flight.svg" />
@@ -94,12 +94,13 @@
         <p><img src="https://i.imgur.com/JLIMLAe.jpeg" alt="banner" /></p>
 <p><em>This article is part of a 10-part series on how the <a href="https://github.com/TimHanewich/centauri">Centauri Quadcopter</a> was created. For a list of all other articles, please visit the introductory article found <a href="../chapter0">here</a>. This article contains Amazon affiliate links. If you make a purchase through them, I may earn a small commission at no extra cost to you.</em></p>
 <p>As was mentioned in <a href="../chapter0">the introductory article</a>, <em>Centauri</em> is a full quadcopter ecosystem developed from the ground up, with each component designed to support flight of the <em>Centauri Quadcopter</em>:</p>
-<p><img src="https://i.imgur.com/6TYY0Nv.png" alt="anatomy" /></p>
 <ul>
 <li><strong>The Centauri Quadcopter</strong>: I designed the complete quadcopter package from scratch, including the onboard flight controller (&quot;brain&quot;), the 3D-printed airframe, wiring schematics, and more.</li>
 <li><strong>The Centauri Transmitter</strong>: this is what the pilot uses to control the quadcopter during flight. To keep things simple and accessible, it's a lightweight program that runs on the user's computer and can be controlled with a plugged-in gamepad like an Xbox controller.</li>
 <li><strong>Analysis Software</strong>: a lightweight Python script that unpacks logged telemetry (a binary file) into a human-readable CSV file that can then be plotted and graphed.</li>
+<li><strong>Centauri Link</strong>: a handheld device that passively listens for radio traffic to help check reception before flight.</li>
 </ul>
+<p>The aircraft uses a carrier PCB to simplify electrical connections. See the <a href="../quadcopter-build-guide/">Quadcopter Build Guide</a> for step-by-step assembly instructions.</p>
 <p>In this article, I'll describe each of these components, their roles, and how they work together.</p>
 <h2>The Centauri Quadcopter</h2>
 <p><img src="https://i.imgur.com/oYdQ4hf.jpeg" alt="quadcopter" /></p>
@@ -141,7 +142,7 @@
 </ul>
 <h2>Analysis Software</h2>
 <p><img src="https://i.imgur.com/qYf9UDG.png" alt="analysis" /></p>
-<p>The final piece of the ecosystem is the <strong>analysis software</strong>. The <em>Centauri</em> Quadcopter continuously logs telemetry to its onboard flash storage during every flight. Because the storage on the Raspberry Pi Pico is tiny (only 2 MB) <em>and</em> the flight controller must be as efficient as possible, wasting no precious CPU cycles on formatting, the telemetry is logged in raw binary format.</p>
+<p>The <strong>analysis software</strong> lets us inspect recorded flight data. As explained in chapter 5, telemetry is collected into a RAM buffer during flight and flushed to onboard flash storage while throttle is zero. Buffer and flash capacity limit how much can be retained. Because the storage on the Raspberry Pi Pico is tiny (only 2 MB) <em>and</em> the flight controller must be as efficient as possible, wasting no precious CPU cycles on formatting, the telemetry is logged in raw binary format.</p>
 <p>The analysis software that comes with Centauri is a lightweight Python script that decodes a binary telemetry file retrieved from the quadcopter's Raspberry Pi Pico into a human-readable CSV file containing the data it captured:</p>
 <ul>
 <li>Battery Voltage</li>
@@ -160,9 +161,12 @@
 </ul>
 <p>Once converted, that data can be analyzed after a flight to diagnose problems, validate tuning changes, or better understand the behavior of the quadcopter's PID loops in a given environment or situation:</p>
 <p><img src="https://i.imgur.com/M8lCkOG.png" alt="example_analysis" /></p>
+<h2>Centauri Link</h2>
+<p>Link is a small handheld radio monitor built around a Pico, HC-12, and OLED display. It passively listens for Centauri traffic, helping you check reception while walking away from the transmitter without risking the aircraft in flight. Reception on foot does not guarantee the same range in flight.</p>
+<p>The <a href="../../shop/#link">Link section of the shop</a> lists its bare carrier board, electronics, and mounting hardware. Like the aircraft's carrier board, it simplifies electrical routing but still requires soldering, assembly, and separately sourced components.</p>
 <h2>Conclusion</h2>
-<p>These three components, the Transmitter, the Quadcopter, and the Analysis Software, form a closed loop. The transmitter captures pilot intent and delivers it wirelessly. The quadcopter receives those commands, senses reality, and continuously corrects itself to match. And the analysis software lets you look back at what actually happened during flight so you can tune, debug, and improve.</p>
-<p>In the chapters ahead, we'll take an in depth look at all three components of the <em>Cetnauri</em> ecosystem, starting first with the quadcopter! Click here to continue reading in this series: <a href="../chapter2">Full-Stack Flight, Chapter 2: Defining a Communication Protocol</a>.</p>
+<p>The Transmitter, Quadcopter, and Analysis Software cover control, flight, and review. Link adds a portable way to observe the radio traffic before flying. The transmitter captures pilot intent and delivers it wirelessly. The quadcopter receives those commands, senses reality, and continuously corrects itself to match. And the analysis software lets you look back at what actually happened during flight so you can tune, debug, and improve.</p>
+<p>In the chapters ahead, we'll take an in depth look at the components of the <em>Centauri</em> ecosystem, starting first with the quadcopter! Click here to continue reading in this series: <a href="../chapter2">Full-Stack Flight, Chapter 2: Defining a Communication Protocol</a>.</p>
 <p><em>Ready to start building? <a href="https://discord.gg/wwqfmCUzGg">Join the Full Stack Flight Discord</a> to ask questions, share progress, and connect with other makers building their own version of Centauri!</em></p>
 
       </div>
