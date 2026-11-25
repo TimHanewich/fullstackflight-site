@@ -13,7 +13,7 @@ As mentioned in a previous chapter, one of my goals with the new *Centauri* quad
 
 After a month and change of planning and designing, I had a finished body!
 
-![flyaround_1080](https://i.imgur.com/bh22aYF.gif)
+![flyaround_1080](https://i.imgur.com/aTfsBlg.gif)
 
 The airframe design files are [on Thingiverse](https://www.thingiverse.com/thing:7429193). Follow the [Quadcopter Build Guide](../quadcopter-build-guide/) for assembly instructions.
 
@@ -126,7 +126,7 @@ If you're experienced or want to make sure your build goes the distance, I recom
 
 **Configuration B** and **Configuration C** are comfortable middle grounds between A and D.
 
-All parts required to assemble every configuration are available in the design [on Thingiverse](https://www.thingiverse.com/thing:7194383).
+All parts required to assemble every configuration are available in the design [on Thingiverse](https://www.thingiverse.com/thing:7429193).
 
 *If you'd like to quickly compare the "complete" designs in each configuration, you can download a fully assembled airframe for each one here: [Config A](https://github.com/TimHanewich/centauri/releases/download/67/centauri_config_A.stl), [Config B](https://github.com/TimHanewich/centauri/releases/download/67/centauri_config_B.stl), [Config C](https://github.com/TimHanewich/centauri/releases/download/67/centauri_config_C.stl), [Config D](https://github.com/TimHanewich/centauri/releases/download/67/centauri_config_D.stl).*
 
