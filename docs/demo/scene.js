@@ -1,5 +1,4 @@
 import * as THREE from "three";
-import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
 import { createPark } from "./park.js";
@@ -163,7 +162,7 @@ function buildObserver(scene, device) {
     shape(observer, sphere, skin, ...grip, 0.032, 0.029, 0.038);
     limb(observer, grip.clone().add(point(0, 0.013, -0.013)), grip.clone().add(point(-side * 0.027, 0.033, -0.013)), 0.013, skin);
   }
-  return observer;
+  return { observer, monitor: mount };
 }
 
 function batchModel(model, destination) {
@@ -215,11 +214,33 @@ function buildAircraft(scene, model) {
   return { aircraft, rotors };
 }
 
+function hotspotCorners(subject) {
+  subject.updateWorldMatrix(true, true);
+  const toLocal = subject.matrixWorld.clone().invert();
+  const bounds = new THREE.Box3();
+  const transform = new THREE.Matrix4();
+  const meshBounds = new THREE.Box3();
+  subject.traverse((object) => {
+    if (!object.isMesh) return;
+    if (!object.geometry.boundingBox) object.geometry.computeBoundingBox();
+    transform.multiplyMatrices(toLocal, object.matrixWorld);
+    bounds.union(meshBounds.copy(object.geometry.boundingBox).applyMatrix4(transform));
+  });
+  const { min, max } = bounds;
+  return [min.x, max.x].flatMap((x) =>
+    [min.y, max.y].flatMap((y) => [min.z, max.z].map((z) => point(x, y, z)))
+  );
+}
+
 export async function startDemo() {
   const canvas = document.getElementById("park");
   const stage = canvas.parentElement;
   const status = document.getElementById("demo-status");
   const toolbar = document.getElementById("demo-toolbar");
+  const hotspotLayer = document.getElementById("demo-hotspots");
+  const backButton = document.getElementById("demo-overview");
+  const caption = document.getElementById("demo-view-caption");
+  const overviewCaption = caption.textContent;
   const motionButton = document.getElementById("demo-motion");
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
   try {
@@ -245,30 +266,46 @@ export async function startDemo() {
     controller.scale.copy(laptop.scale);
     batchModel(transmitter.scene, (object) => object.name.startsWith("Gamepad_") ? controller : laptop);
     const { aircraft, rotors } = buildAircraft(scene, quadcopter.scene);
-    const observer = buildObserver(scene, link.scene);
+    const { observer, monitor } = buildObserver(scene, link.scene);
 
     const camera = new THREE.PerspectiveCamera(34, 1, 0.025, 135);
-    const controls = new OrbitControls(camera, canvas);
-    controls.enablePan = false;
-    controls.minDistance = 0.43;
-    controls.maxDistance = 19;
-    controls.maxPolarAngle = Math.PI / 2 - 0.026;
+    const cameraTarget = point();
     const views = {
       overview: { eye: point(2.65, 2.6, 6.6), target: point(0, 0.66, -2.15), fov: 38, fit: 1.82 },
-      pilot: { eye: station.localToWorld(point(-1.17, 1.66, 1.1)), target: station.localToWorld(point(-0.15, 0.83, 0.27)), fov: 42, fit: 1.13 },
-      quadcopter: { eye: point(1.94, 2.73, -0.71), target: point(1.02, 2.03, -2.27), fov: 34, fit: 1 },
-      link: { eye: observer.localToWorld(point(1.35, 1.79, 0.48)), target: observer.localToWorld(point(0, 1.19, -0.14)), fov: 37, fit: 1 }
+      transmitter: {
+        eye: station.localToWorld(point(-0.64, 1.43, 0.54)),
+        target: station.localToWorld(point(-0.08, 0.885, -0.055)),
+        fov: 36, fit: 1.35, label: "Centauri transmitter"
+      },
+      quadcopter: {
+        eye: point(1.66, 2.52, -1.34), target: point(1.02, 2.075, -2.27),
+        fov: 34, fit: 1.3, label: "Centauri quadcopter"
+      },
+      link: {
+        eye: observer.localToWorld(point(0.16, 1.56, -0.14)),
+        target: monitor.localToWorld(point(0, 0.016, -0.008)),
+        fov: 37, fit: 1.05, label: "Centauri Link"
+      }
     };
-    const buttons = [...toolbar.querySelectorAll("[data-view]")];
+    const subjects = { transmitter: laptop, quadcopter: aircraft, link: monitor };
+    const hotspots = [...hotspotLayer.querySelectorAll("[data-view]")].map((button) => {
+      const subject = subjects[button.dataset.view];
+      return { button, subject, corners: hotspotCorners(subject) };
+    });
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let playing = !reducedMotion.matches;
-    let currentView = views.overview;
+    let viewName = "overview";
+    let transition = null;
+    let returnFocus = null;
+    let stageWidth = 0;
+    let stageHeight = 0;
     let visible = true;
     let stopped = false;
     let frameId = 0;
     let previousTime;
     let elapsed = 0;
     const pilotTarget = point();
+    const projected = point();
 
     function updateAircraft() {
       aircraft.position.set(
@@ -287,34 +324,95 @@ export async function startDemo() {
       if (!frameId && !stopped && visible && !document.hidden) frameId = requestAnimationFrame(renderFrame);
     }
 
+    function updateHotspots() {
+      for (const { button, subject, corners } of hotspots) {
+        let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+        for (const corner of corners) {
+          projected.copy(corner).applyMatrix4(subject.matrixWorld).project(camera);
+          const x = (1 + projected.x) * stageWidth / 2;
+          const y = (1 - projected.y) * stageHeight / 2;
+          minX = Math.min(minX, x);
+          minY = Math.min(minY, y);
+          maxX = Math.max(maxX, x);
+          maxY = Math.max(maxY, y);
+        }
+        button.style.left = `${(minX + maxX) / 2}px`;
+        button.style.top = `${(minY + maxY) / 2}px`;
+        button.style.setProperty("--halo-width", `${Math.max(28, (maxX - minX) * 1.27 + 8)}px`);
+        button.style.setProperty("--halo-height", `${Math.max(24, (maxY - minY) * 1.27 + 8)}px`);
+      }
+      if (hotspotLayer.hidden) {
+        hotspotLayer.hidden = false;
+        caption.textContent = overviewCaption;
+        returnFocus?.focus({ preventScroll: true });
+        returnFocus = null;
+        backButton.hidden = true;
+      }
+    }
+
+    function placeCamera(amount = 1) {
+      const view = views[viewName];
+      const halfFov = THREE.MathUtils.degToRad(view.fov / 2);
+      const fittedFov = THREE.MathUtils.radToDeg(2 * Math.atan(Math.tan(halfFov) * Math.max(1, view.fit / camera.aspect)));
+      if (transition) {
+        camera.position.lerpVectors(transition.eye, view.eye, amount);
+        cameraTarget.lerpVectors(transition.target, view.target, amount);
+        camera.fov = THREE.MathUtils.lerp(transition.fov, fittedFov, amount);
+      } else {
+        camera.position.copy(view.eye);
+        cameraTarget.copy(view.target);
+        camera.fov = fittedFov;
+      }
+      camera.lookAt(cameraTarget);
+      camera.updateProjectionMatrix();
+    }
+
+    function renderScene() {
+      updateAircraft();
+      renderer.render(scene, camera);
+      if (viewName === "overview" && !transition) updateHotspots();
+    }
+
     function renderFrame(time) {
       frameId = 0;
       if (stopped || !visible || document.hidden) return;
       if (playing && previousTime !== undefined) elapsed += Math.min((time - previousTime) / 1000, 0.05);
       previousTime = playing ? time : undefined;
-      updateAircraft();
-      renderer.render(scene, camera);
-      if (playing) scheduleRender();
+      if (transition) {
+        const progress = reducedMotion.matches ? 1 : THREE.MathUtils.clamp((time - transition.start) / 650, 0, 1);
+        placeCamera(progress * progress * (3 - 2 * progress));
+        if (progress === 1) transition = null;
+      }
+      renderScene();
+      if (playing || transition) scheduleRender();
     }
 
     function resize() {
       const { clientWidth: width, clientHeight: height } = stage;
       if (!width || !height) return;
+      stageWidth = width;
+      stageHeight = height;
       renderer.setSize(width, height, false);
       camera.aspect = width / height;
-      const halfFov = THREE.MathUtils.degToRad(currentView.fov / 2);
-      camera.fov = THREE.MathUtils.radToDeg(2 * Math.atan(Math.tan(halfFov) * Math.max(1, currentView.fit / camera.aspect)));
-      camera.updateProjectionMatrix();
+      if (!transition) placeCamera();
       scheduleRender();
     }
 
-    function selectView(button) {
-      currentView = views[button.dataset.view];
-      camera.position.copy(currentView.eye);
-      controls.target.copy(currentView.target);
-      controls.update();
-      buttons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
-      resize();
+    function selectView(name, button) {
+      if (viewName === name) return;
+      viewName = name;
+      if (button) {
+        returnFocus = button;
+        backButton.hidden = false;
+        backButton.focus({ preventScroll: true });
+        caption.textContent = `${views[name].label} close-up`;
+      }
+      hotspotLayer.hidden = true;
+      transition = reducedMotion.matches ? null : {
+        start: performance.now(), eye: camera.position.clone(), target: cameraTarget.clone(), fov: camera.fov
+      };
+      if (!transition) placeCamera();
+      scheduleRender();
     }
 
     function setPlaying(value) {
@@ -324,11 +422,13 @@ export async function startDemo() {
       scheduleRender();
     }
 
-    controls.addEventListener("change", () => {
-      toolbar.querySelector('[aria-pressed="true"]')?.setAttribute("aria-pressed", "false");
-      scheduleRender();
+    hotspots.forEach(({ button }) => {
+      button.addEventListener("click", () => selectView(button.dataset.view, button));
     });
-    buttons.forEach((button) => button.addEventListener("click", () => selectView(button)));
+    backButton.addEventListener("click", () => selectView("overview"));
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && viewName !== "overview" && !stopped) selectView("overview");
+    });
     motionButton.addEventListener("click", () => setPlaying(!playing));
     reducedMotion.addEventListener("change", (event) => setPlaying(!event.matches));
     document.addEventListener("visibilitychange", () => {
@@ -343,14 +443,15 @@ export async function startDemo() {
     }).observe(stage);
     canvas.addEventListener("webglcontextlost", () => {
       stopped = true;
+      hotspotLayer.hidden = true;
+      backButton.hidden = true;
       toolbar.hidden = true;
       status.textContent = "The 3D view was interrupted. Reload the page to try again.";
       status.hidden = false;
     });
-    selectView(buttons[0]);
+    resize();
     setPlaying(playing);
-    updateAircraft();
-    renderer.render(scene, camera);
+    renderScene();
     status.hidden = true;
     toolbar.hidden = false;
   } catch (error) {

@@ -35,17 +35,23 @@
     <figure class="demo-figure">
       <div class="demo-stage">
         <canvas id="park" role="img" aria-label="A sunny park with a seated pilot using a wired Xbox controller connected to the Centauri transmitter, the quadcopter hovering over the lawn, and a person holding the Link radio monitor farther down the path."></canvas>
+        <div class="demo-hotspots" id="demo-hotspots" role="group" aria-label="Explore the Centauri hardware" hidden>
+          <button class="demo-hotspot" type="button" data-view="transmitter" aria-label="Inspect the Centauri transmitter">
+            <span aria-hidden="true">Transmitter</span>
+          </button>
+          <button class="demo-hotspot" type="button" data-view="quadcopter" aria-label="Inspect the Centauri quadcopter">
+            <span aria-hidden="true">Quadcopter</span>
+          </button>
+          <button class="demo-hotspot" type="button" data-view="link" aria-label="Inspect Centauri Link">
+            <span aria-hidden="true">Link</span>
+          </button>
+        </div>
+        <button id="demo-overview" type="button" hidden><span aria-hidden="true">&larr; </span>Back to overview</button>
         <p id="demo-status" class="demo-status" role="status"></p>
         <noscript><p class="demo-status">Enable JavaScript to view the 3D scene.</p></noscript>
       </div>
       <figcaption class="demo-toolbar" id="demo-toolbar" hidden>
-        <div class="demo-views" role="group" aria-label="Camera views">
-          <button type="button" data-view="overview" aria-pressed="true">Overview</button>
-          <button type="button" data-view="pilot" aria-pressed="false">Pilot</button>
-          <button type="button" data-view="quadcopter" aria-pressed="false">Quadcopter</button>
-          <button type="button" data-view="link" aria-pressed="false">Link</button>
-        </div>
-        <p class="demo-hint">Drag to look around. Scroll or pinch to zoom.</p>
+        <p class="demo-hint" id="demo-view-caption" aria-live="polite">Select a glowing halo to take a closer look.</p>
         <button class="demo-motion" id="demo-motion" type="button">Pause motion</button>
       </figcaption>
     </figure>
