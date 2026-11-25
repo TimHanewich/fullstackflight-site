@@ -46,13 +46,13 @@
 }
 
 .demo-scene {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  position: relative;
 }
 
 .demo-figure [data-view="quadcopter"] { --component-accent: #ffdd87; }
 .demo-figure [data-view="radio"] { --component-accent: #83f8bd; }
 .demo-figure [data-view="link"] { --component-accent: #eac1ff; }
+.demo-figure [data-view="transceiver"] { --component-accent: #ffaac4; }
 
 .demo-stage {
   position: relative;
@@ -160,25 +160,48 @@
 .demo-status:empty { display: none; }
 
 .demo-details {
-  position: static;
-  width: clamp(290px, 31vw, 370px);
+  --details-dock: side;
+  --details-inset: clamp(12px, 2vw, 24px);
+  position: absolute;
+  inset: 0 var(--details-inset) 0 auto;
+  width: clamp(270px, 30vw, 370px);
   max-width: none;
-  height: auto;
-  max-height: none;
-  margin: 0;
-  padding: clamp(18px, 3vw, 32px);
-  border: 0;
-  border-inline-start: 1px solid var(--border);
-  background: var(--bg);
-  color: var(--muted);
+  height: fit-content;
+  max-height: calc(100% - var(--details-inset) * 2);
+  margin: auto 0;
+  padding: clamp(16px, 2vw, 26px);
+  border: 1px solid rgb(224 242 255 / 27%);
+  border-radius: 14px;
+  background: rgb(11 16 24 / 81%);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 26px rgb(3 9 19 / 34%);
+  color: #dce5ee;
+}
+
+.demo-details[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.demo-details > [data-details] {
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--muted) transparent;
+  padding: 3px;
+}
+
+.demo-details > [data-details]:focus-visible {
+  outline-offset: -2px;
 }
 
 .demo-details__header {
   display: flex;
+  flex: none;
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 
 .demo-details h2 {
@@ -245,13 +268,18 @@
 .demo-motion { margin-inline-start: auto; }
 
 @media (max-width: 760px) {
-  .demo-scene { grid-template-columns: minmax(0, 1fr); }
-
   .demo-details {
-    width: 100%;
-    border-inline-start: 0;
-    border-top: 1px solid var(--border);
+    --details-dock: bottom;
+    inset: auto var(--details-inset) var(--details-inset);
+    width: auto;
+    max-height: 54%;
+    margin: 0;
+    padding: 12px 14px;
+    font-size: 15px;
   }
+
+  .demo-details__header { margin-bottom: 6px; }
+  .demo-details__lead { font-size: 21px; margin-bottom: 10px; }
 }
 
 @media (max-width: 640px) {

@@ -239,14 +239,16 @@ export async function startDemo() {
   const status = document.getElementById("demo-status");
   const toolbar = document.getElementById("demo-toolbar");
   const hotspotLayer = document.getElementById("demo-hotspots");
+  const overviewHotspotLabel = hotspotLayer.getAttribute("aria-label");
   const backButton = document.getElementById("demo-overview");
   const caption = document.getElementById("demo-view-caption");
   const overviewCaption = caption.textContent;
+  const transmitterCaption = "Select the laptop or the transceiver platform to learn more.";
   const motionButton = document.getElementById("demo-motion");
   const details = document.getElementById("demo-details");
   const detailsTitle = document.getElementById("demo-details-title");
   const detailsClose = document.getElementById("demo-details-close");
-  const detailsSections = [...details.querySelectorAll("[data-details]")];
+  const detailsSections = new Map([...details.querySelectorAll("[data-details]")].map((section) => [section.dataset.details, section]));
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
   try {
     const loader = new GLTFLoader();
@@ -265,15 +267,24 @@ export async function startDemo() {
     station.rotation.y = -0.52;
     buildTable(station);
     const pilotHead = buildPilot(station);
-    const laptop = group(station, "Centauri transmitter", 0.045, 0.778, -0.028);
-    laptop.scale.setScalar(1.18);
-    const controller = group(station, "Wired Xbox controller", ...laptop.position);
-    controller.scale.copy(laptop.scale);
-    batchModel(transmitter.scene, (object) => object.name.startsWith("Gamepad_") ? controller : laptop);
+    const assembly = group(station, "Centauri transmitter", 0.045, 0.778, -0.028);
+    assembly.scale.setScalar(1.18);
+    const laptop = group(assembly, "Transmitter laptop");
+    const transceiver = group(assembly, "Transceiver platform");
+    const controller = group(station, "Wired Xbox controller", ...assembly.position);
+    controller.scale.copy(assembly.scale);
+    const platformNames = /^(Transmitter_platform_|Antenna_|USB_(serial|plug|activity)|Continuous_platform_to_USB_wire|Pico_HC12_jumper_|Jumper_socket)/;
+    batchModel(transmitter.scene, (object) => {
+      if (object.name.startsWith("Gamepad_")) return controller;
+      for (let node = object; node !== transmitter.scene; node = node.parent) {
+        if (platformNames.test(node.name)) return transceiver;
+      }
+      return laptop;
+    });
     const { aircraft, rotors } = buildAircraft(scene, quadcopter.scene);
     const { observer, monitor } = buildObserver(scene, link.scene);
     const radio = createRadioSignal(scene,
-      { subject: laptop, model: transmitter.scene },
+      { subject: transceiver, model: transmitter.scene },
       { subject: aircraft, model: quadcopter.scene }
     );
 
@@ -282,37 +293,45 @@ export async function startDemo() {
     const views = {
       overview: { eye: point(2.65, 2.6, 6.6), target: point(0, 0.66, -2.15), fov: 38, fit: 1.82 },
       transmitter: {
-        eye: station.localToWorld(point(-0.64, 1.43, 0.54)),
-        target: station.localToWorld(point(-0.08, 0.885, -0.055)),
-        fov: 36, fit: 1.35, label: "Centauri transmitter"
+        eye: station.localToWorld(point(-0.21, 1.57, 0.65)),
+        target: station.localToWorld(point(-0.075, 0.884, -0.055)),
+        fov: 45, fit: 1.65
       },
       quadcopter: {
-        eye: point(1.66, 2.52, -1.34), target: point(1.02, 2.075, -2.27),
-        fov: 34, fit: 1.3, label: "Centauri quadcopter"
+        eye: point(1.66, 2.52, -1.34), target: point(1.02, 1.995, -2.27),
+        fov: 48, fit: 1.3
       },
       radio: {
         eye: point(3.65, 2.65, 2.13), target: point(-0.04, 1.58, -0.70),
-        fov: 36, fit: 1.65, label: "Radio communication protocol",
+        fov: 36, fit: 1.65,
         caption: "The green pulses show pilot commands traveling by radio from the transmitter to the quadcopter."
       },
       link: {
         eye: observer.localToWorld(point(0.16, 1.56, -0.14)),
         target: monitor.localToWorld(point(0, 0.016, -0.008)),
-        fov: 37, fit: 1.05, label: "Centauri Link"
+        fov: 37, fit: 1.05
       }
     };
-    const subjects = { transmitter: laptop, quadcopter: aircraft, radio: radio.hotspot, link: monitor };
+    const subjects = { transmitter: assembly, laptop, transceiver, quadcopter: aircraft, radio: radio.hotspot, link: monitor };
     const hotspots = [...hotspotLayer.querySelectorAll("[data-view]")].map((button) => {
       const subject = subjects[button.dataset.view];
-      return { button, subject, corners: subject === radio.hotspot ? [point()] : hotspotCorners(subject) };
+      return {
+        button, subject, scope: button.dataset.hotspotScope ?? "overview",
+        corners: subject === radio.hotspot ? [point()] : hotspotCorners(subject)
+      };
     });
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let playing = !reducedMotion.matches;
     let viewName = "overview";
     let transition = null;
     let returnFocus = null;
+    let partFocus = null;
     let stageWidth = 0;
     let stageHeight = 0;
+    let frameWidth = 0;
+    let frameHeight = 0;
+    let shiftX = 0;
+    let shiftY = 0;
     let visible = true;
     let stopped = false;
     let frameId = 0;
@@ -339,7 +358,8 @@ export async function startDemo() {
     }
 
     function updateHotspots() {
-      for (const { button, subject, corners } of hotspots) {
+      for (const { button, subject, scope, corners } of hotspots) {
+        if (scope !== viewName) continue;
         let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
         for (const corner of corners) {
           projected.copy(corner).applyMatrix4(subject.matrixWorld).project(camera);
@@ -352,33 +372,61 @@ export async function startDemo() {
         }
         button.style.left = `${(minX + maxX) / 2}px`;
         button.style.top = `${(minY + maxY) / 2}px`;
-        button.style.setProperty("--halo-width", `${Math.max(28, (maxX - minX) * 1.27 + 8)}px`);
-        button.style.setProperty("--halo-height", `${Math.max(24, (maxY - minY) * 1.27 + 8)}px`);
+        const padding = scope === "transmitter" ? 1.05 : 1.27;
+        button.style.setProperty("--halo-width", `${Math.max(28, (maxX - minX) * padding + 8)}px`);
+        button.style.setProperty("--halo-height", `${Math.max(24, (maxY - minY) * padding + 8)}px`);
       }
       if (hotspotLayer.hidden) {
         hotspotLayer.hidden = false;
-        caption.textContent = overviewCaption;
-        returnFocus?.focus({ preventScroll: true });
-        returnFocus = null;
-        backButton.hidden = true;
+        if (viewName === "overview") {
+          caption.textContent = overviewCaption;
+          returnFocus?.focus({ preventScroll: true });
+          returnFocus = null;
+          backButton.hidden = true;
+        } else if (document.activeElement === backButton) {
+          hotspots.find(({ scope }) => scope === viewName).button.focus({ preventScroll: true });
+        }
       }
+    }
+
+    function measureFraming() {
+      frameWidth = stageWidth;
+      frameHeight = stageHeight;
+      if (!details.open) return;
+      const bounds = stage.getBoundingClientRect();
+      const panel = details.getBoundingClientRect();
+      const dock = getComputedStyle(details).getPropertyValue("--details-dock").trim();
+      if (dock === "bottom") frameHeight = panel.top - bounds.top - 10;
+      else frameWidth = panel.left - bounds.left - 10;
     }
 
     function placeCamera(amount = 1) {
       const view = views[viewName];
       const halfFov = THREE.MathUtils.degToRad(view.fov / 2);
-      const fittedFov = THREE.MathUtils.radToDeg(2 * Math.atan(Math.tan(halfFov) * Math.max(1, view.fit / camera.aspect)));
+      // Fit the close-up in the uncovered part of the canvas, then shift the full projection into place.
+      const zoom = Math.max(1, view.fit / (frameWidth / frameHeight)) * stageHeight / frameHeight;
+      const fittedFov = THREE.MathUtils.radToDeg(2 * Math.atan(Math.tan(halfFov) * zoom));
+      const offsetX = (1 - frameWidth / stageWidth) / 2;
+      const offsetY = (1 - frameHeight / stageHeight) / 2;
       if (transition) {
         camera.position.lerpVectors(transition.eye, view.eye, amount);
         cameraTarget.lerpVectors(transition.target, view.target, amount);
         camera.fov = THREE.MathUtils.lerp(transition.fov, fittedFov, amount);
+        shiftX = THREE.MathUtils.lerp(transition.shiftX, offsetX, amount);
+        shiftY = THREE.MathUtils.lerp(transition.shiftY, offsetY, amount);
       } else {
         camera.position.copy(view.eye);
         cameraTarget.copy(view.target);
         camera.fov = fittedFov;
+        shiftX = offsetX;
+        shiftY = offsetY;
       }
       camera.lookAt(cameraTarget);
-      camera.updateProjectionMatrix();
+      if (shiftX || shiftY) {
+        camera.setViewOffset(stageWidth, stageHeight, shiftX * stageWidth, shiftY * stageHeight, stageWidth, stageHeight);
+      } else {
+        camera.clearViewOffset();
+      }
     }
 
     function renderScene() {
@@ -386,7 +434,7 @@ export async function startDemo() {
       radio.group.visible = viewName === "overview" || viewName === "radio";
       if (radio.group.visible) radio.update(elapsed, camera);
       renderer.render(scene, camera);
-      if (viewName === "overview" && !transition) updateHotspots();
+      if ((viewName === "overview" || viewName === "transmitter") && (!transition || !hotspotLayer.hidden)) updateHotspots();
     }
 
     function renderFrame(time) {
@@ -406,12 +454,32 @@ export async function startDemo() {
     function resize() {
       const { clientWidth: width, clientHeight: height } = stage;
       if (!width || !height) return;
-      stageWidth = width;
-      stageHeight = height;
-      renderer.setSize(width, height, false);
-      camera.aspect = width / height;
+      if (stageWidth !== width || stageHeight !== height) {
+        stageWidth = width;
+        stageHeight = height;
+        renderer.setSize(width, height, false);
+        camera.aspect = width / height;
+      }
+      measureFraming();
       if (!transition) placeCamera();
       scheduleRender();
+    }
+
+    function reframe() {
+      transition = reducedMotion.matches ? null : {
+        start: performance.now(), eye: camera.position.clone(), target: cameraTarget.clone(), fov: camera.fov, shiftX, shiftY
+      };
+      resize();
+    }
+
+    function showDetails(name) {
+      const section = detailsSections.get(name);
+      detailsTitle.textContent = section.dataset.title;
+      details.dataset.view = name;
+      detailsSections.forEach((item) => { item.hidden = item !== section; });
+      section.scrollTop = 0;
+      if (details.open) detailsClose.focus({ preventScroll: true });
+      else details.show();
     }
 
     function selectView(name, button) {
@@ -420,22 +488,41 @@ export async function startDemo() {
       if (button) {
         returnFocus = button;
         backButton.hidden = false;
-        const view = views[name];
-        detailsTitle.textContent = view.label;
-        details.dataset.view = name;
-        detailsSections.forEach((section) => { section.hidden = section.dataset.details !== name; });
-        details.show();
-        caption.textContent = view.caption ?? `${view.label} close-up`;
+        if (name === "transmitter") {
+          caption.textContent = transmitterCaption;
+          backButton.focus({ preventScroll: true });
+        } else {
+          showDetails(name);
+          caption.textContent = views[name].caption ?? `${detailsTitle.textContent} close-up`;
+        }
       } else {
         details.close();
+        partFocus = null;
         backButton.focus({ preventScroll: true });
       }
       hotspotLayer.hidden = true;
-      transition = reducedMotion.matches ? null : {
-        start: performance.now(), eye: camera.position.clone(), target: cameraTarget.clone(), fov: camera.fov
-      };
-      if (!transition) placeCamera();
-      scheduleRender();
+      hotspotLayer.setAttribute("aria-label", name === "transmitter" ? "Explore the transmitter assembly" : overviewHotspotLabel);
+      hotspots.forEach(({ button: hotspot, scope }) => { hotspot.hidden = scope !== name; });
+      reframe();
+    }
+
+    function selectTransmitterPart(button) {
+      partFocus = button;
+      showDetails(button.dataset.view);
+      reframe();
+    }
+
+    function closeDetails() {
+      if (viewName !== "transmitter") {
+        selectView("overview");
+      } else if (details.open) {
+        details.close();
+        partFocus?.focus({ preventScroll: true });
+        partFocus = null;
+        reframe();
+      } else {
+        selectView("overview");
+      }
     }
 
     function setPlaying(value) {
@@ -445,15 +532,18 @@ export async function startDemo() {
       scheduleRender();
     }
 
-    hotspots.forEach(({ button }) => {
-      button.addEventListener("click", () => selectView(button.dataset.view, button));
+    hotspots.forEach(({ button, scope }) => {
+      button.addEventListener("click", () => {
+        if (scope === "transmitter") selectTransmitterPart(button);
+        else selectView(button.dataset.view, button);
+      });
     });
     backButton.addEventListener("click", () => selectView("overview"));
-    detailsClose.addEventListener("click", () => selectView("overview"));
+    detailsClose.addEventListener("click", closeDetails);
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && viewName !== "overview" && !stopped) {
         event.preventDefault();
-        selectView("overview");
+        closeDetails();
       }
     });
     motionButton.addEventListener("click", () => setPlaying(!playing));
@@ -462,7 +552,9 @@ export async function startDemo() {
       previousTime = undefined;
       scheduleRender();
     });
-    new ResizeObserver(resize).observe(stage);
+    const resizeObserver = new ResizeObserver(resize);
+    resizeObserver.observe(stage);
+    resizeObserver.observe(details);
     new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
       previousTime = undefined;

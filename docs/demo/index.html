@@ -37,7 +37,7 @@
         <div class="demo-stage">
           <canvas id="park" role="img" aria-label="In a sunny park, a seated pilot uses a wired Xbox controller connected to the Centauri transmitter. Green pulses show radio commands traveling to the hovering quadcopter. Farther down the path, a person holds the Link radio monitor."></canvas>
           <div class="demo-hotspots" id="demo-hotspots" role="group" aria-label="Explore the Centauri system" hidden>
-            <button class="demo-hotspot" type="button" data-view="transmitter" aria-label="Inspect the Centauri transmitter" aria-haspopup="dialog">
+            <button class="demo-hotspot" type="button" data-view="transmitter" aria-label="Explore the Centauri transmitter assembly">
               <span aria-hidden="true">Transmitter</span>
             </button>
             <button class="demo-hotspot" type="button" data-view="quadcopter" aria-label="Inspect the Centauri quadcopter" aria-haspopup="dialog">
@@ -49,6 +49,12 @@
             <button class="demo-hotspot" type="button" data-view="link" aria-label="Inspect Centauri Link" aria-haspopup="dialog">
               <span aria-hidden="true">Link</span>
             </button>
+            <button class="demo-hotspot" type="button" data-view="laptop" data-hotspot-scope="transmitter" aria-label="Inspect the transmitter laptop" aria-haspopup="dialog" hidden>
+              <span aria-hidden="true">Transmitter</span>
+            </button>
+            <button class="demo-hotspot" type="button" data-view="transceiver" data-hotspot-scope="transmitter" aria-label="Inspect the transceiver platform" aria-haspopup="dialog" hidden>
+              <span aria-hidden="true">Transceiver Platform</span>
+            </button>
           </div>
           <button id="demo-overview" type="button" hidden><span aria-hidden="true">&larr; </span>Back to overview</button>
           <p id="demo-status" class="demo-status" role="status"></p>
@@ -57,21 +63,25 @@
         <dialog id="demo-details" class="demo-details" aria-labelledby="demo-details-title">
           <div class="demo-details__header">
             <h2 id="demo-details-title"></h2>
-            <button id="demo-details-close" type="button" aria-label="Close details and return to overview" autofocus>&times;</button>
+            <button id="demo-details-close" type="button" aria-label="Close details" autofocus>&times;</button>
           </div>
-          <div data-details="quadcopter" hidden>
+          <div data-details="quadcopter" data-title="Centauri quadcopter" tabindex="0" hidden>
             <p class="demo-details__lead">Four motors. One tiny computer. Constant corrections.</p>
             <p>Inside Centauri, a Raspberry Pi Pico runs the flight controller in MicroPython. It combines your radio commands with motion readings from an MPU-6050 sensor, then adjusts the four motors through a PID control loop running 250 times per second. You tell it what to do; the flight controller handles the rapid corrections that keep it stable.</p>
           </div>
-          <div data-details="link" hidden>
+          <div data-details="link" data-title="Centauri Link" tabindex="0" hidden>
             <p class="demo-details__lead">An extra pair of ears for your radio.</p>
             <p>Link is a handheld monitor that listens for Centauri radio messages and displays reception information on a small OLED screen. Walk away from the transmitter to check whether messages are still getting through, handy for troubleshooting and exploring approximate range without putting the aircraft in the air. It listens rather than controls, and a successful ground check doesn&rsquo;t guarantee safe flight range.</p>
           </div>
-          <div data-details="transmitter" hidden>
+          <div data-details="laptop" data-title="Transmitter" tabindex="0" hidden>
             <p class="demo-details__lead">Your laptop becomes the cockpit.</p>
-            <p>A Python program reads your Xbox controller and turns stick movements into pilot commands. Those commands travel through a Pico-powered HC-12 radio transmitter to the quadcopter. A terminal dashboard shows your inputs and pre-flight telemetry, and you can wirelessly update PID settings to tune how the aircraft responds.</p>
+            <p>A Python program reads your Xbox controller, softens small stick movements for finer control, and packs your inputs into control packets. While armed, it sends those commands through the transceiver platform 20 times per second. A terminal dashboard shows your inputs and aircraft status received while throttle is zero. Before flight, you can also wirelessly update PID settings&mdash;no editing and reflashing the flight controller just to try a new tune.</p>
           </div>
-          <div data-details="radio" hidden>
+          <div data-details="transceiver" data-title="Transceiver Platform" tabindex="0" hidden>
+            <p class="demo-details__lead">Giving your laptop a pair of radio ears&mdash;and a voice.</p>
+            <p>This USB-connected platform bridges the laptop and quadcopter. A Raspberry Pi Pico running MicroPython relays outgoing messages to an HC-12 radio for transmission over the 433 MHz band, then passes incoming aircraft messages back to the PC. It doesn&rsquo;t interpret your stick movements or stabilize the drone: its job is to move messages between USB and radio, unchanged.</p>
+          </div>
+          <div data-details="radio" data-title="Radio communication protocol" tabindex="0" hidden>
             <p class="demo-details__lead">Your stick movements, packed for the trip.</p>
             <p>Twenty times per second, the transmitter packs your throttle, pitch, roll, and yaw inputs into a compact binary control packet and sends it over HC-12 radio. Each transmission is just 13 bytes, including a header, the four inputs, two checksum bytes to help detect corrupted data, and an end marker. The quadcopter checks and unpacks the message, then uses those inputs to guide its flight controller. Small packets keep communication lightweight and your commands moving.</p>
           </div>
