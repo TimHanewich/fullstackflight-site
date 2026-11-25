@@ -21,7 +21,7 @@ The aircraft uses a carrier PCB to simplify electrical connections. See the [Qua
 In this article, I'll describe each of these components, their roles, and how they work together.
 
 ## The Centauri Quadcopter
-![quadcopter](https://i.imgur.com/oYdQ4hf.jpeg)
+![quadcopter](https://i.imgur.com/GsYE2rI.jpeg)
 
 The star of the show! The Centauri Quadcopter is where most of the effort of this project went and where a lot of the frustration was concentrated. It is, by far, the most complex component of the system.
 
