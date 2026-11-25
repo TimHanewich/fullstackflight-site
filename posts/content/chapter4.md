@@ -193,18 +193,6 @@ Long story short, I purchased and used the [TI.10.0111](https://www.digikey.com/
 
 A 6-inch U.FL-to-SMA cable connects the rear-left HC-12 to the mast-mounted antenna. Follow the [parts list](../../shop/#quadcopter-parts) and secure the cable to avoid pulling on the small U.FL connector.
 
-## Wiring
-
-![Legacy wiring diagram — replace with updated carrier-board connections](https://i.imgur.com/0YmcytB.png)
-
-*This diagram shows the earlier point-to-point build; follow the current build guide for carrier-board assembly.*
-
-The carrier board handles electrical routing. Populate the board, then solder the external components to its labeled pads following the [build guide](../quadcopter-build-guide/). It saves you from creating the routing by hand.
-
-Keep these assembly checks in mind: circular power pads are positive and square power pads are ground; battery and ESC power leads use the larger holes and suitably rated wire; signal connections use the smaller holes. Match ESC1 to front left, ESC2 to front right, ESC3 to rear left, and ESC4 to rear right. Check polarity and regulator output before applying power, and keep propellers off during assembly and initial testing.
-
-Battery power feeds the ESCs, regulated power feeds the avionics, and the voltage divider lets the Pico measure battery voltage. The Pico sends a separate throttle signal to each ESC. The carrier board routes those connections to labeled positions, so assembly does not require working through GPIO numbers. Schematics and source files are available in the [Centauri repository](https://github.com/TimHanewich/centauri) if you want to explore further.
-
 ## The Finished Product
 So what does the airframe, fully printed, look like with all of this hardware onboard and wired up together? See below!
 
