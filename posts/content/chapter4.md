@@ -194,7 +194,7 @@ Long story short, I purchased and used the [TI.10.0111](https://www.digikey.com/
 A 6-inch U.FL-to-SMA cable connects the rear-left HC-12 to the mast-mounted antenna. Follow the [parts list](../../shop/#quadcopter-parts) and secure the cable to avoid pulling on the small U.FL connector.
 
 ## Wiring
-<!-- TODO: Replace the legacy wiring diagram below with the updated carrier-board connection diagram. -->
+
 ![Legacy wiring diagram — replace with updated carrier-board connections](https://i.imgur.com/0YmcytB.png)
 
 *This diagram shows the earlier point-to-point build; follow the current build guide for carrier-board assembly.*
@@ -228,7 +228,7 @@ You still need to keep external wires short enough to fit, insulate splices, and
 
 Assembled weight depends on your battery, camera, printed parts, and wiring. Weigh your completed aircraft with its flight battery and any accessories fitted; filament weight alone does not tell you the aircraft's takeoff weight.
 
-<!-- TODO: Replace this earlier build's scale photo with the current aircraft and update its measured weight and fitted accessories. -->
+
 ![Earlier Centauri build on a scale — replace with current aircraft weight photo](https://i.imgur.com/HzmTECO.jpeg)
 
 *This scale photo shows the earlier build, not the current aircraft's takeoff weight.*
