@@ -194,6 +194,11 @@ Long story short, I purchased and used the [TI.10.0111](https://www.digikey.com/
 A 6-inch U.FL-to-SMA cable connects the rear-left HC-12 to the mast-mounted antenna. Follow the [parts list](../../shop/#quadcopter-parts) and secure the cable to avoid pulling on the small U.FL connector.
 
 ## Wiring
+<!-- TODO: Replace the legacy wiring diagram below with the updated carrier-board connection diagram. -->
+![Legacy wiring diagram — replace with updated carrier-board connections](https://i.imgur.com/0YmcytB.png)
+
+*This diagram shows the earlier point-to-point build; follow the current build guide for carrier-board assembly.*
+
 The carrier board handles electrical routing. Populate the board, then solder the external components to its labeled pads following the [build guide](../quadcopter-build-guide/). It saves you from creating the routing by hand.
 
 Keep these assembly checks in mind: circular power pads are positive and square power pads are ground; battery and ESC power leads use the larger holes and suitably rated wire; signal connections use the smaller holes. Match ESC1 to front left, ESC2 to front right, ESC3 to rear left, and ESC4 to rear right. Check polarity and regulator output before applying power, and keep propellers off during assembly and initial testing.
@@ -222,6 +227,11 @@ The carrier board keeps the connections organized, leaving fewer wires to route 
 You still need to keep external wires short enough to fit, insulate splices, and secure them away from moving parts.
 
 Assembled weight depends on your battery, camera, printed parts, and wiring. Weigh your completed aircraft with its flight battery and any accessories fitted; filament weight alone does not tell you the aircraft's takeoff weight.
+
+<!-- TODO: Replace this earlier build's scale photo with the current aircraft and update its measured weight and fitted accessories. -->
+![Earlier Centauri build on a scale — replace with current aircraft weight photo](https://i.imgur.com/HzmTECO.jpeg)
+
+*This scale photo shows the earlier build, not the current aircraft's takeoff weight.*
 
 ## Close
 And now, with our body printed, the hardware assembled onto it, and everything wired up, we are ready to move on to the software phase: the Centauri Flight Controller! In the next chapter I'll detail the role of a flight controller and describe exactly how the Centauri flight controller works to achieve stable flight.
