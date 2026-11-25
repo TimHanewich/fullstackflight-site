@@ -90,7 +90,7 @@ In *Centauri* I used the [MPU-6050](https://amzn.to/4yh76Ev), a very common, low
 
 As described in the previous chapter, all three critical avionics elements are securely mounted on the **lower level** of the airframe:
 
-![avionics mounted to lower level](https://i.imgur.com/CpW4sjG.png)
+![avionics mounted to lower level](https://i.imgur.com/zDKA1rb.png)
 
 ## Propulsion
 What physical components onboard the quadcopter allow it to actually lift off? Enter the **propulsion** package!
@@ -105,7 +105,7 @@ Trust me, you could do a *very* deep dive into the science behind propellers and
 
 While I went with very high-performance motors in my previous quadcopter build, [Scout](https://timhanewich.medium.com/taking-flight-with-the-raspberry-pi-pico-micropython-diy-quadcopter-drone-61ed4f7ee746), for *Centauri* I opted for middle/low-performance motors. I used four Readytosky 2300 KV Brushless DC Motors, purchased on Amazon [here](https://amzn.to/44lyILf). The **KV value** of 2300 means that for every one volt applied to the motor, it is capable of spinning an additional 2,300 RPM. So at 14.8 volts (4S LiPo), these motors can spin at 34,000 RPM under no load. A high KV value like this is important for spinning propellers, as high speed is needed to move air and create lift efficiently.
 
-![motors](https://i.imgur.com/xHjQw91.png)
+![motors](https://i.imgur.com/0QLtzYT.png)
 
 The motors connect to their ESCs through short intermediate wires with insulated splices and strain relief, as shown in the build guide. This avoids pulling directly on the ESC pads when the motor leads move. Wire size must suit the motor current; these are power connections, not signal wires.
 
@@ -113,7 +113,7 @@ The motors connect to their ESCs through short intermediate wires with insulated
 
 However, that switching of the magnetic poles within the motor is *very* fast - as in many tens of thousands of times per second! This switching rate, usually between 20,000 and 100,000 times per second, exceeds what a normal microcontroller can achieve. Because of this, quadcopters that use BLDCs typically have four **Electronic Speed Controllers** (ESCs) onboard, solely responsible for rapidly switching the supply of electricity to each of the four motors, changing the polarity of the stator within each motor and causing the rotor to turn.
 
-![escs](https://i.imgur.com/zaQtQOr.png)
+![escs](https://i.imgur.com/D4vtGHw.png)
 
 In the image above you'll see the ESCs I used for *Centauri* mounted to the frame. I purchased these ESCs as a [4-pack from Amazon](https://amzn.to/3SMnnBr) and was very pleased with their compact footprint and light weight.
 
@@ -136,7 +136,7 @@ The supply current from the battery directly powers the ESCs and motors. But wha
 
 Before connecting the regulator output to the rest of the electronics, verify it is set to 5V with a multimeter. Match the carrier board's VIN pads to the module's VIN terminals and VOUT pads to VOUT, with positive and ground matched on each pair. The build guide shows the mounting and connections.
 
-![MP1584EN regulator mounted beside the radio and carrier board](https://i.imgur.com/BdDh9rQ.png)
+![MP1584EN regulator mounted beside the radio and carrier board](https://i.imgur.com/b4fa8cY.png)
 
 A buck converter regulates its output within its specified input range and load limits. Set and check the output before connecting sensitive electronics; do not assume that a module arrives adjusted correctly.
 
