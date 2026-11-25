@@ -81,19 +81,13 @@ The MPU-6050 sits in a small printed frame near the center of the aircraft. Doub
 
 ![MPU-6050 printed frame, foam-tape mounting, and sensor orientation](https://i.imgur.com/Le4CZCV.png)
 
-The HC-12 sits at the rear left, close to the antenna mast. Zip ties secure it to the lower plate, with its antenna connector facing rearward. This keeps the coaxial cable route short.
-
-![HC-12 mounted at the rear left of the electronics bay](https://i.imgur.com/XfoyiiW.png)
-
-The mounting slots let the zip ties pass through the lower plate and around the HC-12, holding the module in place without mounting screws.
+The HC-12 sits at the rear left, close to the antenna mast. Zip ties secure it to the lower plate, with its antenna connector facing rearward. This keeps the coaxial cable route short. The mounting slots let the zip ties pass through the lower plate and around the HC-12, holding the module in place without mounting screws.
 
 ![HC-12 mounting slots and zip-tie routing in the lower plate](https://i.imgur.com/p4EEWkx.png)
 
 The MP1584EN regulator is also secured with a zip tie. It supplies regulated 5V power for the electronics. Battery leads exit through the rear of the lower plate and are held down with zip ties, ending in an XT60 connector for the flight battery. Securing these leads provides strain relief, helping prevent cable movement from pulling on the electrical connections.
 
 ![MP1584EN regulator mounting and rear battery-lead strain relief](https://i.imgur.com/XlLTAEy.png)
-
-![Carrier board, radio, IMU, and regulator mounted in the lower bay](https://i.imgur.com/ynpOb9W.png)
 
 The upper level holds three components:
 - The battery, which takes up the vast majority of this level. As mentioned, I used a rather large 4S 3,300 mAh battery!
@@ -109,7 +103,7 @@ One of those future ideas was mounting a LiDAR unit to the underbelly, letting t
 
 The simple solution was four M4 screw holes on the lower level.
 
-![M4 holes for landing studs](https://i.imgur.com/WR7OsXn.png)
+![M4 holes for landing studs](https://i.imgur.com/GqHYMol.png)
 
 Four M4*30mm screws can thread through to act as "landing legs", keeping the LiDAR module off the ground. I would *not* recommend landing on these on cement, as they're rigid with no flexibility or "cushion." Instead, I gently set the quadcopter on them before takeoff and always do a soft landing on grass.
 
@@ -117,7 +111,7 @@ Four M4*30mm screws can thread through to act as "landing legs", keeping the LiD
 
 For mounting the LiDAR unit itself (a [TF Luna](https://amzn.to/4fk1hxM)), two small M2 holes at the center let the unit attach to the underbelly. If you scroll up, you'll see this M2 hole also penetrates the MPU-6050 frame!
 
-![M2 holes for mounting TF Luna to underbelly](https://i.imgur.com/QZ11Doi.png)
+![M2 holes for mounting TF Luna to underbelly](https://i.imgur.com/g6aAUN1.png)
 
 ## Four Configurations
 The section above described the Centauri airframe in "Configuration D", its most advanced and capable form. There are actually *four* configurations, each only slightly different from the others.
