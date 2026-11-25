@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
 import { createPark } from "./park.js";
+import { createRadioSignal } from "./radio.js";
 
 const point = (x, y, z) => new THREE.Vector3(x, y, z);
 const matte = (color) => new THREE.MeshStandardMaterial({ color, roughness: 0.88 });
@@ -267,6 +268,10 @@ export async function startDemo() {
     batchModel(transmitter.scene, (object) => object.name.startsWith("Gamepad_") ? controller : laptop);
     const { aircraft, rotors } = buildAircraft(scene, quadcopter.scene);
     const { observer, monitor } = buildObserver(scene, link.scene);
+    const radio = createRadioSignal(scene,
+      { subject: laptop, model: transmitter.scene },
+      { subject: aircraft, model: quadcopter.scene }
+    );
 
     const camera = new THREE.PerspectiveCamera(34, 1, 0.025, 135);
     const cameraTarget = point();
@@ -281,16 +286,21 @@ export async function startDemo() {
         eye: point(1.66, 2.52, -1.34), target: point(1.02, 2.075, -2.27),
         fov: 34, fit: 1.3, label: "Centauri quadcopter"
       },
+      radio: {
+        eye: point(3.65, 2.65, 2.13), target: point(-0.04, 1.58, -0.70),
+        fov: 36, fit: 1.65,
+        caption: "The green pulses show pilot commands traveling by radio from the transmitter to the quadcopter."
+      },
       link: {
         eye: observer.localToWorld(point(0.16, 1.56, -0.14)),
         target: monitor.localToWorld(point(0, 0.016, -0.008)),
         fov: 37, fit: 1.05, label: "Centauri Link"
       }
     };
-    const subjects = { transmitter: laptop, quadcopter: aircraft, link: monitor };
+    const subjects = { transmitter: laptop, quadcopter: aircraft, radio: radio.hotspot, link: monitor };
     const hotspots = [...hotspotLayer.querySelectorAll("[data-view]")].map((button) => {
       const subject = subjects[button.dataset.view];
-      return { button, subject, corners: hotspotCorners(subject) };
+      return { button, subject, corners: subject === radio.hotspot ? [point()] : hotspotCorners(subject) };
     });
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let playing = !reducedMotion.matches;
@@ -369,6 +379,8 @@ export async function startDemo() {
 
     function renderScene() {
       updateAircraft();
+      radio.group.visible = viewName === "overview" || viewName === "radio";
+      if (radio.group.visible) radio.update(elapsed, camera);
       renderer.render(scene, camera);
       if (viewName === "overview" && !transition) updateHotspots();
     }
@@ -405,7 +417,7 @@ export async function startDemo() {
         returnFocus = button;
         backButton.hidden = false;
         backButton.focus({ preventScroll: true });
-        caption.textContent = `${views[name].label} close-up`;
+        caption.textContent = views[name].caption ?? `${views[name].label} close-up`;
       }
       hotspotLayer.hidden = true;
       transition = reducedMotion.matches ? null : {

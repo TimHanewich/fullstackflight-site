@@ -82,6 +82,7 @@
 }
 
 .demo-hotspot[data-view="quadcopter"] { --halo: #ffdd87; }
+.demo-hotspot[data-view="radio"] { --halo: #83f8bd; }
 .demo-hotspot[data-view="link"] { --halo: #eac1ff; }
 
 .demo-hotspot::before {
