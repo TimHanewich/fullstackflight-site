@@ -47,17 +47,17 @@ In this section I'll document, in detail, the airframe design I developed to acc
 
 Given my 5-inch goal (prop diameter) and my desire to keep the frame 3D-printer friendly (not huge!), my first decision was to space the motors exactly 200mm apart:
 
-![measurements with props](https://i.imgur.com/vU6FyG2.png)
+![measurements with props](https://i.imgur.com/SDOqmRm.png)
 
 At 200 millimeters between motors, the 5-inch props (127mm) have plenty of clearance from each other and won't strike any onboard components.
 
 To hold all of the planned hardware and electronics, I designed the airframe with two levels: a lower level ("level 1") and an upper level ("level 2"):
 
-![levels](https://i.imgur.com/WXYOwv8.png)
+![levels](https://i.imgur.com/cxuBjoK.png)
 
 The two levels are separated by 19.5 mm, a gap conveniently set by the height of the arms themselves. I sized this height to exactly match what an M3*30mm screw provides!
 
-![M3*30mm](https://i.imgur.com/AhcyvLC.png)
+![M3*30mm](https://i.imgur.com/ed3qHKK.png)
 
 The arms incorporate several design considerations:
 - The 19mm x 16mm hole pattern at the end (where the motor mounts) perfectly matches the mounting screw positions of [the motors I used](https://amzn.to/4pgOY9G).
@@ -71,17 +71,27 @@ The arm above is shared by all four positions, with only minor modifications on 
 
 The lower level holds the electronics needed for flight: the carrier board with its Raspberry Pi Pico, the HC-12 radio module, the MPU-6050 IMU, and the MP1584EN 5V regulator.
 
-![Lower electronics bay with the carrier board and external modules mounted](https://i.imgur.com/iEqxfzY.png)
+![Lower electronics bay with components](https://i.imgur.com/TGhhh6k.png)
 
 The carrier board is secured to the lower plate with M2 screws. The Pico is soldered onto the board, with its USB port accessible from outside the frame for programming and downloading telemetry.
 
+![Carrier-board mounting points and accessible Raspberry Pi Pico USB port](https://i.imgur.com/M0uga26.png)
+
 The MPU-6050 sits in a small printed frame near the center of the aircraft. Double-sided foam tape secures the sensor and helps isolate it from motor vibration. Its orientation matters; the build guide shows how to position it.
+
+![MPU-6050 printed frame, foam-tape mounting, and sensor orientation](https://i.imgur.com/Le4CZCV.png)
 
 The HC-12 sits at the rear left, close to the antenna mast. Zip ties secure it to the lower plate, with its antenna connector facing rearward. This keeps the coaxial cable route short.
 
 ![HC-12 mounted at the rear left of the electronics bay](https://i.imgur.com/XfoyiiW.png)
 
-The MP1584EN regulator is also secured with a zip tie. It supplies regulated 5V power for the electronics. Battery leads exit through the rear of the lower plate and are held down with zip ties, ending in an XT60 connector for the flight battery.
+The mounting slots let the zip ties pass through the lower plate and around the HC-12, holding the module in place without mounting screws.
+
+![HC-12 mounting slots and zip-tie routing in the lower plate](https://i.imgur.com/p4EEWkx.png)
+
+The MP1584EN regulator is also secured with a zip tie. It supplies regulated 5V power for the electronics. Battery leads exit through the rear of the lower plate and are held down with zip ties, ending in an XT60 connector for the flight battery. Securing these leads provides strain relief, helping prevent cable movement from pulling on the electrical connections.
+
+![MP1584EN regulator mounting and rear battery-lead strain relief](https://i.imgur.com/XlLTAEy.png)
 
 ![Carrier board, radio, IMU, and regulator mounted in the lower bay](https://i.imgur.com/ynpOb9W.png)
 
@@ -136,6 +146,10 @@ With the design covered, let's talk about printing!
 The airframe uses approximately **155 grams of PLA at 30% infill**. At $15 per kilogram, that is about **$2.33 in filament**, excluding waste and printing costs. Actual usage depends on your slicer settings.
 
 Print one lower plate, one upper plate, four arms, the MPU-6050 frame, and the three antenna-mast components. Add the GoPro mount if you plan to mount a camera. The [shop's airframe list](../../shop/#quadcopter-parts) links the design files and mounting hardware.
+
+That's **11 printed pieces**, or **12 with the optional GoPro mount**. The layout below shows the complete set so you can check that you have everything before assembly.
+
+![Complete set of printed airframe parts, including the optional GoPro mount](https://i.imgur.com/pBxx105.png)
 
 Below are some photos I got while printing a few of the parts!
 
