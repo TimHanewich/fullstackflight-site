@@ -90,7 +90,7 @@ In *Centauri* I used the [MPU-6050](https://amzn.to/4yh76Ev), a very common, low
 
 As described in the previous chapter, all three critical avionics elements are securely mounted on the **lower level** of the airframe:
 
-![avionics mounted to lower level](https://i.imgur.com/iEqxfzY.png)
+![avionics mounted to lower level](https://i.imgur.com/CpW4sjG.png)
 
 ## Propulsion
 What physical components onboard the quadcopter allow it to actually lift off? Enter the **propulsion** package!
@@ -136,7 +136,7 @@ The supply current from the battery directly powers the ESCs and motors. But wha
 
 Before connecting the regulator output to the rest of the electronics, verify it is set to 5V with a multimeter. Match the carrier board's VIN pads to the module's VIN terminals and VOUT pads to VOUT, with positive and ground matched on each pair. The build guide shows the mounting and connections.
 
-![MP1584EN regulator mounted beside the radio and carrier board](https://i.imgur.com/ynpOb9W.png)
+![MP1584EN regulator mounted beside the radio and carrier board](https://i.imgur.com/BdDh9rQ.png)
 
 A buck converter regulates its output within its specified input range and load limits. Set and check the output before connecting sensitive electronics; do not assume that a module arrives adjusted correctly.
 
