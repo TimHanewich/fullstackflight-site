@@ -198,28 +198,23 @@ So what does the airframe, fully printed, look like with all of this hardware on
 
 View from the front:
 
-![front](https://i.imgur.com/bJAhBok.jpeg)
+![front](https://i.imgur.com/GsYE2rI.jpeg)
 
 View from the side:
 
-![side](https://i.imgur.com/ZygvM4N.jpeg)
+![side](https://i.imgur.com/g1joibO.jpeg)
 
-View from the rear:
+The carrier board keeps the connections organized, leaving fewer wires to route by hand. Here is the lower electronics bay:
 
-![rear](https://i.imgur.com/c21DvcF.jpeg)
-
-The carrier board keeps the connections organized, leaving fewer wires to route by hand. Here is the lower electronics bay, also shown in the assembly guide:
-
-![Carrier-board build with the Pico, IMU, radio, and regulator installed](https://i.imgur.com/8bvDEF0.png)
+![Carrier-board build with the Pico, IMU, radio, and regulator installed](https://i.imgur.com/Sx5pEcv.gif)
 
 You still need to keep external wires short enough to fit, insulate splices, and secure them away from moving parts.
 
 Assembled weight depends on your battery, camera, printed parts, and wiring. Weigh your completed aircraft with its flight battery and any accessories fitted; filament weight alone does not tell you the aircraft's takeoff weight.
 
+![weight](https://i.imgur.com/Kh0mNKz.jpeg)
 
-![Earlier Centauri build on a scale — replace with current aircraft weight photo](https://i.imgur.com/HzmTECO.jpeg)
-
-*This scale photo shows the earlier build, not the current aircraft's takeoff weight.*
+As you can see above, mine weighs approximately 782 grams, but this is with my largest and heaviest 3,300 mAh battery, larger and heavier than I would recommend using!
 
 ## Close
 And now, with our body printed, the hardware assembled onto it, and everything wired up, we are ready to move on to the software phase: the Centauri Flight Controller! In the next chapter I'll detail the role of a flight controller and describe exactly how the Centauri flight controller works to achieve stable flight.
