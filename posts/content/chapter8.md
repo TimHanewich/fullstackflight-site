@@ -15,7 +15,7 @@ As discussed in [chapter 5](../chapter5), the *Centauri Flight Controller* logs 
 
 And as we discussed in [chapter 1](../chapter1), Centauri's 3D-printed airframe was designed so the USB port on the Raspberry Pi Pico (the microcontroller) is easily accessible:
 
-![pico port](https://i.imgur.com/EaqFWzX.png)
+![pico port](https://i.imgur.com/W7o9izK.png)
 
 Because the port is so accessible, it's very easy to plug a USB cable between your computer and the quadcopter after a flight and pull off the telemetry!
 
