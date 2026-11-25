@@ -57,15 +57,6 @@ I do plan to make further improvements to *Centauri*, building on this fantastic
 
 Those are just the immediate big ideas that come to mind, but I'm sure many more will follow! If you have any ideas or suggestions, I'm all ears.
 
-## Building with the Carrier Board
-The Centauri Flight Controller Carrier Board simplifies assembly by handling electrical routing between the components. It gives your electronics an organized foundation while keeping the components accessible for learning and experimentation.
-
-This is a **bare carrier PCB**, not a complete flight controller or drone kit. It handles electrical routing between the components, saving you from creating those connections with point-to-point wiring. You still solder in the Pico and small components, then connect the external modules and ESCs to labeled pads.
-
-The [shop](../../shop/) lists the Flight Controller Carrier Board at $29.99 plus shipping and the Link Carrier Board at $19.99 plus shipping, with separate parts lists for each build. Link is a handheld radio monitor for checking reception; it does not replace the pilot's transmitter.
-
-Start with the [Quadcopter Build Guide](../quadcopter-build-guide/) for step-by-step assembly. The engineering explanations in this series help you understand what you're building, while the carrier board saves connection work. Assembly, troubleshooting, and flight testing still take care and patience.
-
 ## Join The Community!
 In the three years since I released [my write-up series on *Scout*](https://timhanewich.medium.com/taking-flight-with-the-raspberry-pi-pico-micropython-diy-quadcopter-drone-61ed4f7ee746), I've had so many positive interactions with members of the maker community; people that were just like me when I first sat down to build my own custom quadcopter flight controller. Messages, YouTube comments, tweets, and more.
 
