@@ -137,11 +137,23 @@ All parts required to assemble every configuration are available in the design [
 ## Printing
 With the design covered, let's talk about printing!
 
-The airframe uses approximately **155 grams of PLA at 30% infill**. At $15 per kilogram, that is about **$2.33 in filament**, excluding waste and printing costs. Actual usage depends on your slicer settings.
+The airframe uses approximately **153 grams of PLA at 30% infill**, including the optional GoPro mount:
+
+|Part|PLA @ 30% Infill|
+|-|-|
+|4 Arms|67 g|
+|Lower and Upper Levels (combined)|60 g|
+|Antenna Mast (3 parts)|15 g|
+|MPU-6050 Frame|3 g|
+|GoPro Mount (optional)|8 g|
+|**Total with GoPro Mount**|**153 g**|
+|**Total without GoPro Mount**|**145 g**|
+
+At $15 per kilogram, that is about **$2.30 in filament**, or **$2.18 without the GoPro mount**, excluding waste and printing costs. Actual usage depends on your slicer settings.
 
 Print one lower plate, one upper plate, four arms, the MPU-6050 frame, and the three antenna-mast components. Add the GoPro mount if you plan to mount a camera. The [shop's airframe list](../../shop/#quadcopter-parts) links the design files and mounting hardware.
 
-That's **11 printed pieces**, or **12 with the optional GoPro mount**. The layout below shows the complete set so you can check that you have everything before assembly.
+That's **10 printed pieces**, or **11 with the optional GoPro mount**. The layout below shows the complete set so you can check that you have everything before assembly.
 
 ![Complete set of printed airframe parts, including the optional GoPro mount](https://i.imgur.com/pBxx105.png)
 
