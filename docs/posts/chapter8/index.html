@@ -96,7 +96,7 @@
 <p>Over the previous chapters in this series about the <em>Centauri</em> quadcopter ecosystem, we learned how Centauri's quadcopter was designed, built, and programmed, and how the pilot's transmitter was built for bidirectional communication with the quadcopter. In this chapter, we'll look at the <em>after-flight</em> phase: analyzing telemetry data!</p>
 <p>As discussed in <a href="../chapter5">chapter 5</a>, the <em>Centauri Flight Controller</em> logs telemetry data to its onboard flash storage several times per second. This data lives on the device and can easily be accessed later.</p>
 <p>And as we discussed in <a href="../chapter1">chapter 1</a>, Centauri's 3D-printed airframe was designed so the USB port on the Raspberry Pi Pico (the microcontroller) is easily accessible:</p>
-<p><img src="https://i.imgur.com/EaqFWzX.png" alt="pico port" /></p>
+<p><img src="https://i.imgur.com/W7o9izK.png" alt="pico port" /></p>
 <p>Because the port is so accessible, it's very easy to plug a USB cable between your computer and the quadcopter after a flight and pull off the telemetry!</p>
 <p>Disconnect the flight battery before connecting USB, keep propellers off while working on the powered aircraft, and allow buffered telemetry to finish saving before removing flight power.</p>
 <p>Use a decoder compatible with the firmware that produced your log; see the <a href="https://github.com/TimHanewich/centauri/tree/master/components/analysis">analysis source</a>.</p>
