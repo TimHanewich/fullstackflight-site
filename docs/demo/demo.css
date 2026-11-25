@@ -42,7 +42,17 @@
   border: 1px solid var(--border);
   border-radius: 12px;
   background: var(--bg-soft);
+  --transmitter-accent: #79e7ff;
 }
+
+.demo-scene {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.demo-figure [data-view="quadcopter"] { --component-accent: #ffdd87; }
+.demo-figure [data-view="radio"] { --component-accent: #83f8bd; }
+.demo-figure [data-view="link"] { --component-accent: #eac1ff; }
 
 .demo-stage {
   position: relative;
@@ -64,7 +74,7 @@
 }
 
 .demo-hotspot {
-  --halo: #79e7ff;
+  --halo: var(--component-accent, var(--transmitter-accent));
   position: absolute;
   display: grid;
   place-items: center;
@@ -80,10 +90,6 @@
   transform: translate(-50%, -50%);
   pointer-events: auto;
 }
-
-.demo-hotspot[data-view="quadcopter"] { --halo: #ffdd87; }
-.demo-hotspot[data-view="radio"] { --halo: #83f8bd; }
-.demo-hotspot[data-view="link"] { --halo: #eac1ff; }
 
 .demo-hotspot::before {
   content: "";
@@ -153,6 +159,59 @@
 
 .demo-status:empty { display: none; }
 
+.demo-details {
+  position: static;
+  width: clamp(290px, 31vw, 370px);
+  max-width: none;
+  height: auto;
+  max-height: none;
+  margin: 0;
+  padding: clamp(18px, 3vw, 32px);
+  border: 0;
+  border-inline-start: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--muted);
+}
+
+.demo-details__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.demo-details h2 {
+  align-self: center;
+  color: var(--component-accent, var(--transmitter-accent));
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+#demo-details-close {
+  flex: 0 0 44px;
+  min-height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-soft);
+  color: var(--text);
+  font-size: 23px;
+  line-height: 1;
+}
+
+#demo-details-close:hover { background: var(--accent-soft); }
+
+.demo-details__lead {
+  margin-bottom: 16px;
+  color: var(--text);
+  font-size: clamp(23px, 2.2vw, 30px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
 .demo-toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -184,6 +243,16 @@
 }
 
 .demo-motion { margin-inline-start: auto; }
+
+@media (max-width: 760px) {
+  .demo-scene { grid-template-columns: minmax(0, 1fr); }
+
+  .demo-details {
+    width: 100%;
+    border-inline-start: 0;
+    border-top: 1px solid var(--border);
+  }
+}
 
 @media (max-width: 640px) {
   .demo-header,

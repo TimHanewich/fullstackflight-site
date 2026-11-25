@@ -243,6 +243,10 @@ export async function startDemo() {
   const caption = document.getElementById("demo-view-caption");
   const overviewCaption = caption.textContent;
   const motionButton = document.getElementById("demo-motion");
+  const details = document.getElementById("demo-details");
+  const detailsTitle = document.getElementById("demo-details-title");
+  const detailsClose = document.getElementById("demo-details-close");
+  const detailsSections = [...details.querySelectorAll("[data-details]")];
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
   try {
     const loader = new GLTFLoader();
@@ -288,7 +292,7 @@ export async function startDemo() {
       },
       radio: {
         eye: point(3.65, 2.65, 2.13), target: point(-0.04, 1.58, -0.70),
-        fov: 36, fit: 1.65,
+        fov: 36, fit: 1.65, label: "Radio communication protocol",
         caption: "The green pulses show pilot commands traveling by radio from the transmitter to the quadcopter."
       },
       link: {
@@ -416,8 +420,15 @@ export async function startDemo() {
       if (button) {
         returnFocus = button;
         backButton.hidden = false;
+        const view = views[name];
+        detailsTitle.textContent = view.label;
+        details.dataset.view = name;
+        detailsSections.forEach((section) => { section.hidden = section.dataset.details !== name; });
+        details.show();
+        caption.textContent = view.caption ?? `${view.label} close-up`;
+      } else {
+        details.close();
         backButton.focus({ preventScroll: true });
-        caption.textContent = views[name].caption ?? `${views[name].label} close-up`;
       }
       hotspotLayer.hidden = true;
       transition = reducedMotion.matches ? null : {
@@ -438,8 +449,12 @@ export async function startDemo() {
       button.addEventListener("click", () => selectView(button.dataset.view, button));
     });
     backButton.addEventListener("click", () => selectView("overview"));
+    detailsClose.addEventListener("click", () => selectView("overview"));
     document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && viewName !== "overview" && !stopped) selectView("overview");
+      if (event.key === "Escape" && viewName !== "overview" && !stopped) {
+        event.preventDefault();
+        selectView("overview");
+      }
     });
     motionButton.addEventListener("click", () => setPlaying(!playing));
     reducedMotion.addEventListener("change", (event) => setPlaying(!event.matches));
@@ -455,6 +470,7 @@ export async function startDemo() {
     }).observe(stage);
     canvas.addEventListener("webglcontextlost", () => {
       stopped = true;
+      details.close();
       hotspotLayer.hidden = true;
       backButton.hidden = true;
       toolbar.hidden = true;

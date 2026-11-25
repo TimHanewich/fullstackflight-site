@@ -33,25 +33,49 @@
     <p class="demo-intro">A pilot flies Centauri from a picnic table while a second person farther down the path uses Link to check that radio messages are getting through.</p>
 
     <figure class="demo-figure">
-      <div class="demo-stage">
-        <canvas id="park" role="img" aria-label="In a sunny park, a seated pilot uses a wired Xbox controller connected to the Centauri transmitter. Green pulses show radio commands traveling to the hovering quadcopter. Farther down the path, a person holds the Link radio monitor."></canvas>
-        <div class="demo-hotspots" id="demo-hotspots" role="group" aria-label="Explore the Centauri system" hidden>
-          <button class="demo-hotspot" type="button" data-view="transmitter" aria-label="Inspect the Centauri transmitter">
-            <span aria-hidden="true">Transmitter</span>
-          </button>
-          <button class="demo-hotspot" type="button" data-view="quadcopter" aria-label="Inspect the Centauri quadcopter">
-            <span aria-hidden="true">Quadcopter</span>
-          </button>
-          <button class="demo-hotspot" type="button" data-view="radio" aria-label="Inspect radio communication from the transmitter to the quadcopter">
-            <span aria-hidden="true">Radio communication</span>
-          </button>
-          <button class="demo-hotspot" type="button" data-view="link" aria-label="Inspect Centauri Link">
-            <span aria-hidden="true">Link</span>
-          </button>
+      <div class="demo-scene">
+        <div class="demo-stage">
+          <canvas id="park" role="img" aria-label="In a sunny park, a seated pilot uses a wired Xbox controller connected to the Centauri transmitter. Green pulses show radio commands traveling to the hovering quadcopter. Farther down the path, a person holds the Link radio monitor."></canvas>
+          <div class="demo-hotspots" id="demo-hotspots" role="group" aria-label="Explore the Centauri system" hidden>
+            <button class="demo-hotspot" type="button" data-view="transmitter" aria-label="Inspect the Centauri transmitter" aria-haspopup="dialog">
+              <span aria-hidden="true">Transmitter</span>
+            </button>
+            <button class="demo-hotspot" type="button" data-view="quadcopter" aria-label="Inspect the Centauri quadcopter" aria-haspopup="dialog">
+              <span aria-hidden="true">Quadcopter</span>
+            </button>
+            <button class="demo-hotspot" type="button" data-view="radio" aria-label="Inspect radio communication from the transmitter to the quadcopter" aria-haspopup="dialog">
+              <span aria-hidden="true">Radio communication</span>
+            </button>
+            <button class="demo-hotspot" type="button" data-view="link" aria-label="Inspect Centauri Link" aria-haspopup="dialog">
+              <span aria-hidden="true">Link</span>
+            </button>
+          </div>
+          <button id="demo-overview" type="button" hidden><span aria-hidden="true">&larr; </span>Back to overview</button>
+          <p id="demo-status" class="demo-status" role="status"></p>
+          <noscript><p class="demo-status">Enable JavaScript to view the 3D scene.</p></noscript>
         </div>
-        <button id="demo-overview" type="button" hidden><span aria-hidden="true">&larr; </span>Back to overview</button>
-        <p id="demo-status" class="demo-status" role="status"></p>
-        <noscript><p class="demo-status">Enable JavaScript to view the 3D scene.</p></noscript>
+        <dialog id="demo-details" class="demo-details" aria-labelledby="demo-details-title">
+          <div class="demo-details__header">
+            <h2 id="demo-details-title"></h2>
+            <button id="demo-details-close" type="button" aria-label="Close details and return to overview" autofocus>&times;</button>
+          </div>
+          <div data-details="quadcopter" hidden>
+            <p class="demo-details__lead">Four motors. One tiny computer. Constant corrections.</p>
+            <p>Inside Centauri, a Raspberry Pi Pico runs the flight controller in MicroPython. It combines your radio commands with motion readings from an MPU-6050 sensor, then adjusts the four motors through a PID control loop running 250 times per second. You tell it what to do; the flight controller handles the rapid corrections that keep it stable.</p>
+          </div>
+          <div data-details="link" hidden>
+            <p class="demo-details__lead">An extra pair of ears for your radio.</p>
+            <p>Link is a handheld monitor that listens for Centauri radio messages and displays reception information on a small OLED screen. Walk away from the transmitter to check whether messages are still getting through, handy for troubleshooting and exploring approximate range without putting the aircraft in the air. It listens rather than controls, and a successful ground check doesn&rsquo;t guarantee safe flight range.</p>
+          </div>
+          <div data-details="transmitter" hidden>
+            <p class="demo-details__lead">Your laptop becomes the cockpit.</p>
+            <p>A Python program reads your Xbox controller and turns stick movements into pilot commands. Those commands travel through a Pico-powered HC-12 radio transmitter to the quadcopter. A terminal dashboard shows your inputs and pre-flight telemetry, and you can wirelessly update PID settings to tune how the aircraft responds.</p>
+          </div>
+          <div data-details="radio" hidden>
+            <p class="demo-details__lead">Your stick movements, packed for the trip.</p>
+            <p>Twenty times per second, the transmitter packs your throttle, pitch, roll, and yaw inputs into a compact binary control packet and sends it over HC-12 radio. Each transmission is just 13 bytes, including a header, the four inputs, two checksum bytes to help detect corrupted data, and an end marker. The quadcopter checks and unpacks the message, then uses those inputs to guide its flight controller. Small packets keep communication lightweight and your commands moving.</p>
+          </div>
+        </dialog>
       </div>
       <figcaption class="demo-toolbar" id="demo-toolbar" hidden>
         <p class="demo-hint" id="demo-view-caption" aria-live="polite">Select a glowing halo to take a closer look.</p>
