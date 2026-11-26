@@ -277,7 +277,7 @@
   line-height: 1.4;
 }
 
-.demo-details:is([data-view="airframe"], [data-view="flight-controller"], [data-view="radio"]) h2 {
+.demo-details:is([data-view="airframe"], [data-view="flight-controller"], [data-view="radio"], [data-view="transceiver"]) h2 {
   font-size: clamp(1.25rem, 2vw, 1.625rem);
   font-weight: 700;
   line-height: 1.15;
@@ -354,6 +354,71 @@
   color: var(--muted);
   font-size: 0.8125rem;
 }
+
+.transceiver-flow {
+  margin: 12px 0;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-soft);
+}
+
+.transceiver-flow__route {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.transceiver-flow__route strong {
+  padding: 4px;
+  border: 1px solid var(--component-accent);
+  border-radius: 5px;
+  color: var(--component-accent);
+}
+
+.transceiver-flow__connection { color: var(--muted); }
+
+.transceiver-flow__connection span {
+  display: block;
+  color: var(--component-accent);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.transceiver-flow figcaption {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+.transceiver-messages__title {
+  margin-bottom: 6px;
+  color: var(--component-accent);
+  font-size: 1rem;
+}
+
+.transceiver-messages details {
+  margin-top: 5px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--panel);
+}
+
+.transceiver-messages summary {
+  min-height: 44px;
+  padding: 11px 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.transceiver-messages summary:focus-visible { outline-offset: -3px; }
+
+.transceiver-messages details[open] summary { color: var(--component-accent); }
+
+.transceiver-messages details p { padding: 0 8px 8px; }
 
 .airframe-carousel { margin-top: 12px; }
 

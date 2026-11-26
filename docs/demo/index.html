@@ -121,8 +121,17 @@
             <p>A Python program reads your Xbox controller, softens small stick movements for finer control, and packs your inputs into control packets. While armed, it sends those commands through the transceiver platform 20 times per second. A terminal dashboard shows your inputs and aircraft status received while throttle is zero. Before flight, you can also wirelessly update PID settings&mdash;no editing and reflashing the flight controller just to try a new tune.</p>
           </div>
           <div data-details="transceiver" data-title="Transceiver Platform" tabindex="0" hidden>
-            <p class="demo-details__lead">Giving your laptop a pair of radio ears&mdash;and a voice.</p>
-            <p>This USB-connected platform bridges the laptop and quadcopter. A Raspberry Pi Pico running MicroPython relays outgoing messages to an HC-12 radio for transmission over the 433 MHz band, then passes incoming aircraft messages back to the PC. It doesn&rsquo;t interpret your stick movements or stabilize the drone: its job is to move messages between USB and radio, unchanged.</p>
+            <p>This little USB accessory gives your laptop a radio. A Raspberry Pi Pico running MicroPython passes messages between the laptop and an HC-12 radio, so you can use the computer you already have instead of building a dedicated controller.</p>
+            <figure class="transceiver-flow">
+              <div class="transceiver-flow__route">
+                <span>Laptop</span>
+                <span class="transceiver-flow__connection"><span aria-hidden="true">&harr;</span> USB</span>
+                <strong>Transceiver</strong>
+                <span class="transceiver-flow__connection"><span aria-hidden="true">&harr;</span> Radio</span>
+                <span>Quadcopter</span>
+              </div>
+              <figcaption>The platform forwards pilot commands and sends aircraft updates back to the laptop, without changing the messages.</figcaption>
+            </figure>
           </div>
           <div data-details="radio" data-title="Radio Communication Protocol" tabindex="0" hidden>
             <p>The transmitter sends your stick inputs to the quadcopter <strong>20 times per second</strong>. Each update is a control packet: a tiny radio message that tells Centauri how much thrust to apply and how you want it to turn.</p>
