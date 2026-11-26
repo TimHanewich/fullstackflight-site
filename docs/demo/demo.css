@@ -308,18 +308,48 @@
 
 .radio-packet {
   width: 100%;
-  margin: 12px auto 0;
+  margin-top: 12px;
+  border-spacing: 6px 5px;
+  table-layout: fixed;
 }
 
-.radio-packet img {
+.radio-packet caption {
+  color: var(--component-accent);
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+.radio-packet td span {
   display: block;
-  width: 100%;
-  height: auto;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+.radio-packet th {
+  width: 46%;
+  padding: 6px;
   border: 1px solid var(--border);
   border-radius: 6px;
+  background: var(--bg-soft);
+  color: var(--component-accent);
+  font-size: 0.8125rem;
+  text-align: center;
 }
 
-.radio-packet figcaption {
+.radio-packet td { text-align: center; }
+
+.radio-packet td code {
+  display: block;
+  padding: 2px 4px;
+  border-radius: 5px;
+  background: var(--accent-soft);
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.radio-packet__note {
   margin-top: 6px;
   color: var(--muted);
   font-size: 0.8125rem;

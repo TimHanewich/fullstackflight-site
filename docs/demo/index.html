@@ -126,10 +126,41 @@
           </div>
           <div data-details="radio" data-title="Radio Communication Protocol" tabindex="0" hidden>
             <p>The transmitter sends your stick inputs to the quadcopter <strong>20 times per second</strong>. Each update is a control packet: a tiny radio message that tells Centauri how much thrust to apply and how you want it to turn.</p>
-            <figure class="radio-packet">
-              <img src="https://i.imgur.com/0T4LLrx.png" loading="lazy" decoding="async" alt="Control packet layout: a one-byte header, two bytes each for throttle, pitch, roll, and yaw, and two checksum bytes to help detect errors." />
-              <figcaption>The control packet is 11 bytes. Two more mark the end of the message, for <strong>13 bytes over the air</strong>.</figcaption>
-            </figure>
+            <table class="radio-packet">
+              <caption>Inside a control packet</caption>
+              <tbody>
+                <tr>
+                  <th scope="row">Header</th>
+                  <td><span>Byte 1</span><code>0</code></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <th scope="row">Throttle</th>
+                  <td><span>Byte 2</span><code>140</code></td>
+                  <td><span>Byte 3</span><code>204</code></td>
+                </tr>
+                <tr>
+                  <th scope="row">Pitch</th>
+                  <td><span>Byte 4</span><code>96</code></td>
+                  <td><span>Byte 5</span><code>0</code></td>
+                </tr>
+                <tr>
+                  <th scope="row">Roll</th>
+                  <td><span>Byte 6</span><code>159</code></td>
+                  <td><span>Byte 7</span><code>255</code></td>
+                </tr>
+                <tr>
+                  <th scope="row">Yaw</th>
+                  <td><span>Byte 8</span><code>128</code></td>
+                  <td><span>Byte 9</span><code>0</code></td>
+                </tr>
+                <tr>
+                  <th scope="row">Checksums</th>
+                  <td><span>Byte 10</span><code>192</code></td>
+                  <td><span>Byte 11</span><code>51</code></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </dialog>
       </div>
