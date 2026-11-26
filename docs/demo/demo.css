@@ -306,6 +306,46 @@
   text-wrap: balance;
 }
 
+.airframe-carousel { margin-top: 12px; }
+
+.airframe-carousel__slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--panel);
+}
+
+.airframe-carousel__slide figcaption {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+.airframe-carousel__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 6px;
+  text-align: center;
+}
+
+.airframe-carousel__controls button {
+  flex: 0 0 44px;
+  min-height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-soft);
+  color: var(--component-accent);
+  font-size: 1.125rem;
+}
+
+.airframe-carousel__controls button:hover { background: var(--accent-soft); }
+
+.airframe-carousel__controls button:focus-visible { outline-offset: -3px; }
+
 .flight-loop__section-title {
   color: var(--text);
   font-size: 0.875rem;

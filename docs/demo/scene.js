@@ -292,6 +292,19 @@ export async function startDemo() {
   const detailsClose = document.getElementById("demo-details-close");
   const detailsSections = new Map([...details.querySelectorAll("[data-details]")].map((section) => [section.dataset.details, section]));
   const flightLoop = createFlightLoop(detailsSections.get("flight-controller"));
+  const airframeCarousel = detailsSections.get("airframe").querySelector(".airframe-carousel");
+  const airframeSlides = [...airframeCarousel.querySelectorAll(".airframe-carousel__slide")];
+  const airframeSlideStatus = airframeCarousel.querySelector(".airframe-carousel__status");
+  const airframeSlideNames = ["Printed parts", "Motor spacing"];
+  let airframeSlide = 0;
+  airframeCarousel.querySelectorAll("[data-slide-direction]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const count = airframeSlides.length;
+      airframeSlide = (airframeSlide + Number(button.dataset.slideDirection) + count) % count;
+      airframeSlides.forEach((slide, index) => { slide.hidden = index !== airframeSlide; });
+      airframeSlideStatus.textContent = `${airframeSlide + 1} of ${count}: ${airframeSlideNames[airframeSlide]}`;
+    });
+  });
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
   try {
     const loader = new GLTFLoader();
