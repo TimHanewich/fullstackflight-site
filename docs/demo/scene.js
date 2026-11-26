@@ -603,6 +603,7 @@ export async function startDemo() {
       playing = value;
       previousTime = undefined;
       motionButton.textContent = playing ? "Pause motion" : "Resume motion";
+      motionButton.toggleAttribute("data-paused", !playing);
       scheduleRender();
     }
 

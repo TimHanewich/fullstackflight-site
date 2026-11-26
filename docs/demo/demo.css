@@ -379,13 +379,47 @@
   color: var(--component-accent);
 }
 
-.transceiver-flow__connection { color: var(--muted); }
+.transceiver-flow__track {
+  position: relative;
+  height: 14px;
+  margin: 5px 8px 0 2px;
+  background: linear-gradient(to right, var(--muted) 60%, var(--component-accent) 60%) center / 100% 2px no-repeat;
+}
 
-.transceiver-flow__connection span {
-  display: block;
-  color: var(--component-accent);
-  font-size: 1rem;
-  line-height: 1;
+.transceiver-flow__track::after {
+  content: "";
+  position: absolute;
+  right: -6px;
+  top: 3px;
+  border-block: 4px solid transparent;
+  border-left: 6px solid var(--component-accent);
+}
+
+.transceiver-flow__track span {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  width: 10px;
+  height: 8px;
+  border: 1px solid var(--bg);
+  border-radius: 2px;
+  background: var(--component-accent);
+  animation: transceiver-packet 2.4s linear infinite;
+}
+
+.transceiver-flow__track span:nth-child(2) { animation-delay: -0.8s; }
+.transceiver-flow__track span:nth-child(3) { animation-delay: -1.6s; }
+
+.demo-figure:has(#demo-motion[data-paused]) .transceiver-flow__track span { animation-play-state: paused; }
+
+@keyframes transceiver-packet {
+  from { left: 0; }
+  to { left: calc(100% - 10px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .transceiver-flow__track span:nth-child(2) { left: 33%; }
+  .transceiver-flow__track span:nth-child(3) { left: 66%; }
 }
 
 .transceiver-flow figcaption {

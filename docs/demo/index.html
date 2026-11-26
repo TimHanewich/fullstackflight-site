@@ -125,12 +125,14 @@
             <figure class="transceiver-flow">
               <div class="transceiver-flow__route">
                 <span>Laptop</span>
-                <span class="transceiver-flow__connection"><span aria-hidden="true">&harr;</span> USB</span>
-                <strong>Transceiver</strong>
-                <span class="transceiver-flow__connection"><span aria-hidden="true">&harr;</span> Radio</span>
-                <span>Quadcopter</span>
+                <span>USB cable</span>
+                <strong>Transceiver Platform</strong>
+                <span>Radio broadcast</span>
               </div>
-              <figcaption>The platform forwards pilot commands and sends aircraft updates back to the laptop, without changing the messages.</figcaption>
+              <div class="transceiver-flow__track" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </div>
+              <figcaption>Watch each control packet travel from the laptop through USB to the transceiver, which broadcasts it unchanged over radio.</figcaption>
             </figure>
           </div>
           <div data-details="radio" data-title="Radio Communication Protocol" tabindex="0" hidden>
