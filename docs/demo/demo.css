@@ -110,19 +110,25 @@
 
 .demo-hotspot span {
   position: absolute;
-  bottom: calc(50% + var(--halo-height) / 2 + 8px);
-  padding: 2px 9px;
-  border-radius: 5px;
-  background: var(--bg);
+  bottom: calc(50% + var(--halo-height) / 2 + 3px);
+  padding: 3px 9px;
+  border: 1px solid var(--halo);
+  border-radius: 999px;
+  background: #101923;
   color: var(--halo);
   font-size: 13px;
   font-weight: 600;
   white-space: nowrap;
-  visibility: hidden;
-  pointer-events: none;
+  pointer-events: auto;
 }
 
-.demo-hotspot:is(:hover, :focus-visible) span { visibility: visible; }
+.demo-hotspot { cursor: pointer; }
+.demo-hotspot span::after { content: " ›"; }
+
+.demo-hotspot:is(:hover, :focus-visible) span {
+  background: var(--halo);
+  color: #101923;
+}
 
 #demo-overview {
   position: absolute;

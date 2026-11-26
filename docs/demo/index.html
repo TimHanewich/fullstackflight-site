@@ -43,14 +43,14 @@
             <button class="demo-hotspot" type="button" data-view="quadcopter" aria-label="Inspect the Centauri quadcopter" aria-haspopup="dialog">
               <span aria-hidden="true">Quadcopter</span>
             </button>
-            <button class="demo-hotspot" type="button" data-view="radio" aria-label="Inspect radio communication from the transmitter to the quadcopter" aria-haspopup="dialog">
-              <span aria-hidden="true">Radio communication</span>
+            <button class="demo-hotspot" type="button" data-view="radio" aria-label="Inspect the radio signal from the transmitter to the quadcopter" aria-haspopup="dialog">
+              <span aria-hidden="true">Radio signal</span>
             </button>
             <button class="demo-hotspot" type="button" data-view="link" aria-label="Inspect Centauri Link" aria-haspopup="dialog">
               <span aria-hidden="true">Link</span>
             </button>
-            <button class="demo-hotspot" type="button" data-view="laptop" data-hotspot-scope="transmitter" aria-label="Inspect the transmitter laptop" aria-haspopup="dialog" hidden>
-              <span aria-hidden="true">Transmitter</span>
+            <button class="demo-hotspot" type="button" data-view="laptop" data-hotspot-scope="transmitter" aria-label="Inspect the laptop" aria-haspopup="dialog" hidden>
+              <span aria-hidden="true">Laptop</span>
             </button>
             <button class="demo-hotspot" type="button" data-view="transceiver" data-hotspot-scope="transmitter" aria-label="Inspect the transceiver platform" aria-haspopup="dialog" hidden>
               <span aria-hidden="true">Transceiver Platform</span>
@@ -73,7 +73,7 @@
             <p class="demo-details__lead">An extra pair of ears for your radio.</p>
             <p>Link is a handheld monitor that listens for Centauri radio messages and displays reception information on a small OLED screen. Walk away from the transmitter to check whether messages are still getting through, handy for troubleshooting and exploring approximate range without putting the aircraft in the air. It listens rather than controls, and a successful ground check doesn&rsquo;t guarantee safe flight range.</p>
           </div>
-          <div data-details="laptop" data-title="Transmitter" tabindex="0" hidden>
+          <div data-details="laptop" data-title="Laptop" tabindex="0" hidden>
             <p class="demo-details__lead">Your laptop becomes the cockpit.</p>
             <p>A Python program reads your Xbox controller, softens small stick movements for finer control, and packs your inputs into control packets. While armed, it sends those commands through the transceiver platform 20 times per second. A terminal dashboard shows your inputs and aircraft status received while throttle is zero. Before flight, you can also wirelessly update PID settings&mdash;no editing and reflashing the flight controller just to try a new tune.</p>
           </div>
