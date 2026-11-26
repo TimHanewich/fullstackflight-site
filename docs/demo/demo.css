@@ -123,9 +123,9 @@
 }
 
 .demo-hotspot[data-hotspot-scope="quadcopter"] {
-  left: max(24px, calc(50% - 210px));
+  left: max(14px, calc(50% - 345px + var(--quadcopter-callout-shift, 0px)));
   top: calc(50% - 48px);
-  width: 134px;
+  width: 174px;
   height: 44px;
   padding: 0 10px;
   border: 1px solid var(--halo);

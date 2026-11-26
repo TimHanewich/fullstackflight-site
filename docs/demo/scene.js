@@ -470,6 +470,12 @@ export async function startDemo() {
         shiftX = offsetX;
         shiftY = offsetY;
       }
+      if (viewName === "quadcopter") {
+        // Apply the camera's horizontal shift relative to the close-up without a flyout.
+        const defaultCalloutSpace = Math.min(140, stageWidth * 0.35);
+        const calloutShift = -shiftX * stageWidth - defaultCalloutSpace / 2;
+        hotspotLayer.style.setProperty("--quadcopter-callout-shift", `${calloutShift}px`);
+      }
       camera.lookAt(cameraTarget);
       if (shiftX || shiftY) {
         camera.setViewOffset(stageWidth, stageHeight, shiftX * stageWidth, shiftY * stageHeight, stageWidth, stageHeight);
