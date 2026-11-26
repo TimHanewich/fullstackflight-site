@@ -3,6 +3,7 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
 import { createPark } from "./park.js";
 import { createRadioSignal } from "./radio.js";
+import { createFlightLoop } from "./flight-loop.js";
 
 const point = (x, y, z) => new THREE.Vector3(x, y, z);
 const matte = (color) => new THREE.MeshStandardMaterial({ color, roughness: 0.88 });
@@ -281,6 +282,7 @@ export async function startDemo() {
   const detailsTitle = document.getElementById("demo-details-title");
   const detailsClose = document.getElementById("demo-details-close");
   const detailsSections = new Map([...details.querySelectorAll("[data-details]")].map((section) => [section.dataset.details, section]));
+  const flightLoop = createFlightLoop(detailsSections.get("quadcopter"));
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
   try {
     const loader = new GLTFLoader();
@@ -462,6 +464,7 @@ export async function startDemo() {
     }
 
     function renderScene() {
+      if (details.open && viewName === "quadcopter") flightLoop.update(elapsed);
       updateAircraft();
       radio.group.visible = viewName === "overview" || viewName === "radio";
       if (radio.group.visible) radio.update(elapsed, camera);
@@ -510,6 +513,7 @@ export async function startDemo() {
       details.dataset.view = name;
       detailsSections.forEach((item) => { item.hidden = item !== section; });
       section.scrollTop = 0;
+      if (name === "quadcopter") flightLoop.reset();
       if (details.open) detailsClose.focus({ preventScroll: true });
       else details.show();
     }

@@ -66,8 +66,24 @@
             <button id="demo-details-close" type="button" aria-label="Close details" autofocus>&times;</button>
           </div>
           <div data-details="quadcopter" data-title="Centauri quadcopter" tabindex="0" hidden>
-            <p class="demo-details__lead">Four motors. One tiny computer. Constant corrections.</p>
-            <p>Inside Centauri, a Raspberry Pi Pico runs the flight controller in MicroPython. It combines your radio commands with motion readings from an MPU-6050 sensor, then adjusts the four motors through a PID control loop running 250 times per second. You tell it what to do; the flight controller handles the rapid corrections that keep it stable.</p>
+            <div class="flight-loop" aria-label="Flight controller control loop" role="group">
+              <p class="flight-loop__rate"><strong>250 loops per second</strong> <span>4 ms per loop during flight</span></p>
+              <p class="flight-loop__hint">Shown in slow motion. Hover, tap, or tab to a step to learn more.</p>
+              <div class="flight-loop__layout">
+                <ol class="flight-loop__steps">
+                  <li><button type="button" data-step="The HC-12 radio checks for new throttle, pitch, roll, and yaw commands from the pilot.">Receive control input</button></li>
+                  <li><button type="button" data-step="The MPU-6050 measures rotation and acceleration. The gyro tells the Pico how fast Centauri is turning on each axis.">Read the IMU</button></li>
+                  <li><button type="button" data-step="PID compares the requested rotation rates with the measured rates and calculates corrections. It controls how fast Centauri turns, not what angle it holds.">Calculate PID corrections</button></li>
+                  <li><button type="button" data-step="The Pico adjusts the four motor signals. Zero throttle or a timeout on valid commands overrides the corrections and stops the motors.">Update motor signals</button></li>
+                  <li><button type="button" data-step="The Pico buffers flight data such as battery voltage and rotation rates. It sends radio status only when throttle is zero.">Record &amp; stream telemetry</button></li>
+                  <li><button type="button" data-step="If the work finishes early, the Pico waits out the rest of the 4 ms time budget before starting the next pass.">Wait, then repeat</button></li>
+                </ol>
+                <div class="flight-loop__explanation" aria-live="polite" aria-atomic="true">
+                  <h3 data-step-title></h3>
+                  <p data-step-description></p>
+                </div>
+              </div>
+            </div>
           </div>
           <div data-details="link" data-title="Centauri Link" tabindex="0" hidden>
             <p class="demo-details__lead">An extra pair of ears for your radio.</p>
