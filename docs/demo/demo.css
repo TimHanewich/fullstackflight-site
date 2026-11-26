@@ -431,41 +431,47 @@
 .transceiver-flow__device { fill: var(--panel); stroke: var(--muted); }
 .transceiver-flow__device--radio { stroke: var(--component-accent); }
 .transceiver-flow__port { fill: var(--bg); stroke: var(--muted); }
-.transceiver-flow__waves { stroke: var(--component-accent); opacity: 0.45; }
+.transceiver-flow__waves {
+  stroke: var(--component-accent);
+  stroke-width: 2px;
+  stroke-linecap: round;
+}
 
-.transceiver-flow__packet,
-.transceiver-flow__mist { fill: var(--component-accent); }
+/* A packet reaches the port at 58% of 3s; staggered packets arrive every second. */
+.transceiver-flow__waves path {
+  opacity: 0.3;
+  animation: transceiver-broadcast 1s linear 0.74s infinite;
+}
 
-.transceiver-flow__packet { animation: transceiver-packet 3s linear infinite; }
+.transceiver-flow__waves path:nth-child(2) { animation-delay: 0.92s; }
+.transceiver-flow__waves path:nth-child(3) { animation-delay: 1.10s; }
+
+.transceiver-flow__packet {
+  fill: var(--component-accent);
+  animation: transceiver-packet 3s linear infinite;
+}
+
 .transceiver-flow__packet--next { animation-delay: -1s; }
 .transceiver-flow__packet--last { animation-delay: -2s; }
-.transceiver-flow__mist circle { animation: transceiver-mist 3s linear infinite; }
-.transceiver-flow__mist--next circle { animation-delay: -1s; }
-.transceiver-flow__mist--last circle { animation-delay: -2s; }
 
-.demo-figure:has(#demo-motion[data-paused]) :is(.transceiver-flow__packet, .transceiver-flow__mist circle) {
+.demo-figure:has(#demo-motion[data-paused]) :is(.transceiver-flow__packet, .transceiver-flow__waves path) {
   animation-play-state: paused;
 }
 
 @keyframes transceiver-packet {
-  0% { transform: translateX(0); opacity: 1; }
-  58% { transform: translateX(223px); opacity: 1; }
-  62%, 100% { transform: translateX(225px); opacity: 0; }
+  0% { transform: translateX(0); visibility: visible; }
+  58%, 100% { transform: translateX(117px); visibility: hidden; }
 }
 
-@keyframes transceiver-mist {
-  0%, 57% { transform: translate(0, 0); opacity: 0; }
-  62% { transform: translate(4px, 0); opacity: 1; }
-  100% { transform: translate(var(--dx), var(--dy)); opacity: 0; }
+@keyframes transceiver-broadcast {
+  0%, 22%, 100% { opacity: 0.3; }
+  5%, 12% { opacity: 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .transceiver-flow__packet--next { transform: translateX(78px); }
-  .transceiver-flow__packet--last { transform: translateX(171px); }
-  .transceiver-flow__mist circle {
-    transform: translate(var(--dx), var(--dy));
-    opacity: 0.6;
-  }
+  .transceiver-flow__packet--last { transform: translateX(117px); }
+  .transceiver-flow__waves path { opacity: 0.6; }
 }
 
 .transceiver-flow figcaption {
