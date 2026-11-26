@@ -13,13 +13,11 @@ sphere.computeVertexNormals();
 const jacketPanel = new THREE.CylinderGeometry(1, 1, 1, 8);
 const shoulderPanel = new THREE.CylinderGeometry(0.72, 1, 1, 8);
 
-function jacket(parent, x, y, z, height, body, stripe, collar) {
-  const coat = group(parent, "Color-block jacket", x, y, z);
-  shape(coat, jacketPanel, body, 0, height * 0.35, 0, 0.163, height * 0.70, 0.112);
-  shape(coat, jacketPanel, stripe, 0, height * 0.75, 0, 0.163, height * 0.10, 0.112);
-  shape(coat, shoulderPanel, collar, 0, height * 0.90, 0, 0.163, height * 0.20, 0.112);
-  shape(coat, cube, stripe, 0, height * 0.40, -0.111, 0.009, height * 0.80, 0.006);
-  return coat;
+function shirtTorso(parent, x, y, z, height, cloth) {
+  const torso = group(parent, "Shirt", x, y, z);
+  shape(torso, jacketPanel, cloth, 0, height * 0.40, 0, 0.163, height * 0.80, 0.112);
+  shape(torso, shoulderPanel, cloth, 0, height * 0.90, 0, 0.163, height * 0.20, 0.112);
+  return torso;
 }
 const cube = new THREE.BoxGeometry(1, 1, 1);
 const woods = [0xa66d45, 0xb77e51, 0xbd8558, 0xb0764c].map(matte);
@@ -82,7 +80,7 @@ function buildTable(station) {
   batchModel(table, () => bench);
 }
 
-function buildHead(person, center, skin, hair, cap) {
+function buildHead(person, center, skin, hair, sweep) {
   const head = group(person, "Head", ...center);
   const eyes = matte(0x302a2c);
   shape(head, sphere, skin, 0, -0.005, -0.008, 0.091, 0.115, 0.088);
@@ -94,17 +92,11 @@ function buildHead(person, center, skin, hair, cap) {
   shape(head, sphere, skin, 0, -0.02, -0.091, 0.016, 0.021, 0.022);
   shape(head, sphere, eyes, 0, -0.052, -0.085, 0.018, 0.003, 0.004);
   head.scale.setScalar(1.09);
-  if (cap) {
-    // A knitted watch cap with a broad turned-up cuff.
-    shape(head, sphere, cap, 0, 0.060, 0.004, 0.106, 0.09, 0.099);
-    shape(head, jacketPanel, cap, 0, 0.043, 0, 0.106, 0.032, 0.099);
-  } else {
-    // A sculpted puff, swept fringe, and two small gold earrings.
-    shape(head, sphere, hair, 0, 0.065, 0.015, 0.103, 0.079, 0.091);
-    shape(head, sphere, hair, -0.026, 0.143, 0.066, 0.077, 0.074, 0.078);
-    shape(head, sphere, hair, -0.040, 0.052, -0.065, 0.060, 0.032, 0.031).rotation.z = 0.38;
-    const gold = matte(0xffbe39);
-    for (const side of [-1, 1]) shape(head, sphere, gold, side * 0.097, -0.038, 0, 0.009, 0.012, 0.009);
+  shape(head, sphere, hair, 0, 0.067, 0.012, 0.101, 0.068, 0.093);
+  shape(head, sphere, hair, 0.021 * sweep, 0.075, -0.054, 0.085, 0.039, 0.050).rotation.z = sweep * 0.32;
+  for (const side of [-1, 1]) {
+    shape(head, sphere, hair, side * 0.083, 0.031, 0.001, 0.014, 0.040, 0.042);
+    shape(head, sphere, hair, side * 0.034, 0.021, -0.087, 0.015, 0.004, 0.004);
   }
   return head;
 }
@@ -118,16 +110,23 @@ function aimHead(head, target) {
 
 function buildPilot(station) {
   const pilot = group(station, "Pilot");
-  const skin = matte(0xcf8e63);
-  const shirt = matte(0x087f82);
-  const sleeve = matte(0x174963);
-  const jeans = matte(0x224074);
-  const shoes = matte(0xffad29);
-  const sole = matte(0xf8edd2);
+  const skin = matte(0xefc4aa);
+  const shirt = matte(0x59c7ed);
+  const sleeve = shirt;
+  const tee = matte(0xfff9f1);
+  const jeans = matte(0x40c771);
+  const shoes = matte(0x119ddd);
+  const sole = matte(0xe8c277);
   shape(pilot, sphere, jeans, 0.045, 0.53, 0.57, 0.158, 0.102, 0.094);
-  jacket(pilot, 0.045, 0.575, 0.58, 0.465, shirt, sole, sleeve).rotation.x = -0.10;
+  const overshirt = shirtTorso(pilot, 0.045, 0.575, 0.58, 0.465, shirt);
+  overshirt.rotation.x = -0.10;
+  shape(overshirt, cube, tee, 0, 0.196, -0.111, 0.049, 0.392, 0.007);
+  for (const side of [-1, 1]) {
+    shape(overshirt, cube, shirt, side * 0.043, 0.408, -0.102, 0.036, 0.069, 0.012).rotation.z = side * 0.40;
+  }
+  for (const y of [0.08, 0.18, 0.28]) shape(overshirt, sphere, tee, -0.037, y, -0.104, 0.006, 0.006, 0.004);
   limb(pilot, point(0.045, 1.02, 0.545), point(0.045, 1.115, 0.54), 0.048, skin);
-  const head = buildHead(pilot, point(0.045, 1.165, 0.535), skin, matte(0x503428), shoes);
+  const head = buildHead(pilot, point(0.045, 1.165, 0.535), skin, matte(0x784332), 1);
 
   for (const side of [-1, 1]) {
     const x = 0.045 + side * 0.108;
@@ -154,15 +153,16 @@ function buildPilot(station) {
 function buildObserver(scene, device) {
   const observer = group(scene, "Link observer", 3.05, 0, -7.25);
   observer.rotation.y = 2.52;
-  const skin = matte(0x996145);
-  const shirt = matte(0xec5265);
-  const cream = matte(0xffefd7);
-  const trousers = matte(0x284f9b);
-  const shoes = matte(0x263249);
-  shape(observer, sphere, trousers, 0, 0.84, 0.023, 0.153, 0.14, 0.104);
-  jacket(observer, 0, 0.89, 0, 0.48, shirt, cream, matte(0xcc3859));
+  const skin = matte(0xeec3aa);
+  const shirt = matte(0x008f96);
+  const cream = matte(0xf5f1e9);
+  const shorts = matte(0xdde1df);
+  const cuff = matte(0x83a8ac);
+  const shoes = matte(0x305663);
+  shape(observer, sphere, shorts, 0, 0.84, 0.023, 0.153, 0.14, 0.104);
+  shirtTorso(observer, 0, 0.89, 0, 0.48, shirt);
   limb(observer, point(0, 1.34, -0.004), point(0, 1.48, -0.005), 0.047, skin);
-  const head = buildHead(observer, point(0, 1.545, -0.01), skin, matte(0x392725), null);
+  const head = buildHead(observer, point(0, 1.545, -0.01), skin, matte(0x50322e), -1);
   const mount = group(observer, "Centauri Link", 0.025, 1.17, -0.315);
   mount.rotation.x = 0.28;
   mount.scale.setScalar(1.3);
@@ -174,8 +174,14 @@ function buildObserver(scene, device) {
     const hip = point(side * 0.091, 0.845, 0.008);
     const knee = point(side * 0.119, 0.46, side * 0.036);
     const ankle = point(side * 0.141, 0.118, side * 0.055);
-    limb(observer, hip, knee, 0.072, trousers);
-    limb(observer, knee, ankle, 0.055, trousers);
+    const hem = hip.clone().lerp(knee, 0.91);
+    const legAxis = hip.clone().sub(hem);
+    const middle = hip.clone().lerp(hem, 0.5);
+    const fabric = shape(observer, jacketPanel, shorts, ...middle, 0.083, legAxis.length(), 0.079);
+    fabric.quaternion.setFromUnitVectors(Y, legAxis.normalize());
+    shape(observer, jacketPanel, cuff, ...hem, 0.084, 0.026, 0.080).quaternion.copy(fabric.quaternion);
+    limb(observer, hem, knee, 0.053, skin);
+    limb(observer, knee, ankle, 0.052, skin);
     shape(observer, sphere, cream, ankle.x, 0.026, ankle.z - 0.045, 0.067, 0.024, 0.124);
     shape(observer, sphere, shoes, ankle.x, 0.07, ankle.z - 0.044, 0.064, 0.062, 0.12);
 
