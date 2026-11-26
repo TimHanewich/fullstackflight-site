@@ -277,7 +277,7 @@
   line-height: 1.4;
 }
 
-.demo-details:is([data-view="airframe"], [data-view="flight-controller"], [data-view="radio"], [data-view="transceiver"]) h2 {
+.demo-details:is([data-view="airframe"], [data-view="flight-controller"], [data-view="radio"], [data-view="transceiver"], [data-view="laptop"]) h2 {
   font-size: clamp(1.25rem, 2vw, 1.625rem);
   font-weight: 700;
   line-height: 1.15;
@@ -354,6 +354,52 @@
   color: var(--muted);
   font-size: 0.8125rem;
 }
+
+.transmitter-tasks {
+  margin-top: 12px;
+  padding: 10px;
+  border: 1px dashed var(--component-accent, var(--transmitter-accent));
+  border-radius: 8px;
+}
+
+.transmitter-tasks h3 {
+  color: var(--component-accent, var(--transmitter-accent));
+  font-size: 1rem;
+}
+
+.transmitter-tasks p { font-size: 0.8125rem; }
+
+.transmitter-tasks__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 110px), 1fr));
+  gap: 8px;
+  margin-top: 8px;
+  list-style: none;
+}
+
+.transmitter-tasks__grid li {
+  --task-accent: var(--transmitter-accent);
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--task-accent);
+  border-radius: 6px;
+  background: var(--panel);
+}
+
+.transmitter-tasks__grid li:nth-child(2) { --task-accent: #83f8bd; }
+.transmitter-tasks__grid li:nth-child(3) { --task-accent: #ffaac4; }
+.transmitter-tasks__grid li:nth-child(4) { --task-accent: #ffdd87; }
+
+.transmitter-tasks__icon {
+  display: block;
+  font: 700 1rem/1 monospace;
+}
+
+.transmitter-tasks__icon,
+.transmitter-tasks__grid strong { color: var(--task-accent); }
+
+.transmitter-tasks__grid p { margin-top: 4px; }
+.transmitter-tasks__link { margin-top: 10px; }
 
 .transceiver-flow {
   margin: 12px 0;
