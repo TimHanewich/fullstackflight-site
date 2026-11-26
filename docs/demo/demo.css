@@ -348,6 +348,20 @@
 
 .flight-loop__intro { margin-bottom: 12px; }
 
+.flight-loop__python {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-soft);
+  font-size: 0.8125rem;
+}
+
+.flight-loop__python img { flex: none; }
+
 .flight-loop__rate strong {
   display: block;
   color: var(--component-accent);

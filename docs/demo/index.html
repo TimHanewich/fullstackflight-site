@@ -89,8 +89,12 @@
           </div>
           <div data-details="flight-controller" data-title="Centauri Flight Controller" tabindex="0" hidden>
             <p class="flight-loop__intro">The "brain" of the quadcopter! It runs on a tiny Raspberry Pi Pico, using motion sensors to see how the quadcopter is moving and adjusting all four motors to match what the pilot asks it to do.</p>
+            <div class="flight-loop__python">
+              <img src="../logos/python.svg" alt="" width="28" height="28" />
+              <p><strong>Written in MicroPython</strong>, a version of Python for tiny computers. We chose it so you can read the code, understand how it flies, and make changes yourself.</p>
+            </div>
             <div class="flight-loop" aria-label="Flight controller control loop" role="group">
-              <p class="flight-loop__rate"><strong>250 loops per second</strong></p>
+              <p class="flight-loop__rate"><strong>250 control loops per second</strong></p>
               <p class="flight-loop__hint">Shown in slow motion. Hover, tap, or tab to a step to learn more.</p>
               <div class="flight-loop__layout">
                 <ol class="flight-loop__steps">
