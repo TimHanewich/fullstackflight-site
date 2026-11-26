@@ -330,11 +330,17 @@ export async function startDemo() {
     const controller = group(station, "Wired Xbox controller", ...assembly.position);
     controller.scale.copy(assembly.scale);
     const platformNames = /^(Transmitter_platform_|Antenna_|USB_(serial|plug|activity)|Continuous_platform_to_USB_wire|Pico_HC12_jumper_|Jumper_socket)/;
+    const laptopScreenBounds = new THREE.Box3();
+    const transceiverBodyBounds = new THREE.Box3();
     batchModel(transmitter.scene, (object) => {
       if (object.name.startsWith("Gamepad_")) return controller;
       for (let node = object; node !== transmitter.scene; node = node.parent) {
-        if (platformNames.test(node.name)) return transceiver;
+        if (platformNames.test(node.name)) {
+          if (/^(Transmitter_platform_|Antenna_)/.test(node.name)) transceiverBodyBounds.expandByObject(object);
+          return transceiver;
+        }
       }
+      if (/screen|display|lcd/i.test(object.name)) laptopScreenBounds.expandByObject(object);
       return laptop;
     });
     const { aircraft, rotors } = buildAircraft(scene, quadcopter.scene);
@@ -346,6 +352,35 @@ export async function startDemo() {
 
     const camera = new THREE.PerspectiveCamera(34, 1, 0.025, 135);
     const cameraTarget = point();
+    function transmitterCloseUp(subject, bounds, offset, padding = 1.15) {
+      const center = bounds.getCenter(point());
+      const eye = subject.localToWorld(center.clone().add(offset));
+      const target = subject.localToWorld(center);
+      const toCamera = new THREE.Matrix4().lookAt(eye, target, Y).transpose();
+      let halfWidth = 0, halfHeight = 0;
+      for (const x of [bounds.min.x, bounds.max.x]) {
+        for (const y of [bounds.min.y, bounds.max.y]) {
+          for (const z of [bounds.min.z, bounds.max.z]) {
+            const corner = subject.localToWorld(point(x, y, z)).sub(eye).applyMatrix4(toCamera);
+            const depth = Math.max(camera.near, -corner.z);
+            halfWidth = Math.max(halfWidth, Math.abs(corner.x) / depth);
+            halfHeight = Math.max(halfHeight, Math.abs(corner.y) / depth);
+          }
+        }
+      }
+      return { eye, target, halfWidth, halfHeight, padding };
+    }
+
+    if (laptopScreenBounds.isEmpty()) {
+      laptopScreenBounds.setFromPoints(hotspotCorners(laptop));
+      laptopScreenBounds.min.y = THREE.MathUtils.lerp(laptopScreenBounds.min.y, laptopScreenBounds.max.y, 0.3);
+      laptopScreenBounds.max.z = THREE.MathUtils.lerp(laptopScreenBounds.min.z, laptopScreenBounds.max.z, 0.45);
+    }
+    if (transceiverBodyBounds.isEmpty()) transceiverBodyBounds.setFromPoints(hotspotCorners(transceiver));
+    const transmitterPartViews = {
+      laptop: transmitterCloseUp(laptop, laptopScreenBounds, point(-0.018, 0.08, 0.32)),
+      transceiver: transmitterCloseUp(transceiver, transceiverBodyBounds, point(-0.08, 0.26, 0.295), 1.3)
+    };
     const views = {
       overview: { eye: point(2.65, 2.6, 6.6), target: point(0, 0.66, -2.15), fov: 38, fit: 1.82 },
       transmitter: {
@@ -382,6 +417,7 @@ export async function startDemo() {
     let transition = null;
     let returnFocus = null;
     let partFocus = null;
+    let activeTransmitterCloseUp = null;
     let stageWidth = 0;
     let stageHeight = 0;
     let frameWidth = 0;
@@ -443,6 +479,9 @@ export async function startDemo() {
           returnFocus?.focus({ preventScroll: true });
           returnFocus = null;
           backButton.hidden = true;
+        } else if (partFocus) {
+          partFocus.focus({ preventScroll: true });
+          partFocus = null;
         } else if (document.activeElement === backButton) {
           hotspots.find(({ scope }) => scope === viewName).button.focus({ preventScroll: true });
         }
@@ -461,13 +500,16 @@ export async function startDemo() {
     }
 
     function placeCamera(amount = 1) {
-      const view = views[viewName];
-      const halfFov = THREE.MathUtils.degToRad(view.fov / 2);
+      const partView = viewName === "transmitter" ? activeTransmitterCloseUp : null;
+      const view = partView ?? views[viewName];
       // Fit the close-up in the uncovered part of the canvas, then shift the full projection into place.
       const calloutSpace = viewName === "quadcopter" ? Math.min(140, frameWidth * 0.35) : 0;
       const fittedWidth = frameWidth - calloutSpace;
-      const zoom = Math.max(1, view.fit / (fittedWidth / frameHeight)) * stageHeight / frameHeight;
-      const fittedFov = THREE.MathUtils.radToDeg(2 * Math.atan(Math.tan(halfFov) * zoom));
+      const frameAspect = fittedWidth / frameHeight;
+      const fittedHalfTangent = (partView
+        ? Math.max(partView.halfHeight, partView.halfWidth / frameAspect) * partView.padding
+        : Math.tan(THREE.MathUtils.degToRad(view.fov / 2)) * Math.max(1, view.fit / frameAspect)) * stageHeight / frameHeight;
+      const fittedFov = THREE.MathUtils.radToDeg(2 * Math.atan(fittedHalfTangent));
       const offsetX = (1 - (frameWidth + calloutSpace) / stageWidth) / 2;
       const offsetY = (1 - frameHeight / stageHeight) / 2;
       if (transition) {
@@ -503,7 +545,8 @@ export async function startDemo() {
       radio.group.visible = viewName === "overview" || viewName === "radio";
       if (radio.group.visible) radio.update(elapsed, camera);
       renderer.render(scene, camera);
-      if ((viewName === "overview" || assemblies[viewName]) && (!transition || !hotspotLayer.hidden)) updateHotspots();
+      const showHotspots = (viewName === "overview" || assemblies[viewName]) && !(viewName === "transmitter" && details.open);
+      if (showHotspots && (!transition || !hotspotLayer.hidden)) updateHotspots();
     }
 
     function renderFrame(time) {
@@ -559,6 +602,7 @@ export async function startDemo() {
     function selectView(name, button) {
       if (viewName === name) return;
       viewName = name;
+      activeTransmitterCloseUp = null;
       if (button) {
         returnFocus = button;
         backButton.hidden = false;
@@ -582,7 +626,13 @@ export async function startDemo() {
 
     function selectAssemblyPart(button) {
       partFocus = button;
-      showDetails(button.dataset.view);
+      const name = button.dataset.view;
+      showDetails(name);
+      if (viewName === "transmitter") {
+        activeTransmitterCloseUp = transmitterPartViews[name];
+        caption.textContent = `${detailsTitle.textContent} close-up`;
+        hotspotLayer.hidden = true;
+      }
       reframe();
     }
 
@@ -591,8 +641,14 @@ export async function startDemo() {
         selectView("overview");
       } else if (details.open) {
         details.close();
-        partFocus?.focus({ preventScroll: true });
-        partFocus = null;
+        if (viewName === "transmitter") {
+          activeTransmitterCloseUp = null;
+          caption.textContent = assemblies.transmitter.caption;
+          backButton.focus({ preventScroll: true });
+        } else {
+          partFocus?.focus({ preventScroll: true });
+          partFocus = null;
+        }
         reframe();
       } else {
         selectView("overview");
