@@ -112,43 +112,6 @@ function addMeadow(scene, random) {
   const walkway = new THREE.Mesh(path, mesh.material);
   walkway.receiveShadow = true;
   scene.add(walkway);
-
-  const blades = new THREE.BufferGeometry();
-  blades.setAttribute("position", new THREE.Float32BufferAttribute([
-    -0.025, 0, 0, 0.022, 0, 0, -0.045, 0.18, 0.014,
-    -0.004, 0, -0.023, -0.004, 0, 0.026, 0.032, 0.24, 0.038,
-    0.016, 0, 0.023, 0.052, 0, 0.008, 0.085, 0.13, 0.051
-  ], 3));
-  blades.computeVertexNormals();
-  const plantMaterial = new THREE.MeshStandardMaterial({ side: THREE.DoubleSide, roughness: 1 });
-  const grass = new THREE.InstancedMesh(blades, plantMaterial, 1900);
-  const flowers = new THREE.InstancedMesh(new THREE.IcosahedronGeometry(0.02), plantMaterial, 140);
-  const stems = new THREE.InstancedMesh(blades, plantMaterial, 140);
-  const clump = new THREE.Object3D();
-  let flower = 0;
-  for (let i = 0; i < grass.count; i++) {
-    const x = (random() - 0.5) * 19;
-    let z = 5.2 - random() * 18;
-    if (Math.abs(z - trail(x)) < 1.03) z = trail(x) + 1.06 + random() * 0.65;
-    let size = 0.34 + random() * 0.62;
-    if (Math.abs(x + 1.15) < 1.75 && Math.abs(z - 1.15) < 1.5) size *= 0.32;
-    clump.position.set(x, 0, z);
-    clump.rotation.y = random() * Math.PI * 2;
-    clump.scale.setScalar(size);
-    clump.updateMatrix();
-    grass.setMatrixAt(i, clump.matrix);
-    grass.setColorAt(i, new THREE.Color([0x708e42, 0x93aa50, 0xb9c674][i % 3]));
-    if (flower < flowers.count && (x < -3.1 || x > 2.5) && z > -5.8 && size > 0.6) {
-      stems.setMatrixAt(flower, clump.matrix);
-      stems.setColorAt(flower, new THREE.Color(0x67864d));
-      clump.position.add(new THREE.Vector3(0.032, 0.24, 0.038).multiplyScalar(size).applyAxisAngle(Y, clump.rotation.y));
-      clump.updateMatrix();
-      flowers.setMatrixAt(flower, clump.matrix);
-      flowers.setColorAt(flower++, new THREE.Color(i % 4 ? 0xf6ebdf : 0xf0bf54));
-    }
-  }
-  stems.count = flowers.count = flower;
-  scene.add(grass, stems, flowers);
 }
 
 function addTrees(scene, random) {
