@@ -460,7 +460,7 @@
 
 @keyframes transceiver-packet {
   0% { transform: translateX(0); visibility: visible; }
-  58%, 100% { transform: translateX(117px); visibility: hidden; }
+  58%, 100% { transform: translateX(66px); visibility: hidden; }
 }
 
 @keyframes transceiver-broadcast {
@@ -469,8 +469,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .transceiver-flow__packet--next { transform: translateX(78px); }
-  .transceiver-flow__packet--last { transform: translateX(117px); }
+  .transceiver-flow__packet--next { transform: translateX(33px); }
+  .transceiver-flow__packet--last { transform: translateX(66px); }
   .transceiver-flow__waves path { opacity: 0.6; }
 }
 
