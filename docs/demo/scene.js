@@ -7,7 +7,20 @@ import { createRadioSignal } from "./radio.js";
 const point = (x, y, z) => new THREE.Vector3(x, y, z);
 const matte = (color) => new THREE.MeshStandardMaterial({ color, roughness: 0.88 });
 const Y = point(0, 1, 0);
-const sphere = new THREE.SphereGeometry(1, 20, 12);
+// Broad planes keep faces and clothing readable at park-scene scale.
+const sphere = new THREE.SphereGeometry(1, 9, 6).toNonIndexed();
+sphere.computeVertexNormals();
+const jacketPanel = new THREE.CylinderGeometry(1, 1, 1, 8);
+const shoulderPanel = new THREE.CylinderGeometry(0.72, 1, 1, 8);
+
+function jacket(parent, x, y, z, height, body, stripe, collar) {
+  const coat = group(parent, "Color-block jacket", x, y, z);
+  shape(coat, jacketPanel, body, 0, height * 0.35, 0, 0.163, height * 0.70, 0.112);
+  shape(coat, jacketPanel, stripe, 0, height * 0.75, 0, 0.163, height * 0.10, 0.112);
+  shape(coat, shoulderPanel, collar, 0, height * 0.90, 0, 0.163, height * 0.20, 0.112);
+  shape(coat, cube, stripe, 0, height * 0.40, -0.111, 0.009, height * 0.80, 0.006);
+  return coat;
+}
 const cube = new THREE.BoxGeometry(1, 1, 1);
 const woods = [0xa66d45, 0xb77e51, 0xbd8558, 0xb0764c].map(matte);
 const frameWood = matte(0x865b40);
@@ -40,7 +53,7 @@ function bar(parent, start, end, width, depth, material) {
 function limb(parent, start, end, radius, material) {
   const delta = end.clone().sub(start);
   const center = start.clone().lerp(end, 0.5);
-  const object = shape(parent, new THREE.CapsuleGeometry(radius, delta.length(), 4, 10), material, ...center);
+  const object = shape(parent, new THREE.CapsuleGeometry(radius, delta.length(), 2, 7), material, ...center);
   object.quaternion.setFromUnitVectors(Y, delta.normalize());
 }
 
@@ -79,8 +92,20 @@ function buildHead(person, center, skin, hair, cap) {
     shape(head, sphere, eyes, side * 0.033, 0.001, -0.089, 0.008, 0.006, 0.004);
   }
   shape(head, sphere, skin, 0, -0.02, -0.091, 0.016, 0.021, 0.022);
-  shape(head, sphere, cap, 0, 0.048, 0.006, 0.104, 0.073, 0.101);
-  shape(head, sphere, cap, 0, 0.035, -0.087, 0.095, 0.012, 0.077);
+  shape(head, sphere, eyes, 0, -0.052, -0.085, 0.018, 0.003, 0.004);
+  head.scale.setScalar(1.09);
+  if (cap) {
+    // A knitted watch cap with a broad turned-up cuff.
+    shape(head, sphere, cap, 0, 0.060, 0.004, 0.106, 0.09, 0.099);
+    shape(head, jacketPanel, cap, 0, 0.043, 0, 0.106, 0.032, 0.099);
+  } else {
+    // A sculpted puff, swept fringe, and two small gold earrings.
+    shape(head, sphere, hair, 0, 0.065, 0.015, 0.103, 0.079, 0.091);
+    shape(head, sphere, hair, -0.026, 0.143, 0.066, 0.077, 0.074, 0.078);
+    shape(head, sphere, hair, -0.040, 0.052, -0.065, 0.060, 0.032, 0.031).rotation.z = 0.38;
+    const gold = matte(0xffbe39);
+    for (const side of [-1, 1]) shape(head, sphere, gold, side * 0.097, -0.038, 0, 0.009, 0.012, 0.009);
+  }
   return head;
 }
 
@@ -94,16 +119,15 @@ function aimHead(head, target) {
 function buildPilot(station) {
   const pilot = group(station, "Pilot");
   const skin = matte(0xcf8e63);
-  const shirt = matte(0x2d687e);
-  const sleeve = matte(0x376f83);
-  const jeans = matte(0x374b62);
-  const shoes = matte(0x343b3e);
-  const sole = matte(0xc9bea8);
+  const shirt = matte(0x087f82);
+  const sleeve = matte(0x174963);
+  const jeans = matte(0x224074);
+  const shoes = matte(0xffad29);
+  const sole = matte(0xf8edd2);
   shape(pilot, sphere, jeans, 0.045, 0.53, 0.57, 0.158, 0.102, 0.094);
-  shape(pilot, sphere, shirt, 0.045, 0.811, 0.56, 0.176, 0.265, 0.12).rotation.x = 0.12;
-  shape(pilot, sphere, shirt, 0.045, 0.924, 0.621, 0.134, 0.13, 0.073);
+  jacket(pilot, 0.045, 0.575, 0.58, 0.465, shirt, sole, sleeve).rotation.x = -0.10;
   limb(pilot, point(0.045, 1.02, 0.545), point(0.045, 1.115, 0.54), 0.048, skin);
-  const head = buildHead(pilot, point(0.045, 1.165, 0.535), skin, matte(0x503428), matte(0xdac7a3));
+  const head = buildHead(pilot, point(0.045, 1.165, 0.535), skin, matte(0x503428), shoes);
 
   for (const side of [-1, 1]) {
     const x = 0.045 + side * 0.108;
@@ -131,13 +155,14 @@ function buildObserver(scene, device) {
   const observer = group(scene, "Link observer", 3.05, 0, -7.25);
   observer.rotation.y = 2.52;
   const skin = matte(0x996145);
-  const shirt = matte(0xc16744);
-  const trousers = matte(0x4d5650);
-  const shoes = matte(0x393631);
+  const shirt = matte(0xec5265);
+  const cream = matte(0xffefd7);
+  const trousers = matte(0x284f9b);
+  const shoes = matte(0x263249);
   shape(observer, sphere, trousers, 0, 0.84, 0.023, 0.153, 0.14, 0.104);
-  shape(observer, sphere, shirt, 0, 1.12, 0, 0.176, 0.293, 0.104);
+  jacket(observer, 0, 0.89, 0, 0.48, shirt, cream, matte(0xcc3859));
   limb(observer, point(0, 1.34, -0.004), point(0, 1.48, -0.005), 0.047, skin);
-  const head = buildHead(observer, point(0, 1.545, -0.01), skin, matte(0x302c28), matte(0x5c6645));
+  const head = buildHead(observer, point(0, 1.545, -0.01), skin, matte(0x392725), null);
   const mount = group(observer, "Centauri Link", 0.025, 1.17, -0.315);
   mount.rotation.x = 0.28;
   mount.scale.setScalar(1.3);
@@ -151,6 +176,7 @@ function buildObserver(scene, device) {
     const ankle = point(side * 0.141, 0.118, side * 0.055);
     limb(observer, hip, knee, 0.072, trousers);
     limb(observer, knee, ankle, 0.055, trousers);
+    shape(observer, sphere, cream, ankle.x, 0.026, ankle.z - 0.045, 0.067, 0.024, 0.124);
     shape(observer, sphere, shoes, ankle.x, 0.07, ankle.z - 0.044, 0.064, 0.062, 0.12);
 
     const shoulder = point(side * 0.159, 1.291, 0.011);
