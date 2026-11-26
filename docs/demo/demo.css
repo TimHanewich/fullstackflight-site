@@ -49,7 +49,7 @@
   position: relative;
 }
 
-.demo-figure [data-view="quadcopter"] { --component-accent: #ffdd87; }
+.demo-figure :is([data-view="quadcopter"], [data-view="airframe"], [data-view="flight-controller"]) { --component-accent: #ffdd87; }
 .demo-figure [data-view="radio"] { --component-accent: #83f8bd; }
 .demo-figure [data-view="link"] { --component-accent: #eac1ff; }
 .demo-figure [data-view="transceiver"] { --component-accent: #ffaac4; }
@@ -120,6 +120,11 @@
   font-weight: 600;
   white-space: nowrap;
   pointer-events: auto;
+}
+
+.demo-hotspot[data-view="airframe"] span {
+  top: calc(50% + var(--halo-height) / 2 + 3px);
+  bottom: auto;
 }
 
 .demo-hotspot { cursor: pointer; }
@@ -221,7 +226,7 @@
   line-height: 1.4;
 }
 
-.demo-details[data-view="quadcopter"] h2 {
+.demo-details:is([data-view="airframe"], [data-view="flight-controller"]) h2 {
   font-size: clamp(1.25rem, 2vw, 1.625rem);
   font-weight: 700;
   line-height: 1.15;
@@ -248,6 +253,11 @@
   letter-spacing: -0.02em;
   line-height: 1.2;
   text-wrap: balance;
+}
+
+.flight-loop__section-title {
+  color: var(--text);
+  font-size: 0.875rem;
 }
 
 .flight-loop__rate strong {

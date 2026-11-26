@@ -276,13 +276,22 @@ export async function startDemo() {
   const backButton = document.getElementById("demo-overview");
   const caption = document.getElementById("demo-view-caption");
   const overviewCaption = caption.textContent;
-  const transmitterCaption = "Select the laptop or the transceiver platform to learn more.";
+  const assemblies = {
+    transmitter: {
+      label: "Explore the transmitter assembly",
+      caption: "Select the laptop or the transceiver platform to learn more."
+    },
+    quadcopter: {
+      label: "Explore the Centauri quadcopter",
+      caption: "Select the airframe or the flight controller to learn more."
+    }
+  };
   const motionButton = document.getElementById("demo-motion");
   const details = document.getElementById("demo-details");
   const detailsTitle = document.getElementById("demo-details-title");
   const detailsClose = document.getElementById("demo-details-close");
   const detailsSections = new Map([...details.querySelectorAll("[data-details]")].map((section) => [section.dataset.details, section]));
-  const flightLoop = createFlightLoop(detailsSections.get("quadcopter"));
+  const flightLoop = createFlightLoop(detailsSections.get("flight-controller"));
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
   try {
     const loader = new GLTFLoader();
@@ -346,12 +355,19 @@ export async function startDemo() {
         fov: 37, fit: 1.05
       }
     };
-    const subjects = { transmitter: assembly, laptop, transceiver, quadcopter: aircraft, radio: radio.hotspot, link: monitor };
+    // Keep the airframe callout near an outer arm and the controller callout at the center stack.
+    const airframe = group(aircraft, "Airframe hotspot", 0.13, -0.01, -0.13);
+    const flightController = group(aircraft, "Flight controller hotspot", 0, 0.035, 0);
+    const pointHotspots = new Set([radio.hotspot, airframe, flightController]);
+    const subjects = {
+      transmitter: assembly, laptop, transceiver, quadcopter: aircraft,
+      airframe, "flight-controller": flightController, radio: radio.hotspot, link: monitor
+    };
     const hotspots = [...hotspotLayer.querySelectorAll("[data-view]")].map((button) => {
       const subject = subjects[button.dataset.view];
       return {
         button, subject, scope: button.dataset.hotspotScope ?? "overview",
-        corners: subject === radio.hotspot ? [point()] : hotspotCorners(subject)
+        corners: pointHotspots.has(subject) ? [point()] : hotspotCorners(subject)
       };
     });
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -464,12 +480,12 @@ export async function startDemo() {
     }
 
     function renderScene() {
-      if (details.open && viewName === "quadcopter") flightLoop.update(elapsed);
+      if (details.open && details.dataset.view === "flight-controller") flightLoop.update(elapsed);
       updateAircraft();
       radio.group.visible = viewName === "overview" || viewName === "radio";
       if (radio.group.visible) radio.update(elapsed, camera);
       renderer.render(scene, camera);
-      if ((viewName === "overview" || viewName === "transmitter") && (!transition || !hotspotLayer.hidden)) updateHotspots();
+      if ((viewName === "overview" || assemblies[viewName]) && (!transition || !hotspotLayer.hidden)) updateHotspots();
     }
 
     function renderFrame(time) {
@@ -513,7 +529,7 @@ export async function startDemo() {
       details.dataset.view = name;
       detailsSections.forEach((item) => { item.hidden = item !== section; });
       section.scrollTop = 0;
-      if (name === "quadcopter") flightLoop.reset();
+      if (name === "flight-controller") flightLoop.reset();
       if (details.open) detailsClose.focus({ preventScroll: true });
       else details.show();
     }
@@ -524,8 +540,8 @@ export async function startDemo() {
       if (button) {
         returnFocus = button;
         backButton.hidden = false;
-        if (name === "transmitter") {
-          caption.textContent = transmitterCaption;
+        if (assemblies[name]) {
+          caption.textContent = assemblies[name].caption;
           backButton.focus({ preventScroll: true });
         } else {
           showDetails(name);
@@ -537,19 +553,19 @@ export async function startDemo() {
         backButton.focus({ preventScroll: true });
       }
       hotspotLayer.hidden = true;
-      hotspotLayer.setAttribute("aria-label", name === "transmitter" ? "Explore the transmitter assembly" : overviewHotspotLabel);
+      hotspotLayer.setAttribute("aria-label", assemblies[name]?.label ?? overviewHotspotLabel);
       hotspots.forEach(({ button: hotspot, scope }) => { hotspot.hidden = scope !== name; });
       reframe();
     }
 
-    function selectTransmitterPart(button) {
+    function selectAssemblyPart(button) {
       partFocus = button;
       showDetails(button.dataset.view);
       reframe();
     }
 
     function closeDetails() {
-      if (viewName !== "transmitter") {
+      if (!assemblies[viewName]) {
         selectView("overview");
       } else if (details.open) {
         details.close();
@@ -570,7 +586,7 @@ export async function startDemo() {
 
     hotspots.forEach(({ button, scope }) => {
       button.addEventListener("click", () => {
-        if (scope === "transmitter") selectTransmitterPart(button);
+        if (assemblies[scope]) selectAssemblyPart(button);
         else selectView(button.dataset.view, button);
       });
     });
