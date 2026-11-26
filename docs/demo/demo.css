@@ -277,7 +277,7 @@
   line-height: 1.4;
 }
 
-.demo-details:is([data-view="airframe"], [data-view="flight-controller"]) h2 {
+.demo-details:is([data-view="airframe"], [data-view="flight-controller"], [data-view="radio"]) h2 {
   font-size: clamp(1.25rem, 2vw, 1.625rem);
   font-weight: 700;
   line-height: 1.15;
@@ -304,6 +304,25 @@
   letter-spacing: -0.02em;
   line-height: 1.2;
   text-wrap: balance;
+}
+
+.radio-packet {
+  width: 100%;
+  margin: 12px auto 0;
+}
+
+.radio-packet img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.radio-packet figcaption {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.8125rem;
 }
 
 .airframe-carousel { margin-top: 12px; }
