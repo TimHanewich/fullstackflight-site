@@ -355,19 +355,12 @@ export async function startDemo() {
         fov: 37, fit: 1.05
       }
     };
-    // Keep the airframe callout near an outer arm and the controller callout at the center stack.
-    const airframe = group(aircraft, "Airframe hotspot", 0.13, -0.01, -0.13);
-    const flightController = group(aircraft, "Flight controller hotspot", 0, 0.035, 0);
-    const pointHotspots = new Set([radio.hotspot, airframe, flightController]);
-    const subjects = {
-      transmitter: assembly, laptop, transceiver, quadcopter: aircraft,
-      airframe, "flight-controller": flightController, radio: radio.hotspot, link: monitor
-    };
+    const subjects = { transmitter: assembly, laptop, transceiver, quadcopter: aircraft, radio: radio.hotspot, link: monitor };
     const hotspots = [...hotspotLayer.querySelectorAll("[data-view]")].map((button) => {
       const subject = subjects[button.dataset.view];
       return {
         button, subject, scope: button.dataset.hotspotScope ?? "overview",
-        corners: pointHotspots.has(subject) ? [point()] : hotspotCorners(subject)
+        corners: !subject || subject === radio.hotspot ? [point()] : hotspotCorners(subject)
       };
     });
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -387,16 +380,17 @@ export async function startDemo() {
     let frameId = 0;
     let previousTime;
     let elapsed = 0;
+    let hoverTime = 0;
     const pilotTarget = point();
     const projected = point();
 
     function updateAircraft() {
       aircraft.position.set(
-        1.02 + 0.15 * Math.sin(elapsed * 0.71),
-        2.03 + 0.072 * Math.sin(elapsed * 1.75),
-        -2.27 + 0.13 * Math.sin(elapsed * 0.86)
+        1.02 + 0.15 * Math.sin(hoverTime * 0.71),
+        2.03 + 0.072 * Math.sin(hoverTime * 1.75),
+        -2.27 + 0.13 * Math.sin(hoverTime * 0.86)
       );
-      aircraft.rotation.set(0.044 * Math.sin(elapsed * 1.25), -0.34 + 0.1 * Math.sin(elapsed * 0.61), -0.061 * Math.cos(elapsed));
+      aircraft.rotation.set(0.044 * Math.sin(hoverTime * 1.25), -0.34 + 0.1 * Math.sin(hoverTime * 0.61), -0.061 * Math.cos(hoverTime));
       for (const [index, rotor] of rotors.entries()) {
         rotor.rotation.y = elapsed * 22 * ([0, 3].includes(index) ? 1 : -1);
       }
@@ -408,8 +402,10 @@ export async function startDemo() {
     }
 
     function updateHotspots() {
+      const reveal = hotspotLayer.hidden;
+      if (reveal) hotspotLayer.hidden = false;
       for (const { button, subject, scope, corners } of hotspots) {
-        if (scope !== viewName) continue;
+        if (scope !== viewName || !subject) continue;
         let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
         for (const corner of corners) {
           projected.copy(corner).applyMatrix4(subject.matrixWorld).project(camera);
@@ -420,14 +416,15 @@ export async function startDemo() {
           maxX = Math.max(maxX, x);
           maxY = Math.max(maxY, y);
         }
-        button.style.left = `${(minX + maxX) / 2}px`;
-        button.style.top = `${(minY + maxY) / 2}px`;
+        const x = (minX + maxX) / 2;
+        const y = (minY + maxY) / 2;
+        button.style.left = `${x}px`;
+        button.style.top = `${y}px`;
         const padding = scope === "transmitter" ? 1.05 : 1.27;
         button.style.setProperty("--halo-width", `${Math.max(28, (maxX - minX) * padding + 8)}px`);
         button.style.setProperty("--halo-height", `${Math.max(24, (maxY - minY) * padding + 8)}px`);
       }
-      if (hotspotLayer.hidden) {
-        hotspotLayer.hidden = false;
+      if (reveal) {
         if (viewName === "overview") {
           caption.textContent = overviewCaption;
           returnFocus?.focus({ preventScroll: true });
@@ -454,9 +451,11 @@ export async function startDemo() {
       const view = views[viewName];
       const halfFov = THREE.MathUtils.degToRad(view.fov / 2);
       // Fit the close-up in the uncovered part of the canvas, then shift the full projection into place.
-      const zoom = Math.max(1, view.fit / (frameWidth / frameHeight)) * stageHeight / frameHeight;
+      const calloutSpace = viewName === "quadcopter" ? Math.min(140, frameWidth * 0.35) : 0;
+      const fittedWidth = frameWidth - calloutSpace;
+      const zoom = Math.max(1, view.fit / (fittedWidth / frameHeight)) * stageHeight / frameHeight;
       const fittedFov = THREE.MathUtils.radToDeg(2 * Math.atan(Math.tan(halfFov) * zoom));
-      const offsetX = (1 - frameWidth / stageWidth) / 2;
+      const offsetX = (1 - (frameWidth + calloutSpace) / stageWidth) / 2;
       const offsetY = (1 - frameHeight / stageHeight) / 2;
       if (transition) {
         camera.position.lerpVectors(transition.eye, view.eye, amount);
@@ -491,7 +490,11 @@ export async function startDemo() {
     function renderFrame(time) {
       frameId = 0;
       if (stopped || !visible || document.hidden) return;
-      if (playing && previousTime !== undefined) elapsed += Math.min((time - previousTime) / 1000, 0.05);
+      if (playing && previousTime !== undefined) {
+        const delta = Math.min((time - previousTime) / 1000, 0.05);
+        elapsed += delta;
+        if (viewName !== "quadcopter") hoverTime += delta;
+      }
       previousTime = playing ? time : undefined;
       if (transition) {
         const progress = reducedMotion.matches ? 1 : THREE.MathUtils.clamp((time - transition.start) / 650, 0, 1);

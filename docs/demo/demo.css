@@ -122,9 +122,60 @@
   pointer-events: auto;
 }
 
-.demo-hotspot[data-view="airframe"] span {
-  top: calc(50% + var(--halo-height) / 2 + 3px);
-  bottom: auto;
+.demo-hotspot[data-hotspot-scope="quadcopter"] {
+  left: max(24px, calc(50% - 210px));
+  top: calc(50% - 48px);
+  width: 134px;
+  height: 44px;
+  padding: 0 10px;
+  border: 1px solid var(--halo);
+  border-radius: 6px;
+  background: #101923;
+  color: var(--halo);
+  transform: none;
+}
+
+.demo-hotspot[data-view="flight-controller"] { top: calc(50% + 4px); }
+
+@media (max-width: 760px) {
+  .demo-scene:has(.demo-details[open]) .demo-hotspot[data-hotspot-scope="quadcopter"] {
+    visibility: hidden;
+  }
+}
+
+.demo-hotspot[data-hotspot-scope="quadcopter"]::before { content: none; }
+
+.demo-hotspot[data-hotspot-scope="quadcopter"]::after {
+  content: "";
+  position: absolute;
+  left: calc(100% + 5px);
+  top: 50%;
+  width: 22px;
+  height: 10px;
+  background: var(--halo);
+  clip-path: polygon(0 40%, calc(100% - 8px) 40%, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, calc(100% - 8px) 60%, 0 60%);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.demo-hotspot[data-hotspot-scope="quadcopter"] span {
+  position: static;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+}
+
+.demo-hotspot[data-hotspot-scope="quadcopter"] span::after { content: none; }
+
+.demo-hotspot[data-hotspot-scope="quadcopter"]:is(:hover, :focus-visible) {
+  background: var(--halo);
+  color: #101923;
+}
+
+.demo-hotspot[data-hotspot-scope="quadcopter"]:is(:hover, :focus-visible) span {
+  background: transparent;
+  color: inherit;
 }
 
 .demo-hotspot { cursor: pointer; }
