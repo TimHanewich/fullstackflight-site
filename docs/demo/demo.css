@@ -346,10 +346,7 @@
 
 .airframe-carousel__controls button:focus-visible { outline-offset: -3px; }
 
-.flight-loop__section-title {
-  color: var(--text);
-  font-size: 0.875rem;
-}
+.flight-loop__intro { margin-bottom: 12px; }
 
 .flight-loop__rate strong {
   display: block;
