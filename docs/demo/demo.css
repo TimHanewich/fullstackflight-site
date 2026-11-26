@@ -221,6 +221,12 @@
   line-height: 1.4;
 }
 
+.demo-details[data-view="quadcopter"] h2 {
+  font-size: clamp(1.25rem, 2vw, 1.625rem);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
 #demo-details-close {
   flex: 0 0 44px;
   min-height: 44px;
@@ -250,11 +256,9 @@
   font-size: 1.125rem;
 }
 
-.flight-loop__rate span,
-.flight-loop__hint { color: var(--muted); }
-
 .flight-loop__hint {
   margin: 4px 0 12px;
+  color: var(--muted);
   font-size: 0.8rem;
 }
 
