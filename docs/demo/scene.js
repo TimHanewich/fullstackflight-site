@@ -430,16 +430,21 @@ export async function startDemo() {
     let previousTime;
     let elapsed = 0;
     let hoverTime = 0;
+    let hoverWeight = 1;
     const pilotTarget = point();
     const projected = point();
 
     function updateAircraft() {
       aircraft.position.set(
-        1.02 + 0.15 * Math.sin(hoverTime * 0.71),
-        2.03 + 0.072 * Math.sin(hoverTime * 1.75),
-        -2.27 + 0.13 * Math.sin(hoverTime * 0.86)
+        1.02 + hoverWeight * 0.15 * Math.sin(hoverTime * 0.71),
+        2.03 + hoverWeight * 0.072 * Math.sin(hoverTime * 1.75),
+        -2.27 + hoverWeight * 0.13 * Math.sin(hoverTime * 0.86)
       );
-      aircraft.rotation.set(0.044 * Math.sin(hoverTime * 1.25), -0.34 + 0.1 * Math.sin(hoverTime * 0.61), -0.061 * Math.cos(hoverTime));
+      aircraft.rotation.set(
+        hoverWeight * 0.044 * Math.sin(hoverTime * 1.25),
+        -0.34 + hoverWeight * 0.1 * Math.sin(hoverTime * 0.61),
+        -hoverWeight * 0.061 * Math.cos(hoverTime)
+      );
       for (const [index, rotor] of rotors.entries()) {
         rotor.rotation.y = elapsed * 22 * ([0, 3].includes(index) ? 1 : -1);
       }
@@ -558,10 +563,15 @@ export async function startDemo() {
         if (viewName !== "quadcopter") hoverTime += delta;
       }
       previousTime = playing ? time : undefined;
+      const targetHoverWeight = viewName === "quadcopter" ? 0 : 1;
       if (transition) {
         const progress = reducedMotion.matches ? 1 : THREE.MathUtils.clamp((time - transition.start) / 650, 0, 1);
-        placeCamera(progress * progress * (3 - 2 * progress));
+        const amount = progress * progress * (3 - 2 * progress);
+        hoverWeight = THREE.MathUtils.lerp(transition.hoverWeight, targetHoverWeight, amount);
+        placeCamera(amount);
         if (progress === 1) transition = null;
+      } else {
+        hoverWeight = targetHoverWeight;
       }
       renderScene();
       if (playing || transition) scheduleRender();
@@ -583,7 +593,7 @@ export async function startDemo() {
 
     function reframe() {
       transition = reducedMotion.matches ? null : {
-        start: performance.now(), eye: camera.position.clone(), target: cameraTarget.clone(), fov: camera.fov, shiftX, shiftY
+        start: performance.now(), eye: camera.position.clone(), target: cameraTarget.clone(), fov: camera.fov, shiftX, shiftY, hoverWeight
       };
       resize();
     }
