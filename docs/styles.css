@@ -144,7 +144,12 @@ main section > h2 { text-align: center; margin-bottom: 20px; }
 .eco-info h3 { font-weight: 500; font-size: 24px; letter-spacing: -0.4px; text-transform: none; margin-bottom: 10px; }
 .eco-info p { color: var(--muted); font-size: 15px; line-height: 1.65; max-width: 450px; margin: auto; }
 .model-status { display: grid; place-items: center; height: 230px; padding: 24px; text-align: center; color: var(--muted); }
-.build-grid { display: grid; grid-template-columns: 1fr 1.3fr; align-items: center; gap: 64px; margin-top: 80px; }
+.eco-demo { margin-top: clamp(32px, 6vw, 32px); }
+.eco-demo__header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0 20px; margin-bottom: 12px; }
+.eco-demo__header h3 { font-size: clamp(22px, 3vw, 30px); font-weight: 500; line-height: 1.2; }
+.eco-demo__header a { display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; }
+.eco-demo__frame { display: block; width: 100%; height: clamp(400px, 65svh, 680px); border: 1px solid var(--border); border-radius: 12px; background: var(--bg-soft); }
+.build-grid { display: grid; grid-template-columns: 1fr 1.3fr; align-items: center; gap: 64px; margin-top: 32px; }
 .build-desc { font-size: 16px; color: var(--muted); }
 .build-desc h3 { color: var(--text); font-size: 30px; font-weight: 500; letter-spacing: -0.8px; line-height: 1.2; margin-bottom: 24px; }
 .build-desc p + p { margin-top: 16px; }
