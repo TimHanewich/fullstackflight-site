@@ -4,7 +4,7 @@ import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
 import { createPark } from "./park.js";
 import { createRadioSignal } from "./radio.js";
 import { createFlightLoop } from "./flight-loop.js";
-import { createLinkReplay } from "./link-replay.js?v=oled";
+import { createLinkReplay } from "./link-replay.js?v=oled-indicator";
 
 const point = (x, y, z) => new THREE.Vector3(x, y, z);
 const matte = (color) => new THREE.MeshStandardMaterial({ color, roughness: 0.88 });

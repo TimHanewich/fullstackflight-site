@@ -239,7 +239,7 @@
     const status = document.getElementById("demo-status");
     status.textContent = "Loading the park and Centauri models\u2026";
     try {
-      const { startDemo } = await import("./scene.js?v=link-oled");
+      const { startDemo } = await import("./scene.js?v=link-oled-indicator");
       await startDemo();
     } catch (error) {
       console.error("Unable to start the Centauri demo.", error);

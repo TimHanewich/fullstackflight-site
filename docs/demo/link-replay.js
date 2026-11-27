@@ -53,7 +53,7 @@ export function createLinkReplay(root) {
       const next = arrivals.findIndex((arrival) => arrival > time);
       const packets = next === -1 ? arrivals.length : next;
       const milliseconds = Math.floor(time - (arrivals[packets - 1] ?? -samples[0][0]));
-      show(milliseconds, packets, ["/", "−", "\\", "|"][Math.floor(time / 160) % 4]);
+      show(milliseconds, packets, Math.floor(time / 1000) % 2 === 0 ? "/" : "\\");
     }
   };
 }
