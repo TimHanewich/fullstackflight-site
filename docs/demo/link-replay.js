@@ -3,8 +3,7 @@ const samples = [
   [75539, 0], [76552, 0], [77523, 0], [78542, 0], [79552, 0], [80526, 0],
   [78, 2], [78, 4], [38, 6], [39, 8], [39, 10], [0, 11], [89, 14], [0, 16],
   [489, 17], [466, 19], [467, 21], [488, 23], [428, 25], [428, 27], [389, 29],
-  [389, 31], [390, 33], [389, 35], [380, 37], [388, 39],
-  [0, 55], [0, 75], [0, 93], [0, 111], [39, 129], [0, 147], [0, 166], [0, 183], [38, 201]
+  [389, 31], [390, 33], [389, 35], [380, 37], [388, 39]
 ];
 
 // Approximate arrivals between snapshots, keeping the last arrival in each sample anchored.
@@ -17,6 +16,11 @@ for (let i = 1; i < samples.length; i++) {
   const start = Math.max((i - 1) * 1000, arrivals[arrivals.length - 1] ?? 0);
   for (let n = 1; n <= added; n++) arrivals.push(start + (end - start) * n / added);
 }
+
+// Arming switches straight from the recorded slow stream to one packet every 50 ms.
+const armedAtMs = 26000;
+const armedUntilMs = 34000;
+for (let time = armedAtMs; time <= armedUntilMs; time += 50) arrivals.push(time);
 
 const cycleMs = 34500; // Leaves about six seconds of silence between packet streams.
 
