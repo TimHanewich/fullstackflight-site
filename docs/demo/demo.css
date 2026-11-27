@@ -688,6 +688,23 @@
   font-size: inherit;
 }
 
+.demo-embed :is(.site-header, .demo-kicker, .demo h1, .demo-intro) { display: none; }
+
+.demo-embed .demo {
+  width: 100%;
+  padding: 0;
+}
+
+.demo-embed .demo-figure {
+  border: 0;
+  border-radius: 0;
+}
+
+.demo-embed .demo-stage {
+  height: 100vh;
+  height: 100dvh;
+}
+
 .demo-view-caption {
   position: absolute;
   width: 1px;
