@@ -258,12 +258,6 @@
 .demo-details h2 {
   align-self: center;
   color: var(--component-accent, var(--transmitter-accent));
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 1.4;
-}
-
-.demo-details:is([data-view="airframe"], [data-view="flight-controller"], [data-view="radio"], [data-view="transceiver"], [data-view="laptop"]) h2 {
   font-size: clamp(1.25rem, 2vw, 1.625rem);
   font-weight: 700;
   line-height: 1.15;
