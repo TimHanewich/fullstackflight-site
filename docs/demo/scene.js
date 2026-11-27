@@ -190,12 +190,13 @@ function buildObserver(scene, device) {
     const shoulder = point(side * 0.159, 1.291, 0.011);
     const elbow = point(side * 0.193, 1.035, -0.09);
     const sleeveEnd = shoulder.clone().lerp(elbow, 0.43);
-    const grip = point(mount.position.x + side * 0.083, 1.155, -0.308);
+    // Support the enclosure from below, keeping the fingertips off the display face.
+    const grip = point(mount.position.x + side * 0.098, 1.125, -0.302);
     limb(observer, shoulder, sleeveEnd, 0.061, shirt);
     limb(observer, sleeveEnd, elbow, 0.043, skin);
     limb(observer, elbow, grip, 0.033, skin);
-    shape(observer, sphere, skin, ...grip, 0.032, 0.029, 0.038);
-    limb(observer, grip.clone().add(point(0, 0.013, -0.013)), grip.clone().add(point(-side * 0.027, 0.033, -0.013)), 0.013, skin);
+    shape(observer, sphere, skin, ...grip, 0.032, 0.024, 0.034);
+    limb(observer, grip.clone().add(point(0, 0.005, -0.014)), grip.clone().add(point(-side * 0.021, 0.008, -0.017)), 0.010, skin);
   }
   return { observer, monitor: mount };
 }
