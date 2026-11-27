@@ -4,6 +4,7 @@ import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
 import { createPark } from "./park.js";
 import { createRadioSignal } from "./radio.js";
 import { createFlightLoop } from "./flight-loop.js";
+import { createLinkReplay } from "./link-replay.js?v=oled";
 
 const point = (x, y, z) => new THREE.Vector3(x, y, z);
 const matte = (color) => new THREE.MeshStandardMaterial({ color, roughness: 0.88 });
@@ -292,6 +293,7 @@ export async function startDemo() {
   const detailsClose = document.getElementById("demo-details-close");
   const detailsSections = new Map([...details.querySelectorAll("[data-details]")].map((section) => [section.dataset.details, section]));
   const flightLoop = createFlightLoop(detailsSections.get("flight-controller"));
+  const linkReplay = createLinkReplay(detailsSections.get("link"));
   const airframeCarousel = detailsSections.get("airframe").querySelector(".airframe-carousel");
   const airframeSlides = [...airframeCarousel.querySelectorAll(".airframe-carousel__slide")];
   const airframeSlideStatus = airframeCarousel.querySelector(".airframe-carousel__status");
@@ -546,6 +548,7 @@ export async function startDemo() {
 
     function renderScene() {
       if (details.open && details.dataset.view === "flight-controller") flightLoop.update(elapsed);
+      if (viewName === "link" && details.open) linkReplay.update(elapsed, reducedMotion.matches && !playing);
       updateAircraft();
       radio.group.visible = viewName === "overview" || viewName === "radio";
       if (radio.group.visible) radio.update(elapsed, camera);
@@ -605,6 +608,7 @@ export async function startDemo() {
       detailsSections.forEach((item) => { item.hidden = item !== section; });
       section.scrollTop = 0;
       if (name === "flight-controller") flightLoop.reset();
+      if (name === "link") linkReplay.reset(reducedMotion.matches && !playing);
       if (details.open) detailsClose.focus({ preventScroll: true });
       else details.show();
     }

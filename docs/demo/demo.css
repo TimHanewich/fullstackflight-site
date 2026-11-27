@@ -546,6 +546,48 @@
 
 .airframe-carousel__controls button:focus-visible { outline-offset: -3px; }
 
+.link-replay { margin: 12px 0; }
+
+.link-replay figcaption {
+  margin-bottom: 6px;
+  color: var(--component-accent);
+  font-weight: 700;
+}
+
+.link-replay figcaption span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+.link-replay__bezel {
+  padding: clamp(10px, 2vw, 18px);
+  border: 1px solid #9499a1;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #777d87, #555b66);
+  box-shadow: inset 0 0 0 2px rgb(0 0 0 / 20%);
+}
+
+.link-replay__screen {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 2px solid #050814;
+  border-radius: 5px;
+  background: #070d20;
+  color: #f4f8ff;
+  box-shadow: 0 0 8px rgb(157 198 255 / 50%), inset 0 0 14px rgb(121 167 255 / 15%);
+  font: 700 20px/1 "Courier New", monospace;
+  text-shadow: 0 0 2px rgb(155 194 255 / 55%);
+}
+
+.link-replay__screen text,
+.link-replay__screen [data-link-bar] { fill: currentColor; }
+.link-replay__header { letter-spacing: 0.08em; }
+.link-replay p { margin-top: 6px; }
+.link-replay__note { color: var(--muted); font-size: 0.8125rem; }
+
 .flight-loop__intro { margin-bottom: 12px; }
 
 .flight-loop__python {

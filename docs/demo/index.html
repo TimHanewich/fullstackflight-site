@@ -113,8 +113,23 @@
             </div>
           </div>
           <div data-details="link" data-title="Centauri Link" tabindex="0" hidden>
-            <p class="demo-details__lead">An extra pair of ears for your radio.</p>
-            <p>Link is a handheld monitor that listens for Centauri radio messages and displays reception information on a small OLED screen. Walk away from the transmitter to check whether messages are still getting through, handy for troubleshooting and exploring approximate range without putting the aircraft in the air. It listens rather than controls, and a successful ground check doesn&rsquo;t guarantee safe flight range.</p>
+            <p>Centauri Link is a handheld radio monitor. Walk away from the transmitter with Link to see whether messages are still getting through, without putting the quadcopter in the air. Link listens; it doesn&rsquo;t send commands.</p>
+            <figure class="link-replay">
+              <figcaption>OLED demo replay <span>Simulated display based on the recording</span></figcaption>
+              <div class="link-replay__bezel" aria-hidden="true">
+                <svg class="link-replay__screen" viewBox="0 0 256 128">
+                  <text class="link-replay__header" x="128" y="20" text-anchor="middle">CENTAURI</text>
+                  <text x="247" y="20" text-anchor="end" data-link-activity>/</text>
+                  <text x="6" y="51">LRECV: <tspan data-link-age>75539</tspan> ms</text>
+                  <rect x="6" y="58" width="244" height="24" fill="none" stroke="currentColor" stroke-width="2" />
+                  <rect x="9" y="61" width="238" height="18" data-link-bar />
+                  <text x="6" y="104">count: <tspan data-link-count>0</tspan></text>
+                  <text x="249" y="123" text-anchor="end">80%</text>
+                </svg>
+              </div>
+              <p><strong>LRECV</strong> is the time since the last packet. Watch the bar drop and the count climb as packets arrive.</p>
+            </figure>
+            <p class="link-replay__note">A ground check helps troubleshoot reception; it doesn&rsquo;t guarantee safe flight range.</p>
           </div>
           <div data-details="laptop" data-title="Transmitter PC" tabindex="0" hidden>
             <p>An ordinary laptop becomes the pilot's interface for controlling the quadcopter. Plug in an Xbox controller for the controls and the transceiver platform for the radio.</p>
@@ -224,7 +239,7 @@
     const status = document.getElementById("demo-status");
     status.textContent = "Loading the park and Centauri models\u2026";
     try {
-      const { startDemo } = await import("./scene.js?v=transceiver-angle");
+      const { startDemo } = await import("./scene.js?v=link-oled");
       await startDemo();
     } catch (error) {
       console.error("Unable to start the Centauri demo.", error);
