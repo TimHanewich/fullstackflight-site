@@ -145,19 +145,6 @@
 
 .demo-hotspot[data-hotspot-scope="quadcopter"]::before { content: none; }
 
-.demo-hotspot[data-hotspot-scope="quadcopter"]::after {
-  content: "";
-  position: absolute;
-  left: calc(100% + 5px);
-  top: 50%;
-  width: 22px;
-  height: 10px;
-  background: var(--halo);
-  clip-path: polygon(0 40%, calc(100% - 8px) 40%, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, calc(100% - 8px) 60%, 0 60%);
-  transform: translateY(-50%);
-  pointer-events: none;
-}
-
 .demo-hotspot[data-hotspot-scope="quadcopter"] span {
   position: static;
   padding: 0;
@@ -179,7 +166,6 @@
 }
 
 .demo-hotspot { cursor: pointer; }
-.demo-hotspot span::after { content: " ›"; }
 
 .demo-hotspot:is(:hover, :focus-visible) span {
   background: var(--halo);
