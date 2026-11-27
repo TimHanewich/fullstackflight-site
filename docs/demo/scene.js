@@ -272,7 +272,6 @@ export async function startDemo() {
   const canvas = document.getElementById("park");
   const stage = canvas.parentElement;
   const status = document.getElementById("demo-status");
-  const toolbar = document.getElementById("demo-toolbar");
   const hotspotLayer = document.getElementById("demo-hotspots");
   const overviewHotspotLabel = hotspotLayer.getAttribute("aria-label");
   const backButton = document.getElementById("demo-overview");
@@ -288,7 +287,6 @@ export async function startDemo() {
       caption: "Select the airframe or the flight controller to learn more."
     }
   };
-  const motionButton = document.getElementById("demo-motion");
   const details = document.getElementById("demo-details");
   const detailsTitle = document.getElementById("demo-details-title");
   const detailsClose = document.getElementById("demo-details-close");
@@ -673,8 +671,6 @@ export async function startDemo() {
     function setPlaying(value) {
       playing = value;
       previousTime = undefined;
-      motionButton.textContent = playing ? "Pause motion" : "Resume motion";
-      motionButton.toggleAttribute("data-paused", !playing);
       scheduleRender();
     }
 
@@ -692,7 +688,6 @@ export async function startDemo() {
         closeDetails();
       }
     });
-    motionButton.addEventListener("click", () => setPlaying(!playing));
     reducedMotion.addEventListener("change", (event) => setPlaying(!event.matches));
     document.addEventListener("visibilitychange", () => {
       previousTime = undefined;
@@ -711,7 +706,6 @@ export async function startDemo() {
       details.close();
       hotspotLayer.hidden = true;
       backButton.hidden = true;
-      toolbar.hidden = true;
       status.textContent = "The 3D view was interrupted. Reload the page to try again.";
       status.hidden = false;
     });
@@ -719,7 +713,6 @@ export async function startDemo() {
     setPlaying(playing);
     renderScene();
     status.hidden = true;
-    toolbar.hidden = false;
   } catch (error) {
     renderer.dispose();
     throw error;

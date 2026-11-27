@@ -228,17 +228,14 @@
           </div>
         </dialog>
       </div>
-      <figcaption class="demo-toolbar" id="demo-toolbar" hidden>
-        <p class="demo-hint" id="demo-view-caption" aria-live="polite">Select a glowing halo to take a closer look.</p>
-        <button class="demo-motion" id="demo-motion" type="button">Pause motion</button>
-      </figcaption>
+      <figcaption id="demo-view-caption" class="demo-view-caption" aria-live="polite"></figcaption>
     </figure>
   </main>
   <script type="module">
     const status = document.getElementById("demo-status");
     status.textContent = "Loading the park and Centauri models\u2026";
     try {
-      const { startDemo } = await import("./scene.js?v=link-grip");
+      const { startDemo } = await import("./scene.js?v=no-toolbar");
       await startDemo();
     } catch (error) {
       console.error("Unable to start the Centauri demo.", error);
