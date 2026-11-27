@@ -18,6 +18,8 @@ for (let i = 1; i < samples.length; i++) {
   for (let n = 1; n <= added; n++) arrivals.push(start + (end - start) * n / added);
 }
 
+const cycleMs = 34500; // Leaves about six seconds of silence between packet streams.
+
 export function createLinkReplay(root) {
   const age = root.querySelector("[data-link-age]");
   const count = root.querySelector("[data-link-count]");
@@ -37,7 +39,7 @@ export function createLinkReplay(root) {
     reset(still) {
       start = undefined;
       lastTick = -1;
-      show(...(still ? samples[22] : samples[0]), "/");
+      show(...(still ? samples[22] : [0, 0]), "/");
     },
     update(elapsed, still) {
       if (still) {
@@ -46,14 +48,18 @@ export function createLinkReplay(root) {
         return;
       }
       start ??= elapsed;
-      const time = ((elapsed - start) * 1000) % (samples.length * 1000);
-      const tick = Math.floor(time / 40);
+      const elapsedMs = (elapsed - start) * 1000;
+      const tick = Math.floor(elapsedMs / 40);
       if (tick === lastTick) return;
       lastTick = tick;
+      const cycle = Math.floor(elapsedMs / cycleMs);
+      const time = elapsedMs % cycleMs;
       const next = arrivals.findIndex((arrival) => arrival > time);
       const packets = next === -1 ? arrivals.length : next;
-      const milliseconds = Math.floor(time - (arrivals[packets - 1] ?? -samples[0][0]));
-      show(milliseconds, packets, Math.floor(time / 1000) % 2 === 0 ? "/" : "\\");
+      const previousCycleArrival = arrivals[arrivals.length - 1] - cycleMs;
+      const lastArrival = arrivals[packets - 1] ?? (cycle ? previousCycleArrival : 0);
+      const milliseconds = Math.floor(time - lastArrival);
+      show(milliseconds, cycle * arrivals.length + packets, Math.floor(elapsedMs / 1000) % 2 === 0 ? "/" : "\\");
     }
   };
 }
