@@ -13,7 +13,7 @@
 .demo {
   width: min(100% - 64px, 1440px);
   margin: 0 auto;
-  padding: clamp(24px, 4vw, 56px) 0 40px;
+  padding: clamp(24px, 4vw, 30px) 0 40px;
 }
 
 .demo-kicker {
@@ -32,7 +32,6 @@
 }
 
 .demo-intro {
-  max-width: 62ch;
   margin-bottom: 24px;
   color: var(--muted);
 }
