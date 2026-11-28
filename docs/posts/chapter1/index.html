@@ -91,7 +91,7 @@
       <h1>Full-Stack Flight, Chapter 1: The Centauri Ecosystem</h1>
 
       <div class="post-content">
-        <p><img src="https://i.imgur.com/JLIMLAe.jpeg" alt="banner" /></p>
+        <p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/JLIMLAe.jpg" alt="banner" /></p>
 <p><em>This article is part of a 10-part series on how the <a href="https://github.com/TimHanewich/centauri">Centauri Quadcopter</a> was created. For a list of all other articles, please visit the introductory article found <a href="../chapter0">here</a>. This article contains Amazon affiliate links. If you make a purchase through them, I may earn a small commission at no extra cost to you.</em></p>
 <p>As was mentioned in <a href="../chapter0">the introductory article</a>, <em>Centauri</em> is a full quadcopter ecosystem developed from the ground up, with each component designed to support flight of the <em>Centauri Quadcopter</em>:</p>
 <ul>
@@ -103,10 +103,10 @@
 <p>The aircraft uses a carrier PCB to simplify electrical connections. See the <a href="../quadcopter-build-guide/">Quadcopter Build Guide</a> for step-by-step assembly instructions.</p>
 <p>In this article, I'll describe each of these components, their roles, and how they work together.</p>
 <h2>The Centauri Quadcopter</h2>
-<p><img src="https://i.imgur.com/GsYE2rI.jpeg" alt="quadcopter" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/GsYE2rI.jpg" alt="quadcopter" /></p>
 <p>The star of the show! The Centauri Quadcopter is where most of the effort of this project went and where a lot of the frustration was concentrated. It is, by far, the most complex component of the system.</p>
 <p>The <em>Centauri</em> Quadcopter is fully designed and developed from the ground up. While off-the-shelf components were used for the motors, electric speed controllers, battery, IMU, etc., I designed the body itself, 3D-printed it, assembled and wired it all, and fully programmed the flight controller that runs on the onboard Raspberry Pi Pico. Every decision about how the quadcopter behaves in the air traces back to code I wrote.</p>
-<p><img src="https://i.imgur.com/TuQ06gF.gif" alt="first flight" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/TuQ06gF.gif" alt="first flight" /></p>
 <p><em>Above: first flight of the Centuari quadcopter</em></p>
 <p>The quadcopter is the most engineering-intensive component of this entire ecosystem. You can think of it as a highly reactive, self-correcting robot that is always obsessing over one thing: achieving the control input from the pilot (their desired pitch, roll, and yaw). It does this by constantly comparing what the pilot <em>wants</em> against what is <em>actually happening</em> and adjusting motor output to close the gap. In a nutshell, the quadcopter:</p>
 <ol>
@@ -118,7 +118,7 @@
 </ol>
 <p>That is how a quadcopter stays in the air, via a very fast feedback loop.</p>
 <h2>The Centauri Transmitter</h2>
-<p><img src="https://i.imgur.com/MEK0Utk.jpeg" alt="transmitter" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/MEK0Utk.jpg" alt="transmitter" /></p>
 <p>In the quadcopter ecosystem, the <em>Transmitter</em> (commonly called &quot;Radio Transmitter&quot;, &quot;Radio Controller&quot;, or simply &quot;Tx&quot;) is the device that the pilot uses to steer and control the drone during flight. The transmitter typically has a number of physical joysticks, switches, and buttons that capture the pilot's intent and digitally relay it to the quadcopter in real time. It is the bridge between human decision-making and machine behavior.</p>
 <p>In a quadcopter transmitter, there are <strong>four</strong> primary control dimensions that must be rapidly tracked and sent to the drone:</p>
 <ul>
@@ -141,7 +141,7 @@
 <li>A Python program that runs on the computer, interprets Xbox controller input, and broadcasts control commands via the HC-12.</li>
 </ul>
 <h2>Analysis Software</h2>
-<p><img src="https://i.imgur.com/qYf9UDG.png" alt="analysis" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/qYf9UDG.png" alt="analysis" /></p>
 <p>The <strong>analysis software</strong> lets us inspect recorded flight data. As explained in chapter 5, telemetry is collected into a RAM buffer during flight and flushed to onboard flash storage while throttle is zero. Buffer and flash capacity limit how much can be retained. Because the storage on the Raspberry Pi Pico is tiny (only 2 MB) <em>and</em> the flight controller must be as efficient as possible, wasting no precious CPU cycles on formatting, the telemetry is logged in raw binary format.</p>
 <p>The analysis software that comes with Centauri is a lightweight Python script that decodes a binary telemetry file retrieved from the quadcopter's Raspberry Pi Pico into a human-readable CSV file containing the data it captured:</p>
 <ul>
@@ -160,7 +160,7 @@
 <li>Motor 4 throttle as a % (rear right)</li>
 </ul>
 <p>Once converted, that data can be analyzed after a flight to diagnose problems, validate tuning changes, or better understand the behavior of the quadcopter's PID loops in a given environment or situation:</p>
-<p><img src="https://i.imgur.com/M8lCkOG.png" alt="example_analysis" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/M8lCkOG.png" alt="example_analysis" /></p>
 <h2>Centauri Link</h2>
 <p>Link is a small handheld radio monitor built around a Pico, HC-12, and OLED display. It passively listens for Centauri traffic, helping you check reception while walking away from the transmitter without risking the aircraft in flight. Reception on foot does not guarantee the same range in flight.</p>
 <p>The <a href="../../shop/#link">Link section of the shop</a> lists its bare carrier board, electronics, and mounting hardware. Like the aircraft's carrier board, it simplifies electrical routing but still requires soldering, assembly, and separately sourced components.</p>

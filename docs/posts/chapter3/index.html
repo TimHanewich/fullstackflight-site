@@ -91,11 +91,11 @@
       <h1>Full-Stack Flight, Chapter 3: Quadcopter, Part 1: Designing a 3D-Printed Airframe</h1>
 
       <div class="post-content">
-        <p><img src="https://i.imgur.com/VRfvxHI.jpeg" alt="banner" /></p>
+        <p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/VRfvxHI.jpg" alt="banner" /></p>
 <p><em>This article is part of a 10-part series on how the <a href="https://github.com/TimHanewich/centauri">Centauri Quadcopter</a> was created. For a list of all other articles, please visit the introductory article found <a href="../chapter0">here</a>. This article contains Amazon affiliate links. If you make a purchase through them, I may earn a small commission at no extra cost to you.</em></p>
 <p>As mentioned in a previous chapter, one of my goals with the new <em>Centauri</em> quadcopter was to design my own custom airframe that I could 3D-print. My previous flight controller, <a href="https://timhanewich.medium.com/taking-flight-with-the-raspberry-pi-pico-micropython-diy-quadcopter-drone-61ed4f7ee746">Scout</a>, relied on a Flamewheel F450 body I purchased off the shelf.</p>
 <p>After a month and change of planning and designing, I had a finished body!</p>
-<p><img src="https://i.imgur.com/aTfsBlg.gif" alt="flyaround_1080" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/aTfsBlg.gif" alt="flyaround_1080" /></p>
 <p>The airframe design files are <a href="https://www.thingiverse.com/thing:7429193">on Thingiverse</a>. Follow the <a href="../quadcopter-build-guide/">Quadcopter Build Guide</a> for assembly instructions.</p>
 <p>The lower electronics bay holds the Pico on its carrier board, the MPU-6050, an HC-12 at the rear left near the antenna mast, and an MP1584EN 5V regulator. The frame keeps these components accessible while protecting them beneath the upper plate.</p>
 <p>In this chapter I'll walk through the design decisions and the process behind developing the <em>Centauri</em> quadcopter body.</p>
@@ -113,12 +113,12 @@
 <p>The two-level frame separates the electronics bay from the battery and camera mount. The <a href="../quadcopter-build-guide/">build guide</a> shows how to print and assemble the parts.
 In this section I'll document, in detail, the airframe design I developed to accommodate all of those criteria. I spent <em>a lot</em> of time in Blender mocking up the hardware components the drone would have to fit, designing a frame around them, and shifting their positions until I found the optimal layout!</p>
 <p>Given my 5-inch goal (prop diameter) and my desire to keep the frame 3D-printer friendly (not huge!), my first decision was to space the motors exactly 200mm apart:</p>
-<p><img src="https://i.imgur.com/SDOqmRm.png" alt="measurements with props" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/SDOqmRm.png" alt="measurements with props" /></p>
 <p>At 200 millimeters between motors, the 5-inch props (127mm) have plenty of clearance from each other and won't strike any onboard components.</p>
 <p>To hold all of the planned hardware and electronics, I designed the airframe with two levels: a lower level (&quot;level 1&quot;) and an upper level (&quot;level 2&quot;):</p>
-<p><img src="https://i.imgur.com/cxuBjoK.png" alt="levels" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/cxuBjoK.png" alt="levels" /></p>
 <p>The two levels are separated by 19.5 mm, a gap conveniently set by the height of the arms themselves. I sized this height to exactly match what an M3*30mm screw provides!</p>
-<p><img src="https://i.imgur.com/ed3qHKK.png" alt="M3*30mm" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/ed3qHKK.png" alt="M3*30mm" /></p>
 <p>The arms incorporate several design considerations:</p>
 <ul>
 <li>The 19mm x 16mm hole pattern at the end (where the motor mounts) perfectly matches the mounting screw positions of <a href="https://amzn.to/4pgOY9G">the motors I used</a>.</li>
@@ -126,37 +126,37 @@ In this section I'll document, in detail, the airframe design I developed to acc
 <li>A 2mm &quot;tunnel&quot; through that bridge lets a small zip tie pass through and clamp the ESC firmly in place.</li>
 <li>Two M3 holes at the base of the arm let two M3*30mm screws pass through, holding the two levels together while the arm acts as a natural spacer between them.</li>
 </ul>
-<p><img src="https://i.imgur.com/MeEeymi.png" alt="arm_design" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/MeEeymi.png" alt="arm_design" /></p>
 <p>The arm above is shared by all four positions, with only minor modifications on some versions to accommodate an antenna mast.</p>
 <p>The lower level holds the electronics needed for flight: the carrier board with its Raspberry Pi Pico, the HC-12 radio module, the MPU-6050 IMU, and the MP1584EN 5V regulator.</p>
-<p><img src="https://i.imgur.com/TGhhh6k.png" alt="Lower electronics bay with components" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/TGhhh6k.png" alt="Lower electronics bay with components" /></p>
 <p>The carrier board is secured to the lower plate with M2 screws. The Pico is soldered onto the board, with its USB port accessible from outside the frame for programming and downloading telemetry.</p>
-<p><img src="https://i.imgur.com/M0uga26.png" alt="Carrier-board mounting points and accessible Raspberry Pi Pico USB port" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/M0uga26.png" alt="Carrier-board mounting points and accessible Raspberry Pi Pico USB port" /></p>
 <p>The MPU-6050 sits in a small printed frame near the center of the aircraft. Double-sided foam tape secures the sensor and helps isolate it from motor vibration. Its orientation matters; the build guide shows how to position it.</p>
-<p><img src="https://i.imgur.com/Le4CZCV.png" alt="MPU-6050 printed frame, foam-tape mounting, and sensor orientation" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/Le4CZCV.png" alt="MPU-6050 printed frame, foam-tape mounting, and sensor orientation" /></p>
 <p>The HC-12 sits at the rear left, close to the antenna mast. Zip ties secure it to the lower plate, with its antenna connector facing rearward. This keeps the coaxial cable route short. The mounting slots let the zip ties pass through the lower plate and around the HC-12, holding the module in place without mounting screws.</p>
-<p><img src="https://i.imgur.com/p4EEWkx.png" alt="HC-12 mounting slots and zip-tie routing in the lower plate" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/p4EEWkx.png" alt="HC-12 mounting slots and zip-tie routing in the lower plate" /></p>
 <p>The MP1584EN regulator is also secured with a zip tie. It supplies regulated 5V power for the electronics. Battery leads exit through the rear of the lower plate and are held down with zip ties, ending in an XT60 connector for the flight battery. Securing these leads provides strain relief, helping prevent cable movement from pulling on the electrical connections.</p>
-<p><img src="https://i.imgur.com/XlLTAEy.png" alt="MP1584EN regulator mounting and rear battery-lead strain relief" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/XlLTAEy.png" alt="MP1584EN regulator mounting and rear battery-lead strain relief" /></p>
 <p>The upper level holds three components:</p>
 <ul>
 <li>The battery, which takes up the vast majority of this level. As mentioned, I used a rather large 4S 3,300 mAh battery!</li>
 <li>A 3-prong GoPro mount at the very front of the drone. It can hold a GoPro, or really any device with a compatible 2-prong mount!</li>
 <li>The antenna mast at the rear of the drone (shown in red). While it isn't technically <em>on</em> the upper-level plate, antenna line of sight is very important, so I positioned the antenna at the very top of this mast, away from electronics that could interfere or obstruct it.</li>
 </ul>
-<p><img src="https://i.imgur.com/dEDRxz6.png" alt="level2_components" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/dEDRxz6.png" alt="level2_components" /></p>
 <h2>Unused Design Aspects</h2>
 <p>As mentioned earlier, the Centauri airframe includes several design elements that aren't used in the current iteration of <em>Centauri</em> but are available to leverage in the future.</p>
 <p>One of those future ideas was mounting a LiDAR unit to the underbelly, letting the flight controller get an accurate altitude reading in close proximity to the ground. With a unit on the underbelly, though, I had to make sure the quadcopter could rest on something <em>other than</em> the LiDAR unit, which would damage it.</p>
 <p>The simple solution was four M4 screw holes on the lower level.</p>
-<p><img src="https://i.imgur.com/GqHYMol.png" alt="M4 holes for landing studs" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/GqHYMol.png" alt="M4 holes for landing studs" /></p>
 <p>Four M4*30mm screws can thread through to act as &quot;landing legs&quot;, keeping the LiDAR module off the ground. I would <em>not</em> recommend landing on these on cement, as they're rigid with no flexibility or &quot;cushion.&quot; Instead, I gently set the quadcopter on them before takeoff and always do a soft landing on grass.</p>
-<p><img src="https://i.imgur.com/RFNRN2m.png" alt="M4 studsTF Luna on underbelly" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/RFNRN2m.png" alt="M4 studsTF Luna on underbelly" /></p>
 <p>For mounting the LiDAR unit itself (a <a href="https://amzn.to/4fk1hxM">TF Luna</a>), two small M2 holes at the center let the unit attach to the underbelly. If you scroll up, you'll see this M2 hole also penetrates the MPU-6050 frame!</p>
-<p><img src="https://i.imgur.com/g6aAUN1.png" alt="M2 holes for mounting TF Luna to underbelly" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/g6aAUN1.png" alt="M2 holes for mounting TF Luna to underbelly" /></p>
 <h2>Four Configurations</h2>
 <p>The section above described the Centauri airframe in &quot;Configuration D&quot;, its most advanced and capable form. There are actually <em>four</em> configurations, each only slightly different from the others.</p>
-<p><img src="https://i.imgur.com/dd01Brh.png" alt="configurations" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/dd01Brh.png" alt="configurations" /></p>
 <p>As seen above, the only thing that changes across the four configurations is the <strong>antenna position</strong>. I found the 433 MHz antenna's position significantly affects the quadcopter's range; each configuration achieves a different antenna position, and thus a different range:</p>
 <ul>
 <li><strong>Configuration A: Internal Spring Antenna = Least Range</strong> - this configuration uses <em>no</em> externally mounted 433 MHz antenna at all! It relies on the <a href="https://www.google.com/search?udm=2&amp;q=hc12+spring+antenna">HC-12's standard spring antenna</a> soldered directly to the HC-12 and bent into a compromised position to fit the tight gap between levels 1 and 2. I <strong>do not recommend</strong> this configuration, as it severely limits range, but I'll grant that it's the quickest to get running, the simplest, the most durable, and perfectly fine for a first iteration just to validate that the quadcopter works.</li>
@@ -213,13 +213,13 @@ In this section I'll document, in detail, the airframe design I developed to acc
 <p>At $15 per kilogram, that is about <strong>$2.30 in filament</strong>, or <strong>$2.18 without the GoPro mount</strong>, excluding waste and printing costs. Actual usage depends on your slicer settings.</p>
 <p>Print one lower plate, one upper plate, four arms, the MPU-6050 frame, and the three antenna-mast components. Add the GoPro mount if you plan to mount a camera. The <a href="../../shop/#quadcopter-parts">shop's airframe list</a> links the design files and mounting hardware.</p>
 <p>That's <strong>10 printed pieces</strong>, or <strong>11 with the optional GoPro mount</strong>. The layout below shows the complete set so you can check that you have everything before assembly.</p>
-<p><img src="https://i.imgur.com/pBxx105.png" alt="Complete set of printed airframe parts, including the optional GoPro mount" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/pBxx105.png" alt="Complete set of printed airframe parts, including the optional GoPro mount" /></p>
 <p>Below are some photos I got while printing a few of the parts!</p>
 <p><em>Printing the lower level:</em></p>
-<p><img src="https://i.imgur.com/0L9z7Zc.jpeg" alt="printing lower level" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/0L9z7Zc.jpg" alt="printing lower level" /></p>
 <p><em>Printing the arms:</em></p>
-<p><img src="https://i.imgur.com/MnDo5US.jpeg" alt="printing the arms 1" /></p>
-<p><img src="https://i.imgur.com/G4NlhgW.jpeg" alt="printing the arms 2" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/MnDo5US.jpg" alt="printing the arms 1" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/G4NlhgW.jpg" alt="printing the arms 2" /></p>
 <h2>Close</h2>
 <p>With the body designed and printed, the next chapter details the hardware package and electronics wiring mounted onboard: the sensors and components that make flight possible in the first place!</p>
 <p>Click here to continue reading in this series: <a href="../chapter4">Full-Stack Flight, Chapter 4: Quadcopter, Part 2: Hardware and Electronics Package</a>.</p>

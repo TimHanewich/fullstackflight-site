@@ -91,11 +91,11 @@
       <h1>Full-Stack Flight, Chapter 7: Transmitter, Part 2: The Pilot&#x27;s Control Interface</h1>
 
       <div class="post-content">
-        <p><img src="https://i.imgur.com/AAwQJPK.jpeg" alt="banner" /></p>
+        <p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/AAwQJPK.jpg" alt="banner" /></p>
 <p><em>This article is part of a 10-part series on how the <a href="https://github.com/TimHanewich/centauri">Centauri Quadcopter</a> was created. For a list of all other articles, please visit the introductory article found <a href="../chapter0">here</a>.</em></p>
-<p><img src="https://i.imgur.com/MEK0Utk.jpeg" alt="transmitter" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/MEK0Utk.jpg" alt="transmitter" /></p>
 <p>In the last chapter, we explored the role the <em>Transmitter</em> plays in the flight ecosystem. As we learned, the <em>Transmitter</em> is the critical device the pilot uses to both control the quadcopter's flight and, potentially, view telemetry or other data the quadcopter sends back.</p>
-<p><img src="https://i.imgur.com/ysyQIHS.png" alt="pic of 3-part transmitter system" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/ysyQIHS.png" alt="pic of 3-part transmitter system" /></p>
 <p>The <em>Centauri</em> Transmitter is really a <strong>3-part</strong> system, acting together as one:</p>
 <ul>
 <li><strong>Transceiver Platform</strong>: covered in depth in the last chapter, this grants the PC the ability to communicate over the 433 MHz spectrum.</li>
@@ -114,7 +114,7 @@
 <p>The <a href="https://github.com/TimHanewich/centauri/tree/master/components/transmitter">transmitter source</a> includes installation instructions. Check controller inputs and arming controls before operating your build. The aircraft reports status telemetry while throttle is zero; during flight, the radio prioritizes pilot commands.</p>
 <h2>How the Transmitter Operates</h2>
 <p>The transmitter program itself is written in <strong>Python</strong>, with an assortment of SDK dependencies I'll describe later in this chapter. There are <strong>four</strong> critical coroutines that run within the transmitter program, side by side, continuously and indefinitely:</p>
-<p><img src="https://i.imgur.com/hke2gUM.png" alt="four coroutines" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/hke2gUM.png" alt="four coroutines" /></p>
 <ul>
 <li><strong>Read Controller Inputs</strong>: read the inputs on the Xbox controller to understand how the pilot wants to change the quadcopter's flight characteristics.</li>
 <li><strong>Transmit Control Data</strong>: send updated control packets to the drone, telling it to adjust its flight to the pilot's wishes.</li>
@@ -220,7 +220,7 @@ async def continuous_read_xbox() -&gt; None:
 </code></pre>
 <p>And that's it! That's the entire portion of the code that <em>reads input</em> from the USB-attached Xbox controller. I'll explain a few things in a bit more detail:</p>
 <p>First, the <code>NonlinearTransformer</code>. This borrows from a concept I developed while building <a href="https://github.com/TimHanewich/scout"><em>Scout</em></a>, my previous quadcopter flight controller, but never actually used. One problem I hit early in testing <em>Centauri</em>, after it became air-worthy, was how a <em>minor</em> input on the sticks would produce a relatively large reaction from the quadcopter, making it feel &quot;twitchy&quot;. To combat this, the Transmitter implements a <strong>NonlinearTransformer</strong>.</p>
-<p><img src="https://i.imgur.com/kvxK6v4.png" alt="nonlinear transformer" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/kvxK6v4.png" alt="nonlinear transformer" /></p>
 <p>This is just a basic mathematical model that uses trigonometry to transform an input into a &quot;dampened&quot; version of itself, while still preserving the full range of input at the extremities. As you can see in the code snippet above, all three orientation inputs (pitch, roll, yaw) pass through a <code>NonlinearTransformer</code> that dampens the raw inputs. You may also notice the <code>NonlinearTransformer</code> implements a minor deadzone, preventing extremely small non-zero positions from being interpreted as valid input.</p>
 <p>You'll also see that four buttons on the controller are monitored for being pressed: <strong>A</strong>, <strong>B</strong>, <strong>LB</strong>, and <strong>RB</strong>:</p>
 <ul>
@@ -332,10 +332,10 @@ async def continuous_radio_rx() -&gt; None:
 <p>As you can see in the code above, various variables (<code>vbat</code>, <code>pitch_rate</code>, <code>roll_angle</code>, <code>drone_messages</code>, etc.) are updated; these variables will later be displayed to the pilot, which is a great segue to our next and final coroutine!</p>
 <h2>Coroutine: Update Display</h2>
 <p>We now focus on the final coroutine: <em>displaying</em> all of this data for the pilot to see! This is a critical capability, as the pilot needs to see their own control input to confirm everything is working as expected, and also monitor the quadcopter's status to confirm it's still fit to fly.</p>
-<p><img src="https://i.imgur.com/fCYhbGL.gif" alt="normal operations gif" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/fCYhbGL.gif" alt="normal operations gif" /></p>
 <p>The Transmitter program itself does <em>not</em> use a full GUI (graphical user interface); it uses the terminal directly. I'm using <a href="https://github.com/textualize/rich">rich</a>, a popular Python library that lets you build beautiful formatting directly in the terminal, to display the pilot's dashboard.</p>
 <p>I developed <a href="https://github.com/TimHanewich/centauri/blob/880aef867fc2f1b2ec5d29fdde0b9acc81f665ad/components/transmitter/PC/src/display.py"><code>display.py</code></a> as a modular capability that uses <code>rich</code> to display all the data in the terminal, in a format I like. You pass a <code>DisplayPack</code> object into the <code>construct()</code> function, and the function builds a structure that's displayed in the terminal.</p>
-<p><img src="https://i.imgur.com/TciVzxN.png" alt="display" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/TciVzxN.png" alt="display" /></p>
 <p><em>Above: the pilot's control interface</em></p>
 <p>The following is the display-updating coroutine, which uses the <code>display.py</code> module I wrote:</p>
 <pre><code class="language-python"># set up continuous display function
@@ -389,7 +389,7 @@ async def continuous_display() -&gt; None:
 <h2>Settings Update</h2>
 <p>If you're looking at <a href="https://github.com/TimHanewich/centauri/blob/880aef867fc2f1b2ec5d29fdde0b9acc81f665ad/components/transmitter/PC/src/main.py">the complete <code>main.py</code> Transmitter program</a>, you'll notice it <em>also</em> lets the pilot use the laptop to update both transmitter-side and quadcopter-side flight settings.</p>
 <p>The ability to update these settings lives in the <code>update_settings()</code> function. This function first prints the current settings (idle throttle, max throttle, PID configurations, etc.) and then asks what the pilot wants to do, if anything.</p>
-<p><img src="https://i.imgur.com/dj1Wiyv.png" alt="setings" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/dj1Wiyv.png" alt="setings" /></p>
 <p>From here, the pilot has a few options:</p>
 <ol>
 <li><strong>Load Settings Profile</strong>: pre-load default PID gains, values I use that are confirmed to work. You can adjust this PID profile in the source code if you wish.</li>
@@ -399,7 +399,7 @@ async def continuous_display() -&gt; None:
 <li><strong>Send Settings to Drone</strong>: send the PID settings the pilot set on the transmitter (currently &quot;loaded and ready&quot;) off to the drone via a <em>Settings Update Packet</em> (read more about this in <a href="../chapter2">Chapter 2</a>).</li>
 <li><strong>Return</strong>: go back to the main dashboard.</li>
 </ol>
-<p><img src="https://i.imgur.com/fnvlLw3.gif" alt="flashing settings gif" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/fnvlLw3.gif" alt="flashing settings gif" /></p>
 <p><em>Above: from the main control interface, pressing 'S' on the keyboard, and then sending over a settings update packet, receiving confirmation from the drone, and then returning to the main control interface.</em></p>
 <p>While I removed it from the snippet above for simplicity, you'll see <a href="https://github.com/TimHanewich/centauri/blob/880aef867fc2f1b2ec5d29fdde0b9acc81f665ad/components/transmitter/PC/src/main.py#L507">in the full main.py file</a> that the <code>continuous_display()</code> function checks for presses of the &quot;s&quot; key while in the main dashboard. If &quot;s&quot; is pressed, it fires off the <code>update_settings()</code> function, entering the settings menu.</p>
 <h2>Validate Drone Connection</h2>

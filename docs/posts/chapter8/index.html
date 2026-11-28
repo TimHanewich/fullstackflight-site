@@ -91,27 +91,27 @@
       <h1>Full-Stack Flight, Chapter 8: Unpacking Flight Telemetry for Analysis</h1>
 
       <div class="post-content">
-        <p><img src="https://i.imgur.com/63Vq8ue.jpeg" alt="banner" /></p>
+        <p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/63Vq8ue.jpg" alt="banner" /></p>
 <p><em>This article is part of a 10-part series on how the <a href="https://github.com/TimHanewich/centauri">Centauri Quadcopter</a> was created. For a list of all other articles, please visit the introductory article found <a href="../chapter0">here</a>.</em></p>
 <p>Over the previous chapters in this series about the <em>Centauri</em> quadcopter ecosystem, we learned how Centauri's quadcopter was designed, built, and programmed, and how the pilot's transmitter was built for bidirectional communication with the quadcopter. In this chapter, we'll look at the <em>after-flight</em> phase: analyzing telemetry data!</p>
 <p>As discussed in <a href="../chapter5">chapter 5</a>, the <em>Centauri Flight Controller</em> logs telemetry data to its onboard flash storage several times per second. This data lives on the device and can easily be accessed later.</p>
 <p>And as we discussed in <a href="../chapter1">chapter 1</a>, Centauri's 3D-printed airframe was designed so the USB port on the Raspberry Pi Pico (the microcontroller) is easily accessible:</p>
-<p><img src="https://i.imgur.com/W7o9izK.png" alt="pico port" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/W7o9izK.png" alt="pico port" /></p>
 <p>Because the port is so accessible, it's very easy to plug a USB cable between your computer and the quadcopter after a flight and pull off the telemetry!</p>
 <p>Disconnect the flight battery before connecting USB, keep propellers off while working on the powered aircraft, and allow buffered telemetry to finish saving before removing flight power.</p>
 <p>Use a decoder compatible with the firmware that produced your log; see the <a href="https://github.com/TimHanewich/centauri/tree/master/components/analysis">analysis source</a>.</p>
 <h2>Accessing the Telemetry</h2>
 <p>After plugging in your Raspberry Pi Pico (which has already been configured with MicroPython, flashed with the <em>Centauri Flight Controller Firmware</em>, and completed a successful flight), you can use <a href="https://thonny.org/">Thonny</a> to access the files on the Pico's small flash memory, shown below:</p>
-<p><img src="https://i.imgur.com/B5EOT7c.png" alt="using thonny" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/B5EOT7c.png" alt="using thonny" /></p>
 <p>The top left of the window shows the directory on your PC you're currently in, and the bottom left shows the files on the Raspberry Pi Pico. Using Thonny, we can easily transfer a file from the Pico to our computer by right-clicking it and choosing &quot;Download to ...&quot;.</p>
-<p><img src="https://i.imgur.com/aGSSgtV.png" alt="download" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/aGSSgtV.png" alt="download" /></p>
 <p>After a few moments of transferring (depending on file size), you'll have the file saved and accessible on your computer!</p>
 <h2>Telemetry Format</h2>
 <p>You'll notice the file the <em>Centauri Flight Controller</em> logs to its flash storage is simply named <code>log</code>. To conserve the Pico's limited onboard storage <em>and</em> keep the telemetry packing as compute-efficient as possible, the raw telemetry is saved in a <strong>dense binary format</strong>. This means it's raw bytes, <em>not</em> something you can easily open and read like a <code>.csv</code> file or an <code>.xlsx</code> spreadsheet!</p>
 <p>This raw <code>log</code> file contains all the telemetry, but in a very information-dense format. While it isn't human-readable as-is, we have a way to unpack it <em>into</em> a human-readable format. And that's where the <strong>analysis script</strong> comes in!</p>
 <h2>Unpacking the Telemetry</h2>
 <p>I wrote a lightweight script that handles <strong>unpacking</strong> the raw telemetry the quadcopter records into a human-readable format. You can find that script <a href="https://github.com/TimHanewich/centauri/tree/880aef867fc2f1b2ec5d29fdde0b9acc81f665ad/components/analysis">here</a>.</p>
-<p><img src="https://i.imgur.com/wsQo81w.png" alt="unpacking" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/wsQo81w.png" alt="unpacking" /></p>
 <p>As you can see above, using the analysis script is quite simple!</p>
 <ol>
 <li>Run <code>main.py</code> (Python script)</li>
@@ -120,12 +120,12 @@
 <p>It then unpacks all the individual telemetry frames present in that raw log file (the Centauri Flight Controller logs multiple telemetry frames per second).</p>
 <p>Next, it performs some analysis over the telemetry frames in the <code>log</code> file. More specifically, it focuses on each individual &quot;flight&quot; recorded in the file. It infers a unique &quot;flight&quot; whenever the quadcopter went from <strong>unarmed --&gt; armed --&gt; unarmed again</strong>. That span of time when it was &quot;armed&quot; (motors spinning) is considered a unique flight.</p>
 <p>At the very end of its output, the script prompts you for the path of a file to dump the raw telemetry into, in a <em>human-readable format</em>:</p>
-<p><img src="https://i.imgur.com/wEyuF0H.png" alt="saving to CSV" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/wEyuF0H.png" alt="saving to CSV" /></p>
 <p>After passing in the path to a brand-new (empty) CSV file, you can open it and see the telemetry data presented in a spreadsheet format!</p>
-<p><img src="https://i.imgur.com/LkBRTpB.png" alt="opened CSV" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/LkBRTpB.png" alt="opened CSV" /></p>
 <p>And now we have that telemetry, unpacked, in a human-readable format!</p>
 <p><em>Note: below is the difference in storage size between the binary <code>log</code> file and the unpacked <code>log.csv</code> file, illustrating the efficiency gains of storing as binary. At 112 KB vs. 293 KB, the unpacked version is 162% bigger! The binary version has a footprint of only 38% of the unpacked version.</em></p>
-<p><img src="https://i.imgur.com/WsvIVIr.png" alt="difference" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/WsvIVIr.png" alt="difference" /></p>
 <h2>Understanding the Telemetry</h2>
 <p>With the telemetry data unpacked into a human-readable format (a CSV file), let's take a closer look at the full data available:</p>
 <ul>
@@ -142,7 +142,7 @@
 <h2>Using the Telemetry: Overlay &amp; Dashboarding</h2>
 <p>With a heap of telemetry data from the flights <em>Centauri</em> took, there's a lot we can do with it, which is amazing!</p>
 <p>The first use of the telemetry I want to highlight (and probably the flashiest 😊) is as a <em>telemetry overlay</em> on any onboard or ground-based video recordings of <em>Centauri</em> flying. <a href="https://dashware.software.informer.com/">Dashware</a> is a discontinued, yet still widely used, PC app that lets you overlay telemetry data onto a video recording. The <a href="https://github.com/TimHanewich/centauri/tree/master/dashware">Centauri DashWare project</a> includes a reusable template, data profile, and gauges. These save setup work, but the footage and telemetry still need careful timing checks before export.</p>
-<p><img src="https://i.imgur.com/bUNN34B.gif" alt="example telemetry overlay gif" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/bUNN34B.gif" alt="example telemetry overlay gif" /></p>
 <p>The above is just a short clip from a much longer flight with <em>Centauri</em>. You can watch the full recording of that flight <a href="https://www.youtube.com/watch?v=evh0FCPapC8">here on YouTube</a>, embedded below:</p>
 <div class="video-wrap">
   <iframe src="https://www.youtube.com/embed/evh0FCPapC8" title="YouTube video player" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -157,17 +157,17 @@
 </ol>
 <p>A start-time offset fixes an initial mismatch, but cannot fix footage that gradually falls out of sync. Correct duration drift before doing the final alignment.</p>
 <p>Besides overlaying telemetry on top of a video, we can also plot this data in any dashboarding or reporting software like Power BI or Tableau. Or, in the modern era, you can prompt any AI coding agent to create a bespoke dashboard for you, like the one I made below in 5 minutes.</p>
-<p><img src="https://i.imgur.com/xuKC9Sh.gif" alt="dashboard" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/xuKC9Sh.gif" alt="dashboard" /></p>
 <p><em>If you want to test this out for yourself, you can download the <code>dashboard.html</code> file <a href="https://github.com/TimHanewich/centauri/releases/download/54577736/dashboard.html">here</a>.</em></p>
 <h2>Analyzing the Telemetry: Troubleshooting!</h2>
 <p>As much as I love showing off the cool telemetry overlays and dashboards, any experienced engineer knows telemetry <em>also</em> helps diagnose the root cause of problems. It's not the fun, flashy side of things, but closely reviewing telemetry is sometimes the best way to start figuring out what went wrong!</p>
 <p>The best example of a problem occurring and telemetry analysis leading me to a conclusion and later a fix was a flight <em>attempt</em> I made on February 13, 2026. This was meant to be the first flight of <em>Centauri</em> in &quot;Configuration D&quot; (see <a href="../chapter3">chapter 3</a>) with the antenna mast.</p>
 <p>As you can see below, it was <em>not</em> a successful flight!</p>
-<p><img src="https://i.imgur.com/QlyCvWp.gif" alt="error side by side" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/QlyCvWp.gif" alt="error side by side" /></p>
 <p>And unfortunately the quadcopter broke in multiple places and needed repairs:</p>
-<p><img src="https://i.imgur.com/xobvz1Z.png" alt="broken" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/xobvz1Z.png" alt="broken" /></p>
 <p>As soon as I applied any throttle, the motors spooled up to an aggressive speed and the quadcopter uncontrollably smacked the roof, then fell and crashed. I was puzzled as to why! Fortunately, I had the onboard telemetry, and analyzing it helped me determine the root cause:</p>
-<p><img src="https://i.imgur.com/hBq2l0E.png" alt="telemetry analysis" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/hBq2l0E.png" alt="telemetry analysis" /></p>
 <p>I'll spare you the lengthy details, but this kicked off a multi-week investigation into the root cause, <a href="https://github.com/TimHanewich/centauri/blob/880aef867fc2f1b2ec5d29fdde0b9acc81f665ad/flights/20260213%20Nokomis%20Community%20Park/tests.md">experimental tests to isolate the issue</a>, and the development of <a href="https://github.com/TimHanewich/centauri/blob/880aef867fc2f1b2ec5d29fdde0b9acc81f665ad/flights/20260213%20Nokomis%20Community%20Park/humidity-short-theory.md">some theories</a>, which ultimately led to a more secure, failsafe-heavy communication protocol between the transmitter and quadcopter.</p>
 <p>Had I not had this telemetry to analyze, I would have been left with almost no breadcrumbs, making it particularly difficult to bounce back and make improvements!</p>
 <h2>Try it yourself!</h2>

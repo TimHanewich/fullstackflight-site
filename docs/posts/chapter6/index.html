@@ -91,7 +91,7 @@
       <h1>Full-Stack Flight, Chapter 6: Transmitter, Part 1: Transceiver Platform</h1>
 
       <div class="post-content">
-        <p><img src="https://i.imgur.com/1vB7TGB.jpeg" alt="banner" /></p>
+        <p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/1vB7TGB.jpg" alt="banner" /></p>
 <p><em>This article is part of a 10-part series on how the <a href="https://github.com/TimHanewich/centauri">Centauri Quadcopter</a> was created. For a list of all other articles, please visit the introductory article found <a href="../chapter0">here</a>. This article contains Amazon affiliate links. If you make a purchase through them, I may earn a small commission at no extra cost to you.</em></p>
 <p>Over the previous three chapters in this series, we learned how the <em>Centauri Quadcopter</em> was designed, fabricated, assembled, wired, and programmed from the ground up. Now, with a functioning quadcopter, it's time to focus on the other half of the equation: how the pilot will control it!</p>
 <p>In drone piloting, this is often called the pilot's <strong>transmitter</strong>: a device the pilot uses to <em>transmit</em> control commands to the drone in real time, continuously updating its flight. A transmitter is typically responsible for the following tasks:</p>
@@ -107,7 +107,7 @@
 </ul>
 <p>Both options have their pros and cons. To cut a long story short, I ultimately chose the <strong>Extend Laptop Capability</strong> option. It's certainly the path that gets us up and flying as quickly as possible, taking advantage of an off-the-shelf gamepad (the Xbox Controller) and the laptop's display for showing data. All we have to worry about from there is giving the laptop the <em>ability</em> to send and receive data with the quadcopter, plus the script that orchestrates the entire operation. For simplicity and speed, this certainly beats designing and building a custom transmitter!</p>
 <p>We can think of the transmitter as three separate components brought together as one:</p>
-<p><img src="https://i.imgur.com/ysyQIHS.png" alt="pic of 3-part transmitter system" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/ysyQIHS.png" alt="pic of 3-part transmitter system" /></p>
 <p>Since the gamepad side is very simple (buy <a href="https://amzn.to/4wUxGlE">an Xbox controller</a> and plug it into the PC via USB!), I'll focus on how I developed the other two components: <strong>the transceiver platform</strong> and the <strong>transmitter program</strong>. In this article, I'll focus on <em>the transceiver platform</em>.</p>
 <p>The <a href="../../shop/#transmitter">transmitter parts list</a> includes sourcing links, and the <a href="https://github.com/TimHanewich/centauri/tree/master/components/transmitter">transmitter repository</a> provides setup instructions.</p>
 <p>Telemetry from the aircraft is sent while throttle is zero. During flight, the radio link prioritizes receiving pilot commands.</p>
@@ -124,12 +124,12 @@
 <h2>Transceiver Platform: Hardware</h2>
 <p>On its own, a laptop can't communicate over the 433 MHz band the way the HC-12 on the <em>Centauri</em> quadcopter can. So we have to give the laptop that ability. Fortunately, the solution is rather simple: create a small, lightweight device that the PC communicates with via serial, and let that device handle the sending and receiving over the HC-12. You can think of this <strong>transceiver platform</strong> as a &quot;broker&quot; between the PC and the quadcopter, handling the transmission and reception of messages over the air.</p>
 <p>The transceiver platform is a very simple device that plugs into the laptop via USB:</p>
-<p><img src="https://i.imgur.com/F31LuQk.png" alt="transceiver plugged in" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/F31LuQk.png" alt="transceiver plugged in" /></p>
 <p>As pointed out in the photo above, it connects to the laptop via a <a href="https://amzn.to/4wDVgTh">CP2102</a> USB-to-UART adapter that lets the laptop communicate with it seamlessly. On the radio side, a <a href="https://www.digikey.com/short/qjz8575r">FLEXI-SMA-433 433 MHz antenna</a> lets it broadcast and receive data over the 433 MHz band. I've had a lot of success with this antenna and recommend it!</p>
 <p>At the logic layer, the transceiver platform is very simple: a Raspberry Pi Pico wired to an HC-12:</p>
-<p><img src="https://i.imgur.com/BPXfCkq.png" alt="close up pic of the transceiver platform" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/BPXfCkq.png" alt="close up pic of the transceiver platform" /></p>
 <p>And as you can probably tell from the images above, I designed and 3D-printed a very simple platform for mounting all the components:</p>
-<p><img src="https://i.imgur.com/mHdCT64.png" alt="pic of platform design files" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/mHdCT64.png" alt="pic of platform design files" /></p>
 <p>You can download the <code>.stl</code> files <a href="https://www.thingiverse.com/thing:7376838">on Thingiverse</a>! As noted above, it's a simple two-component design. (See the <em>Quick Reference</em> list above for the full parts list.)</p>
 <h2>Transceiver Platform: Software</h2>
 <p>With the transceiver's hardware covered and assembled, we'll move on to the <em>code</em> flashed onto the transceiver's Raspberry Pi Pico. Like the <em>Centauri</em> quadcopter's flight controller, it's written in MicroPython.</p>
@@ -139,7 +139,7 @@
 <li><a href="https://github.com/TimHanewich/centauri/blob/880aef867fc2f1b2ec5d29fdde0b9acc81f665ad/components/transmitter/transceiver/src/main.py">main.py</a>: the main transceiver platform operation code, handling the receiving and transmitting of messages via the onboard HC-12.</li>
 <li><a href="https://github.com/TimHanewich/centauri/blob/880aef867fc2f1b2ec5d29fdde0b9acc81f665ad/components/transmitter/transceiver/src/HC12.py">HC12.py</a>: a lightweight &quot;helper&quot; module I wrote that makes interfacing with the HC-12 in MicroPython easier. More information about it can be found <a href="https://github.com/TimHanewich/MicroPython-Collection/tree/master/HC-12">here</a>.</li>
 </ul>
-<p><img src="https://i.imgur.com/NqpJCmr.png" alt="complete transmitter" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/NqpJCmr.png" alt="complete transmitter" /></p>
 <p>As shown in the diagram above, there are <strong>four types</strong> of communication exchanged between the PC program and the transceiver platform (connected via USB, using UART to communicate):</p>
 <ol>
 <li><strong>PING/PONG</strong>: the PC can send <code>TRANPING</code> (encoded in ASCII) to the transceiver as a &quot;hey, are you there?&quot; check. If received, the transceiver responds <code>TRANPONG</code> to confirm it's on.</li>
@@ -149,7 +149,7 @@
 </ol>
 <p>The fourth communication type, the &quot;passthrough,&quot; is the most important and most commonly used capability of the transceiver platform. To reiterate, the main purpose of the transceiver platform is to serve as a &quot;passthrough broker&quot; between the drone and the transmitter program, handling the wireless transmitting and receiving.</p>
 <p>With those communication types covered, let's take a high-level look at how the transceiver platform, powered by code running on the Raspberry Pi Pico, operates:</p>
-<p><img src="https://i.imgur.com/GWdYiV4.png" alt="operational architecture" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/GWdYiV4.png" alt="operational architecture" /></p>
 <p>As you can see above, when the transceiver platform's Raspberry Pi Pico first boots up, it runs through a four-step boot sequence. In this stage, it:</p>
 <ul>
 <li>Turns on the onboard LED to confirm it has received power and is booting.</li>

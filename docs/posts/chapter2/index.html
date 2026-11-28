@@ -91,10 +91,10 @@
       <h1>Full-Stack Flight, Chapter 2: Defining a Communication Protocol</h1>
 
       <div class="post-content">
-        <p><img src="https://i.imgur.com/DE0pEtw.jpeg" alt="banner" /></p>
+        <p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/DE0pEtw.jpg" alt="banner" /></p>
 <p><em>This article is part of a 10-part series on how the <a href="https://github.com/TimHanewich/centauri">Centauri Quadcopter</a> was created. For a list of all other articles, please visit the introductory article found <a href="../chapter0">here</a>. This article contains Amazon affiliate links. If you make a purchase through them, I may earn a small commission at no extra cost to you.</em></p>
 <p>As mentioned in <a href="../chapter1">the previous article</a>, <em>Centauri</em> is an entire quadcopter ecosystem. Since in this project I take on designing and building both the drone and the pilot's transmitter from the ground up, I am also responsible for designing how the two communicate with each other over radio. The communication protocol is an <em>extremely</em> important part of the Centauri ecosystem.</p>
-<p><img src="https://i.imgur.com/1L4IfVg.png" alt="protocol" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/1L4IfVg.png" alt="protocol" /></p>
 <p>There are 4 different classifications of information (data) that may be exchanged between the Transmitter and Drone:</p>
 <ol>
 <li><strong>Control Packet</strong> (<em>transmitter --&gt; drone</em>): an update in the throttle, pitch, roll, and yaw input the pilot is applying. (high frequency during flight)</li>
@@ -114,7 +114,7 @@
 <li><strong>It must transmit quickly</strong>: the transmitter will <em>constantly</em> be sending updated control commands (updates of the pilot's current inputs) many times per second. In commercial scenarios, this is often 100+ times per second, but in Centauri we will shoot for ~20 times per second to keep it manageable. At 20 Hz, that means each packet must be transmittable in less than 0.05 seconds by the HC-12. This means the packet must be rather short, only emphasizing how its binary footprint must be efficient and high-density at packing the control commands.</li>
 </ol>
 <p>The following depicts the binary design I developed to contain the required input data in an efficient package:</p>
-<p><img src="https://i.imgur.com/jnvSrOE.png" alt="control packet" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/jnvSrOE.png" alt="control packet" /></p>
 <p>As seen above, <strong>eleven</strong> bytes are used, each byte serving as either A) packet metadata (identifier), B) control data, or C) a checksum:</p>
 <ul>
 <li><strong>Byte 1</strong> = Metadata byte, a packet header. This identifies the packet as a control packet to the drone which then proceeds to unpack it as so.</li>
@@ -133,11 +133,11 @@
 <p>What is <em>not</em> included in the graphic above but <em>is</em> included in the transmitted packet is the <code>\r\n</code> terminator at the very end of the packet (<code>0x0D</code> followed by <code>0x0A</code>) to delineate between packets that were sent. So altogether, 13 bytes (11 in the packet and 2 as terminator) will be transmitted 20 times per second, a rate of <strong>260 bytes/second</strong>.</p>
 <h2>The &quot;Settings Packet&quot;</h2>
 <p>As I mentioned previously in the opening chapter of this series, one of the serious challenges I had with my previous flight controller, <em>Scout</em>, was updating PID gains while PID tuning. In <em>Scout</em>, the PID gains were &quot;hard-coded&quot; into the flight controller code, meaning the process of PID tuning involved me updating the code and re-flashing it to the flight controller every time I wanted to experiment with a minor PID adjustment.</p>
-<p><img src="https://i.imgur.com/ecQJZ33.gif" alt="GIF of oscilations" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/ecQJZ33.gif" alt="GIF of oscilations" /></p>
 <p><em>PID tuning is arguably one of the most important aspects of a flight controller - and it isn't easy!</em></p>
 <p>Unlike <em>Scout</em>, <em>Centauri</em> would have an onboard radio communication module (the HC-12) that allowed me to theoretically exchange <em>any</em> information between the transmitter and quadcopter, so long as I wrote the code that would package it up, send it, receive it, and then unpackage it. With this capability I wanted to add a very important feature to <em>Centauri</em>: the ability to flash <strong>new</strong> flight settings (PID gains) on the fly.</p>
 <p>During development of <em>Centauri</em>, this would enable me to enter in any PID gains I'd like on the transmitter side and then send them over to the quadcopter to then be updated live, obviously while unarmed (not flying). Thus, the <strong>Settings Packet</strong> was created to allow for the exchange of this flight settings data:</p>
-<p><img src="https://i.imgur.com/7gpTt6y.png" alt="settings_packet" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/7gpTt6y.png" alt="settings_packet" /></p>
 <p>As seen above, the settings packet is 22 bytes:</p>
 <ul>
 <li><strong>Byte 1</strong>: Metadata byte, a packet header. This identifies the packet as a settings packet to the drone which then proceeds to unpack it as so.</li>
@@ -166,7 +166,7 @@
 </ul>
 <p>Due to Tx/Rx constraints and to keep communication fast and lightweight, only a <em>subset</em> of all the telemetry collected and recorded will be sent to the transmitter. In other words, <em>all</em> of the telemetry collected will be <strong>recorded</strong> to onboard storage while only a select few data points will be <strong>transmitted</strong> back to the transmitter.</p>
 <h3>The &quot;Recorded&quot; Telemetry Packet</h3>
-<p><img src="https://i.imgur.com/sucA5GV.png" alt="telemetry_packet_recorded" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/sucA5GV.png" alt="telemetry_packet_recorded" /></p>
 <p>As seen above, the &quot;recorded&quot; version of the telemetry packet is 19 bytes in length; with the traditional <code>\r\n</code> terminator appended to the end, that is a total frame length of 21 bytes.</p>
 <p>The recorded version of the telemetry packet consists of the following structure:</p>
 <ul>
@@ -190,11 +190,11 @@
 </ul>
 <p>Note that unlike other packets, there is <em>not</em> a checksum for the &quot;Recorded&quot; version of the telemetry packet; this is because this packet is only recorded directly to the flash storage onboard the microcontroller, <em>not</em> transmitted over-air where it is more susceptible to errors and bad data.</p>
 <p>By recording the live telemetry periodically and storing to flash storage, this allows the user of <em>Centauri</em> to later download the telemetry, unpack it, and analyze it, or overlay it against a live in-flight video:</p>
-<p><img src="https://i.imgur.com/aHxXC7U.gif" alt="overlay_example" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/aHxXC7U.gif" alt="overlay_example" /></p>
 <h3>The &quot;Transmitted&quot; (Sent) Telemetry Packet</h3>
 <p>The 19-byte full telemetry packet described as the &quot;Recorded&quot; packet in the section above captures all of the relevant telemetry and records that to the onboard flash storage (low latency). As described earlier, a subsection of this telemetry is also periodically <em>transmitted</em> from the quadcopter to the transmitter (pilot) over radio communication.</p>
 <p>Specifically, the following data points are delivered: <strong>Battery Voltage</strong>, <strong>Pitch/Roll/Yaw Rates</strong> (degrees per second), and <strong>Pitch/Roll Angles</strong>. I selected these fields as the bare minimum that would allow the pilot to A) check battery voltage before flying and B) validate the IMU is working as expected, two items that are critical to flying safely!</p>
-<p><img src="https://i.imgur.com/m9SoIgb.png" alt="telemetry_packet_transmitted" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/m9SoIgb.png" alt="telemetry_packet_transmitted" /></p>
 <p>If you look closely, you can tell that <strong>Bytes 2-7 are direct transpositions of Bytes 4-9 from the &quot;Recorded&quot; version of the Telemetry Packet</strong>. In Chapter 4, when we look closely at how the Flight Controller works, you'll see this design choice was chosen specifically for its efficiency over the need to &quot;repack&quot; <em>another</em> packet version.</p>
 <p>Also, note: despite this being a <em>transmitted</em> packet (over the air via radio communications), this also does NOT have a checksum. Why? The information transmitted is not highly sensitive to the point where bad data would cause a catastrophic problem. If a periodic packet is received with bogus data, it will likely be very apparent to the pilot reading it and then quickly be replaced with an updated packet that contains the valid, correct data.</p>
 <h3>Telemetry Packet Example</h3>
@@ -249,7 +249,7 @@ for b in to_pack_into:
 </code></pre>
 <h2>The &quot;Special Packet&quot;</h2>
 <p>The final packet type is the &quot;Special Packet&quot;. This packet allows for the transmission of otherwise unstructured data, usually expressed in very short text-based messages (only a few characters). While designing <em>Centauri</em>, I wanted the ability for the drone to transmit miscellaneous messages to the pilot about various things from successful bootup or calibrations, to errors it encountered.</p>
-<p><img src="https://i.imgur.com/s9TDmGz.png" alt="special_packet" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/s9TDmGz.png" alt="special_packet" /></p>
 <p>As seen above, the special packet has a very simple structure. The first byte is always <code>0b00000001</code> (equivalent to <code>1</code>), with bit 0 set to 1 to identify it as a Special Packet. The following 50 bytes each contain the decimal equivalent of each character of a message. This allows for small messages like &quot;SETUPOK&quot;, for example, to be sent. Finally, the <code>\r\n</code> terminator is appended at the end to mark the end of the packet.</p>
 <p>At a maximum number of characters of 50, that means the maximum length of a Special Packet is 51, or 53 if you are counting the <code>\r\n</code> that is also transmitted. Note that not all packets will be of this length. If a message is only a few characters, only a few bytes will be used to represent those characters in the Unstructured Message section.</p>
 <p>Because of its simplicity, packing a Special Packet and sending it to the transmitter via HC-12 is handled via a function drafted directly within the flight controller's <code>main.py</code>, shown <a href="https://github.com/TimHanewich/centauri/blob/880aef867fc2f1b2ec5d29fdde0b9acc81f665ad/components/quadcopter/src/main.py#L149">here</a>.</p>

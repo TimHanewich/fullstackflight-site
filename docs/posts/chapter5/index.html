@@ -91,7 +91,7 @@
       <h1>Full-Stack Flight, Chapter 5: Quadcopter, Part 3: The Flight Controller</h1>
 
       <div class="post-content">
-        <p><img src="https://i.imgur.com/aA4AtE7.jpeg" alt="banner" /></p>
+        <p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/aA4AtE7.jpg" alt="banner" /></p>
 <p><em>This article is part of a 10-part series on how the <a href="https://github.com/TimHanewich/centauri">Centauri Quadcopter</a> was created. For a list of all other articles, please visit the introductory article found <a href="../chapter0">here</a>. This article contains Amazon affiliate links. If you make a purchase through them, I may earn a small commission at no extra cost to you.</em></p>
 <p>With the body printed, the hardware assembled, and everything wired up, we're ready for the software phase: programming the flight controller! Having built both <em>Scout</em> and <em>Centauri</em>, I can confidently say this is the most challenging part of the entire build, but don't worry, I've done it successfully and will walk you through it!</p>
 <h2>Language of Choice: MicroPython (Python)</h2>
@@ -104,7 +104,7 @@
 <p>That said, this isn't without trade-offs. As mentioned above, MicroPython runs significantly slower on the Pico than its C/C++ counterpart because it's an <em>interpreted</em> language. Flight controllers notoriously need to run code very quickly, and MicroPython's slower execution puts that at risk. Even so, I've successfully developed the Centauri Flight Controller in MicroPython with ample performance for stable flight; I assure you, it's do-able!</p>
 <h2>The Centauri Flight Controller: What it is, What it isn't</h2>
 <p>Within the domain of quadcopter flight controllers and computers, there are what I'd call four &quot;levels&quot; of flight control, which I'll describe below.</p>
-<p><img src="https://i.imgur.com/kQ4pQuv.png" alt="four levels of digital flight control" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/kQ4pQuv.png" alt="four levels of digital flight control" /></p>
 <ul>
 <li><strong>Rate Control</strong>: the most primitive form of flight controller. It only monitors and controls angular velocity (the rate of change in orientation). If the pilot lifts off the sticks, the flight controller tries to achieve zero change in orientation, holding whatever orientation it's currently in.</li>
 <li><strong>Attitude Control</strong>: one level up from rate control. This is more complex: the flight controller not only observes and controls the rate of change in orientation, but also its absolute orientation: its pitch and roll angle relative to the ground. If the pilot lifts off the sticks, the flight controller tries to &quot;level out&quot; the quadcopter, achieving 0 degrees of pitch and roll.</li>
@@ -117,7 +117,7 @@
 <p>For the sake of organization, I'll describe the flight controller as having &quot;two sides,&quot; each covered in detail in the sections below.</p>
 <p>The first is the <strong>startup sequence</strong>: everything the flight controller does to prepare for normal operation the moment it boots (as soon as the Raspberry Pi Pico receives power).</p>
 <p>The second is the <strong>control loop</strong>: the core loop that continuously and rapidly performs all normal operation, both in flight and when grounded.</p>
-<p><img src="https://i.imgur.com/bnEmiu2.png" alt="Centauri Flight Controller Architecture Visualization" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/bnEmiu2.png" alt="Centauri Flight Controller Architecture Visualization" /></p>
 <p>The graphic above depicts the high-level architecture of the Centauri Flight Controller, split into its two &quot;phases.&quot; I'll describe each step in detail in the sections below, alongside some code snippets!</p>
 <p>You can follow along with the <a href="https://github.com/TimHanewich/centauri/blob/880aef867fc2f1b2ec5d29fdde0b9acc81f665ad/components/quadcopter/src/main.py">flight controller code</a> and find installation instructions in the <a href="https://github.com/TimHanewich/centauri/tree/master/components/quadcopter/src">quadcopter source folder</a>.</p>
 <p>The carrier board completes electrical connections; the Pico runs the flight controller described here. Follow the <a href="../quadcopter-build-guide/">Quadcopter Build Guide</a> for hardware assembly. Check battery-voltage calibration on your own build, and verify settings before flight. Execution timings vary with firmware and configuration.</p>
@@ -132,7 +132,7 @@ print(&quot;Turning LED on...&quot;)
 led = machine.Pin(&quot;LED&quot;, machine.Pin.OUT)
 led.on()
 </code></pre>
-<p><img src="https://i.imgur.com/U76Uwd3.png" alt="onboard LED" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/U76Uwd3.png" alt="onboard LED" /></p>
 <p>As shown in the image above, the Raspberry Pi Pico has a small onboard LED that can be controlled by code. I turn it on simply to confirm that power has successfully reached the Pico and the flight controller code is now running.</p>
 <h2>Boot Sequence: Initialize Motor PWM Control</h2>
 <p>The next step in the boot sequence is immediately initializing the pulse width modulation (PWM) signal for each of the four motors.</p>
@@ -154,7 +154,7 @@ M4:machine.PWM = machine.PWM(machine.Pin(gpio_motor4), freq=target_hz, duty_ns=1
 <p>I'll elaborate on two things in the code snippet above:</p>
 <p><code>freq</code>: you'll notice the <code>freq</code> parameter is set to 250 on each motor PWM. This is the frequency of the PWM signal in hertz: how many complete on/off cycles occur per second. At 250 Hz, each cycle lasts exactly 4 ms. We use 250 Hz because our control loop (the &quot;PID loop&quot;) runs at 250 Hz, so we may update the throttle as often as 250 times per second.</p>
 <p><code>duty_ns</code>: you'll notice <code>duty_ns</code> is set to <code>1000000</code>. This value is <strong>1,000,000</strong> nanoseconds, the <strong>width of the PWM signal</strong>. In the world of ESCs, a pulse width of 1,000,000 ns represents 0% throttle, while 2,000,000 ns represents 100% throttle. So by initializing each motor's pulse width at 1,000,000 nanoseconds, we start each at 0% throttle.</p>
-<p><img src="https://i.imgur.com/9l9QAGe.png" alt="pulse width" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/9l9QAGe.png" alt="pulse width" /></p>
 <p>The graphic above depicts this, showing the pulse width changing to represent different throttle levels. 0% throttle lasts 1 ms and 100% throttle lasts 2 ms, with linear scaling between the two.</p>
 <h2>Boot Sequence: Wireless Transceiver Setup</h2>
 <p>As discussed in the previous chapter, an HC-12 serves as the wireless transceiver that lets the quadcopter communicate bidirectionally with the pilot. Setting up and configuring the HC-12 early is a priority so the quadcopter can immediately send out an &quot;I'm online&quot; message, confirming it has booted successfully and is operational.</p>
@@ -684,7 +684,7 @@ if excess_us &gt; 0:
     time.sleep_us(excess_us)
 </code></pre>
 <h2>Close</h2>
-<p><img src="https://i.imgur.com/rqTUDaU.png" alt="first boot" /></p>
+<p><img src="https://github.com/TimHanewich/fullstackflight-site/releases/download/bb0b9ae8/rqTUDaU.png" alt="first boot" /></p>
 <p>We've now covered arguably the most challenging part of the entire <em>Centauri</em> ecosystem! We designed and printed the airframe in <a href="../chapter3">chapter 3</a>, added and wired up the hardware in <a href="../chapter4">chapter 4</a>, and have now programmed the flight controller firmware here in chapter 5!</p>
 <p>The <em>Centauri</em> quadcopter is now complete! Next, we'll move on to the other half of the duo: <strong>the Pilot's Transmitter</strong>, the device the pilot uses to control the quadcopter in flight.</p>
 <p>Click here to continue reading in this series: <a href="../chapter6">Full-Stack Flight, Chapter 6: Transmitter, Part 1: Transceiver Platform</a>.</p>
